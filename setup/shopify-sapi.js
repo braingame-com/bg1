@@ -1,13 +1,22 @@
-export const articleQuery = () => `{
-    articles(first: 8) {
+export const articleQuery = () => `
+  {
+    articles(first: 10) {
       edges {
         node {
           id
           title
+          excerpt
+        	content
+          contentHtml
+  				image {
+  				  id
+            url
+  				}
         }
       }
     }
-  }`,
+  }
+  `,
   STOREFRONT_ACCESS_TOKEN = "5551cf9a06d14a0dd0bfb3a4a4494ca6",
   GRAPHQL_URL = "https://braingame-com.myshopify.com/api/2022-07/graphql.json",
   GRAPHQL_BODY = () => {
