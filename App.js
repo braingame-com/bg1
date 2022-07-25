@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { useState, useEffect } from "react";
 import {
   Image,
@@ -7,6 +6,9 @@ import {
   FlatList,
   Button,
   TouchableOpacity,
+  useColorScheme,
+  Appearance,
+  Switch,
 } from "react-native";
 import {
   articleQuery,
@@ -16,13 +18,19 @@ import {
 } from "./setup/shopify-sapi";
 import { TailwindProvider } from "tailwindcss-react-native";
 import {
+  IconBrainGame,
+  IconCode,
   IconHome,
   IconBookOpen,
   IconShoppingBag,
   IconCog,
   IconArrowRightSmall,
 } from "./utilities/svg-icons";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -46,7 +54,7 @@ const Item = ({ image, title, excerpt, id }) => (
       </Text>
       <TouchableOpacity className="bg-slate-500 rounded-md py-2 px-4 items-center flex-row">
         <Text className="text-white mr-1">Read article</Text>
-        <SvgComponent width={18} height={18} color={"#fff"} />
+        <IconArrowRightSmall width={20} height={20} color={"#fff"} />
       </TouchableOpacity>
     </View>
   ),
@@ -62,7 +70,13 @@ const Item = ({ image, title, excerpt, id }) => (
 function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text className="mb-4">Home Screen</Text>
+      <Text
+        className={
+          useColorScheme() === "dark" ? "mb-4 text-white" : "mb-4 text-black"
+        }
+      >
+        Home Screen ({Appearance.getColorScheme()})
+      </Text>
       <Button
         title="Go to Articles"
         onPress={() =>
@@ -75,37 +89,16 @@ function HomeScreen({ navigation }) {
     </View>
   );
 }
-
 function ArticlesScreen({ route }) {
   {
-    /*const { itemId, otherParam } = route.params;*/
+    /* const { itemId, otherParam } = route.params;
+      return (
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+          <Text>Articles Screen for {itemId}</Text>
+          <Text className="text-xs mt-4">{otherParam}</Text>
+        </View>
+      ); */
   }
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Articles Screen</Text>
-    </View>
-  );
-}
-
-function ShopScreen({ route }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Shop Screen</Text>
-    </View>
-  );
-}
-
-function SettingsScreen({ route }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Settings Screen</Text>
-    </View>
-  );
-}
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
-
-export default function App() {
   // Get Shopify JSON
   const [results, setResults] = useState([]);
   useEffect(() => {
@@ -116,8 +109,92 @@ export default function App() {
       });
   }, []);
   return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <FlatList
+        data={results}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.node.id}
+      />
+    </View>
+  );
+}
+function ShopScreen({ route }) {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text
+        className={useColorScheme() === "dark" ? "text-white" : "text-black"}
+      >
+        Shop Screen
+      </Text>
+    </View>
+  );
+}
+function SettingsScreen({ route }) {
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  function ToggleDarkMode() {
+    return (
+      <View className="pt-4">
+        <Switch
+          value={isEnabled}
+          onValueChange={toggleSwitch}
+          onChange={() => console.log(isEnabled)}
+        />
+      </View>
+    );
+  }
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text
+        className={useColorScheme() === "dark" ? "text-white" : "text-black"}
+      >
+        Settings Screen
+      </Text>
+      <ToggleDarkMode />
+      <TouchableOpacity
+        className="bg-slate-300 py-2 px-4 mt-4 rounded-full"
+        onPress={(theme) => {
+          console.log("light");
+          setIsEnabled(false);
+        }}
+      >
+        <Text classname="text-xl">Light</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        className="bg-slate-300 py-2 px-4 mt-4 rounded-full"
+        onPress={(theme) => {
+          console.log("dark");
+          setIsEnabled(true);
+        }}
+      >
+        <Text classname="text-xl">Dark</Text>
+      </TouchableOpacity>
+      <View className="flex-row mt-80">
+        <IconBrainGame width={20} height={20} fill={"rgb(107, 114, 128)"} />
+        <View className="flex-row ml-2">
+          <IconCode width={20} height={20} fill={"rgb(107, 114, 128)"} />
+          <Text className="text-sm font-semibold text-gray-500 ml-2">
+            v1.1.1
+          </Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+export default function App() {
+  return (
     <TailwindProvider>
-      <NavigationContainer>
+      <NavigationContainer
+        theme={useColorScheme() === "dark" ? DarkTheme : DefaultTheme}
+      >
+        {/* <Stack.Navigator>
+              <Stack.Screen name="Home" component={HomeScreen} />
+              <Stack.Screen name="Articles" component={ArticlesScreen} />
+            </Stack.Navigator> */}
         <Tab.Navigator>
           <Tab.Screen
             name="Home"
@@ -125,7 +202,11 @@ export default function App() {
             options={{
               tabBarLabel: "",
               tabBarIcon: ({ color, size }) => (
-                <IconHome width={18} height={18} color={"#000"} />
+                <IconHome
+                  width={20}
+                  height={20}
+                  color={useColorScheme() === "dark" ? "#fff" : "#000"}
+                />
               ),
             }}
           />
@@ -135,7 +216,11 @@ export default function App() {
             options={{
               tabBarLabel: "",
               tabBarIcon: ({ color, size }) => (
-                <IconBookOpen width={18} height={18} color={"#000"} />
+                <IconBookOpen
+                  width={20}
+                  height={20}
+                  color={useColorScheme() === "dark" ? "#fff" : "#000"}
+                />
               ),
             }}
           />
@@ -145,8 +230,13 @@ export default function App() {
             options={{
               tabBarLabel: "",
               tabBarIcon: ({ color, size }) => (
-                <IconShoppingBag width={18} height={18} color={"#000"} />
+                <IconShoppingBag
+                  width={20}
+                  height={20}
+                  color={useColorScheme() === "dark" ? "#fff" : "#000"}
+                />
               ),
+              tabBarBadge: 3,
             }}
           />
           <Tab.Screen
@@ -155,7 +245,11 @@ export default function App() {
             options={{
               tabBarLabel: "",
               tabBarIcon: ({ color, size }) => (
-                <IconCog width={18} height={18} color={"#000"} />
+                <IconCog
+                  width={20}
+                  height={20}
+                  color={useColorScheme() === "dark" ? "#fff" : "#000"}
+                />
               ),
             }}
           />

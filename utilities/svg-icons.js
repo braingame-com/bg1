@@ -1,6 +1,33 @@
 import Svg, { Path } from "react-native-svg";
+import { useColorScheme } from "react-native";
 
-export const IconHome = (props) => (
+export const IconBrainGame = (props) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6"
+      fill={useColorScheme() === "dark" ? "white" : "black"}
+      viewBox="0 0 503.36 503.36"
+      {...props}
+    >
+      <Path d="m452.67 101.2-.05 37.3c50.74-25.95 50.74-56.56 50.74-56.56V50.57c0-13.98-5.67-26.63-14.83-35.79C479.82 6.07 467.95.52 454.78 0H44.21C32 0 20.95 4.95 12.94 12.95 4.95 20.95 0 32 0 44.21v408.52c0 27.75 22.32 50.28 49.98 50.62h405.84c26.52-1.59 47.54-23.6 47.54-50.52V226.31H250.77l101.58 50.73h100.27v140.73c.02.4.02.81.02 1.22s0 .82-.02 1.22a33.543 33.543 0 0 1-4.02 14.81l-33.18-16.57-27.16-13.56-136.73-68.27-170.09-84.93L388.36 98.55l27.23-13.58 33.13-16.53c2.4 4.45 3.81 9.51 3.98 14.88 0 .35.02.7.02 1.05 0 .38 0 .75-.02 1.12l-.02 15.71Zm-82 351.53H83.5c-18.23-.47-32.86-15.39-32.86-33.72V292.86l320.03 159.87ZM50.64 210.81V84.37c0-9.32 3.78-17.75 9.88-23.85 6.11-6.11 14.53-9.89 23.85-9.89h286.81L50.64 210.81Z" />
+    </Svg>
+  ),
+  IconCode = (props) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      {...props}
+    >
+      <Path
+        fillRule="evenodd"
+        d="M12.316 3.051a1 1 0 0 1 .633 1.265l-4 12a1 1 0 1 1-1.898-.632l4-12a1 1 0 0 1 1.265-.633zM5.707 6.293a1 1 0 0 1 0 1.414L3.414 10l2.293 2.293a1 1 0 1 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 0zm8.586 0a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1 0 1.414l-3 3a1 1 0 1 1-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 0 1 0-1.414z"
+        clipRule="evenodd"
+      />
+    </Svg>
+  ),
+  IconHome = (props) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
       className="h-6 w-6"
@@ -76,7 +103,7 @@ export const IconHome = (props) => (
   IconArrowRightSmall = (props) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-5 w-5"
+      className="h-6 w-6"
       viewBox="0 0 20 20"
       fill="currentColor"
       {...props}
