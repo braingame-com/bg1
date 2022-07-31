@@ -4,19 +4,26 @@ import { useColorScheme } from "react-native";
 export const IconBrainGame = (props) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6"
+      width="20"
+      height="20"
       fill={useColorScheme() === "dark" ? "white" : "black"}
-      viewBox="0 0 503.36 503.36"
+      viewBox="0 0 20 20"
       {...props}
     >
-      <Path d="m452.67 101.2-.05 37.3c50.74-25.95 50.74-56.56 50.74-56.56V50.57c0-13.98-5.67-26.63-14.83-35.79C479.82 6.07 467.95.52 454.78 0H44.21C32 0 20.95 4.95 12.94 12.95 4.95 20.95 0 32 0 44.21v408.52c0 27.75 22.32 50.28 49.98 50.62h405.84c26.52-1.59 47.54-23.6 47.54-50.52V226.31H250.77l101.58 50.73h100.27v140.73c.02.4.02.81.02 1.22s0 .82-.02 1.22a33.543 33.543 0 0 1-4.02 14.81l-33.18-16.57-27.16-13.56-136.73-68.27-170.09-84.93L388.36 98.55l27.23-13.58 33.13-16.53c2.4 4.45 3.81 9.51 3.98 14.88 0 .35.02.7.02 1.05 0 .38 0 .75-.02 1.12l-.02 15.71Zm-82 351.53H83.5c-18.23-.47-32.86-15.39-32.86-33.72V292.86l320.03 159.87ZM50.64 210.81V84.37c0-9.32 3.78-17.75 9.88-23.85 6.11-6.11 14.53-9.89 23.85-9.89h286.81L50.64 210.81Z" />
+      <Path
+        d="M17.99 4.02V5.5C20 4.47 20 3.25 20 3.25V2c0-.56-.23-1.06-.59-1.42-.35-.35-.82-.57-1.34-.59H1.76C1.27-.01.84.19.52.5.2.83 0 1.27 0 1.76v16.23c0 1.1.89 2 1.99 2.01h16.12c1.05-.06 1.89-.94 1.89-2.01v-9H9.96L14 11.01h3.98V16.7c0 .21-.06.41-.16.59l-1.32-.66-1.08-.54-5.43-2.71-6.76-3.37 12.2-6.09 1.08-.54 1.32-.66c.1.18.15.38.16.59v.7Zm-3.26 13.97H3.32c-.72-.02-1.31-.61-1.31-1.34v-5.01l12.72 6.35ZM2.01 8.38V3.35c0-.37.15-.71.39-.95.24-.24.58-.39.95-.39h11.4L2.01 8.38Z"
+        style={{
+          fill: "#787878",
+        }}
+      />
     </Svg>
   ),
   IconCode = (props) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6"
       viewBox="0 0 20 20"
+      width="20"
+      height="20"
       fill="currentColor"
       {...props}
     >
@@ -27,30 +34,37 @@ export const IconBrainGame = (props) => (
       />
     </Svg>
   ),
-  IconHome = (props) => (
+  IconPie = (props) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6"
       fill="none"
       viewBox="0 0 24 24"
-      stroke="currentColor"
+      width="24"
+      height="24"
+      stroke={useColorScheme() === "dark" ? "white" : "black"}
       strokeWidth={2}
       {...props}
     >
       <Path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="m3 12 2-2m0 0 7-7 7 7M5 10v10a1 1 0 0 0 1 1h3m10-11 2 2m-2-2v10a1 1 0 0 1-1 1h-3m-6 0a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1m-6 0h6"
+        d="M11 3.055A9.001 9.001 0 1 0 20.945 13H11V3.055z"
+      />
+      <Path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M20.488 9H15V3.512A9.025 9.025 0 0 1 20.488 9z"
       />
     </Svg>
   ),
   IconBookOpen = (props) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6"
       fill="none"
       viewBox="0 0 24 24"
-      stroke="currentColor"
+      width="24"
+      height="24"
+      stroke={useColorScheme() === "dark" ? "white" : "black"}
       strokeWidth={2}
       {...props}
     >
@@ -64,10 +78,11 @@ export const IconBrainGame = (props) => (
   IconShoppingBag = (props) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6"
       fill="none"
       viewBox="0 0 24 24"
-      stroke="currentColor"
+      width="24"
+      height="24"
+      stroke={useColorScheme() === "dark" ? "white" : "black"}
       strokeWidth={2}
       {...props}
     >
@@ -81,10 +96,11 @@ export const IconBrainGame = (props) => (
   IconCog = (props) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6"
       fill="none"
       viewBox="0 0 24 24"
-      stroke="currentColor"
+      width="24"
+      height="24"
+      stroke={useColorScheme() === "dark" ? "white" : "black"}
       strokeWidth={2}
       {...props}
     >
@@ -103,8 +119,9 @@ export const IconBrainGame = (props) => (
   IconArrowRightSmall = (props) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6"
       viewBox="0 0 20 20"
+      width="20"
+      height="20"
       fill="currentColor"
       {...props}
     >
