@@ -12,14 +12,23 @@ import { ThemeContext, useTheme, useThemeUpdate } from "../App";
 export function Settings({ route }) {
   let auto = useColorScheme() === "dark" ? true : false;
   const [isEnabled, setIsEnabled] = useState(darkTheme);
-  // const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const toggleSwitch = useThemeUpdate();
-
   let darkTheme = useTheme();
-  console.log("darkTheme is " + darkTheme);
 
-  function ToggleDarkMode() {
-    return (
+  console.log(darkTheme);
+
+  const setDarkTheme = () => {
+    setIsEnabled(false);
+  };
+  const setLightTheme = () => {
+    setIsEnabled(true);
+  };
+  const setAutoTheme = () => {
+    setIsEnabled(auto);
+  };
+
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <View className="pt-4 my-10 items-center">
         <Text
           className={darkTheme === true ? "text-white pb-4" : "text-black pb-4"}
@@ -28,16 +37,6 @@ export function Settings({ route }) {
         </Text>
         <Switch value={darkTheme} onValueChange={toggleSwitch} />
       </View>
-    );
-  }
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text
-        className={useColorScheme() === "dark" ? "text-white" : "text-black"}
-      >
-        Settings Screen
-      </Text>
-      <ToggleDarkMode />
       <View className="flex-row">
         <TouchableOpacity
           style={{
@@ -47,8 +46,9 @@ export function Settings({ route }) {
             color: "white",
           }}
           className="bg-slate-300 py-2 px-4 mt-4 rounded-full"
-          onPress={(theme) => {
-            setIsEnabled(false);
+          onPress={() => {
+            setDarkTheme();
+            console.log(darkTheme);
           }}
         >
           <Text classname="text-xl">Light</Text>
@@ -61,8 +61,9 @@ export function Settings({ route }) {
             color: "white",
           }}
           className="bg-slate-300 py-2 px-4 mt-4 rounded-full"
-          onPress={(theme) => {
-            setIsEnabled(true);
+          onPress={() => {
+            setLightTheme();
+            console.log(darkTheme);
           }}
         >
           <Text classname="text-xl">Dark</Text>
@@ -75,8 +76,9 @@ export function Settings({ route }) {
             color: "white",
           }}
           className="bg-slate-300 py-2 px-4 mt-4 rounded-full"
-          onPress={(theme) => {
-            setIsEnabled(auto);
+          onPress={() => {
+            setAutoTheme();
+            console.log(darkTheme);
           }}
         >
           <Text classname="text-xl">Auto</Text>

@@ -5,14 +5,12 @@ import { ThemeContext } from "../App";
 
 export function Dashboard({ navigation }) {
   let darkTheme = useContext(ThemeContext);
-  console.log("darkTheme is " + darkTheme);
   return (
     <TailwindProvider>
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text style={{ color: "grey", fontSize: 33 }}>
-          Dashboard ({darkTheme})
-        </Text>
+        <Text style={{ color: "grey", fontSize: 33 }}>Dashboard</Text>
         <Text
+          className="rounded-full"
           style={{
             marginTop: 10,
             padding: 10,
@@ -21,7 +19,7 @@ export function Dashboard({ navigation }) {
             fontSize: 20,
           }}
         >
-          darkTheme is []
+          darkTheme is [{String(darkTheme)}]
         </Text>
         {/* <Button
           title="Go to Articles"

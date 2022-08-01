@@ -48,32 +48,10 @@ export default function App() {
   let auto = useColorScheme() === "dark" ? true : false;
   const [isEnabled, setIsEnabled] = useState(auto);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  console.log("isEnabled", isEnabled);
-  let yeahMan = "Sup bro";
   return (
     <ThemeContext.Provider value={isEnabled}>
       <ThemeUpdateContext.Provider value={toggleSwitch}>
         <TailwindProvider>
-          <View className="m-10">
-            <Text
-              className="mt-20 flex"
-              style={{
-                marginTop: 10,
-                padding: 10,
-                backgroundColor: "rgba(128,128,128,.2)",
-                color: "grey",
-                fontSize: 20,
-              }}
-            >
-              isEnabled is [{yeahMan}]
-            </Text>
-            <Switch
-              className="m-5"
-              value={isEnabled}
-              onValueChange={toggleSwitch}
-              onChange={console.log(isEnabled)}
-            />
-          </View>
           <NavigationContainer
             theme={isEnabled === true ? DarkTheme : DefaultTheme}
           >
