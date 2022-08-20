@@ -11,6 +11,7 @@ import {
   Switch,
 } from "react-native";
 import { TailwindProvider } from "tailwindcss-react-native";
+import { styles } from "./setup/styles";
 import {
   IconBrainGame,
   IconCode,
@@ -51,10 +52,10 @@ export default function App() {
   return (
     <ThemeContext.Provider value={isEnabled}>
       <ThemeUpdateContext.Provider value={toggleSwitch}>
-        <TailwindProvider>
-          <NavigationContainer
-            theme={isEnabled === true ? DarkTheme : DefaultTheme}
-          >
+        <NavigationContainer
+          theme={isEnabled === true ? DarkTheme : DefaultTheme}
+        >
+          <TailwindProvider>
             {/* <Stack.Navigator>
               <Stack.Screen name="Dashboard" component={Dashboard} />
               <Stack.Screen name="Lessons" component={Lessons} />
@@ -96,8 +97,8 @@ export default function App() {
                 }}
               />
             </Tab.Navigator>
-          </NavigationContainer>
-        </TailwindProvider>
+          </TailwindProvider>
+        </NavigationContainer>
       </ThemeUpdateContext.Provider>
     </ThemeContext.Provider>
   );
