@@ -10,7 +10,6 @@ import {
   Appearance,
   Switch,
 } from "react-native";
-import { TailwindProvider } from "tailwindcss-react-native";
 import {
   IconBrainGame,
   IconCode,
@@ -51,53 +50,51 @@ export default function App() {
   return (
     <ThemeContext.Provider value={isEnabled}>
       <ThemeUpdateContext.Provider value={toggleSwitch}>
-        <TailwindProvider>
-          <NavigationContainer
-            theme={isEnabled === true ? DarkTheme : DefaultTheme}
-          >
-            {/* <Stack.Navigator>
+        <NavigationContainer
+          theme={isEnabled === true ? DarkTheme : DefaultTheme}
+        >
+          {/* <Stack.Navigator>
               <Stack.Screen name="Dashboard" component={Dashboard} />
               <Stack.Screen name="Lessons" component={Lessons} />
               </Stack.Navigator> */}
-            <Tab.Navigator>
-              <Tab.Screen
-                name="Dashboard"
-                component={Dashboard}
-                options={{
-                  tabBarLabel: "",
-                  tabBarIcon: () => <IconPie />,
-                }}
-              />
-              <Tab.Screen
-                name="Lessons"
-                component={Lessons}
-                options={{
-                  tabBarLabel: "",
-                  tabBarIcon: () => <IconBookOpen />,
-                }}
-              />
-              <Tab.Screen
-                name="Shop"
-                component={Shop}
-                options={{
-                  tabBarLabel: "Shop",
-                  tabBarIcon: () => <IconShoppingBag />,
-                  /* tabBarBadge: 3, */
-                }}
-              />
-              <Tab.Screen
-                name="Settings"
-                component={Settings}
-                options={{
-                  tabBarLabel: "settings",
-                  tabBarIcon: () => <IconCog />,
-                  activeTintColor: "rgb(255, 0, 0)",
-                  inactiveTintColor: "rgb(0, 255, 0)",
-                }}
-              />
-            </Tab.Navigator>
-          </NavigationContainer>
-        </TailwindProvider>
+          <Tab.Navigator>
+            <Tab.Screen
+              name="Dashboard"
+              component={Dashboard}
+              options={{
+                tabBarLabel: "",
+                tabBarIcon: () => <IconPie />,
+              }}
+            />
+            <Tab.Screen
+              name="Lessons"
+              component={Lessons}
+              options={{
+                tabBarLabel: "",
+                tabBarIcon: () => <IconBookOpen />,
+              }}
+            />
+            <Tab.Screen
+              name="Shop"
+              component={Shop}
+              options={{
+                tabBarLabel: "Shop",
+                tabBarIcon: () => <IconShoppingBag />,
+                /* tabBarBadge: 3, */
+              }}
+            />
+            <Tab.Screen
+              name="Settings"
+              component={Settings}
+              options={{
+                tabBarLabel: "settings",
+                tabBarIcon: () => <IconCog />,
+                activeTintColor: "rgb(255, 0, 0)",
+                inactiveTintColor: "rgb(0, 255, 0)",
+              }}
+            />
+          </Tab.Navigator>
+        </NavigationContainer>
       </ThemeUpdateContext.Provider>
     </ThemeContext.Provider>
   );

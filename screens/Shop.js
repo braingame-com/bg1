@@ -1,5 +1,4 @@
 import { Text, View, useColorScheme } from "react-native";
-import { TailwindProvider } from "tailwindcss-react-native";
 
 export function Shop({ route }) {
   return (
