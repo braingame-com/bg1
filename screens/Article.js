@@ -8,15 +8,17 @@ import {
   GRAPHQL_BODY,
 } from "../setup/shopify-sapi";
 import { Item, renderItem } from "../components/Item";
-import { ArticleList } from "../screens/ArticleList";
-import { Article } from "../screens/Article";
-
-const Stack = createNativeStackNavigator();
-const component = () => {
-  return <Text style={{ color: "white" }}>component</Text>;
-};
 
 export function Lessons({ route }) {
+  {
+    /* const { itemId, otherParam } = route.params;
+      return (
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+          <Text>Articles Screen for {itemId}</Text>
+          <Text className="text-xs mt-4">{otherParam}</Text>
+        </View>
+      ); */
+  }
   // Get Shopify JSON
   const [results, setResults] = useState([]);
   useEffect(() => {
@@ -26,10 +28,5 @@ export function Lessons({ route }) {
         setResults(json.data.articles.edges);
       });
   }, []);
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="ArticleList" component={ArticleList} />
-      {/* <Stack.Screen name="Article" component={Article} />} */}
-    </Stack.Navigator>
-  );
+  return <Text>Article page</Text>;
 }

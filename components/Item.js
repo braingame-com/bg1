@@ -1,30 +1,30 @@
 import { Image, Text, View, TouchableOpacity } from "react-native";
-import { IconArrowRightSmall } from "../utilities/svg-icons";
+import { styles as s } from "../setup/styles";
+import { IconArrow } from "../utilities/svg-icons";
+import { useTheme } from "@react-navigation/native";
 
-export const Item = ({ image, title, excerpt, id }) => (
-    <View className="p-6 mx-2 mt-2 bg-gray-100 items-center">
-      <Image
-        source={{
-          uri: image.url,
-        }}
-        style={{ width: 80, height: 80 }}
-        className="mb-4 rounded-full"
-      />
-      <Text className="text-lg mb-2 text-center">{title}</Text>
-      {excerpt !== "" && (
-        <Text className="text-sm text-gray-700 mb-4 text-center">
-          {excerpt}
-        </Text>
-      )}
-      <Text className="text-xs text-gray-400 mb-4 px-2 py-1 border border-gray-300 rounded-full text-center">
-        {id}
-      </Text>
-      <TouchableOpacity className="bg-slate-500 rounded-md py-2 px-4 items-center flex-row">
-        <Text className="text-white mr-1">Read article</Text>
-        <IconArrowRightSmall color={"#fff"} />
-      </TouchableOpacity>
-    </View>
-  ),
+export const Item = ({ image, title, excerpt, id }) => {
+    const { colors } = useTheme();
+    return (
+      <View style={{ ...s.rounded, backgroundColor: colors.card }}>
+        <Image
+          source={{
+            uri: image.url,
+          }}
+          style={{ width: 80, height: 80 }}
+        />
+        <Text style={{ ...s.subtitle, color: colors.text }}>{title}</Text>
+        {excerpt !== "" && (
+          <Text style={{ color: colors.text }}>{excerpt}</Text>
+        )}
+        <Text style={{ ...s.rounded, color: colors.text }}>{id}</Text>
+        <TouchableOpacity style={{ flexDirection: "row" }}>
+          <Text style={{ color: colors.text }}>Read article</Text>
+          <IconArrow />
+        </TouchableOpacity>
+      </View>
+    );
+  },
   renderItem = ({ item }) => (
     <Item
       image={item.node.image}

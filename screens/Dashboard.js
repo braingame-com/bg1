@@ -1,15 +1,18 @@
-import { useContext } from "react";
-import { Text, View, Button, useColorScheme, Appearance } from "react-native";
-import { styles } from "../setup/styles";
-import { ThemeContext } from "../App";
+import { Text, View, Button, Switch } from "react-native";
+import { styles as s } from "../setup/styles";
+import { useTheme } from "@react-navigation/native";
 
 export function Dashboard({ navigation }) {
-  let darkTheme = useContext(ThemeContext);
+  const { colors } = useTheme();
   return (
-    <View style={styles.container}>
-      <Text style={{ color: "grey", fontSize: 33 }}>Dashboard</Text>
-      <Text className="rounded-full" style={styles.rounded}>
-        darkTheme is [{String(darkTheme)}]
+    <View style={s.container}>
+      <Text
+        style={{
+          ...s.subtitle,
+          color: colors.text,
+        }}
+      >
+        Hello world :)
       </Text>
       {/* <Button
           title="Go to Articles"

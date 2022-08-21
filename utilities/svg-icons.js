@@ -1,19 +1,19 @@
 import Svg, { Path } from "react-native-svg";
 import { useColorScheme } from "react-native";
 
-export const IconBrainGame = (props) => (
+export const IconBG = (props) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
       width="20"
       height="20"
-      fill={useColorScheme() === "dark" ? "white" : "black"}
+      fill="#777777"
       viewBox="0 0 20 20"
       {...props}
     >
       <Path
         d="M17.99 4.02V5.5C20 4.47 20 3.25 20 3.25V2c0-.56-.23-1.06-.59-1.42-.35-.35-.82-.57-1.34-.59H1.76C1.27-.01.84.19.52.5.2.83 0 1.27 0 1.76v16.23c0 1.1.89 2 1.99 2.01h16.12c1.05-.06 1.89-.94 1.89-2.01v-9H9.96L14 11.01h3.98V16.7c0 .21-.06.41-.16.59l-1.32-.66-1.08-.54-5.43-2.71-6.76-3.37 12.2-6.09 1.08-.54 1.32-.66c.1.18.15.38.16.59v.7Zm-3.26 13.97H3.32c-.72-.02-1.31-.61-1.31-1.34v-5.01l12.72 6.35ZM2.01 8.38V3.35c0-.37.15-.71.39-.95.24-.24.58-.39.95-.39h11.4L2.01 8.38Z"
         style={{
-          fill: "#787878",
+          fill: "#777777",
         }}
       />
     </Svg>
@@ -24,7 +24,7 @@ export const IconBrainGame = (props) => (
       viewBox="0 0 20 20"
       width="20"
       height="20"
-      fill="currentColor"
+      fill="#777777"
       {...props}
     >
       <Path
@@ -41,7 +41,7 @@ export const IconBrainGame = (props) => (
       viewBox="0 0 24 24"
       width="24"
       height="24"
-      stroke={useColorScheme() === "dark" ? "white" : "black"}
+      stroke="#777777"
       strokeWidth={2}
       {...props}
     >
@@ -57,14 +57,14 @@ export const IconBrainGame = (props) => (
       />
     </Svg>
   ),
-  IconBookOpen = (props) => (
+  IconBook = (props) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
       width="24"
       height="24"
-      stroke={useColorScheme() === "dark" ? "white" : "black"}
+      stroke="#777777"
       strokeWidth={2}
       {...props}
     >
@@ -75,14 +75,37 @@ export const IconBrainGame = (props) => (
       />
     </Svg>
   ),
-  IconShoppingBag = (props) => (
+  IconPlay = (props) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
       width="24"
       height="24"
-      stroke={useColorScheme() === "dark" ? "white" : "black"}
+      stroke="#777777"
+      strokeWidth={2}
+      {...props}
+    >
+      <Path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="m14.752 11.168-3.197-2.132A1 1 0 0 0 10 9.87v4.263a1 1 0 0 0 1.555.832l3.197-2.132a1 1 0 0 0 0-1.664z"
+      />
+      <Path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"
+      />
+    </Svg>
+  ),
+  IconBag = (props) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      stroke="#777777"
       strokeWidth={2}
       {...props}
     >
@@ -100,7 +123,7 @@ export const IconBrainGame = (props) => (
       viewBox="0 0 24 24"
       width="24"
       height="24"
-      stroke={useColorScheme() === "dark" ? "white" : "black"}
+      stroke="#777777"
       strokeWidth={2}
       {...props}
     >
@@ -116,13 +139,13 @@ export const IconBrainGame = (props) => (
       />
     </Svg>
   ),
-  IconArrowRightSmall = (props) => (
+  IconArrow = (props) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       width="20"
       height="20"
-      fill="currentColor"
+      fill="#777777"
       {...props}
     >
       <Path

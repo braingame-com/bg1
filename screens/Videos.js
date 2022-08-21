@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import { useTheme } from "@react-navigation/native";
 
-export function Shop({ route }) {
+export function Videos({ route }) {
   const { colors } = useTheme();
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
