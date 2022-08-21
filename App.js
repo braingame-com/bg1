@@ -22,6 +22,7 @@ export default function App() {
             // height: 100,
             borderTopWidth: 0,
           },
+          headerShown: false,
           headerShadowVisible: false,
           headerStyle: {
             backgroundColor: "black",

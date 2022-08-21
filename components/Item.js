@@ -1,4 +1,4 @@
-import { Image, Text, View, TouchableOpacity } from "react-native";
+import { Image, Text, View, TouchableOpacity, Button } from "react-native";
 import { styles as s } from "../setup/styles";
 import { IconArrow } from "../utilities/svg-icons";
 import { useTheme } from "@react-navigation/native";
@@ -22,6 +22,15 @@ export const Item = ({ image, title, excerpt, id }) => {
           <Text style={{ color: colors.text }}>Read article</Text>
           <IconArrow />
         </TouchableOpacity>
+        <Button
+          title="Read article"
+          onPress={() =>
+            navigation.navigate("Article", {
+              itemId: 42,
+              otherParam: "Jordan is cool",
+            })
+          }
+        />
       </View>
     );
   },
