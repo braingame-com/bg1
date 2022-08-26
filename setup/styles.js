@@ -14,21 +14,32 @@ const dark = true,
 export const styles = StyleSheet.create({
   // Containers
   container: {
+    padding: 10,
+  },
+  flex: {
     flex: 1,
+  },
+  centered: {
     alignItems: "center",
     justifyContent: "center",
-    padding: 10,
   },
   // Typography
   title: {
-    margin: 10,
+    marginVertical: 10,
     color: fontColorPrimary,
     fontSize: 33,
+    fontWeight: "bold",
   },
-  subtitle: {
-    margin: 10,
+  heading: {
+    marginVertical: 10,
     color: fontColorSecondary,
     fontSize: 20,
+    fontWeight: "bold",
+  },
+  subtitle: {
+    marginVertical: 10,
+    color: fontColorSecondary,
+    fontSize: 15,
   },
   // Components
   toggle: {
@@ -36,13 +47,17 @@ export const styles = StyleSheet.create({
   },
   // Utilities
   rounded: {
-    margin: 10,
-    padding: 20,
+    marginVertical: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
     backgroundColor: "rgba(128,128,128,.2)",
     borderRadius: 10,
     overflow: "hidden",
   },
   row: {
     flexDirection: "row",
+  },
+  m_left: {
+    marginLeft: 10,
   },
 });

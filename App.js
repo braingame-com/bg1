@@ -12,27 +12,29 @@ import { Videos } from "./screens/Videos";
 import { Shop } from "./screens/Shop";
 import { Settings } from "./screens/Settings";
 
-export default function App() {
+export default function App(tintColor) {
   return (
     <AppProvider>
       <Tab.Navigator
         screenOptions={{
           tabBarStyle: {
             backgroundColor: "black",
-            // height: 100,
             borderTopWidth: 0,
           },
+          // tabBarShowLabel: false,
+          tabBarActiveTintColor: "#ffffff",
+          tabBarInactiveTintColor: "#777777",
           headerShown: false,
+          headerMode: "none",
           headerShadowVisible: false,
           headerStyle: {
-            backgroundColor: "black",
-            // height: 100,
+            backgroundColor: "teal",
+            height: 120,
           },
-          // headerTintColor: "#777777",
+          headerTitleAlign: "left",
           headerTitleStyle: {
-            // color: "white",
-            // fontWeight: "normal",
-            // fontSize: 20,
+            fontSize: 33,
+            paddingVertical: 20,
           },
         }}
       >
@@ -40,15 +42,20 @@ export default function App() {
           name="Dashboard"
           component={Dashboard}
           options={{
-            tabBarLabel: "",
-            tabBarIcon: () => <IconPie />,
+            tabBarLabel: "Dashboard",
+            tabBarIcon: (focusedTab) => (
+              <IconPie stroke={focusedTab ? "orange" : "blue"} />
+            ),
+            tabBarOptions: {
+              activeTintColor: "blue",
+            },
           }}
         />
         <Tab.Screen
           name="Lessons"
           component={Lessons}
           options={{
-            tabBarLabel: "",
+            tabBarLabel: "Lessons",
             tabBarIcon: () => <IconBook />,
           }}
         />
@@ -72,10 +79,8 @@ export default function App() {
           name="Settings"
           component={Settings}
           options={{
-            tabBarLabel: "",
+            tabBarLabel: "Settings",
             tabBarIcon: () => <IconCog />,
-            activeTintColor: "rgb(255, 0, 0)",
-            inactiveTintColor: "rgb(0, 255, 0)",
           }}
         />
       </Tab.Navigator>

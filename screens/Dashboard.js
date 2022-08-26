@@ -1,19 +1,29 @@
-import { Text, View, Button, Switch } from "react-native";
+import { Text, View, Button, Switch, SafeAreaView } from "react-native";
 import { styles as s } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 
 export function Dashboard({ navigation }) {
   const { colors } = useTheme();
   return (
-    <View style={s.container}>
-      <Text
+    <SafeAreaView style={s.container}>
+      <View style={s.container}>
+        <Text style={{ ...s.title, ...s.m_left }}>Dashboard</Text>
+      </View>
+      <View
         style={{
-          ...s.subtitle,
-          color: colors.text,
+          ...s.container,
+          ...s.centered,
         }}
       >
-        Hello world :)
-      </Text>
+        <Text
+          style={{
+            ...s.subtitle,
+            color: colors.text,
+          }}
+        >
+          Hello world :)
+        </Text>
+      </View>
       {/* <Button
           title="Go to Articles"
           onPress={() =>
@@ -23,6 +33,6 @@ export function Dashboard({ navigation }) {
             })
           }
         /> */}
-    </View>
+    </SafeAreaView>
   );
 }
