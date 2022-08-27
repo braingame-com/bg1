@@ -10,6 +10,7 @@ import { useThemeUpdate } from "../components/AppProvider";
 import { styles as s } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { IconBG, IconCode } from "../utilities/svg-icons";
+import { Octicons } from "@expo/vector-icons";
 
 export function Settings({ route }) {
   const { colors } = useTheme();
@@ -26,15 +27,21 @@ export function Settings({ route }) {
         style={{
           ...s.row,
           padding: 20,
-          backgroundColor: "midnightblue",
-          opacity: 0.666,
+          borderColor: "#202020",
+          borderTopWidth: 1,
+          borderBottomWidth: 1,
           bottom: 0,
           width: "100%",
           alignItems: "center",
         }}
       >
         <IconBG />
-        <IconCode style={{ marginHorizontal: 10 }} />
+        <Octicons
+          name="code"
+          color="#777777"
+          size={20}
+          style={{ marginHorizontal: 10 }}
+        />
         <Text style={{ color: "#777777" }}>v1.1.1</Text>
       </View>
     </SafeAreaView>

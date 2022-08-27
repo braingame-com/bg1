@@ -6,6 +6,7 @@ import {
   IconBag,
   IconCog,
 } from "./utilities/svg-icons";
+import { Octicons } from "@expo/vector-icons";
 import { Dashboard } from "./screens/Dashboard";
 import { Lessons } from "./screens/Lessons";
 import { Videos } from "./screens/Videos";
@@ -21,9 +22,7 @@ export default function App(tintColor) {
             backgroundColor: "black",
             borderTopWidth: 0,
           },
-          // tabBarShowLabel: false,
-          tabBarActiveTintColor: "#ffffff",
-          tabBarInactiveTintColor: "#777777",
+          tabBarShowLabel: false,
           headerShown: false,
           headerMode: "none",
           headerShadowVisible: false,
@@ -43,12 +42,14 @@ export default function App(tintColor) {
           component={Dashboard}
           options={{
             tabBarLabel: "Dashboard",
-            tabBarIcon: (focusedTab) => (
-              <IconPie stroke={focusedTab ? "orange" : "blue"} />
+            tabBarIcon: ({ focused }) => (
+              <Octicons
+                name="home"
+                color={focused ? "white" : "#777777"}
+                size={20}
+              />
             ),
-            tabBarOptions: {
-              activeTintColor: "blue",
-            },
+            tabBarOptions: {},
           }}
         />
         <Tab.Screen
@@ -56,31 +57,55 @@ export default function App(tintColor) {
           component={Lessons}
           options={{
             tabBarLabel: "Lessons",
-            tabBarIcon: () => <IconBook />,
+            tabBarIcon: ({ focused }) => (
+              <Octicons
+                name="book"
+                color={focused ? "white" : "#777777"}
+                size={20}
+              />
+            ),
           }}
         />
-        {/* <Tab.Screen
+        <Tab.Screen
           name="Videos"
           component={Videos}
           options={{
-            tabBarLabel: "",
-            tabBarIcon: () => <IconPlay />,
+            tabBarLabel: "Videos",
+            tabBarIcon: ({ focused }) => (
+              <Octicons
+                name="play"
+                color={focused ? "white" : "#777777"}
+                size={20}
+              />
+            ),
           }}
-        /> */}
-        {/* <Tab.Screen
+        />
+        <Tab.Screen
           name="Shop"
           component={Shop}
           options={{
-            tabBarLabel: "",
-            tabBarIcon: () => <IconBag />,
+            tabBarLabel: "Shop",
+            tabBarIcon: ({ focused }) => (
+              <Octicons
+                name="tag"
+                color={focused ? "white" : "#777777"}
+                size={20}
+              />
+            ),
           }}
-        /> */}
+        />
         <Tab.Screen
           name="Settings"
           component={Settings}
           options={{
             tabBarLabel: "Settings",
-            tabBarIcon: () => <IconCog />,
+            tabBarIcon: ({ focused }) => (
+              <Octicons
+                name="gear"
+                color={focused ? "white" : "#777777"}
+                size={20}
+              />
+            ),
           }}
         />
       </Tab.Navigator>

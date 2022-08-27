@@ -12,6 +12,7 @@ import { useTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { styles as s } from "../setup/styles";
 import { IconArrow } from "../utilities/svg-icons";
+import { Octicons } from "@expo/vector-icons";
 import {
   articleListQuery,
   articleQuery,
@@ -50,7 +51,7 @@ export function ArticleList({ route, navigation }) {
             }}
             style={{
               width: "120%",
-              height: 330,
+              height: 200,
               borderRadius: 5,
               borderColor: "#202020",
               borderWidth: 1,
@@ -92,12 +93,12 @@ export function ArticleList({ route, navigation }) {
                 style={{
                   color: colors.text,
                   fontWeight: "bold",
-                  marginRight: 5,
+                  marginRight: 10,
                 }}
               >
                 Read
               </Text>
-              <IconArrow fill="white" />
+              <Octicons name="arrow-right" color="white" size={20} />
             </TouchableOpacity>
           </View>
         </View>
