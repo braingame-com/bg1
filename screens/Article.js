@@ -7,6 +7,7 @@ import {
   FlatList,
   useWindowDimensions,
 } from "react-native";
+import { useTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { styles as s } from "../setup/styles";
 import {
@@ -17,6 +18,7 @@ import {
 import RenderHtml from "react-native-render-html";
 
 export function Article({ route }) {
+  const { colors } = useTheme();
   const {
     itemId,
     itemTitle,
@@ -31,7 +33,7 @@ export function Article({ route }) {
     fontColorSecondary = dark ? "whitesmoke" : "darkslategrey";
   // const fontColorPrimary = s.fontColorPrimary;
   const source = {
-    html: `<div style="color: ${fontColorPrimary}">${itemContent}</div>`,
+    html: `<div style="color: ${colors.text}">${itemContent}</div>`,
   };
 
   // Get Shopify JSON
@@ -56,15 +58,14 @@ export function Article({ route }) {
         style={{
           width: "120%",
           height: 330,
-          borderRadius: 5,
-          borderColor: "#202020",
+          borderColor: colors.border,
           borderWidth: 1,
           marginTop: -20,
           marginHorizontal: "-10%",
           marginBottom: 10,
         }}
       />
-      <Text style={s.title}>{itemTitle}</Text>
+      <Text style={{ ...s.title, color: colors.text }}>{itemTitle}</Text>
       <RenderHtml contentWidth={width} source={source} />
     </ScrollView>
   );

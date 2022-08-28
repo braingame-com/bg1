@@ -24,6 +24,7 @@ import {
 const Stack = createNativeStackNavigator();
 
 export function ArticleList({ route, navigation }) {
+  const { colors } = useTheme();
   // Get Shopify JSON
   const [results, setResults] = useState([]);
   useEffect(() => {
@@ -35,73 +36,56 @@ export function ArticleList({ route, navigation }) {
   }, []);
   // Item
   const Item = ({ image, title, excerpt, id, content }) => {
-      const { colors } = useTheme();
       return (
-        <View
-          style={{
-            ...s.rounded,
-            backgroundColor: "black",
-            borderColor: "#202020",
-            borderWidth: 1,
-          }}
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("Article", {
+              itemId: id,
+              itemTitle: title,
+              itemImage: image,
+              itemExcerpt: excerpt,
+              itemContent: content,
+            })
+          }
         >
-          <Image
-            source={{
-              uri: image,
-            }}
-            style={{
-              width: "120%",
-              height: 200,
-              borderRadius: 5,
-              borderColor: "#202020",
-              borderWidth: 1,
-              marginTop: -11,
-              marginLeft: "-10%",
-              marginBottom: 10,
-            }}
-          />
-          <Text style={{ ...s.heading, color: colors.text }}>{title}</Text>
-          {excerpt !== "" && (
-            <Text style={{ ...s.subtitle, color: colors.text }}>{excerpt}</Text>
-          )}
           <View
             style={{
-              alignItems: "center",
-              flexDirection: "row",
-              justifyContent: "flex-end",
+              ...s.rounded,
+              backgroundColor: null,
+              borderColor: colors.border,
+              borderWidth: 1,
             }}
           >
-            <TouchableOpacity
-              style={{
-                ...s.rounded,
-                color: colors.text,
-                flexDirection: "row",
-                alignItems: "center",
-                backgroundColor: "darkslategrey",
+            <Image
+              source={{
+                uri: image,
               }}
-              onPress={() =>
-                navigation.navigate("Article", {
-                  itemId: id,
-                  itemTitle: title,
-                  itemImage: image,
-                  itemExcerpt: excerpt,
-                  itemContent: content,
-                })
-              }
-            >
-              <Text
-                style={{
-                  color: colors.text,
-                  fontWeight: "bold",
-                  marginRight: 10,
-                }}
-              >
-                Read
+              style={{
+                width: "120%",
+                height: 200,
+                borderRadius: 5,
+                borderColor: colors.border,
+                borderWidth: 1,
+                marginTop: -11,
+                marginLeft: "-10%",
+                marginBottom: 10,
+              }}
+            />
+            <Text style={{ ...s.heading, color: colors.text }}>{title}</Text>
+            {excerpt !== "" && (
+              <Text style={{ ...s.subtitle, color: colors.text }}>
+                {excerpt}
               </Text>
-              <Octicons name="arrow-right" color="white" size={20} />
-            </TouchableOpacity>
+            )}
+            <View
+              style={{
+                alignItems: "center",
+                flexDirection: "row",
+                justifyContent: "flex-end",
+              }}
+            ></View>
           </View>
-        </View>
+        </TouchableOpacity>
       );
     },
     renderItem = ({ item }) => (
@@ -116,15 +100,24 @@ export function ArticleList({ route, navigation }) {
     );
   return (
     <SafeAreaView>
-      <FlatList
-        data={results}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.node.id}
-        style={{ padding: 10 }}
-        ListHeaderComponent=<Text style={{ ...s.title, ...s.m_left }}>
-          Lessons
-        </Text>
-      />
+      <View>
+        <FlatList
+          data={results}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.node.id}
+          style={{ paddingHorizontal: 10 }}
+          ListHeaderComponent=<Text
+            style={{
+              ...s.title,
+              ...s.m_horizontal,
+              color: colors.text,
+              paddingTop: 10,
+            }}
+          >
+            Lessons
+          </Text>
+        />
+      </View>
     </SafeAreaView>
   );
 }

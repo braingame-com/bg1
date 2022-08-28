@@ -36,12 +36,34 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
+  heading_secondary: {
+    marginVertical: 10,
+    color: fontColorSecondary,
+    fontSize: 20,
+  },
   subtitle: {
     marginVertical: 10,
     color: fontColorSecondary,
     fontSize: 15,
   },
   // Components
+  btn: {
+    overflow: "hidden",
+    fontSize: 15,
+    backgroundColor: "#281640",
+    borderRadius: 5,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+  },
+  btn_secondary: {
+    overflow: "hidden",
+    fontSize: 20,
+    borderWidth: 1,
+    borderColor: "#202020",
+    borderRadius: 5,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+  },
   toggle: {
     margin: 10,
   },
@@ -57,7 +79,25 @@ export const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
   },
+  m_top: {
+    marginTop: 10,
+  },
   m_left: {
     marginLeft: 10,
+  },
+  m_right: {
+    marginRight: 10,
+  },
+  m_bottom: {
+    marginBottom: 10,
+  },
+  m_vertical: {
+    marginVertical: 10,
+  },
+  m_horizontal: {
+    marginHorizontal: 10,
+  },
+  m_all: {
+    margin: 10,
   },
 });

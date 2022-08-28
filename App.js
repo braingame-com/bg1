@@ -13,7 +13,7 @@ import { Videos } from "./screens/Videos";
 import { Shop } from "./screens/Shop";
 import { Settings } from "./screens/Settings";
 
-export default function App(tintColor) {
+export default function App() {
   return (
     <AppProvider>
       <Tab.Navigator

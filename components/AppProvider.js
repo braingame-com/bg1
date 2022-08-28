@@ -1,7 +1,10 @@
 import React, { useState, createContext, useContext } from "react";
 import { useColorScheme, Appearance } from "react-native";
-import { DefaultTheme, DarkTheme } from "@react-navigation/native";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  DefaultTheme,
+  DarkTheme,
+  NavigationContainer,
+} from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const ThemeContext = React.createContext();

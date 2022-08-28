@@ -7,7 +7,9 @@ export function Dashboard({ navigation }) {
   return (
     <SafeAreaView style={s.container}>
       <View style={s.container}>
-        <Text style={{ ...s.title, ...s.m_left }}>Dashboard</Text>
+        <Text style={{ ...s.title, ...s.m_horizontal, color: colors.text }}>
+          Dashboard
+        </Text>
       </View>
       <View
         style={{
