@@ -1,40 +1,40 @@
-import { Text, View, Button, Switch, SafeAreaView } from "react-native";
+import {
+  Text,
+  View,
+  ScrollView,
+  Button,
+  Switch,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
 import { styles as s } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
+import { Octicons } from "@expo/vector-icons";
+import { DashboardHeader } from "../components/DashboardHeader";
+import { TasksBlock } from "../components/blocks/TasksBlock";
+import { VisualizationBlock } from "../components/blocks/VisualizationBlock";
+import { AffirmationsBlock } from "../components/blocks/AffirmationsBlock";
+import { NumbersBlock } from "../components/blocks/NumbersBlock";
+import { PlanningBlock } from "../components/blocks/PlanningBlock";
+import { JournalBlock } from "../components/blocks/JournalBlock";
+import { ChartsBlock } from "../components/blocks/ChartsBlock";
 
 export function Dashboard({ navigation }) {
   const { colors } = useTheme();
   return (
-    <SafeAreaView style={s.container}>
-      <View style={s.container}>
-        <Text style={{ ...s.title, ...s.m_horizontal, color: colors.text }}>
-          Dashboard
-        </Text>
-      </View>
-      <View
-        style={{
-          ...s.container,
-          ...s.centered,
-        }}
-      >
-        <Text
-          style={{
-            ...s.subtitle,
-            color: colors.text,
-          }}
-        >
-          Hello world :)
-        </Text>
-      </View>
-      {/* <Button
-          title="Go to Articles"
-          onPress={() =>
-            navigation.navigate("Articles", {
-              itemId: 42,
-              otherParam: "Jordan is cool",
-            })
-          }
-        /> */}
+    <SafeAreaView style={{ ...s.container }}>
+      <ScrollView style={{ ...s.container }}>
+        <DashboardHeader />
+        <View style={{ ...s.container, marginBottom: 10 }}>
+          <TasksBlock />
+          {/* <VisualizationBlock /> */}
+          {/* <AffirmationsBlock /> */}
+          {/* <NumbersBlock /> */}
+          {/* <PlanningBlock /> */}
+          <JournalBlock />
+          {/* <ChartsBlock /> */}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

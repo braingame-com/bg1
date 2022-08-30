@@ -46,6 +46,11 @@ export const styles = StyleSheet.create({
     color: fontColorSecondary,
     fontSize: 15,
   },
+  task_mini: {
+    paddingVertical: 5,
+    borderTopWidth: 1,
+    borderTopColor: "#777777",
+  },
   // Components
   btn: {
     overflow: "hidden",
@@ -64,8 +69,17 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 5,
   },
+  switch_btn: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
   toggle: {
     margin: 10,
+  },
+  checkbox: {
+    margin: 0,
   },
   // Utilities
   rounded: {
@@ -76,28 +90,77 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: "hidden",
   },
+  pill: {
+    marginVertical: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    backgroundColor: "rgba(128,128,128,.2)",
+    borderRadius: 10,
+    overflow: "hidden",
+  },
+  info: {
+    backgroundColor: "rgba(73, 166, 233, .33)",
+    color: "#49A6E9",
+  },
+  info_text: {
+    color: "#49A6E9",
+  },
+  success: {
+    backgroundColor: "rgba(137, 187, 114, .33)",
+    color: "#89BB72",
+  },
+  warning: {
+    backgroundColor: "rgba(200, 138, 93, .33)",
+    color: "#C88A5D",
+  },
+  error: {
+    backgroundColor: "rgba(228, 97, 107, .33)",
+    color: "#E4616B",
+  },
   row: {
     flexDirection: "row",
+    alignItems: "center",
   },
   m_top: {
     marginTop: 10,
   },
+  m_top_2: {
+    marginTop: 20,
+  },
   m_left: {
     marginLeft: 10,
+  },
+  m_left_2: {
+    marginLeft: 20,
   },
   m_right: {
     marginRight: 10,
   },
+  m_right_2: {
+    marginRight: 20,
+  },
   m_bottom: {
     marginBottom: 10,
+  },
+  m_bottom_2: {
+    marginBottom: 20,
   },
   m_vertical: {
     marginVertical: 10,
   },
+  m_vertical_2: {
+    marginVertical: 20,
+  },
   m_horizontal: {
     marginHorizontal: 10,
   },
+  m_horizontal_2: {
+    marginHorizontal: 20,
+  },
   m_all: {
     margin: 10,
+  },
+  m_all_2: {
+    margin: 20,
   },
 });

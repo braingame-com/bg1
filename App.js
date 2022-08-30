@@ -9,18 +9,21 @@ import {
 import { Octicons } from "@expo/vector-icons";
 import { Dashboard } from "./screens/Dashboard";
 import { Lessons } from "./screens/Lessons";
-import { Videos } from "./screens/Videos";
+// import { Videos } from "./screens/Videos";
 import { Shop } from "./screens/Shop";
 import { Settings } from "./screens/Settings";
+import { useTheme } from "@react-navigation/native";
 
 export default function App() {
+  const { colors } = useTheme();
   return (
     <AppProvider>
       <Tab.Navigator
         screenOptions={{
           tabBarStyle: {
             backgroundColor: "black",
-            borderTopWidth: 0,
+            borderTopWidth: 1,
+            // borderTopColor: "#777777",
           },
           tabBarShowLabel: false,
           headerShown: false,
@@ -28,13 +31,8 @@ export default function App() {
           headerShadowVisible: false,
           headerStyle: {
             backgroundColor: "teal",
-            height: 120,
           },
-          headerTitleAlign: "left",
-          headerTitleStyle: {
-            fontSize: 33,
-            paddingVertical: 20,
-          },
+          headerTitleStyle: {},
         }}
       >
         <Tab.Screen
@@ -52,7 +50,7 @@ export default function App() {
             tabBarOptions: {},
           }}
         />
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Lessons"
           component={Lessons}
           options={{
@@ -65,8 +63,8 @@ export default function App() {
               />
             ),
           }}
-        />
-        <Tab.Screen
+        /> */}
+        {/* <Tab.Screen
           name="Videos"
           component={Videos}
           options={{
@@ -79,8 +77,8 @@ export default function App() {
               />
             ),
           }}
-        />
-        <Tab.Screen
+        /> */}
+        {/* <Tab.Screen
           name="Shop"
           component={Shop}
           options={{
@@ -93,7 +91,7 @@ export default function App() {
               />
             ),
           }}
-        />
+        /> */}
         <Tab.Screen
           name="Settings"
           component={Settings}

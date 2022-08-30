@@ -34,7 +34,6 @@ export function ArticleList({ route, navigation }) {
         setResults(json.data.articles.edges);
       });
   }, []);
-  // Item
   const Item = ({ image, title, excerpt, id, content }) => {
       return (
         <TouchableOpacity
@@ -51,7 +50,7 @@ export function ArticleList({ route, navigation }) {
           <View
             style={{
               ...s.rounded,
-              backgroundColor: null,
+              backgroundColor: colors.card,
               borderColor: colors.border,
               borderWidth: 1,
             }}
@@ -77,13 +76,6 @@ export function ArticleList({ route, navigation }) {
                 {excerpt}
               </Text>
             )}
-            <View
-              style={{
-                alignItems: "center",
-                flexDirection: "row",
-                justifyContent: "flex-end",
-              }}
-            ></View>
           </View>
         </TouchableOpacity>
       );
@@ -100,24 +92,22 @@ export function ArticleList({ route, navigation }) {
     );
   return (
     <SafeAreaView>
-      <View>
-        <FlatList
-          data={results}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.node.id}
-          style={{ paddingHorizontal: 10 }}
-          ListHeaderComponent=<Text
-            style={{
-              ...s.title,
-              ...s.m_horizontal,
-              color: colors.text,
-              paddingTop: 10,
-            }}
-          >
-            Lessons
-          </Text>
-        />
-      </View>
+      <FlatList
+        data={results}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.node.id}
+        style={{ paddingHorizontal: 10 }}
+        ListHeaderComponent=<Text
+          style={{
+            ...s.title,
+            ...s.m_horizontal,
+            color: colors.text,
+            paddingTop: 10,
+          }}
+        >
+          Lessons
+        </Text>
+      />
     </SafeAreaView>
   );
 }
