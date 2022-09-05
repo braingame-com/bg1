@@ -14,10 +14,9 @@ import { DashboardHeader } from "../components/DashboardHeader";
 import { TasksBlock } from "../components/blocks/TasksBlock";
 import { VisualizationBlock } from "../components/blocks/VisualizationBlock";
 import { AffirmationsBlock } from "../components/blocks/AffirmationsBlock";
-import { NumbersBlock } from "../components/blocks/NumbersBlock";
+import { NumberChartBlock } from "../components/blocks/NumberChartBlock";
 import { PlanningBlock } from "../components/blocks/PlanningBlock";
 import { JournalBlock } from "../components/blocks/JournalBlock";
-import { ChartsBlock } from "../components/blocks/ChartsBlock";
 
 export function Dashboard({ navigation }) {
   const { colors } = useTheme();
@@ -29,10 +28,9 @@ export function Dashboard({ navigation }) {
           <TasksBlock />
           {/* <VisualizationBlock /> */}
           {/* <AffirmationsBlock /> */}
-          {/* <NumbersBlock /> */}
+          <NumberChartBlock />
           {/* <PlanningBlock /> */}
           <JournalBlock />
-          {/* <ChartsBlock /> */}
         </View>
       </ScrollView>
     </SafeAreaView>

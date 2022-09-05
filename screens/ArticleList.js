@@ -20,6 +20,7 @@ import {
   GRAPHQL_URL,
   GRAPHQL_BODY,
 } from "../setup/shopify-sapi";
+import { LessonsHeader } from "../components/LessonsHeader";
 
 const Stack = createNativeStackNavigator();
 
@@ -70,12 +71,12 @@ export function ArticleList({ route, navigation }) {
                 marginBottom: 10,
               }}
             />
-            <Text style={{ ...s.heading, color: colors.text }}>{title}</Text>
-            {excerpt !== "" && (
+            <Text style={{ ...s.subtitle, color: colors.text }}>{title}</Text>
+            {/* {excerpt !== "" && (
               <Text style={{ ...s.subtitle, color: colors.text }}>
                 {excerpt}
               </Text>
-            )}
+            )} */}
           </View>
         </TouchableOpacity>
       );
@@ -91,22 +92,13 @@ export function ArticleList({ route, navigation }) {
       />
     );
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ padding: 10 }}>
       <FlatList
         data={results}
         renderItem={renderItem}
         keyExtractor={(item) => item.node.id}
-        style={{ paddingHorizontal: 10 }}
-        ListHeaderComponent=<Text
-          style={{
-            ...s.title,
-            ...s.m_horizontal,
-            color: colors.text,
-            paddingTop: 10,
-          }}
-        >
-          Lessons
-        </Text>
+        style={{ padding: 10, marginHorizontal: 10 }}
+        ListHeaderComponent=<LessonsHeader />
       />
     </SafeAreaView>
   );

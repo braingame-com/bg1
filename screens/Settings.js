@@ -1,4 +1,3 @@
-import { useState, useContext } from "react";
 import {
   Text,
   View,
@@ -13,33 +12,16 @@ import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 import { SettingsHeader } from "../components/SettingsHeader";
 import { ThemeSelector } from "../components/ThemeSelector";
+import { AccountSettings } from "../components/AccountSettings";
 import { VersionWatermark } from "../components/VersionWatermark";
 
 export function Settings({ route }) {
   const { colors } = useTheme();
-  const auto = useColorScheme() === "dark" ? true : false;
-  const [isEnabled, setIsEnabled] = useState(auto);
-  const toggleTheme = useThemeUpdate();
   return (
     <SafeAreaView style={{ ...s.container, flex: 1 }}>
       <SettingsHeader />
       <ThemeSelector />
-      <View style={{ ...s.container, ...s.m_horizontal }}>
-        <Text
-          style={{
-            ...s.m_vertical,
-            ...s.btn_secondary,
-            ...s.rounded,
-            ...s.subtitle,
-            color: colors.text,
-            borderColor: colors.border,
-            alignSelf: "flex-start",
-          }}
-          onPress={toggleTheme}
-        >
-          Toggle Theme
-        </Text>
-      </View>
+      <AccountSettings />
       <View
         style={{
           ...s.container,

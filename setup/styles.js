@@ -86,7 +86,7 @@ export const styles = StyleSheet.create({
     marginVertical: 10,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    backgroundColor: "rgba(128,128,128,.2)",
+    backgroundColor: "rgba(128,128,128,.11)",
     borderRadius: 10,
     overflow: "hidden",
   },
@@ -109,12 +109,21 @@ export const styles = StyleSheet.create({
     backgroundColor: "rgba(137, 187, 114, .33)",
     color: "#89BB72",
   },
-  warning: {
+  success_text: {
+    color: "#89BB72",
+  },
+  warn: {
     backgroundColor: "rgba(200, 138, 93, .33)",
+    color: "#C88A5D",
+  },
+  warn_text: {
     color: "#C88A5D",
   },
   error: {
     backgroundColor: "rgba(228, 97, 107, .33)",
+    color: "#E4616B",
+  },
+  error_text: {
     color: "#E4616B",
   },
   row: {

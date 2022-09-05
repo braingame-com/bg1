@@ -25,7 +25,6 @@ export function JournalBlock() {
         </Text>
         {/* <Text style={{ ...s.pill, ...s.info, ...s.m_left }}>To do</Text> */}
         <Text style={{ ...s.pill, ...s.success, ...s.m_left }}>
-          Done &nbsp;
           <Octicons name="check" size={15} />
         </Text>
       </View>

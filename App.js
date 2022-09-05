@@ -50,20 +50,20 @@ export default function App() {
             tabBarOptions: {},
           }}
         />
-        {/* <Tab.Screen
+        <Tab.Screen
           name="Lessons"
           component={Lessons}
           options={{
             tabBarLabel: "Lessons",
             tabBarIcon: ({ focused }) => (
               <Octicons
-                name="book"
+                name="play"
                 color={focused ? "white" : "#777777"}
                 size={20}
               />
             ),
           }}
-        /> */}
+        />
         {/* <Tab.Screen
           name="Videos"
           component={Videos}
@@ -78,7 +78,7 @@ export default function App() {
             ),
           }}
         /> */}
-        {/* <Tab.Screen
+        <Tab.Screen
           name="Shop"
           component={Shop}
           options={{
@@ -91,7 +91,7 @@ export default function App() {
               />
             ),
           }}
-        /> */}
+        />
         <Tab.Screen
           name="Settings"
           component={Settings}

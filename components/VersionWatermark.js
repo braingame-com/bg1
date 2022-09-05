@@ -31,6 +31,20 @@ export function VersionWatermark() {
         style={{ marginHorizontal: 10 }}
       />
       <Text style={{ color: colors.border }}>v1.1.1</Text>
+      <TouchableOpacity
+        style={{
+          ...s.row,
+          alignItems: "center",
+        }}
+        onPress={() => console.log("github")}
+      >
+        <Octicons
+          name="mark-github"
+          color={colors.border}
+          size={20}
+          style={{ marginHorizontal: 10 }}
+        />
+      </TouchableOpacity>
     </View>
   );
 }

@@ -1,3 +1,4 @@
+import { useState, useContext } from "react";
 import {
   Text,
   View,
@@ -6,12 +7,16 @@ import {
   SafeAreaView,
   useColorScheme,
 } from "react-native";
-import { styles as s } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
+import { useThemeUpdate } from "../components/AppProvider";
+import { styles as s } from "../setup/styles";
 import { Octicons } from "@expo/vector-icons";
 
 export function ThemeSelector() {
   const { colors } = useTheme();
+  const auto = useColorScheme() === "dark" ? true : false;
+  const [isEnabled, setIsEnabled] = useState(auto);
+  const toggleTheme = useThemeUpdate();
   return (
     <View style={{ ...s.container, ...s.m_horizontal }}>
       <Text style={{ ...s.subtitle, color: colors.text }}>Theme</Text>
@@ -69,9 +74,7 @@ export function ThemeSelector() {
             flexDirection: "row",
             backgroundColor: colors.card,
           }}
-          onPress={() => {
-            console.log("auto");
-          }}
+          onPress={toggleTheme}
         >
           <Text style={{ ...s.subtitle, color: colors.text }}>Auto</Text>
         </TouchableOpacity>
