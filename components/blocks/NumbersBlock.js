@@ -12,11 +12,11 @@ import { Octicons } from "@expo/vector-icons";
 import { ChartRangeSelector } from "../../components/ChartRangeSelector";
 import { usePriceHistory } from "@shopify/react-native-skia"
 
-export function NumberChartBlock() {
+export function NumbersBlock() {
   const { colors } = useTheme();
-   const priceHistory = usePriceHistory('ethereum')
+   // const priceHistory = usePriceHistory('ethereum')
   return (
-    <View style={{ ...s.rounded }}>
+    <View style={{ ...s.rounded, backgroundColor: colors.card }}>
       <View
         style={{
           flexDirection: "row",
@@ -27,7 +27,7 @@ export function NumberChartBlock() {
         <View style={{ ...s.row }}>
           <Text
             style={{
-              ...s.subtitle,
+              ...s.heading,
               color: colors.text,
             }}
           >
@@ -65,7 +65,7 @@ export function NumberChartBlock() {
           borderRadius: 10,
         }}
       >
-        <LineGraph points={priceHistory} color="#4484B2" />
+        {/* <LineGraph points={priceHistory} color="#4484B2" /> */}
       </View>
       <ChartRangeSelector />
     </View>

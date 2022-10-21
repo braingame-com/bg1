@@ -24,7 +24,7 @@ export function DashboardHeader() {
         Dashboard
       </Text>
       <View style={{ flexDirection: "row" }}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={{
             ...s.row,
             alignItems: "center",
@@ -33,8 +33,8 @@ export function DashboardHeader() {
           onPress={() => console.log("edit")}
         >
           <Octicons name="pencil" size={20} style={{ color: "#777777" }} />
-        </TouchableOpacity>
-        <TouchableOpacity
+        </TouchableOpacity> */}
+        {/* <TouchableOpacity
           style={{
             ...s.row,
             alignItems: "center",
@@ -43,7 +43,7 @@ export function DashboardHeader() {
           onPress={() => console.log("notifications")}
         >
           <Octicons name="bell" size={20} style={{ color: "#777777" }} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

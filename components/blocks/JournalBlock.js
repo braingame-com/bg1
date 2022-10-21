@@ -9,6 +9,7 @@ export function JournalBlock() {
     <View
       style={{
         ...s.rounded,
+        backgroundColor: colors.card,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
@@ -17,7 +18,7 @@ export function JournalBlock() {
       <View style={{ ...s.row }}>
         <Text
           style={{
-            ...s.subtitle,
+            ...s.heading,
             color: colors.text,
           }}
         >

@@ -50,7 +50,7 @@ export default function App() {
             tabBarOptions: {},
           }}
         />
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Lessons"
           component={Lessons}
           options={{
@@ -63,7 +63,7 @@ export default function App() {
               />
             ),
           }}
-        />
+        /> */}
         {/* <Tab.Screen
           name="Videos"
           component={Videos}
@@ -78,7 +78,7 @@ export default function App() {
             ),
           }}
         /> */}
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Shop"
           component={Shop}
           options={{
@@ -91,7 +91,7 @@ export default function App() {
               />
             ),
           }}
-        />
+        /> */}
         <Tab.Screen
           name="Settings"
           component={Settings}

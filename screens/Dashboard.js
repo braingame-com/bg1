@@ -14,7 +14,7 @@ import { DashboardHeader } from "../components/DashboardHeader";
 import { TasksBlock } from "../components/blocks/TasksBlock";
 import { VisualizationBlock } from "../components/blocks/VisualizationBlock";
 import { AffirmationsBlock } from "../components/blocks/AffirmationsBlock";
-import { NumberChartBlock } from "../components/blocks/NumberChartBlock";
+import { NumbersBlock } from "../components/blocks/NumbersBlock";
 import { PlanningBlock } from "../components/blocks/PlanningBlock";
 import { JournalBlock } from "../components/blocks/JournalBlock";
 
@@ -28,7 +28,7 @@ export function Dashboard({ navigation }) {
           <TasksBlock />
           {/* <VisualizationBlock /> */}
           {/* <AffirmationsBlock /> */}
-          <NumberChartBlock />
+          {/* <NumbersBlock /> */}
           {/* <PlanningBlock /> */}
           <JournalBlock />
         </View>

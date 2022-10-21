@@ -16,7 +16,7 @@ export function TasksBlock({ navigation }) {
   const { colors } = useTheme();
   const [isChecked, setChecked] = useState(false);
   return (
-    <View style={{ ...s.rounded }}>
+    <View style={{ ...s.rounded, backgroundColor: colors.card }}>
       <View
         style={{
           flexDirection: "row",
@@ -27,7 +27,7 @@ export function TasksBlock({ navigation }) {
         <View style={{ ...s.row }}>
           <Text
             style={{
-              ...s.subtitle,
+              ...s.heading,
               color: colors.text,
             }}
           >
