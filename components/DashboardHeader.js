@@ -20,7 +20,13 @@ export function DashboardHeader() {
         justifyContent: "space-between",
       }}
     >
-      <Text style={{ ...s.title, ...s.m_horizontal, color: colors.text }}>
+      <Text
+        style={{
+          ...s.title,
+          ...s.m_horizontal,
+          color: colors.text,
+        }}
+      >
         Dashboard
       </Text>
       <View style={{ flexDirection: "row" }}>

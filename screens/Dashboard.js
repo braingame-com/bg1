@@ -1,38 +1,77 @@
-import {
-  Text,
-  View,
-  ScrollView,
-  Button,
-  Switch,
-  TouchableOpacity,
-  SafeAreaView,
-} from "react-native";
+import { useState, useEffect } from "react";
+import { Text, View, TouchableOpacity, FlatList } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { styles as s } from "../setup/styles";
-import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
-import { DashboardHeader } from "../components/DashboardHeader";
-import { TasksBlock } from "../components/blocks/TasksBlock";
-import { VisualizationBlock } from "../components/blocks/VisualizationBlock";
-import { AffirmationsBlock } from "../components/blocks/AffirmationsBlock";
-import { NumbersBlock } from "../components/blocks/NumbersBlock";
-import { PlanningBlock } from "../components/blocks/PlanningBlock";
-import { JournalBlock } from "../components/blocks/JournalBlock";
+import { DashboardList } from "../screens/DashboardList";
+import { TasksScreen } from "../screens/TasksScreen";
+import { JournalScreen } from "../screens/JournalScreen";
 
-export function Dashboard({ navigation }) {
-  const { colors } = useTheme();
+const Stack = createNativeStackNavigator();
+
+export function Dashboard({ route, navigation }) {
   return (
-    <SafeAreaView style={{ ...s.container }}>
-      <ScrollView style={{ ...s.container }}>
-        <DashboardHeader />
-        <View style={{ ...s.container, marginBottom: 10 }}>
-          <TasksBlock />
-          {/* <VisualizationBlock /> */}
-          {/* <AffirmationsBlock /> */}
-          {/* <NumbersBlock /> */}
-          {/* <PlanningBlock /> */}
-          <JournalBlock />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <Stack.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          color: "#777777",
+          // height: 100,
+          borderTopWidth: 0,
+        },
+        headerShadowVisible: false,
+        headerTintColor: "#777777",
+        headerStyle: {
+          backgroundColor: "black",
+          // height: 100,
+        },
+      }}
+    >
+      <Stack.Screen
+        name="Dashboard List"
+        component={DashboardList}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Tasks Screen"
+        component={TasksScreen}
+        options={{
+          headerTitle: " ",
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ padding: 10 }}
+              onPress={() => navigation.navigate("Dashboard List")}
+            >
+              <Octicons
+                name="chevron-left"
+                size={20}
+                style={{ color: "#777777" }}
+              />
+            </TouchableOpacity>
+          ),
+          // headerTitle: () => (
+          //   <Text style={{ ...s.pill, ...s.warn, ...s.m_left }}>0 / 3</Text>
+          // ),
+        }}
+      />
+      <Stack.Screen
+        name="Journal Screen"
+        component={JournalScreen}
+        options={{
+          headerTitle: " ",
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ padding: 10 }}
+              onPress={() => navigation.navigate("Dashboard List")}
+            >
+              <Octicons
+                name="chevron-left"
+                size={20}
+                style={{ color: "#777777" }}
+              />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+    </Stack.Navigator>
   );
 }

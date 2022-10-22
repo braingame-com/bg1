@@ -22,7 +22,7 @@ export default function App() {
         screenOptions={{
           tabBarStyle: {
             backgroundColor: "black",
-            borderTopWidth: 1,
+            borderTopWidth: 0,
             // borderTopColor: "#777777",
           },
           tabBarShowLabel: false,

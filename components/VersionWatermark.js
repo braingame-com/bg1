@@ -31,7 +31,7 @@ export function VersionWatermark() {
         style={{ marginHorizontal: 10 }}
       />
       <Text style={{ color: colors.border }}>v1.1.1</Text>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={{
           ...s.row,
           alignItems: "center",
@@ -44,7 +44,7 @@ export function VersionWatermark() {
           size={20}
           style={{ marginHorizontal: 10 }}
         />
-      </TouchableOpacity>
+    </TouchableOpacity> */}
     </View>
   );
 }
