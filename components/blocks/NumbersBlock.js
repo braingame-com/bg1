@@ -10,11 +10,11 @@ import { styles as s } from "../../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 import { ChartRangeSelector } from "../../components/ChartRangeSelector";
-import { usePriceHistory } from "@shopify/react-native-skia"
+import { usePriceHistory } from "@shopify/react-native-skia";
 
 export function NumbersBlock() {
   const { colors } = useTheme();
-   // const priceHistory = usePriceHistory('ethereum')
+  // const priceHistory = usePriceHistory('ethereum')
   return (
     <View style={{ ...s.rounded, backgroundColor: colors.card }}>
       <View

@@ -35,7 +35,7 @@ export function Dashboard({ route, navigation }) {
         name="Tasks Screen"
         component={TasksScreen}
         options={{
-          headerTitle: " ",
+          headerTitle: "Tasks",
           headerLeft: () => (
             <TouchableOpacity
               style={{ padding: 10 }}
@@ -49,7 +49,16 @@ export function Dashboard({ route, navigation }) {
             </TouchableOpacity>
           ),
           // headerTitle: () => (
-          //   <Text style={{ ...s.pill, ...s.warn, ...s.m_left }}>0 / 3</Text>
+          //   <Text
+          //     style={{
+          //       ...s.pill,
+          //       ...s.warn,
+          //       ...s.m_horizontal_2,
+          //       alignSelf: "auto",
+          //     }}
+          //   >
+          //     0 / 3
+          //   </Text>
           // ),
         }}
       />

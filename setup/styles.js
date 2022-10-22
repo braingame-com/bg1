@@ -80,6 +80,10 @@ export const styles = StyleSheet.create({
   },
   checkbox: {
     margin: 0,
+    borderWidth: 1,
+    width: 30,
+    height: 30,
+    padding: 10,
   },
   // Utilities
   rounded: {
