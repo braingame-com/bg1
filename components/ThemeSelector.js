@@ -19,7 +19,9 @@ export function ThemeSelector() {
   const toggleTheme = useThemeUpdate();
   return (
     <View style={{ ...s.container, ...s.m_horizontal }}>
-      <Text style={{ ...s.subtitle, color: colors.text }}>Theme</Text>
+      <Text style={{ ...s.heading, color: colors.text, paddingBottom: 10 }}>
+        Theme
+      </Text>
       <View style={{ flexDirection: "row" }}>
         <TouchableOpacity
           style={{

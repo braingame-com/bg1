@@ -19,10 +19,10 @@ export function Lessons({ route, navigation }) {
           // height: 100,
           borderTopWidth: 0,
         },
-        // headerShadowVisible: false,
+        headerShadowVisible: false,
         // headerTintColor: "#777777",
         headerStyle: {
-          backgroundColor: "black",
+          backgroundColor: colors.card,
           // height: 100,
           // borderWidth: 1,
           // borderColor: colors.border,

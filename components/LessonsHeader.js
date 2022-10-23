@@ -18,7 +18,6 @@ export function LessonsHeader() {
         ...s.row,
         alignItems: "center",
         justifyContent: "space-between",
-        marginVertical: 10,
         marginBottom: 20,
       }}
     >

@@ -18,9 +18,9 @@ export function Dashboard({ route, navigation }) {
   return (
     <Stack.Navigator
       screenOptions={{
-        // headerShadowVisible: false,
+        headerShadowVisible: false,
         headerStyle: {
-          backgroundColor: "black",
+          // backgroundColor: "black",
           // height: 100,
         },
       }}

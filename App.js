@@ -1,4 +1,12 @@
-import { StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Switch,
+  SafeAreaView,
+  useColorScheme,
+  StyleSheet,
+} from "react-native";
 import { AppProvider, Tab } from "./components/AppProvider";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -17,6 +25,7 @@ import { Shop } from "./screens/Shop";
 import { Settings } from "./screens/Settings";
 import { useTheme } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
+import { styles as s } from "./setup/styles";
 
 export default function App() {
   const { colors } = useTheme();
@@ -24,29 +33,28 @@ export default function App() {
     <AppProvider>
       <Tab.Navigator
         screenOptions={{
-          // tabBarBackground: () => (
-          //   <BlurView
-          //     tint="dark"
-          //     intensity={50}
-          //     style={{
-          //       ...StyleSheet.absoluteFill,
-          //       borderRadius: 20,
-          //       overflow: "hidden",
-          //     }}
-          //   />
-          // ),
+          //   tabBarBackground: () => (
+          //     <BlurView
+          //       tint="dark"
+          //       intensity={50}
+          //       style={{
+          //         ...StyleSheet.absoluteFill,
+          //         overflow: "hidden",
+          //       }}
+          //     />
+          //   )
           tabBarStyle: {
-            position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgb(18, 18, 18)",
-            height: 100,
+            // position: "absolute",
+            // left: 0,
+            // right: 0,
+            // bottom: 0,
+            backgroundColor: "black",
+            // height: 100,
             justifyContent: "center",
             alignItems: "center",
-            borderRadius: 30,
+            // borderRadius: 30,
             overflow: "hidden",
-            borderTopWidth: 0,
+            borderTopWidth: 1,
             // borderColor: "green",
             padding: 0,
             margin: 0,
@@ -60,13 +68,26 @@ export default function App() {
             elevation: 5,
           },
           tabBarShowLabel: false,
-          headerShown: false,
+          // headerShown: false,
           headerMode: "none",
-          headerShadowVisible: false,
+          headerShadowVisible: true,
           headerStyle: {
-            backgroundColor: "teal",
+            backgroundColor: "black",
           },
           headerTitleStyle: {},
+          headerRight: () => (
+            <TouchableOpacity
+              style={{
+                ...s.row,
+                ...s.back_btn,
+                alignItems: "center",
+                padding: 10,
+              }}
+              onPress={() => console.log("Notifications")}
+            >
+              <Octicons name="bell" size={20} style={{ color: "#777777" }} />
+            </TouchableOpacity>
+          ),
         }}
       >
         <Tab.Screen

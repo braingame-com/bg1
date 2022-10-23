@@ -22,7 +22,7 @@ import { JournalBlock } from "../components/blocks/JournalBlock";
 export function DashboardList({ navigation }) {
   const { colors } = useTheme();
   return (
-    <SafeAreaView style={{ ...s.container, marginHorizontal: 10 }}>
+    <SafeAreaView style={{ ...s.container }}>
       <ScrollView
         style={{ ...s.container }}
         showsVerticalScrollIndicator={false}

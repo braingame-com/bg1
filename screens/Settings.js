@@ -13,15 +13,18 @@ import { Octicons } from "@expo/vector-icons";
 import { SettingsHeader } from "../components/SettingsHeader";
 import { ThemeSelector } from "../components/ThemeSelector";
 import { AccountSettings } from "../components/AccountSettings";
-import { VersionWatermark } from "../components/VersionWatermark";
+import { Support } from "../components/Support";
+import { Links } from "../components/Links";
 
 export function Settings({ route }) {
   const { colors } = useTheme();
   return (
-    <SafeAreaView style={{ ...s.container, flex: 1, marginHorizontal: 10 }}>
+    <SafeAreaView style={{ ...s.container, flex: 1 }}>
       <SettingsHeader />
       <ThemeSelector />
       <AccountSettings />
+      <Support />
+      <Links />
       <View
         style={{
           ...s.container,
@@ -29,9 +32,7 @@ export function Settings({ route }) {
           alignSelf: "center",
           bottom: 0,
         }}
-      >
-        <VersionWatermark />
-      </View>
+      ></View>
     </SafeAreaView>
   );
 }

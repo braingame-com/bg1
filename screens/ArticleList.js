@@ -63,15 +63,17 @@ export function ArticleList({ route, navigation }) {
               style={{
                 width: "120%",
                 height: 200,
-                borderRadius: 5,
-                borderColor: colors.border,
-                borderWidth: 1,
+                // borderRadius: 5,
+                // borderColor: colors.border,
+                // borderWidth: 1,
                 marginTop: -11,
                 marginLeft: "-10%",
                 marginBottom: 10,
               }}
             />
-            <Text style={{ ...s.subtitle, color: colors.text }}>{title}</Text>
+            <Text style={{ ...s.heading_secondary, color: colors.text }}>
+              {title}
+            </Text>
             {/* {excerpt !== "" && (
               <Text style={{ ...s.subtitle, color: colors.text }}>
                 {excerpt}
@@ -97,7 +99,7 @@ export function ArticleList({ route, navigation }) {
         data={results}
         renderItem={renderItem}
         keyExtractor={(item) => item.node.id}
-        style={{ padding: 10, marginHorizontal: 20 }}
+        style={{ padding: 10, marginHorizontal: 10 }}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 20 }}
         ListHeaderComponent=<LessonsHeader />

@@ -154,7 +154,7 @@ export function TasksScreen({ route }) {
           <Octicons
             name="x"
             size={20}
-            style={{ ...s.error_text, opacity: 0.5 }}
+            style={{ color: colors.text, opacity: 0.5 }}
           />
         </TouchableOpacity>
         {/* <Checkbox
@@ -243,7 +243,7 @@ export function TasksScreen({ route }) {
           onPress={() => clearChecked()}
         >
           {/* <Text style={{ color: "#777777", marginRight: 10 }}>Clear</Text> */}
-          <Octicons name="trash" size={20} color="#777777" />
+          <Octicons name="x" size={20} color="#777777" />
         </TouchableOpacity>
       </View>
       <View

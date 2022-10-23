@@ -60,7 +60,7 @@ export function Article({ route }) {
           width: "120%",
           height: 330,
           borderColor: colors.border,
-          borderWidth: 1,
+          borderWidth: 0,
           marginTop: -20,
           marginHorizontal: "-10%",
           marginBottom: 10,

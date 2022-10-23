@@ -49,7 +49,6 @@ export function SettingsHeader() {
           ...s.m_horizontal,
           alignItems: "center",
           justifyContent: "space-between",
-          marginVertical: 10,
         }}
       >
         <Text style={{ ...s.title, color: colors.text }}>Settings</Text>
@@ -60,8 +59,8 @@ export function SettingsHeader() {
           }}
           onPress={() => setModalVisible(true)}
         >
+          <Text style={{ ...s.m_right, ...s.info_text }}>Log in</Text>
           <Octicons name="sign-in" size={20} style={{ ...s.info_text }} />
-          <Text style={{ ...s.m_left, ...s.info_text }}>Log in</Text>
         </TouchableOpacity>
         <Modal
           animationType="fade"
