@@ -18,7 +18,8 @@ export function VideosHeader() {
         ...s.row,
         alignItems: "center",
         justifyContent: "space-between",
-        marginBottom: 10,
+        marginVertical: 10,
+        marginBottom: 20,
       }}
     >
       <Text style={{ ...s.title, color: colors.text }}>Videos</Text>

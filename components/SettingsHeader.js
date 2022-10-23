@@ -9,6 +9,7 @@ import {
   Modal,
   StyleSheet,
   Pressable,
+  TextInput,
 } from "react-native";
 import { styles as s } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
@@ -48,6 +49,7 @@ export function SettingsHeader() {
           ...s.m_horizontal,
           alignItems: "center",
           justifyContent: "space-between",
+          marginVertical: 10,
         }}
       >
         <Text style={{ ...s.title, color: colors.text }}>Settings</Text>
@@ -62,48 +64,111 @@ export function SettingsHeader() {
           <Text style={{ ...s.m_left, ...s.info_text }}>Log in</Text>
         </TouchableOpacity>
         <Modal
-          animationType="slide"
+          animationType="fade"
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
             setModalVisible(!modalVisible);
           }}
         >
-          <View
+          <TouchableOpacity
             style={{
               ...s.container,
               ...s.flex,
               ...s.centered,
-              // backgroundColor: "rgba(0,0,0,.5)",
+              backgroundColor: "rgba(0,0,0,.8)",
             }}
+            onPress={() => setModalVisible(!modalVisible)}
           >
             <View
               style={{
                 ...s.modalView,
                 backgroundColor: colors.card,
-                borderColor: colors.border,
-                borderWidth: 1,
+                // borderColor: colors.border,
+                // borderWidth: 1,
               }}
             >
-              <TouchableOpacity
-                style={{
-                  ...s.row,
-                  alignItems: "center",
-                  padding: 10,
-                  position: "absolute",
-                  top: 10,
-                  right: 10,
-                  opacity: 0.5,
-                }}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-                <Octicons name="x" size={20} style={{ color: "#777777" }} />
-              </TouchableOpacity>
-              <View style={s.account_input}>
-                <Text>Some notification here</Text>
+              <View style={{ width: 230 }}>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection: "row",
+                  }}
+                >
+                  <Octicons
+                    name="person"
+                    size={20}
+                    style={{
+                      color: "#fff",
+                      position: "absolute",
+                      left: 20,
+                      zIndex: 10,
+                      opacity: 0.5,
+                    }}
+                  />
+                  <TextInput
+                    style={{
+                      ...s.account_input,
+                      ...s.subtitle,
+                    }}
+                    placeholder="Username / Email"
+                  />
+                </View>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection: "row",
+                  }}
+                >
+                  <Octicons
+                    name="unlock"
+                    size={20}
+                    style={{
+                      color: "#fff",
+                      position: "absolute",
+                      left: 20,
+                      zIndex: 10,
+                      opacity: 0.5,
+                    }}
+                  />
+                  <TextInput
+                    style={{
+                      ...s.account_input,
+                      ...s.subtitle,
+                    }}
+                    placeholder="Password"
+                    textContentType={"password"}
+                    secureTextEntry={true}
+                  />
+                </View>
               </View>
+              <Text
+                style={{
+                  color: "white",
+                  opacity: 0.5,
+                  paddingTop: 10,
+                  marginTop: 20,
+                }}
+              >
+                Don't have an account?
+              </Text>
+              <TouchableOpacity onPress={() => console.log("Sign up")}>
+                <Text
+                  style={{
+                    color: "white",
+                    fontWeight: "bold",
+                    ...s.subtitle,
+                    ...s.rounded,
+                    padding: 10,
+                  }}
+                >
+                  Sign up
+                </Text>
+              </TouchableOpacity>
             </View>
-          </View>
+          </TouchableOpacity>
         </Modal>
       </View>
     </View>

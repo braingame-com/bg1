@@ -36,17 +36,17 @@ export default function App() {
           //   />
           // ),
           tabBarStyle: {
-            // position: "absolute",
+            position: "absolute",
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: "black",
+            backgroundColor: "rgb(18, 18, 18)",
             height: 100,
             justifyContent: "center",
             alignItems: "center",
-            // borderRadius: 20,
+            borderRadius: 20,
             overflow: "hidden",
-            borderTopWidth: 1,
+            borderTopWidth: 0,
             // borderColor: "green",
             padding: 0,
             margin: 0,
@@ -112,6 +112,7 @@ export default function App() {
                 size={20}
               />
             ),
+            // tabBarBadge: "3",
           }}
         />
         <Tab.Screen

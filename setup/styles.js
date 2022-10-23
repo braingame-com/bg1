@@ -108,9 +108,11 @@ export const styles = StyleSheet.create({
     padding: 10,
   },
   account_input: {
-    backgroundColor: "black",
+    backgroundColor: "rgba(128,128,128,.5)",
     color: "white",
-    padding: 10,
+    width: 230,
+    padding: 20,
+    paddingLeft: 50,
     borderRadius: 10,
   },
   // Utilities
@@ -128,7 +130,7 @@ export const styles = StyleSheet.create({
     marginVertical: 10,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    backgroundColor: "rgba(128,128,128,.11)",
+    backgroundColor: "rgba(128,128,128,.2)",
     borderRadius: 10,
     overflow: "hidden",
   },

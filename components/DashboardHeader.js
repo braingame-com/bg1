@@ -19,6 +19,7 @@ export function DashboardHeader() {
         ...s.row,
         alignItems: "center",
         justifyContent: "space-between",
+        marginVertical: 10,
       }}
     >
       <Text

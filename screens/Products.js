@@ -12,13 +12,14 @@ import { Octicons } from "@expo/vector-icons";
 export function Products({ navigation }) {
   const { colors } = useTheme();
   return (
-    <SafeAreaView style={s.container}>
+    <SafeAreaView style={{ ...s.container, marginHorizontal: 10 }}>
       <View
         style={{
           ...s.container,
           ...s.row,
           alignItems: "center",
           justifyContent: "space-between",
+          marginVertical: 10,
         }}
       >
         <Text style={{ ...s.title, ...s.m_horizontal, color: colors.text }}>

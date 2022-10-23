@@ -69,7 +69,7 @@ export function Videos({ route }) {
         data={results}
         renderItem={renderItem}
         keyExtractor={(item) => item.node.id}
-        style={{ padding: 10, marginHorizontal: 10 }}
+        style={{ padding: 10, marginHorizontal: 20 }}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 20 }}
         ListHeaderComponent=<VideosHeader />

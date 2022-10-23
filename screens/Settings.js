@@ -18,7 +18,7 @@ import { VersionWatermark } from "../components/VersionWatermark";
 export function Settings({ route }) {
   const { colors } = useTheme();
   return (
-    <SafeAreaView style={{ ...s.container, flex: 1 }}>
+    <SafeAreaView style={{ ...s.container, flex: 1, marginHorizontal: 10 }}>
       <SettingsHeader />
       <ThemeSelector />
       <AccountSettings />
