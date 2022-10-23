@@ -19,7 +19,9 @@ export function JournalBlock() {
       <View
         style={{
           ...s.rounded,
-          backgroundColor: colors.card,
+          backgroundColor: "transparent",
+          borderColor: colors.border,
+          borderWidth: 1,
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
@@ -34,12 +36,14 @@ export function JournalBlock() {
           >
             Journal
           </Text>
-          {/* <Text style={{ ...s.pill, ...s.info, ...s.m_left }}>To do</Text> */}
+          <Text style={{ ...s.pill, ...s.info, ...s.m_left_2 }}>To do</Text>
           {/* <Text style={{ ...s.pill, ...s.success, ...s.m_left }}>
           <Octicons name="check" size={15} />
         </Text> */}
         </View>
-        {/* <Octicons name="chevron-right" size={20} color="#777777" /> */}
+        <View style={s.block_btn}>
+          <Octicons name="chevron-right" size={20} color="#777777" />
+        </View>
       </View>
     </TouchableOpacity>
   );

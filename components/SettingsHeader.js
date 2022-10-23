@@ -23,16 +23,16 @@ export function SettingsHeader() {
         }}
       >
         <Text style={{ ...s.title, color: colors.text }}>Settings</Text>
-        {/* <TouchableOpacity
+        <TouchableOpacity
           style={{
             ...s.row,
             alignItems: "center",
           }}
           onPress={() => console.log("log in")}
         >
-          <Text style={{ ...s.m_right, ...s.info_text }}>Log in</Text>
           <Octicons name="sign-in" size={20} style={{ ...s.info_text }} />
-        </TouchableOpacity> */}
+          <Text style={{ ...s.m_left, ...s.info_text }}>Log in</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

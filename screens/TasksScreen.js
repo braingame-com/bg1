@@ -54,11 +54,13 @@ export function TasksScreen({ route }) {
   const [remaining, setRemaining] = useState(0);
 
   const onKeyPress = (e) => {
-    let key = e.key;
+    let key = e.nativeEvent.key;
+    if (key == "Enter") {
+      addTask();
+    }
     console.log("You pressed a key: " + key);
   };
   const addTask = () => {
-    // Keyboard.dismiss();
     setTasks([...tasks, task]);
     setTask(null);
     setRemaining(tasks.length + 1);
@@ -107,41 +109,8 @@ export function TasksScreen({ route }) {
       >
         <TouchableOpacity
           style={{
-            borderColor: "rgba(127.5, 127.5, 127.5, .2)",
-            borderWidth: 0,
-            // height: 30,
-            // width: 30,
-            borderRadius: 999,
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Text
-            style={{
-              color: colors.text,
-              ...s.heading_secondary,
-              marginVertical: 0,
-              color: "#777777",
-            }}
-          >
-            {props.number}
-          </Text>
-        </TouchableOpacity>
-        <Text
-          style={{
-            color: colors.text,
-            ...s.subtitle,
-            marginVertical: 0,
-            flex: 1,
-            marginHorizontal: 20,
-          }}
-        >
-          {props.text}
-        </Text>
-        <TouchableOpacity
-          style={{
-            width: 30,
-            height: 30,
+            width: 20,
+            height: 20,
             borderColor: colors.border,
             borderWidth: 1,
             borderRadius: 5,
@@ -159,6 +128,17 @@ export function TasksScreen({ route }) {
             }}
           />
         </TouchableOpacity>
+        <Text
+          style={{
+            color: colors.text,
+            ...s.subtitle,
+            marginVertical: 0,
+            flex: 1,
+            marginHorizontal: 20,
+          }}
+        >
+          {props.text}
+        </Text>
         <TouchableOpacity
           style={{
             width: 30,
@@ -239,7 +219,7 @@ export function TasksScreen({ route }) {
             style={{
               ...s.pill,
               ...s.heading_secondary,
-              ...s.warn,
+              ...s.info,
               alignSelf: "center",
               // justifyContent: "center",
               // textAlign: "center",
@@ -282,8 +262,8 @@ export function TasksScreen({ route }) {
           style={{
             backgroundColor: colors.card,
             paddingVertical: 20,
-            paddingLeft: 20,
-            paddingRight: 80,
+            paddingLeft: 60,
+            paddingRight: 20,
             borderRadius: 10,
             borderWidth: 0,
             margin: 10,
@@ -291,6 +271,7 @@ export function TasksScreen({ route }) {
             color: "white",
             ...s.heading_secondary,
           }}
+          onSubmitEditing={() => addTask()}
           onChangeText={(text) => setTask(text)}
           onKeyPress={(e) => {
             onKeyPress(e);
@@ -304,8 +285,8 @@ export function TasksScreen({ route }) {
             height: 45,
             margin: 10,
             position: "absolute",
-            right: 10,
-            backgroundColor: "rgba(0,0,0,.5)",
+            left: 10,
+            // backgroundColor: "rgba(0,0,0,.5)",
             borderWidth: 0,
             borderRadius: 10,
             alignItems: "center",

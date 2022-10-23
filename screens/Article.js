@@ -50,6 +50,7 @@ export function Article({ route }) {
       contentContainerStyle={{
         padding: 20,
       }}
+      showsVerticalScrollIndicator={false}
     >
       <Image
         source={{

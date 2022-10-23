@@ -51,7 +51,7 @@ export function ArticleList({ route, navigation }) {
           <View
             style={{
               ...s.rounded,
-              backgroundColor: colors.card,
+              backgroundColor: "transparent",
               borderColor: colors.border,
               borderWidth: 1,
             }}
@@ -92,12 +92,14 @@ export function ArticleList({ route, navigation }) {
       />
     );
   return (
-    <SafeAreaView style={{ padding: 10 }}>
+    <SafeAreaView>
       <FlatList
         data={results}
         renderItem={renderItem}
         keyExtractor={(item) => item.node.id}
         style={{ padding: 10, marginHorizontal: 10 }}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 20 }}
         ListHeaderComponent=<LessonsHeader />
       />
     </SafeAreaView>

@@ -69,6 +69,23 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 5,
   },
+  block_btn: {
+    // backgroundColor: "green",
+    width: 40,
+    height: 40,
+    position: "relative",
+    right: -20,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  back_btn: {
+    // backgroundColor: "green",
+    width: 40,
+    height: 40,
+    position: "relative",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   switch_btn: {
     flex: 1,
     alignItems: "center",

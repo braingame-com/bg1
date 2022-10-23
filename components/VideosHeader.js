@@ -10,7 +10,7 @@ import { styles as s } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 
-export function DashboardHeader() {
+export function VideosHeader() {
   const { colors } = useTheme();
   return (
     <View
@@ -18,37 +18,19 @@ export function DashboardHeader() {
         ...s.row,
         alignItems: "center",
         justifyContent: "space-between",
+        marginBottom: 10,
       }}
     >
-      <Text
-        style={{
-          ...s.title,
-          ...s.m_horizontal,
-          color: colors.text,
-        }}
-      >
-        Dashboard
-      </Text>
+      <Text style={{ ...s.title, color: colors.text }}>Videos</Text>
       <View style={{ flexDirection: "row" }}>
-        {/* <TouchableOpacity
-          style={{
-            ...s.row,
-            alignItems: "center",
-            padding: 10,
-          }}
-          onPress={() => console.log("edit")}
-        >
-          <Octicons name="pencil" size={20} style={{ color: "#777777" }} />
-        </TouchableOpacity> */}
         <TouchableOpacity
           style={{
             ...s.row,
             alignItems: "center",
-            padding: 10,
           }}
-          onPress={() => console.log("notifications")}
+          onPress={() => console.log("search")}
         >
-          <Octicons name="bell" size={20} style={{ color: "#777777" }} />
+          <Octicons name="search" size={20} style={{ color: "#777777" }} />
         </TouchableOpacity>
       </View>
     </View>

@@ -22,15 +22,18 @@ export function DashboardList({ navigation }) {
   const { colors } = useTheme();
   return (
     <SafeAreaView style={{ ...s.container }}>
-      <ScrollView style={{ ...s.container }}>
+      <ScrollView
+        style={{ ...s.container }}
+        showsVerticalScrollIndicator={false}
+      >
         <DashboardHeader />
         <View style={{ ...s.container, marginBottom: 10 }}>
           <TasksBlock />
-          {/* <VisualizationBlock /> */}
-          {/* <AffirmationsBlock /> */}
-          {/* <NumbersBlock /> */}
-          {/* <PlanningBlock /> */}
-          {/* <JournalBlock /> */}
+          <VisualizationBlock />
+          <AffirmationsBlock />
+          <NumbersBlock />
+          <PlanningBlock />
+          <JournalBlock />
         </View>
       </ScrollView>
     </SafeAreaView>

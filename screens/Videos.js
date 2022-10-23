@@ -18,6 +18,7 @@ import {
   GRAPHQL_URL,
   GRAPHQL_BODY,
 } from "../setup/shopify-sapi";
+import { VideosHeader } from "../components/VideosHeader";
 
 export function Videos({ route }) {
   const { colors } = useTheme();
@@ -44,24 +45,12 @@ export function Videos({ route }) {
   }, []);
   const Item = ({ image, title, excerpt, id, content }) => {
       return (
-        <View
-          style={{
-            ...s.rounded,
-            backgroundColor: colors.card,
-            borderColor: colors.border,
-            borderWidth: 1,
-          }}
-        >
-          <YoutubePlayer
-            height={270}
-            play={playing}
-            videoId={"iee2TATGMyI"}
-            onChangeState={onStateChange}
-          />
-          <Text style={{ ...s.heading, color: colors.text }}>
-            Title gonna go here
-          </Text>
-        </View>
+        <YoutubePlayer
+          height={270}
+          play={playing}
+          videoId={"iee2TATGMyI"}
+          onChangeState={onStateChange}
+        />
       );
     },
     renderItem = ({ item }) => (
@@ -80,17 +69,10 @@ export function Videos({ route }) {
         data={results}
         renderItem={renderItem}
         keyExtractor={(item) => item.node.id}
-        style={{ paddingHorizontal: 10 }}
-        ListHeaderComponent=<Text
-          style={{
-            ...s.title,
-            ...s.m_horizontal,
-            color: colors.text,
-            paddingTop: 10,
-          }}
-        >
-          Videos
-        </Text>
+        style={{ padding: 10, marginHorizontal: 10 }}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 20 }}
+        ListHeaderComponent=<VideosHeader />
       />
     </SafeAreaView>
   );

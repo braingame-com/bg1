@@ -21,7 +21,7 @@ export function Settings({ route }) {
     <SafeAreaView style={{ ...s.container, flex: 1 }}>
       <SettingsHeader />
       <ThemeSelector />
-      {/* <AccountSettings /> */}
+      <AccountSettings />
       <View
         style={{
           ...s.container,
