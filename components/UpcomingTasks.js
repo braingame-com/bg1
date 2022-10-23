@@ -24,28 +24,13 @@ export function UpcomingTasks() {
           alignItems: "center",
         }}
       >
-        <Checkbox
-          style={{ ...s.checkbox, display: "none" }}
-          color="#777777"
-          value={isChecked}
-          onValueChange={setChecked}
-        />
         <Text
           style={{
             ...s.task_mini,
-            color: "#777777",
-          }}
-        >
-          First:
-        </Text>
-        <Text
-          style={{
-            ...s.task_mini,
-            ...s.m_left,
             color: colors.text,
           }}
         >
-          Take bins out
+          • Take bins out
         </Text>
       </View>
       <View
@@ -54,28 +39,28 @@ export function UpcomingTasks() {
           alignItems: "center",
         }}
       >
-        <Checkbox
-          style={{ ...s.checkbox, display: "none" }}
-          color="#777777"
-          value={isChecked}
-          onValueChange={setChecked}
-        />
         <Text
           style={{
             ...s.task_mini,
-            color: "#777777",
-          }}
-        >
-          Then:
-        </Text>
-        <Text
-          style={{
-            ...s.task_mini,
-            ...s.m_left,
             color: colors.text,
           }}
         >
-          Do some exercise
+          • Do some exercise
+        </Text>
+      </View>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <Text
+          style={{
+            ...s.task_mini,
+            color: colors.text,
+          }}
+        >
+          • Read a book
         </Text>
       </View>
     </View>

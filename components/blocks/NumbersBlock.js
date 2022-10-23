@@ -59,7 +59,7 @@ export function NumbersBlock() {
             paddingVertical: 100,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: colors.card,
+            backgroundColor: "rgba(16,16,16,.5)",
             borderRadius: 10,
           }}
         >

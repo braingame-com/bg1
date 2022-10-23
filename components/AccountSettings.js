@@ -18,7 +18,7 @@ export function AccountSettings() {
       <Text style={{ ...s.subtitle, color: colors.text }}>Account</Text>
       <TouchableOpacity>
         <Text style={{ ...s.task_mini, color: "#777777" }}>
-          Change email/phone number
+          Change username or email
         </Text>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -27,7 +27,9 @@ export function AccountSettings() {
         </Text>
       </TouchableOpacity>
       <TouchableOpacity>
-        <Text style={{ ...s.task_mini, ...s.error_text }}>Delete account</Text>
+        <Text style={{ ...s.task_mini, ...s.error_text, opacity: 0.5 }}>
+          Delete account
+        </Text>
       </TouchableOpacity>
     </View>
   );

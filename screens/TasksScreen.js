@@ -154,7 +154,7 @@ export function TasksScreen({ route }) {
           <Octicons
             name="x"
             size={20}
-            style={{ color: "#777777", opacity: 0.5 }}
+            style={{ ...s.error_text, opacity: 0.5 }}
           />
         </TouchableOpacity>
         {/* <Checkbox
