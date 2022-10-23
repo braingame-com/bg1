@@ -23,7 +23,7 @@ export function VersionWatermark() {
         alignItems: "center",
       }}
     >
-      <IconBG fill={colors.border} />
+      {/* <IconBG fill={colors.border} /> */}
       <Octicons
         name="code"
         color={colors.border}

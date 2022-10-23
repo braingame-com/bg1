@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { styles as s } from "../setup/styles";
 import { Octicons } from "@expo/vector-icons";
 import { DashboardList } from "../screens/DashboardList";
+import { Notifications } from "../screens/Notifications";
 import { TasksScreen } from "../screens/TasksScreen";
 import { VisualizationScreen } from "../screens/VisualizationScreen";
 import { AffirmationsScreen } from "../screens/AffirmationsScreen";
@@ -30,6 +31,25 @@ export function Dashboard({ route, navigation }) {
         options={{ headerShown: false }}
       />
       <Stack.Screen
+        name="Notifications"
+        component={Notifications}
+        options={{
+          headerTitle: "Notifications",
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ ...s.back_btn, padding: 10 }}
+              onPress={() => navigation.navigate("Dashboard List")}
+            >
+              <Octicons
+                name="chevron-left"
+                size={20}
+                style={{ color: "#777777" }}
+              />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
         name="Tasks Screen"
         component={TasksScreen}
         options={{
@@ -46,18 +66,6 @@ export function Dashboard({ route, navigation }) {
               />
             </TouchableOpacity>
           ),
-          // headerTitle: () => (
-          //   <Text
-          //     style={{
-          //       ...s.pill,
-          //       ...s.warn,
-          //       ...s.m_horizontal_2,
-          //       alignSelf: "auto",
-          //     }}
-          //   >
-          //     0 / 3
-          //   </Text>
-          // ),
         }}
       />
       <Stack.Screen
@@ -67,7 +75,7 @@ export function Dashboard({ route, navigation }) {
           headerTitle: "Visualization",
           headerLeft: () => (
             <TouchableOpacity
-              style={{ padding: 10 }}
+              style={{ ...s.back_btn, padding: 10 }}
               onPress={() => navigation.navigate("Dashboard List")}
             >
               <Octicons
@@ -86,7 +94,7 @@ export function Dashboard({ route, navigation }) {
           headerTitle: "Affirmations",
           headerLeft: () => (
             <TouchableOpacity
-              style={{ padding: 10 }}
+              style={{ ...s.back_btn, padding: 10 }}
               onPress={() => navigation.navigate("Dashboard List")}
             >
               <Octicons
@@ -105,7 +113,7 @@ export function Dashboard({ route, navigation }) {
           headerTitle: "Numbers",
           headerLeft: () => (
             <TouchableOpacity
-              style={{ padding: 10 }}
+              style={{ ...s.back_btn, padding: 10 }}
               onPress={() => navigation.navigate("Dashboard List")}
             >
               <Octicons
@@ -124,7 +132,7 @@ export function Dashboard({ route, navigation }) {
           headerTitle: "Planning",
           headerLeft: () => (
             <TouchableOpacity
-              style={{ padding: 10 }}
+              style={{ ...s.back_btn, padding: 10 }}
               onPress={() => navigation.navigate("Dashboard List")}
             >
               <Octicons
@@ -143,7 +151,7 @@ export function Dashboard({ route, navigation }) {
           headerTitle: "Journal",
           headerLeft: () => (
             <TouchableOpacity
-              style={{ padding: 10 }}
+              style={{ ...s.back_btn, padding: 10 }}
               onPress={() => navigation.navigate("Dashboard List")}
             >
               <Octicons

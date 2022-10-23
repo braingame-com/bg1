@@ -48,7 +48,7 @@ export function AffirmationsScreen({ route }) {
   }, []);
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ ...s.heading, color: "hotpink" }}>
+      <Text style={{ ...s.heading, color: "white" }}>
         Affirmations Screen
       </Text>
     </View>

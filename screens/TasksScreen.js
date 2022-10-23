@@ -184,7 +184,8 @@ export function TasksScreen({ route }) {
   return (
     <View
       style={{
-        padding: 20,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
         paddingBottom: 140,
       }}
     >
@@ -315,7 +316,10 @@ export function TasksScreen({ route }) {
           borderTopWidth: 1,
         }}
       ></View>
-      <ScrollView>
+      <ScrollView
+        contentContainerStyle={{ paddingBottom: 100 }}
+        showsVerticalScrollIndicator={false}
+      >
         <Text
           style={{
             color: "#777",

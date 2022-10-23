@@ -48,7 +48,7 @@ export function NumbersScreen({ route }) {
   }, []);
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ ...s.heading, color: "hotpink" }}>Numbers Screen</Text>
+      <Text style={{ ...s.heading, color: "white" }}>Numbers Screen</Text>
     </View>
   );
 }

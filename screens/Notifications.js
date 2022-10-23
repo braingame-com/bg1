@@ -18,7 +18,7 @@ import {
 import RenderHtml from "react-native-render-html";
 import { Octicons } from "@expo/vector-icons";
 
-export function VisualizationScreen({ route }) {
+export function Notifications({ route }) {
   const { colors } = useTheme();
   // const {
   //   itemId,
@@ -48,9 +48,7 @@ export function VisualizationScreen({ route }) {
   }, []);
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ ...s.heading, color: "white" }}>
-        Visualization Screen
-      </Text>
+      <Text style={{ ...s.heading, color: "white" }}>Notifications</Text>
     </View>
   );
 }

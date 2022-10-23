@@ -48,7 +48,7 @@ export function JournalScreen({ route }) {
   }, []);
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ ...s.heading, color: "hotpink" }}>Journal Screen</Text>
+      <Text style={{ ...s.heading, color: "white" }}>Journal Screen</Text>
     </View>
   );
 }

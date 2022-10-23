@@ -48,7 +48,7 @@ export function PlanningScreen({ route }) {
   }, []);
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ ...s.heading, color: "hotpink" }}>Planning Screen</Text>
+      <Text style={{ ...s.heading, color: "white" }}>Planning Screen</Text>
     </View>
   );
 }

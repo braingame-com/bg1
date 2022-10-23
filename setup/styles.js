@@ -23,6 +23,13 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  modalView: {
+    margin: 20,
+    borderRadius: 20,
+    padding: 40,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   // Typography
   title: {
     marginVertical: 10,
@@ -70,7 +77,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   block_btn: {
-    // backgroundColor: "green",
     width: 40,
     height: 40,
     position: "relative",
@@ -79,7 +85,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   back_btn: {
-    // backgroundColor: "green",
     width: 40,
     height: 40,
     position: "relative",
@@ -102,7 +107,23 @@ export const styles = StyleSheet.create({
     height: 30,
     padding: 10,
   },
+  account_input: {
+    backgroundColor: "black",
+    color: "white",
+    padding: 10,
+    borderRadius: 10,
+  },
   // Utilities
+  shadow: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
   rounded: {
     marginVertical: 10,
     paddingHorizontal: 20,

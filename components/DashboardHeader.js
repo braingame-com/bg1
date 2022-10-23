@@ -7,10 +7,11 @@ import {
   useColorScheme,
 } from "react-native";
 import { styles as s } from "../setup/styles";
-import { useTheme } from "@react-navigation/native";
+import { useTheme, useNavigation } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 
 export function DashboardHeader() {
+  const navigation = useNavigation();
   const { colors } = useTheme();
   return (
     <View
@@ -46,7 +47,7 @@ export function DashboardHeader() {
             alignItems: "center",
             padding: 10,
           }}
-          onPress={() => console.log("notifications")}
+          onPress={() => navigation.navigate("Notifications")}
         >
           <Octicons name="bell" size={20} style={{ color: "#777777" }} />
         </TouchableOpacity>

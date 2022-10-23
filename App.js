@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { AppProvider, Tab } from "./components/AppProvider";
 import { StatusBar } from "expo-status-bar";
 import {
+  IconBG,
   IconPie,
   IconBook,
   IconPlay,
@@ -66,11 +67,7 @@ export default function App() {
           options={{
             tabBarLabel: "Dashboard",
             tabBarIcon: ({ focused }) => (
-              <Octicons
-                name="home"
-                color={focused ? "white" : "#777777"}
-                size={20}
-              />
+              <IconBG fill={focused ? "white" : "#777777"} />
             ),
             tabBarOptions: {},
           }}
