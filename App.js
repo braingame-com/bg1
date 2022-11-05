@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Text,
   View,
@@ -7,7 +8,12 @@ import {
   useColorScheme,
   StyleSheet,
 } from "react-native";
-import { AppProvider, Tab } from "./components/AppProvider";
+import {
+  AppProvider,
+  Tab,
+  navigationRef,
+  Navigation,
+} from "./components/AppProvider";
 import { StatusBar } from "expo-status-bar";
 import {
   IconBG,
@@ -19,16 +25,19 @@ import {
 } from "./utilities/svg-icons";
 import { Octicons } from "@expo/vector-icons";
 import { Dashboard } from "./screens/Dashboard";
-import { Lessons } from "./screens/Lessons";
-import { Videos } from "./screens/Videos";
+import { Library } from "./screens/Library";
+// import { Videos } from "./screens/Videos";
+import { Search } from "./screens/Search";
 import { Shop } from "./screens/Shop";
 import { Settings } from "./screens/Settings";
-import { useTheme } from "@react-navigation/native";
+import { useTheme, useNavigation } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
 import { styles as s } from "./setup/styles";
 
 export default function App() {
+  const [modalVisible, setModalVisible] = useState(false);
   const { colors } = useTheme();
+  console.log(Navigation);
   return (
     <AppProvider>
       <Tab.Navigator
@@ -75,37 +84,36 @@ export default function App() {
             backgroundColor: "black",
           },
           headerTitleStyle: {},
-          headerRight: () => (
-            <TouchableOpacity
-              style={{
-                ...s.row,
-                ...s.back_btn,
-                alignItems: "center",
-                padding: 10,
-              }}
-              onPress={() => console.log("Notifications")}
-            >
-              <Octicons name="bell" size={20} style={{ color: "#777777" }} />
-            </TouchableOpacity>
-          ),
         }}
       >
         <Tab.Screen
-          name="Dashboard"
+          name=" "
           component={Dashboard}
           options={{
             tabBarLabel: "Dashboard",
             tabBarIcon: ({ focused }) => (
               <IconBG fill={focused ? "white" : "#777777"} />
             ),
-            tabBarOptions: {},
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  ...s.row,
+                  alignItems: "center",
+                  paddingVertical: 10,
+                  paddingHorizontal: 20,
+                }}
+                onPress={() => navigationRef.current?.navigate("Notifications")}
+              >
+                <Octicons name="bell" size={20} style={{ color: "#777777" }} />
+              </TouchableOpacity>
+            ),
           }}
         />
         <Tab.Screen
-          name="Lessons"
-          component={Lessons}
+          name="Library"
+          component={Library}
           options={{
-            tabBarLabel: "Lessons",
+            tabBarLabel: "Library",
             tabBarIcon: ({ focused }) => (
               <Octicons
                 name="book"
@@ -113,20 +121,54 @@ export default function App() {
                 size={20}
               />
             ),
+            // headerRight: () => (
+            //   <TouchableOpacity
+            //     style={{
+            //       ...s.row,
+            //       ...s.back_btn,
+            //       alignItems: "center",
+            //       padding: 10,
+            //     }}
+            //     onPress={() => navigation.navigate("Search Library")}
+            //   >
+            //     <Octicons
+            //       name="search"
+            //       size={20}
+            //       style={{ color: "#777777" }}
+            //     />
+            //   </TouchableOpacity>
+            // ),
           }}
         />
         <Tab.Screen
-          name="Videos"
-          component={Videos}
+          name="Search"
+          component={Search}
           options={{
-            tabBarLabel: "Videos",
+            tabBarLabel: "Search",
             tabBarIcon: ({ focused }) => (
               <Octicons
-                name="play"
+                name="search"
                 color={focused ? "white" : "#777777"}
                 size={20}
               />
             ),
+            // headerRight: () => (
+            //   <TouchableOpacity
+            //     style={{
+            //       ...s.row,
+            //       ...s.back_btn,
+            //       alignItems: "center",
+            //       padding: 10,
+            //     }}
+            //     onPress={() => navigation.navigate("Search Videos")}
+            //   >
+            //     <Octicons
+            //       name="search"
+            //       size={20}
+            //       style={{ color: "#777777" }}
+            //     />
+            //   </TouchableOpacity>
+            // ),
           }}
         />
         <Tab.Screen
@@ -141,11 +183,29 @@ export default function App() {
                 size={20}
               />
             ),
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  ...s.row,
+                  alignItems: "center",
+                  paddingVertical: 10,
+                  paddingHorizontal: 20,
+                }}
+                onPress={() => navigationRef.getParent().toggleDrawer()}
+              >
+                <Text style={{ ...s.m_right, color: "#777777" }}>£0.00</Text>
+                <Octicons
+                  name="sidebar-expand"
+                  size={20}
+                  style={{ color: "#777777" }}
+                />
+              </TouchableOpacity>
+            ),
             // tabBarBadge: "3",
           }}
         />
         <Tab.Screen
-          name="Settings"
+          name="  "
           component={Settings}
           options={{
             tabBarLabel: "Settings",
@@ -155,6 +215,20 @@ export default function App() {
                 color={focused ? "white" : "#777777"}
                 size={20}
               />
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  ...s.row,
+                  alignItems: "center",
+                  paddingVertical: 10,
+                  paddingHorizontal: 20,
+                }}
+                onPress={() => setModalVisible(true)}
+              >
+                <Text style={{ ...s.m_right, ...s.info_text }}>Log in</Text>
+                <Octicons name="sign-in" size={20} style={{ ...s.info_text }} />
+              </TouchableOpacity>
             ),
           }}
         />

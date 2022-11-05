@@ -9,7 +9,7 @@ import { Article } from "../screens/Article";
 
 const Stack = createNativeStackNavigator();
 
-export function Lessons({ route, navigation }) {
+export function Library({ route, navigation }) {
   const { colors } = useTheme();
   return (
     <Stack.Navigator

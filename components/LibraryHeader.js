@@ -10,7 +10,7 @@ import { styles as s } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 
-export function LessonsHeader() {
+export function LibraryHeader() {
   const { colors } = useTheme();
   return (
     <View
@@ -21,9 +21,11 @@ export function LessonsHeader() {
         marginBottom: 20,
       }}
     >
-      <Text style={{ ...s.title, color: colors.text }}>Lessons</Text>
+      <Text style={{ ...s.title, color: colors.text, marginBottom: -10 }}>
+        Library
+      </Text>
       <View style={{ flexDirection: "row" }}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={{
             ...s.row,
             alignItems: "center",
@@ -31,7 +33,7 @@ export function LessonsHeader() {
           onPress={() => console.log("search")}
         >
           <Octicons name="search" size={20} style={{ color: "#777777" }} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

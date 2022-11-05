@@ -23,7 +23,7 @@ export function VideosHeader() {
     >
       <Text style={{ ...s.title, color: colors.text }}>Videos</Text>
       <View style={{ flexDirection: "row" }}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={{
             ...s.row,
             alignItems: "center",
@@ -31,7 +31,7 @@ export function VideosHeader() {
           onPress={() => console.log("search")}
         >
           <Octicons name="search" size={20} style={{ color: "#777777" }} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

@@ -28,13 +28,18 @@ export function DashboardList({ navigation }) {
         showsVerticalScrollIndicator={false}
       >
         <DashboardHeader />
-        <View style={{ ...s.container, marginBottom: 10 }}>
+        <View
+          style={{
+            ...s.container,
+            marginBottom: 10,
+          }}
+        >
           <TasksBlock />
           <VisualizationBlock />
-          <AffirmationsBlock />
-          <NumbersBlock />
+          {/* <AffirmationsBlock />
           <PlanningBlock />
-          <JournalBlock />
+          <JournalBlock /> */}
+          <NumbersBlock />
         </View>
       </ScrollView>
     </SafeAreaView>

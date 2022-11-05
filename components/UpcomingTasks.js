@@ -17,52 +17,83 @@ export function UpcomingTasks() {
   const { colors } = useTheme();
   const [isChecked, setChecked] = useState(false);
   return (
-    <View>
-      <View
+    <View style={{ display: "none" }}>
+      <TouchableOpacity
         style={{
           flexDirection: "row",
           alignItems: "center",
         }}
+        onPress={() => checkTask(props.index)}
       >
+        <TouchableOpacity
+          style={{
+            width: 20,
+            height: 20,
+            borderColor: colors.border,
+            borderWidth: 1,
+            borderRadius: 5,
+            justifyContent: "center",
+            alignItems: "center",
+            ...s.m_right,
+          }}
+          onPress={() => checkTask(props.index)}
+        >
+          <Octicons
+            name="check"
+            size={15}
+            style={{
+              ...s.success_text,
+              opacity: 1,
+            }}
+          />
+        </TouchableOpacity>
         <Text
           style={{
             ...s.task_mini,
             color: colors.text,
           }}
         >
-          • Take bins out
+          Take bins out
         </Text>
-      </View>
-      <View
+      </TouchableOpacity>
+      <TouchableOpacity
         style={{
           flexDirection: "row",
           alignItems: "center",
         }}
+        onPress={() => checkTask(props.index)}
       >
+        <TouchableOpacity
+          style={{
+            width: 20,
+            height: 20,
+            borderColor: colors.border,
+            borderWidth: 1,
+            borderRadius: 5,
+            justifyContent: "center",
+            alignItems: "center",
+            ...s.m_right,
+          }}
+          onPress={() => checkTask(props.index)}
+        >
+          <Octicons
+            name="check"
+            size={20}
+            style={{
+              ...s.success_text,
+              opacity: 0,
+            }}
+          />
+        </TouchableOpacity>
         <Text
           style={{
             ...s.task_mini,
             color: colors.text,
           }}
         >
-          • Do some exercise
+          Do some exercise
         </Text>
-      </View>
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
-        <Text
-          style={{
-            ...s.task_mini,
-            color: colors.text,
-          }}
-        >
-          • Read a book
-        </Text>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }

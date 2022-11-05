@@ -85,7 +85,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   back_btn: {
-    backgroundColor: "green",
+    // backgroundColor: "green",
     width: 40,
     height: 40,
     position: "relative",

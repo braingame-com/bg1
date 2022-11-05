@@ -26,6 +26,7 @@ export function DashboardHeader() {
           ...s.title,
           ...s.m_horizontal,
           color: colors.text,
+          marginBottom: 0,
         }}
       >
         Dashboard
@@ -41,7 +42,7 @@ export function DashboardHeader() {
         >
           <Octicons name="pencil" size={20} style={{ color: "#777777" }} />
         </TouchableOpacity> */}
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={{
             ...s.row,
             alignItems: "center",
@@ -50,7 +51,7 @@ export function DashboardHeader() {
           onPress={() => navigation.navigate("Notifications")}
         >
           <Octicons name="bell" size={20} style={{ color: "#777777" }} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

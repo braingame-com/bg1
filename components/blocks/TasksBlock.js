@@ -42,7 +42,7 @@ export function TasksBlock() {
             >
               Tasks
             </Text>
-            <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>0 / 3</Text>
+            <Text style={{ ...s.pill, ...s.info, ...s.m_left_2 }}>0 / 3</Text>
             {/* <Text style={{ ...s.pill, ...s.success, ...s.m_left }}>
             Done &nbsp;
             <Octicons name="check" size={15} />

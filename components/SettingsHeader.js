@@ -51,7 +51,9 @@ export function SettingsHeader() {
           justifyContent: "space-between",
         }}
       >
-        <Text style={{ ...s.title, color: colors.text }}>Settings</Text>
+        <Text style={{ ...s.title, color: colors.text, marginBottom: -10 }}>
+          Settings
+        </Text>
         <TouchableOpacity
           style={{
             ...s.row,

@@ -16,7 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 export function NumbersBlock() {
   const navigation = useNavigation();
   const { colors } = useTheme();
-  // const priceHistory = usePriceHistory('ethereum')
+  // const priceHistory = usePriceHistory("ethereum");
   return (
     <TouchableOpacity onPress={() => navigation.navigate("Numbers Screen")}>
       <View
