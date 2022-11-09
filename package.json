@@ -37,7 +37,8 @@
     "react-native-youtube-iframe": "^2.2.2",
     "react-navigation": "^4.4.4",
     "shopify-buy": "^2.16.1",
-    "expo-blur": "~11.2.0"
+    "expo-blur": "~11.2.0",
+    "expo-updates": "~0.14.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
