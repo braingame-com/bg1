@@ -56,7 +56,7 @@ export function ArticleList({ route, navigation }) {
               borderWidth: 1,
             }}
           >
-            <Image
+            {/* <Image
               source={{
                 uri: image,
               }}
@@ -70,15 +70,13 @@ export function ArticleList({ route, navigation }) {
                 marginLeft: "-10%",
                 marginBottom: 10,
               }}
-            />
-            <Text style={{ ...s.heading_secondary, color: colors.text }}>
-              {title}
-            </Text>
-            {/* {excerpt !== "" && (
+            /> */}
+            <Text style={{ ...s.heading, color: colors.text }}>{title}</Text>
+            {excerpt !== "" && (
               <Text style={{ ...s.subtitle, color: colors.text }}>
                 {excerpt}
               </Text>
-            )} */}
+            )}
           </View>
         </TouchableOpacity>
       );
@@ -87,14 +85,14 @@ export function ArticleList({ route, navigation }) {
       <Item
         image={item.node.image}
         title={item.node.title}
-        image={item.node.image.url}
+        // image={item.node.image.url}
         excerpt={item.node.excerpt}
         content={item.node.contentHtml}
         id={item.node.id}
       />
     );
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <FlatList
         data={results}
         renderItem={renderItem}
@@ -102,7 +100,7 @@ export function ArticleList({ route, navigation }) {
         style={{ padding: 10, marginHorizontal: 10 }}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 20 }}
-        ListHeaderComponent=<LibraryHeader />
+        // ListHeaderComponent=<LibraryHeader />
       />
     </SafeAreaView>
   );

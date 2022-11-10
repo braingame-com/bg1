@@ -52,7 +52,7 @@ export function Article({ route }) {
       }}
       showsVerticalScrollIndicator={false}
     >
-      <Image
+      {/* <Image
         source={{
           uri: itemImage,
         }}
@@ -65,7 +65,7 @@ export function Article({ route }) {
           marginHorizontal: "-10%",
           marginBottom: 10,
         }}
-      />
+      /> */}
       <Text style={{ ...s.title, color: colors.text }}>{itemTitle}</Text>
       <RenderHtml contentWidth={width} source={source} />
     </ScrollView>

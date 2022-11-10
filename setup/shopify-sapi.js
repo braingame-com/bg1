@@ -1,6 +1,6 @@
 export const articleListQuery = () => `
   {
-    articles(first: 5) {
+    articles(first: 100) {
       edges {
         node {
           id
@@ -19,7 +19,7 @@ export const articleListQuery = () => `
   `,
   articleQuery = (id) => `
     {
-      articles(first: 5) {
+      articles(first: 100) {
         edges {
           node {
             id

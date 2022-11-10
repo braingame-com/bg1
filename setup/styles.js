@@ -85,7 +85,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   back_btn: {
-    // backgroundColor: "green",
+    // backgroundColor: "rgba(0,255,0,.1)",
     width: 40,
     height: 40,
     position: "relative",
@@ -132,7 +132,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     backgroundColor: "rgba(128,128,128,.2)",
-    borderRadius: 10,
+    borderRadius: 5,
     overflow: "hidden",
   },
   pill: {

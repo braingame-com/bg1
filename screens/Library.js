@@ -19,10 +19,11 @@ export function Library({ route, navigation }) {
           // height: 100,
           borderTopWidth: 0,
         },
-        headerShadowVisible: false,
+        // headerShadowVisible: false,
         // headerTintColor: "#777777",
         headerStyle: {
-          backgroundColor: colors.card,
+          // backgroundColor: colors.card,
+          backgroundColor: colors.background,
           // height: 100,
           // borderWidth: 1,
           // borderColor: colors.border,
@@ -30,9 +31,9 @@ export function Library({ route, navigation }) {
       }}
     >
       <Stack.Screen
-        name="Article List"
+        name="Library"
         component={ArticleList}
-        options={{ headerShown: false }}
+        // options={{ headerShown: false }}
       />
       <Stack.Screen
         name="Article"
@@ -41,8 +42,13 @@ export function Library({ route, navigation }) {
           headerTitle: " ",
           headerLeft: () => (
             <TouchableOpacity
-              style={{ padding: 10 }}
-              onPress={() => navigation.navigate("Article List")}
+              style={{
+                ...s.row,
+                ...s.back_btn,
+                alignItems: "center",
+                justifyContent: "flex-start",
+              }}
+              onPress={() => navigation.navigate("Library")}
             >
               <Octicons
                 name="chevron-left"

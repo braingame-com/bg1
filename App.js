@@ -37,7 +37,7 @@ import { styles as s } from "./setup/styles";
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
   const { colors } = useTheme();
-  console.log(Navigation);
+  // console.log(window.visualViewport.width);
   return (
     <AppProvider>
       <Tab.Navigator
@@ -86,7 +86,7 @@ export default function App() {
           headerTitleStyle: {},
         }}
       >
-        <Tab.Screen
+        {/* <Tab.Screen
           name=" "
           component={Dashboard}
           options={{
@@ -108,19 +108,21 @@ export default function App() {
               </TouchableOpacity>
             ),
           }}
-        />
+        /> */}
         <Tab.Screen
-          name="Library"
+          name=" "
           component={Library}
           options={{
             tabBarLabel: "Library",
             tabBarIcon: ({ focused }) => (
-              <Octicons
-                name="book"
-                color={focused ? "white" : "#777777"}
-                size={20}
-              />
+              // <Octicons
+              //   name="book"
+              //   color={focused ? "white" : "#777777"}
+              //   size={20}
+              // />
+              <IconBG fill={focused ? "white" : "#777777"} />
             ),
+            headerShown: false,
             // headerRight: () => (
             //   <TouchableOpacity
             //     style={{
@@ -140,7 +142,7 @@ export default function App() {
             // ),
           }}
         />
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Search"
           component={Search}
           options={{
@@ -170,8 +172,8 @@ export default function App() {
             //   </TouchableOpacity>
             // ),
           }}
-        />
-        <Tab.Screen
+        /> */}
+        {/* <Tab.Screen
           name="Shop"
           component={Shop}
           options={{
@@ -203,8 +205,8 @@ export default function App() {
             ),
             // tabBarBadge: "3",
           }}
-        />
-        <Tab.Screen
+        /> */}
+        {/* <Tab.Screen
           name="  "
           component={Settings}
           options={{
@@ -231,7 +233,7 @@ export default function App() {
               </TouchableOpacity>
             ),
           }}
-        />
+        /> */}
       </Tab.Navigator>
       <StatusBar style="light" />
     </AppProvider>
