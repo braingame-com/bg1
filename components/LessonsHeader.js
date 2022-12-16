@@ -10,7 +10,7 @@ import { styles as s } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 
-export function LibraryHeader() {
+export function LessonsHeader() {
   const { colors } = useTheme();
   return (
     <View
@@ -22,7 +22,7 @@ export function LibraryHeader() {
       }}
     >
       <Text style={{ ...s.title, color: colors.text, marginBottom: -10 }}>
-        Library
+        Lessons
       </Text>
       <View style={{ flexDirection: "row" }}>
         {/* <TouchableOpacity

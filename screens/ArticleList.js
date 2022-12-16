@@ -20,7 +20,7 @@ import {
   GRAPHQL_URL,
   GRAPHQL_BODY,
 } from "../setup/shopify-sapi";
-import { LibraryHeader } from "../components/LibraryHeader";
+import { LessonsHeader } from "../components/LessonsHeader";
 
 const Stack = createNativeStackNavigator();
 

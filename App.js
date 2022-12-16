@@ -83,7 +83,7 @@ export default function App() {
           headerTitleStyle: {},
         }}
       >
-        {/* <Tab.Screen
+        <Tab.Screen
           name="Dashboard"
           component={Dashboard}
           options={{
@@ -167,7 +167,7 @@ export default function App() {
             ),
             // tabBarBadge: "3",
           }}
-        /> */}
+        />
         <Tab.Screen
           name="Settings"
           component={Settings}

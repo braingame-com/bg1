@@ -31,7 +31,7 @@ export function Lessons({ route, navigation }) {
       }}
     >
       <Stack.Screen
-        name="Lessons"
+        name="ArticleList"
         component={ArticleList}
         // options={{ headerShown: false }}
       />
@@ -48,7 +48,7 @@ export function Lessons({ route, navigation }) {
                 alignItems: "center",
                 justifyContent: "flex-start",
               }}
-              onPress={() => navigation.navigate("Lessons")}
+              onPress={() => navigation.navigate("ArticleList")}
             >
               <Octicons
                 name="chevron-left"
