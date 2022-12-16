@@ -1,40 +1,43 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import {
   Text,
-  Button,
-  TouchableOpacity,
-  FlatList,
+  Image,
   View,
   ScrollView,
-  SafeAreaView,
+  FlatList,
+  useWindowDimensions,
 } from "react-native";
-import { styles as s } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
-import YoutubePlayer from "react-native-youtube-iframe";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { styles as s } from "../setup/styles";
 import {
-  articleListQuery,
-  articleQuery,
-  STOREFRONT_ACCESS_TOKEN,
   GRAPHQL_URL,
+  STOREFRONT_ACCESS_TOKEN,
   GRAPHQL_BODY,
 } from "../setup/shopify-sapi";
-import { VideosHeader } from "../components/VideosHeader";
+import RenderHtml from "react-native-render-html";
+import { Octicons } from "@expo/vector-icons";
 
 export function Videos({ route }) {
   const { colors } = useTheme();
-  const [playing, setPlaying] = useState(false);
+  // const {
+  //   itemId,
+  //   itemTitle,
+  //   itemImage,
+  //   itemExcerpt,
+  //   itemContent,
+  // } = route.params;
 
-  const onStateChange = useCallback((state) => {
-    if (state === "ended") {
-      setPlaying(false);
-      // Alert.alert("video has finished playing!");
-    }
-  }, []);
+  const { width } = useWindowDimensions(),
+    dark = true,
+    fontColorPrimary = dark ? "white" : "black",
+    fontColorSecondary = dark ? "whitesmoke" : "darkslategrey";
+  // const fontColorPrimary = s.fontColorPrimary;
+  // const source = {
+  //   html: `<div style="color: ${colors.text}">${itemContent}</div>`,
+  // };
 
-  const togglePlaying = useCallback(() => {
-    setPlaying((prev) => !prev);
-  }, []);
-  // Get Youtube JSON
+  // Get Shopify JSON
   const [results, setResults] = useState([]);
   useEffect(() => {
     fetch(GRAPHQL_URL, GRAPHQL_BODY())
@@ -43,37 +46,9 @@ export function Videos({ route }) {
         setResults(json.data.articles.edges);
       });
   }, []);
-  const Item = ({ image, title, excerpt, id, content }) => {
-      return (
-        <YoutubePlayer
-          height={270}
-          play={playing}
-          videoId={"iee2TATGMyI"}
-          onChangeState={onStateChange}
-        />
-      );
-    },
-    renderItem = ({ item }) => (
-      <Item
-        image={item.node.image}
-        title={item.node.title}
-        image={item.node.image.url}
-        excerpt={item.node.excerpt}
-        content={item.node.contentHtml}
-        id={item.node.id}
-      />
-    );
   return (
-    <SafeAreaView style={s.container}>
-      <FlatList
-        data={results}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.node.id}
-        style={{ padding: 10, paddingTop: 10, marginHorizontal: 10 }}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 20 }}
-        ListHeaderComponent=<VideosHeader />
-      />
-    </SafeAreaView>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text style={{ ...s.heading, color: "white" }}>Videos</Text>
+    </View>
   );
 }

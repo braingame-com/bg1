@@ -31,6 +31,27 @@ export function Links() {
           }}
         >
           <Octicons
+            name="file"
+            size={20}
+            style={{
+              color: "#777777",
+              ...s.m_right,
+              opacity: 0.5,
+              width: 20,
+            }}
+          />
+          <Text style={{ ...s.task_mini, color: "#777777" }}>Docs</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            paddingVertical: 5,
+          }}
+        >
+          <Octicons
             name="organization"
             size={20}
             style={{ color: "#777777", ...s.m_right, opacity: 0.5 }}

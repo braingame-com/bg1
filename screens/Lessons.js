@@ -9,7 +9,7 @@ import { Article } from "../screens/Article";
 
 const Stack = createNativeStackNavigator();
 
-export function Library({ route, navigation }) {
+export function Lessons({ route, navigation }) {
   const { colors } = useTheme();
   return (
     <Stack.Navigator
@@ -31,7 +31,7 @@ export function Library({ route, navigation }) {
       }}
     >
       <Stack.Screen
-        name="Library"
+        name="Lessons"
         component={ArticleList}
         // options={{ headerShown: false }}
       />
@@ -48,7 +48,7 @@ export function Library({ route, navigation }) {
                 alignItems: "center",
                 justifyContent: "flex-start",
               }}
-              onPress={() => navigation.navigate("Library")}
+              onPress={() => navigation.navigate("Lessons")}
             >
               <Octicons
                 name="chevron-left"

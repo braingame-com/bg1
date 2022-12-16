@@ -25,9 +25,8 @@ import {
 } from "./utilities/svg-icons";
 import { Octicons } from "@expo/vector-icons";
 import { Dashboard } from "./screens/Dashboard";
-import { Library } from "./screens/Library";
-// import { Videos } from "./screens/Videos";
-import { Search } from "./screens/Search";
+import { Lessons } from "./screens/Lessons";
+import { Videos } from "./screens/Videos";
 import { Shop } from "./screens/Shop";
 import { Settings } from "./screens/Settings";
 import { useTheme, useNavigation } from "@react-navigation/native";
@@ -59,8 +58,6 @@ export default function App() {
             // bottom: 0,
             backgroundColor: "black",
             // height: 100,
-            justifyContent: "center",
-            alignItems: "center",
             // borderRadius: 30,
             overflow: "hidden",
             borderTopWidth: 1,
@@ -87,7 +84,7 @@ export default function App() {
         }}
       >
         {/* <Tab.Screen
-          name=" "
+          name="Dashboard"
           component={Dashboard}
           options={{
             tabBarLabel: "Dashboard",
@@ -108,72 +105,37 @@ export default function App() {
               </TouchableOpacity>
             ),
           }}
-        /> */}
-        <Tab.Screen
-          name=" "
-          component={Library}
-          options={{
-            tabBarLabel: "Library",
-            tabBarIcon: ({ focused }) => (
-              // <Octicons
-              //   name="book"
-              //   color={focused ? "white" : "#777777"}
-              //   size={20}
-              // />
-              <IconBG fill={focused ? "white" : "#777777"} />
-            ),
-            headerShown: false,
-            // headerRight: () => (
-            //   <TouchableOpacity
-            //     style={{
-            //       ...s.row,
-            //       ...s.back_btn,
-            //       alignItems: "center",
-            //       padding: 10,
-            //     }}
-            //     onPress={() => navigation.navigate("Search Library")}
-            //   >
-            //     <Octicons
-            //       name="search"
-            //       size={20}
-            //       style={{ color: "#777777" }}
-            //     />
-            //   </TouchableOpacity>
-            // ),
-          }}
         />
-        {/* <Tab.Screen
-          name="Search"
-          component={Search}
+        <Tab.Screen
+          name="Lessons"
+          component={Lessons}
           options={{
-            tabBarLabel: "Search",
+            tabBarLabel: "Lessons",
             tabBarIcon: ({ focused }) => (
               <Octicons
-                name="search"
+                name="book"
                 color={focused ? "white" : "#777777"}
                 size={20}
               />
             ),
-            // headerRight: () => (
-            //   <TouchableOpacity
-            //     style={{
-            //       ...s.row,
-            //       ...s.back_btn,
-            //       alignItems: "center",
-            //       padding: 10,
-            //     }}
-            //     onPress={() => navigation.navigate("Search Videos")}
-            //   >
-            //     <Octicons
-            //       name="search"
-            //       size={20}
-            //       style={{ color: "#777777" }}
-            //     />
-            //   </TouchableOpacity>
-            // ),
+            headerShown: false,
           }}
-        /> */}
-        {/* <Tab.Screen
+        />
+        <Tab.Screen
+          name="Videos"
+          component={Videos}
+          options={{
+            tabBarLabel: "Videos",
+            tabBarIcon: ({ focused }) => (
+              <Octicons
+                name="play"
+                color={focused ? "white" : "#777777"}
+                size={20}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
           name="Shop"
           component={Shop}
           options={{
@@ -206,8 +168,8 @@ export default function App() {
             // tabBarBadge: "3",
           }}
         /> */}
-        {/* <Tab.Screen
-          name="  "
+        <Tab.Screen
+          name="Settings"
           component={Settings}
           options={{
             tabBarLabel: "Settings",
@@ -233,7 +195,7 @@ export default function App() {
               </TouchableOpacity>
             ),
           }}
-        /> */}
+        />
       </Tab.Navigator>
       <StatusBar style="light" />
     </AppProvider>
