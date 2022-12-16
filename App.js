@@ -29,6 +29,7 @@ import { Lessons } from "./screens/Lessons";
 import { Videos } from "./screens/Videos";
 import { Shop } from "./screens/Shop";
 import { Settings } from "./screens/Settings";
+import { Docs } from "./screens/Docs";
 import { useTheme, useNavigation } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
 import { styles as s } from "./setup/styles";
@@ -52,6 +53,7 @@ export default function App() {
           //     />
           //   )
           tabBarStyle: {
+            display: "none",
             // position: "absolute",
             // left: 0,
             // right: 0,
@@ -167,7 +169,7 @@ export default function App() {
             ),
             // tabBarBadge: "3",
           }}
-        /> */}
+        />
         <Tab.Screen
           name="Settings"
           component={Settings}
@@ -193,6 +195,33 @@ export default function App() {
                 <Text style={{ ...s.m_right, ...s.info_text }}>Log in</Text>
                 <Octicons name="sign-in" size={20} style={{ ...s.info_text }} />
               </TouchableOpacity>
+            ),
+          }}
+        /> */}
+        <Tab.Screen
+          name="Docs"
+          component={Docs}
+          options={{
+            tabBarLabel: "Docs",
+            tabBarIcon: ({ focused }) => (
+              <Octicons
+                name="file"
+                color={focused ? "white" : "#777777"}
+                size={20}
+              />
+            ),
+            headerLeft: () => (
+              <View
+                style={{
+                  ...s.row,
+                  alignItems: "center",
+                  paddingVertical: 10,
+                  paddingLeft: 20,
+                  paddingRight: 10,
+                }}
+              >
+                <IconBG fill={"white"} />
+              </View>
             ),
           }}
         />
