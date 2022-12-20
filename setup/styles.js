@@ -132,7 +132,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     backgroundColor: "rgba(128,128,128,.2)",
-    borderRadius: 5,
+    borderRadius: 10,
     overflow: "hidden",
   },
   pill: {

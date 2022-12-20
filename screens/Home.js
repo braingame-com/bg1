@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, FlatList } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { styles as s } from "../setup/styles";
 import { Octicons } from "@expo/vector-icons";
-import { DashboardList } from "../screens/DashboardList";
+import { HomeList } from "../screens/HomeList";
 import { Notifications } from "../screens/Notifications";
 import { TasksScreen } from "../screens/TasksScreen";
 import { VisualizationScreen } from "../screens/VisualizationScreen";
@@ -14,7 +14,7 @@ import { JournalScreen } from "../screens/JournalScreen";
 
 const Stack = createNativeStackNavigator();
 
-export function Dashboard({ route, navigation }) {
+export function Home({ route, navigation }) {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -26,8 +26,8 @@ export function Dashboard({ route, navigation }) {
       }}
     >
       <Stack.Screen
-        name="Dashboard List"
-        component={DashboardList}
+        name="Home List"
+        component={HomeList}
         options={{ headerShown: false }}
       />
       <Stack.Screen
@@ -38,7 +38,7 @@ export function Dashboard({ route, navigation }) {
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: 10 }}
-              onPress={() => navigation.navigate("Dashboard List")}
+              onPress={() => navigation.navigate("Home List")}
             >
               <Octicons
                 name="chevron-left"
@@ -57,7 +57,7 @@ export function Dashboard({ route, navigation }) {
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: 10 }}
-              onPress={() => navigation.navigate("Dashboard List")}
+              onPress={() => navigation.navigate("Home List")}
             >
               <Octicons
                 name="chevron-left"
@@ -76,7 +76,7 @@ export function Dashboard({ route, navigation }) {
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: 10 }}
-              onPress={() => navigation.navigate("Dashboard List")}
+              onPress={() => navigation.navigate("Home List")}
             >
               <Octicons
                 name="chevron-left"
@@ -95,7 +95,7 @@ export function Dashboard({ route, navigation }) {
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: 10 }}
-              onPress={() => navigation.navigate("Dashboard List")}
+              onPress={() => navigation.navigate("Home List")}
             >
               <Octicons
                 name="chevron-left"
@@ -114,7 +114,7 @@ export function Dashboard({ route, navigation }) {
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: 10 }}
-              onPress={() => navigation.navigate("Dashboard List")}
+              onPress={() => navigation.navigate("Home List")}
             >
               <Octicons
                 name="chevron-left"
@@ -133,7 +133,7 @@ export function Dashboard({ route, navigation }) {
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: 10 }}
-              onPress={() => navigation.navigate("Dashboard List")}
+              onPress={() => navigation.navigate("Home List")}
             >
               <Octicons
                 name="chevron-left"
@@ -152,7 +152,7 @@ export function Dashboard({ route, navigation }) {
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: 10 }}
-              onPress={() => navigation.navigate("Dashboard List")}
+              onPress={() => navigation.navigate("Home List")}
             >
               <Octicons
                 name="chevron-left"

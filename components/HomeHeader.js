@@ -10,7 +10,7 @@ import { styles as s } from "../setup/styles";
 import { useTheme, useNavigation } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 
-export function DashboardHeader() {
+export function HomeHeader() {
   const navigation = useNavigation();
   const { colors } = useTheme();
   return (
@@ -29,7 +29,7 @@ export function DashboardHeader() {
           marginBottom: 0,
         }}
       >
-        Dashboard
+        Home
       </Text>
       <View style={{ flexDirection: "row" }}>
         {/* <TouchableOpacity

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   Text,
   View,
@@ -7,6 +7,8 @@ import {
   SafeAreaView,
   useColorScheme,
   StyleSheet,
+  Animated,
+  Dimensions,
 } from "react-native";
 import {
   AppProvider,
@@ -17,14 +19,19 @@ import {
 import { StatusBar } from "expo-status-bar";
 import {
   IconBG,
-  IconPie,
+  IconHome,
+  IconSolidHome,
   IconBook,
+  IconSolidBook,
   IconPlay,
-  IconBag,
-  IconCog,
+  IconSolidPlay,
+  IconTag,
+  IconSolidTag,
+  IconGear,
+  IconSolidGear,
 } from "./utilities/svg-icons";
 import { Octicons } from "@expo/vector-icons";
-import { Dashboard } from "./screens/Dashboard";
+import { Home } from "./screens/Home";
 import { Lessons } from "./screens/Lessons";
 import { Videos } from "./screens/Videos";
 import { Shop } from "./screens/Shop";
@@ -36,32 +43,25 @@ import { styles as s } from "./setup/styles";
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
   const { colors } = useTheme();
-  // console.log(window.visualViewport.width);
+  const screenWidth = Dimensions.get("window").width;
+  const isMobile = screenWidth < 769 ? true : false;
   return (
     <AppProvider>
       <Tab.Navigator
+        sceneContainerStyle={{ marginLeft: isMobile ? 0 : 256 }}
         screenOptions={{
-          //   tabBarBackground: () => (
-          //     <BlurView
-          //       tint="dark"
-          //       intensity={50}
-          //       style={{
-          //         ...StyleSheet.absoluteFill,
-          //         overflow: "hidden",
-          //       }}
-          //     />
-          //   )
+          tabBarActiveTintColor: "white",
+          tabBarInactiveTintColor: "#777777",
+          tabBarLabelPosition: isMobile ? "below-icon" : "beside-icon",
           tabBarStyle: {
-            // position: "absolute",
-            // left: 0,
-            // right: 0,
-            // bottom: 0,
+            position: isMobile ? "relative" : "absolute",
+            height: isMobile ? 79 : "100vh",
+            width: isMobile ? "100%" : 256,
             backgroundColor: "black",
-            // height: 100,
-            // borderRadius: 30,
             overflow: "hidden",
-            borderTopWidth: 1,
-            // borderColor: "green",
+            borderColor: "rgb(39, 39, 41)",
+            borderTopWidth: isMobile ? 1 : 0,
+            borderRightWidth: isMobile ? 0 : 1,
             padding: 0,
             margin: 0,
             shadowColor: "#000",
@@ -73,8 +73,9 @@ export default function App() {
             shadowRadius: 4,
             elevation: 5,
           },
-          tabBarShowLabel: false,
-          // headerShown: false,
+          tabBarItemStyle: {
+            // flexDirection: isMobile ? "row" : "column",
+          },
           headerMode: "none",
           headerShadowVisible: true,
           headerStyle: {
@@ -84,13 +85,16 @@ export default function App() {
         }}
       >
         <Tab.Screen
-          name="Dashboard"
-          component={Dashboard}
+          name="Home"
+          component={Home}
           options={{
-            tabBarLabel: "Dashboard",
-            tabBarIcon: ({ focused }) => (
-              <IconBG fill={focused ? "white" : "#777777"} />
-            ),
+            tabBarLabel: "Home",
+            tabBarIcon: ({ focused }) =>
+              focused ? (
+                <IconSolidHome fill={focused ? "white" : "#777777"} />
+              ) : (
+                <IconHome fill={focused ? "white" : "#777777"} />
+              ),
             headerRight: () => (
               <TouchableOpacity
                 style={{
@@ -111,13 +115,12 @@ export default function App() {
           component={Lessons}
           options={{
             tabBarLabel: "Lessons",
-            tabBarIcon: ({ focused }) => (
-              <Octicons
-                name="book"
-                color={focused ? "white" : "#777777"}
-                size={20}
-              />
-            ),
+            tabBarIcon: ({ focused }) =>
+              focused ? (
+                <IconSolidBook fill={focused ? "white" : "#777777"} />
+              ) : (
+                <IconBook fill={focused ? "white" : "#777777"} />
+              ),
             headerShown: false,
           }}
         />
@@ -126,13 +129,12 @@ export default function App() {
           component={Videos}
           options={{
             tabBarLabel: "Videos",
-            tabBarIcon: ({ focused }) => (
-              <Octicons
-                name="play"
-                color={focused ? "white" : "#777777"}
-                size={20}
-              />
-            ),
+            tabBarIcon: ({ focused }) =>
+              focused ? (
+                <IconSolidPlay fill={focused ? "white" : "#777777"} />
+              ) : (
+                <IconPlay fill={focused ? "white" : "#777777"} />
+              ),
           }}
         />
         <Tab.Screen
@@ -140,13 +142,12 @@ export default function App() {
           component={Shop}
           options={{
             tabBarLabel: "Shop",
-            tabBarIcon: ({ focused }) => (
-              <Octicons
-                name="tag"
-                color={focused ? "white" : "#777777"}
-                size={20}
-              />
-            ),
+            tabBarIcon: ({ focused }) =>
+              focused ? (
+                <IconSolidTag fill={focused ? "white" : "#777777"} />
+              ) : (
+                <IconTag fill={focused ? "white" : "#777777"} />
+              ),
             headerRight: () => (
               <TouchableOpacity
                 style={{
@@ -173,13 +174,12 @@ export default function App() {
           component={Settings}
           options={{
             tabBarLabel: "Settings",
-            tabBarIcon: ({ focused }) => (
-              <Octicons
-                name="gear"
-                color={focused ? "white" : "#777777"}
-                size={20}
-              />
-            ),
+            tabBarIcon: ({ focused }) =>
+              focused ? (
+                <IconSolidGear fill={focused ? "white" : "#777777"} />
+              ) : (
+                <IconGear fill={focused ? "white" : "#777777"} />
+              ),
             headerRight: () => (
               <TouchableOpacity
                 style={{
