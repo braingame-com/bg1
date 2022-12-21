@@ -43,7 +43,7 @@ import { styles as s } from "./setup/styles";
 const screenWidth = Dimensions.get("window").width;
 const isMobile = screenWidth < 769 ? true : false;
 
-function MyTabBar({ state, descriptors, navigation }) {
+function TabBar({ state, descriptors, navigation }) {
   return (
     <View style={{ ...s.tabBar }}>
       {!isMobile && (
@@ -65,6 +65,8 @@ function MyTabBar({ state, descriptors, navigation }) {
       )}
 
       {state.routes.map((route, index) => {
+        const isFocused = state.index === index;
+
         const { options } = descriptors[route.key];
         const label =
           options.tabBarLabel !== undefined
@@ -72,10 +74,10 @@ function MyTabBar({ state, descriptors, navigation }) {
             : options.title !== undefined
             ? options.title
             : route.name;
-        // const icon = options.tabBarIcon;
-        // console.log(icon);
-
-        const isFocused = state.index === index;
+        const icon = options.tabBarIcon({
+          fill: isFocused ? "#49A6E9" : "#777777",
+          focused: isFocused ? true : false,
+        });
 
         const onPress = () => {
           const event = navigation.emit({
@@ -122,36 +124,7 @@ function MyTabBar({ state, descriptors, navigation }) {
                 width: label === "Lessons" ? 24 : 20,
               }}
             >
-              {label === "Home" &&
-                (isFocused ? (
-                  <IconSolidHome fill={isFocused ? "#49A6E9" : "#777777"} />
-                ) : (
-                  <IconHome fill={isFocused ? "#49A6E9" : "#777777"} />
-                ))}
-              {label === "Lessons" &&
-                (isFocused ? (
-                  <IconSolidBook fill={isFocused ? "#49A6E9" : "#777777"} />
-                ) : (
-                  <IconBook fill={isFocused ? "#49A6E9" : "#777777"} />
-                ))}
-              {label === "Videos" &&
-                (isFocused ? (
-                  <IconSolidPlay fill={isFocused ? "#49A6E9" : "#777777"} />
-                ) : (
-                  <IconPlay fill={isFocused ? "#49A6E9" : "#777777"} />
-                ))}
-              {label === "Shop" &&
-                (isFocused ? (
-                  <IconSolidTag fill={isFocused ? "#49A6E9" : "#777777"} />
-                ) : (
-                  <IconTag fill={isFocused ? "#49A6E9" : "#777777"} />
-                ))}
-              {label === "Settings" &&
-                (isFocused ? (
-                  <IconSolidGear fill={isFocused ? "#49A6E9" : "#777777"} />
-                ) : (
-                  <IconGear fill={isFocused ? "#49A6E9" : "#777777"} />
-                ))}
+              {icon}
             </View>
             <Text
               style={{
@@ -174,7 +147,7 @@ export default function App() {
   return (
     <AppProvider>
       <Tab.Navigator
-        tabBar={(props) => <MyTabBar {...props} />}
+        tabBar={(props) => <TabBar {...props} />}
         sceneContainerStyle={{ marginLeft: isMobile ? 0 : 256 }}
         screenOptions={{
           tabBarActiveTintColor: "white",
@@ -201,11 +174,6 @@ export default function App() {
             shadowRadius: 4,
             elevation: 5,
           },
-          tabBarItemStyle: {
-            // flexDirection: isMobile ? "row" : "column",
-            background: "blue",
-            // flexDirection: "column",
-          },
           headerMode: "none",
           headerShadowVisible: true,
           headerStyle: {
@@ -219,11 +187,11 @@ export default function App() {
           component={Home}
           options={{
             tabBarLabel: "Home",
-            tabBarIcon: ({ focused }) =>
+            tabBarIcon: ({ fill, focused }) =>
               focused ? (
-                <IconSolidHome fill={"green"} />
+                <IconSolidHome fill={fill} />
               ) : (
-                <IconHome fill={"green"} />
+                <IconHome fill={fill} />
               ),
             headerRight: () => (
               <TouchableOpacity
@@ -245,11 +213,11 @@ export default function App() {
           component={Lessons}
           options={{
             tabBarLabel: "Lessons",
-            tabBarIcon: ({ focused }) =>
+            tabBarIcon: ({ fill, focused }) =>
               focused ? (
-                <IconSolidBook fill={focused ? "white" : "#777777"} />
+                <IconSolidBook fill={fill} />
               ) : (
-                <IconBook fill={focused ? "white" : "#777777"} />
+                <IconBook fill={fill} />
               ),
             headerShown: false,
           }}
@@ -259,11 +227,11 @@ export default function App() {
           component={Videos}
           options={{
             tabBarLabel: "Videos",
-            tabBarIcon: ({ focused }) =>
+            tabBarIcon: ({ fill, focused }) =>
               focused ? (
-                <IconSolidPlay fill={focused ? "white" : "#777777"} />
+                <IconSolidPlay fill={fill} />
               ) : (
-                <IconPlay fill={focused ? "white" : "#777777"} />
+                <IconPlay fill={fill} />
               ),
           }}
         />
@@ -272,12 +240,8 @@ export default function App() {
           component={Shop}
           options={{
             tabBarLabel: "Shop",
-            tabBarIcon: ({ focused }) =>
-              focused ? (
-                <IconSolidTag fill={focused ? "white" : "#777777"} />
-              ) : (
-                <IconTag fill={focused ? "white" : "#777777"} />
-              ),
+            tabBarIcon: ({ fill, focused }) =>
+              focused ? <IconSolidTag fill={fill} /> : <IconTag fill={fill} />,
             headerRight: () => (
               <TouchableOpacity
                 style={{
@@ -304,11 +268,11 @@ export default function App() {
           component={Settings}
           options={{
             tabBarLabel: "Settings",
-            tabBarIcon: ({ focused }) =>
+            tabBarIcon: ({ fill, focused }) =>
               focused ? (
-                <IconSolidGear fill={focused ? "white" : "#777777"} />
+                <IconSolidGear fill={fill} />
               ) : (
-                <IconGear fill={focused ? "white" : "#777777"} />
+                <IconGear fill={fill} />
               ),
             headerRight: () => (
               <TouchableOpacity
