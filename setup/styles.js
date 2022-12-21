@@ -1,6 +1,9 @@
 import { useState, useContext } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import { useTheme, useThemeUpdate } from "../components/AppProvider";
+
+const screenWidth = Dimensions.get("window").width;
+const isMobile = screenWidth < 769 ? true : false;
 
 // DESIGN TOKENS //
 const dark = true,
@@ -59,6 +62,33 @@ export const styles = StyleSheet.create({
     borderTopColor: "#777777",
   },
   // Components
+  tabBar: {
+    flexDirection: isMobile ? "row" : "column",
+    position: isMobile ? "relative" : "absolute",
+    height: isMobile ? 79 : "100vh",
+    width: isMobile ? "100%" : 256,
+    backgroundColor: "black",
+    borderTopWidth: isMobile ? 1 : 0,
+    borderRightWidth: isMobile ? 0 : 1,
+    borderColor: "rgb(39, 39, 41)",
+  },
+  tabBarItem: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    flexDirection: isMobile ? "colum" : "row",
+    padding: isMobile ? 10 : 20,
+    maxHeight: 64,
+  },
+  tabBarIconWrapper: {
+    alignItems: "center",
+    height: 20,
+    marginBottom: isMobile ? 5 : 0,
+  },
+  tabBarLabel: {
+    fontSize: isMobile ? 10 : 20,
+    marginLeft: isMobile ? 0 : 20,
+  },
   btn: {
     overflow: "hidden",
     fontSize: 15,
@@ -144,28 +174,28 @@ export const styles = StyleSheet.create({
     overflow: "hidden",
   },
   info: {
-    backgroundColor: "rgba(73, 166, 233, .33)",
+    backgroundColor: "rgba(73, 166, 233, .2)",
     color: "#49A6E9",
   },
   info_text: {
     color: "#49A6E9",
   },
   success: {
-    backgroundColor: "rgba(137, 187, 114, .33)",
+    backgroundColor: "rgba(137, 187, 114, .2)",
     color: "#89BB72",
   },
   success_text: {
     color: "#89BB72",
   },
   warn: {
-    backgroundColor: "rgba(200, 138, 93, .33)",
+    backgroundColor: "rgba(200, 138, 93, .2)",
     color: "#C88A5D",
   },
   warn_text: {
     color: "#C88A5D",
   },
   error: {
-    backgroundColor: "rgba(228, 97, 107, .33)",
+    backgroundColor: "rgba(228, 97, 107, .2)",
     color: "#E4616B",
   },
   error_text: {

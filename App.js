@@ -40,19 +40,149 @@ import { useTheme, useNavigation } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
 import { styles as s } from "./setup/styles";
 
+const screenWidth = Dimensions.get("window").width;
+const isMobile = screenWidth < 769 ? true : false;
+
+function MyTabBar({ state, descriptors, navigation }) {
+  return (
+    <View style={{ ...s.tabBar }}>
+      {!isMobile && (
+        <View
+          style={{
+            paddingLeft: 40,
+            height: 64,
+            alignItems: "flex-start",
+            justifyContent: "center",
+          }}
+        >
+          <IconBG
+            fill="white"
+            onClick={() => {
+              navigation.navigate("Home");
+            }}
+          />
+        </View>
+      )}
+
+      {state.routes.map((route, index) => {
+        const { options } = descriptors[route.key];
+        const label =
+          options.tabBarLabel !== undefined
+            ? options.tabBarLabel
+            : options.title !== undefined
+            ? options.title
+            : route.name;
+        // const icon = options.tabBarIcon;
+        // console.log(icon);
+
+        const isFocused = state.index === index;
+
+        const onPress = () => {
+          const event = navigation.emit({
+            type: "tabPress",
+            target: route.key,
+            canPreventDefault: true,
+          });
+
+          if (!isFocused && !event.defaultPrevented) {
+            // The `merge: true` option makes sure that the params inside the tab screen are preserved
+            navigation.navigate({ name: route.name, merge: true });
+          }
+        };
+
+        const onLongPress = () => {
+          navigation.emit({
+            type: "tabLongPress",
+            target: route.key,
+          });
+        };
+
+        return (
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityState={isFocused ? { selected: true } : {}}
+            accessibilityLabel={options.tabBarAccessibilityLabel}
+            testID={options.tabBarTestID}
+            onPress={onPress}
+            onLongPress={onLongPress}
+            style={{
+              ...s.tabBarItem,
+              flex: 1,
+              background: isFocused ? "rgba(73, 166, 233, .2)" : "transparent",
+              borderRadius: 20,
+              marginHorizontal: isMobile ? 0 : 20,
+              marginTop: (label === "Settings") & !isMobile ? "auto" : 0,
+              marginBottom: (label === "Settings") & !isMobile ? 20 : 0,
+            }}
+            key={index}
+          >
+            <View
+              style={{
+                ...s.tabBarIconWrapper,
+                width: label === "Lessons" ? 24 : 20,
+              }}
+            >
+              {label === "Home" &&
+                (isFocused ? (
+                  <IconSolidHome fill={isFocused ? "#49A6E9" : "#777777"} />
+                ) : (
+                  <IconHome fill={isFocused ? "#49A6E9" : "#777777"} />
+                ))}
+              {label === "Lessons" &&
+                (isFocused ? (
+                  <IconSolidBook fill={isFocused ? "#49A6E9" : "#777777"} />
+                ) : (
+                  <IconBook fill={isFocused ? "#49A6E9" : "#777777"} />
+                ))}
+              {label === "Videos" &&
+                (isFocused ? (
+                  <IconSolidPlay fill={isFocused ? "#49A6E9" : "#777777"} />
+                ) : (
+                  <IconPlay fill={isFocused ? "#49A6E9" : "#777777"} />
+                ))}
+              {label === "Shop" &&
+                (isFocused ? (
+                  <IconSolidTag fill={isFocused ? "#49A6E9" : "#777777"} />
+                ) : (
+                  <IconTag fill={isFocused ? "#49A6E9" : "#777777"} />
+                ))}
+              {label === "Settings" &&
+                (isFocused ? (
+                  <IconSolidGear fill={isFocused ? "#49A6E9" : "#777777"} />
+                ) : (
+                  <IconGear fill={isFocused ? "#49A6E9" : "#777777"} />
+                ))}
+            </View>
+            <Text
+              style={{
+                ...s.tabBarLabel,
+                color: isFocused ? "#49A6E9" : "#777777",
+              }}
+            >
+              {label}
+            </Text>
+          </TouchableOpacity>
+        );
+      })}
+    </View>
+  );
+}
+
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
   const { colors } = useTheme();
-  const screenWidth = Dimensions.get("window").width;
-  const isMobile = screenWidth < 769 ? true : false;
   return (
     <AppProvider>
       <Tab.Navigator
+        tabBar={(props) => <MyTabBar {...props} />}
         sceneContainerStyle={{ marginLeft: isMobile ? 0 : 256 }}
         screenOptions={{
           tabBarActiveTintColor: "white",
           tabBarInactiveTintColor: "#777777",
           tabBarLabelPosition: isMobile ? "below-icon" : "beside-icon",
+          tabBarLabelStyle: {
+            fontSize: isMobile ? 10 : 20,
+          },
           tabBarStyle: {
             position: isMobile ? "relative" : "absolute",
             height: isMobile ? 79 : "100vh",
@@ -60,8 +190,6 @@ export default function App() {
             backgroundColor: "black",
             overflow: "hidden",
             borderColor: "rgb(39, 39, 41)",
-            borderTopWidth: isMobile ? 1 : 0,
-            borderRightWidth: isMobile ? 0 : 1,
             padding: 0,
             margin: 0,
             shadowColor: "#000",
@@ -75,6 +203,8 @@ export default function App() {
           },
           tabBarItemStyle: {
             // flexDirection: isMobile ? "row" : "column",
+            background: "blue",
+            // flexDirection: "column",
           },
           headerMode: "none",
           headerShadowVisible: true,
@@ -91,9 +221,9 @@ export default function App() {
             tabBarLabel: "Home",
             tabBarIcon: ({ focused }) =>
               focused ? (
-                <IconSolidHome fill={focused ? "white" : "#777777"} />
+                <IconSolidHome fill={"green"} />
               ) : (
-                <IconHome fill={focused ? "white" : "#777777"} />
+                <IconHome fill={"green"} />
               ),
             headerRight: () => (
               <TouchableOpacity
