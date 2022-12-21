@@ -92,7 +92,7 @@ export function ArticleList({ route, navigation }) {
       />
     );
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, padding: 10 }}>
       <FlatList
         data={results}
         renderItem={renderItem}
@@ -100,7 +100,7 @@ export function ArticleList({ route, navigation }) {
         style={{ padding: 10, marginHorizontal: 10 }}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 20 }}
-        // ListHeaderComponent=<LibraryHeader />
+        ListHeaderComponent=<LessonsHeader />
       />
     </SafeAreaView>
   );

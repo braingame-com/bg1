@@ -33,7 +33,7 @@ export function Lessons({ route, navigation }) {
       <Stack.Screen
         name="ArticleList"
         component={ArticleList}
-        // options={{ headerShown: false }}
+        options={{ headerTitle: "Lessons" }}
       />
       <Stack.Screen
         name="Article"
