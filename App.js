@@ -141,7 +141,7 @@ function TabBar({ state, descriptors, navigation }) {
   );
 }
 
-export default function App() {
+export default function App({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const { colors } = useTheme();
   return (
@@ -250,7 +250,7 @@ export default function App() {
                   paddingVertical: 10,
                   paddingHorizontal: 20,
                 }}
-                onPress={() => navigationRef.getParent().toggleDrawer()}
+                onPress={({ navigation }) => navigation.toggleDrawer()}
               >
                 <Text style={{ ...s.m_right, color: "#777777" }}>£0.00</Text>
                 <Octicons

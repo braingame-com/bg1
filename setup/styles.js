@@ -76,7 +76,7 @@ export const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-    flexDirection: isMobile ? "colum" : "row",
+    flexDirection: isMobile ? "column" : "row",
     padding: isMobile ? 10 : 20,
     maxHeight: 64,
   },
@@ -166,7 +166,6 @@ export const styles = StyleSheet.create({
     overflow: "hidden",
   },
   pill: {
-    marginVertical: 5,
     paddingHorizontal: 10,
     paddingVertical: 5,
     backgroundColor: "rgba(128,128,128,.2)",
