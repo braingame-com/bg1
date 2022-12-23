@@ -19,7 +19,7 @@ export function TasksBlock() {
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate("Tasks Screen")}
-      style={{ flex: 0.2, height: "100%" }}
+      style={{ flex: 0.2 }}
     >
       <View
         style={{

@@ -11,9 +11,8 @@ export function TabBar({ state, descriptors, navigation }) {
       {!isMobile && (
         <View
           style={{
-            paddingLeft: 40,
             height: 64,
-            alignItems: "flex-start",
+            alignItems: "center",
             justifyContent: "center",
           }}
         >
@@ -88,14 +87,14 @@ export function TabBar({ state, descriptors, navigation }) {
             >
               {icon}
             </View>
-            <Text
+            {/* <Text
               style={{
                 ...s.tabBarLabel,
                 color: isFocused ? "#49A6E9" : "#777777",
               }}
             >
               {label}
-            </Text>
+            </Text> */}
           </Pressable>
         );
       })}

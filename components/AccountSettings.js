@@ -16,7 +16,6 @@ export function AccountSettings() {
   return (
     <View style={{ ...s.container, ...s.m_horizontal }}>
       <Text style={{ ...s.heading, color: colors.text }}>Account</Text>
-
       <TouchableOpacity>
         <View
           style={{
@@ -50,6 +49,24 @@ export function AccountSettings() {
           />
           <Text style={{ ...s.task_mini, color: "#777777" }}>
             Change password
+          </Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            paddingVertical: 5,
+          }}
+        >
+          <Octicons
+            name="credit-card"
+            size={20}
+            style={{ color: "#777777", ...s.m_right, opacity: 0.5 }}
+          />
+          <Text style={{ ...s.task_mini, color: "#777777" }}>
+            Payment methods
           </Text>
         </View>
       </TouchableOpacity>

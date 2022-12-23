@@ -50,7 +50,7 @@ export default function App({ navigation }) {
     <AppProvider>
       <Tab.Navigator
         tabBar={(props) => <TabBar {...props} />}
-        sceneContainerStyle={{ marginLeft: isMobile ? 0 : 256 }}
+        sceneContainerStyle={{ marginLeft: isMobile ? 0 : 128 }}
         screenOptions={{
           tabBarActiveTintColor: "white",
           tabBarInactiveTintColor: "#777777",
@@ -61,7 +61,7 @@ export default function App({ navigation }) {
           tabBarStyle: {
             position: isMobile ? "relative" : "absolute",
             height: isMobile ? 79 : "100vh",
-            width: isMobile ? "100%" : 256,
+            width: isMobile ? "100%" : 128,
             backgroundColor: "black",
             overflow: "hidden",
             borderColor: "rgb(39, 39, 41)",

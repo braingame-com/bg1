@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
     flexDirection: isMobile ? "row" : "column",
     position: isMobile ? "relative" : "absolute",
     height: isMobile ? 79 : "100vh",
-    width: isMobile ? "100%" : 256,
+    width: isMobile ? "100%" : 128,
     backgroundColor: "black",
     borderTopWidth: isMobile ? 1 : 0,
     borderRightWidth: isMobile ? 0 : 1,
@@ -75,7 +75,7 @@ export const styles = StyleSheet.create({
   tabBarItem: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "flex-start",
+    justifyContent: isMobile ? "flex-start" : "center",
     flexDirection: isMobile ? "column" : "row",
     padding: isMobile ? 10 : 20,
     maxHeight: 64,

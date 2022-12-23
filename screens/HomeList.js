@@ -3,7 +3,6 @@ import {
   Text,
   View,
   ScrollView,
-  Button,
   Switch,
   TouchableOpacity,
   Image,
@@ -20,11 +19,12 @@ import { AffirmationsBlock } from "../components/blocks/AffirmationsBlock";
 import { NumbersBlock } from "../components/blocks/NumbersBlock";
 import { PlanningBlock } from "../components/blocks/PlanningBlock";
 import { JournalBlock } from "../components/blocks/JournalBlock";
+import { Button, Row } from "../components/primitives";
 
 const screenWidth = Dimensions.get("window").width;
 const isMobile = screenWidth < 769 ? true : false;
 
-let userIsLoggeIn = true;
+let userIsLoggedIn = false;
 
 export function HomeList({ navigation }) {
   const { colors } = useTheme();
@@ -48,7 +48,7 @@ export function HomeList({ navigation }) {
     scrollY.setValue(e.nativeEvent.contentOffset.y);
   };
   return (
-    <SafeAreaView style={{ marginBottom: 39 }}>
+    <SafeAreaView style={{ marginBottom: 39, flex: 1 }}>
       <Animated.View
         style={{
           ...s.row,
@@ -61,17 +61,43 @@ export function HomeList({ navigation }) {
           paddingBottom: isMobile ? 10 : 0,
         }}
       >
-        <TouchableOpacity
-          style={{
-            ...s.row,
-            ...s.centered,
-            borderRadius: 999,
-            width: isMobile ? 30 : 20,
-          }}
-          onPress={() => console.log("edit")}
-        >
-          <Octicons name="pencil" size={20} style={{ color: "#777777" }} />
-        </TouchableOpacity>
+        {userIsLoggedIn ? (
+          <TouchableOpacity
+            style={{
+              ...s.row,
+              alignItems: "center",
+              opacity: 0,
+            }}
+            onPress={() => navigation.navigate("Profile")}
+          >
+            <Image
+              source={{
+                uri:
+                  "https://cdn.shopify.com/s/files/1/0171/7947/6022/files/polish.jpg?v=1671745772",
+              }}
+              style={{
+                width: isMobile ? 28 : 38,
+                height: isMobile ? 28 : 38,
+                borderColor: colors.border,
+                borderWidth: 1,
+                borderRadius: 999,
+              }}
+            />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={{
+              ...s.row,
+              ...s.centered,
+              borderRadius: 999,
+              opacity: 0,
+            }}
+            onPress={() => console.log("edit")}
+          >
+            <Octicons name="sign-in" size={20} style={{ ...s.info_text }} />
+            <Text style={{ ...s.m_left, ...s.info_text }}>Log in</Text>
+          </TouchableOpacity>
+        )}
         <Animated.Text
           style={{
             fontSize: 16,
@@ -82,27 +108,41 @@ export function HomeList({ navigation }) {
         >
           Home
         </Animated.Text>
-        <TouchableOpacity
-          style={{
-            ...s.row,
-            alignItems: "center",
-          }}
-          onPress={() => navigation.navigate("Profile")}
-        >
-          <Image
-            source={{
-              uri:
-                "https://cdn.shopify.com/s/files/1/0171/7947/6022/files/polish.jpg?v=1671745772",
-            }}
+        {userIsLoggedIn ? (
+          <TouchableOpacity
             style={{
-              width: isMobile ? 28 : 38,
-              height: isMobile ? 28 : 38,
-              borderColor: colors.border,
-              borderWidth: 1,
+              ...s.row,
+              alignItems: "center",
+            }}
+            onPress={() => navigation.navigate("Profile")}
+          >
+            <Image
+              source={{
+                uri:
+                  "https://cdn.shopify.com/s/files/1/0171/7947/6022/files/polish.jpg?v=1671745772",
+              }}
+              style={{
+                width: isMobile ? 28 : 38,
+                height: isMobile ? 28 : 38,
+                borderColor: colors.border,
+                borderWidth: 1,
+                borderRadius: 999,
+              }}
+            />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={{
+              ...s.row,
+              ...s.centered,
               borderRadius: 999,
             }}
-          />
-        </TouchableOpacity>
+            onPress={() => console.log("edit")}
+          >
+            <Octicons name="sign-in" size={20} style={{ ...s.info_text }} />
+            <Text style={{ ...s.m_left, ...s.info_text }}>Log in</Text>
+          </TouchableOpacity>
+        )}
       </Animated.View>
       <ScrollView
         onScroll={onScroll}
@@ -131,40 +171,63 @@ export function HomeList({ navigation }) {
             Home
           </Animated.Text>
         </Animated.View>
-        <View
-          style={{
-            ...s.container,
-            marginBottom: 10,
-          }}
-        >
+        {userIsLoggedIn ? (
           <View
             style={{
-              flexDirection: isMobile ? "column" : "row",
-              gap: 20,
+              ...s.container,
+              marginBottom: 10,
             }}
           >
-            <NumbersBlock />
-            <TasksBlock />
+            <View
+              style={{
+                flexDirection: isMobile ? "column" : "row",
+                gap: 20,
+              }}
+            >
+              <NumbersBlock />
+              <TasksBlock />
+            </View>
+            <View
+              style={{
+                flexDirection: isMobile ? "column" : "row",
+                gap: 20,
+              }}
+            >
+              <VisualizationBlock />
+              <AffirmationsBlock />
+            </View>
+            <View
+              style={{
+                flexDirection: isMobile ? "column" : "row",
+                gap: 20,
+              }}
+            >
+              <PlanningBlock />
+              <JournalBlock />
+            </View>
           </View>
+        ) : (
           <View
             style={{
-              flexDirection: isMobile ? "column" : "row",
-              gap: 20,
+              ...s.centered,
+              height: 330,
+              backgroundColor: colors.card,
+              borderRadius: 20,
+              marginTop: 25,
+              ...s.m_horizontal,
             }}
           >
-            <VisualizationBlock />
-            <AffirmationsBlock />
+            <Row>
+              <Button
+                type="Primary"
+                text="Log in"
+                onPress={() => console.log("log in :)")}
+              />
+              <Text style={{ color: colors.text }}>to view dashboard</Text>
+            </Row>
+            <Button text="Wag1 though" icon="dependabot" />
           </View>
-          <View
-            style={{
-              flexDirection: isMobile ? "column" : "row",
-              gap: 20,
-            }}
-          >
-            <PlanningBlock />
-            <JournalBlock />
-          </View>
-        </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );

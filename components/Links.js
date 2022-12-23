@@ -31,7 +31,7 @@ export function Links() {
           }}
         >
           <Octicons
-            name="file"
+            name="bug"
             size={20}
             style={{
               color: "#777777",
@@ -40,7 +40,7 @@ export function Links() {
               width: 20,
             }}
           />
-          <Text style={{ ...s.task_mini, color: "#777777" }}>Docs</Text>
+          <Text style={{ ...s.task_mini, color: "#777777" }}>Report a bug</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity>
