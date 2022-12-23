@@ -17,13 +17,17 @@ export function TasksBlock() {
   const navigation = useNavigation();
   const { colors } = useTheme();
   return (
-    <TouchableOpacity onPress={() => navigation.navigate("Tasks Screen")}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("Tasks Screen")}
+      style={{ flex: 0.2, height: "100%" }}
+    >
       <View
         style={{
           ...s.rounded,
           backgroundColor: "transparent",
           borderColor: colors.border,
           borderWidth: 1,
+          flex: 1,
         }}
       >
         <View
@@ -55,9 +59,9 @@ export function TasksBlock() {
             color="#777777"
             style={{ ...s.m_right_2 }}
           /> */}
-          <View style={s.block_btn}>
+          {/* <View style={s.block_btn}>
             <Octicons name="chevron-right" size={20} color="#777777" />
-          </View>
+          </View> */}
           {/* </View> */}
         </View>
         <UpcomingTasks />

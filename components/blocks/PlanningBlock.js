@@ -15,7 +15,10 @@ export function PlanningBlock() {
   const navigation = useNavigation();
   const { colors } = useTheme();
   return (
-    <TouchableOpacity onPress={() => navigation.navigate("Planning Screen")}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("Planning Screen")}
+      style={{ ...s.flex }}
+    >
       <View
         style={{
           ...s.rounded,
@@ -42,9 +45,9 @@ export function PlanningBlock() {
             <Octicons name="check" size={15} />
           </Text> */}
         </View>
-        <View style={s.block_btn}>
+        {/* <View style={s.block_btn}>
           <Octicons name="chevron-right" size={20} color="#777777" />
-        </View>
+        </View> */}
       </View>
     </TouchableOpacity>
   );

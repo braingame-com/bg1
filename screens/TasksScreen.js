@@ -109,11 +109,11 @@ export function TasksScreen({ route }) {
       >
         <TouchableOpacity
           style={{
-            width: 20,
-            height: 20,
+            width: 28,
+            height: 28,
             borderColor: colors.border,
             borderWidth: 1,
-            borderRadius: 5,
+            borderRadius: 10,
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -124,7 +124,7 @@ export function TasksScreen({ route }) {
             size={20}
             style={{
               ...s.success_text,
-              opacity: props.isChecked === "true" ? 1 : 0,
+              // opacity: props.isChecked === "true" ? 1 : 0,
             }}
           />
         </TouchableOpacity>

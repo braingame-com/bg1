@@ -31,7 +31,7 @@ export function Lessons({ route, navigation }) {
       }}
     >
       <Stack.Screen
-        name="ArticleList"
+        name="Lessons"
         component={ArticleList}
         options={{ headerTitle: "Lessons" }}
       />

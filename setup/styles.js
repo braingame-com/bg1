@@ -93,7 +93,7 @@ export const styles = StyleSheet.create({
     overflow: "hidden",
     fontSize: 15,
     backgroundColor: "#281640",
-    borderRadius: 5,
+    borderRadius: 10,
     paddingHorizontal: 15,
     paddingVertical: 5,
   },
@@ -102,7 +102,7 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     borderWidth: 1,
     borderColor: "#202020",
-    borderRadius: 5,
+    borderRadius: 10,
     paddingHorizontal: 15,
     paddingVertical: 5,
   },
@@ -110,7 +110,7 @@ export const styles = StyleSheet.create({
     width: 40,
     height: 40,
     position: "relative",
-    right: -20,
+    right: -10,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -162,7 +162,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     backgroundColor: "rgba(128,128,128,.2)",
-    borderRadius: 10,
+    borderRadius: 20,
     overflow: "hidden",
   },
   pill: {
@@ -245,5 +245,47 @@ export const styles = StyleSheet.create({
   },
   m_all_2: {
     margin: 20,
+  },
+  p_top: {
+    paddingTop: 10,
+  },
+  p_top_2: {
+    paddingTop: 20,
+  },
+  p_left: {
+    paddingLeft: 10,
+  },
+  p_left_2: {
+    paddingLeft: 20,
+  },
+  p_right: {
+    paddingRight: 10,
+  },
+  p_right_2: {
+    paddingRight: 20,
+  },
+  p_bottom: {
+    paddingBottom: 10,
+  },
+  p_bottom_2: {
+    paddingBottom: 20,
+  },
+  p_vertical: {
+    paddingVertical: 10,
+  },
+  p_vertical_2: {
+    paddingVertical: 20,
+  },
+  p_horizontal: {
+    paddingHorizontal: 10,
+  },
+  p_horizontal_2: {
+    paddingHorizontal: 20,
+  },
+  p_all: {
+    padding: 10,
+  },
+  p_all_2: {
+    padding: 20,
   },
 });

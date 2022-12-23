@@ -63,7 +63,6 @@ export function ArticleList({ route, navigation }) {
               style={{
                 width: "120%",
                 height: 200,
-                // borderRadius: 5,
                 // borderColor: colors.border,
                 // borderWidth: 1,
                 marginTop: -11,

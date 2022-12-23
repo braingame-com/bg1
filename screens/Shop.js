@@ -22,7 +22,7 @@ export function Shop({ route, navigation }) {
         drawerPosition: "right",
         headerShown: false,
         drawerStyle: {
-          right: isMobile ? 110 : 1175,
+          // right: isMobile ? 110 : 1175,
         },
       }}
     >

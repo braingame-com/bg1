@@ -17,6 +17,7 @@ export function VisualizationBlock() {
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate("Visualization Screen")}
+      style={{ ...s.flex }}
     >
       <View
         style={{
@@ -44,9 +45,9 @@ export function VisualizationBlock() {
             <Octicons name="check" size={15} />
           </Text>
         </View>
-        <View style={s.block_btn}>
+        {/* <View style={s.block_btn}>
           <Octicons name="chevron-right" size={20} color="#777777" />
-        </View>
+        </View> */}
       </View>
     </TouchableOpacity>
   );

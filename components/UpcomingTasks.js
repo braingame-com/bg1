@@ -17,7 +17,7 @@ export function UpcomingTasks() {
   const { colors } = useTheme();
   const [isChecked, setChecked] = useState(false);
   return (
-    <View style={{ display: "none" }}>
+    <View>
       <TouchableOpacity
         style={{
           flexDirection: "row",
@@ -31,7 +31,7 @@ export function UpcomingTasks() {
             height: 20,
             borderColor: colors.border,
             borderWidth: 1,
-            borderRadius: 5,
+            borderRadius: 10,
             justifyContent: "center",
             alignItems: "center",
             ...s.m_right,
@@ -51,15 +51,33 @@ export function UpcomingTasks() {
           style={{
             ...s.task_mini,
             color: colors.text,
+            borderTopWidth: 0,
           }}
         >
           Take bins out
         </Text>
+        <TouchableOpacity
+          style={{
+            justifyContent: "center",
+            alignItems: "flex-end",
+            flex: 1,
+          }}
+          onPress={() => console.log("delete task")}
+        >
+          <Octicons
+            name="x"
+            size={20}
+            style={{
+              color: colors.border,
+            }}
+          />
+        </TouchableOpacity>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
           flexDirection: "row",
           alignItems: "center",
+          justifyContent: "flex-start",
         }}
         onPress={() => checkTask(props.index)}
       >
@@ -69,7 +87,7 @@ export function UpcomingTasks() {
             height: 20,
             borderColor: colors.border,
             borderWidth: 1,
-            borderRadius: 5,
+            borderRadius: 10,
             justifyContent: "center",
             alignItems: "center",
             ...s.m_right,
@@ -89,10 +107,27 @@ export function UpcomingTasks() {
           style={{
             ...s.task_mini,
             color: colors.text,
+            borderTopWidth: 0,
           }}
         >
           Do some exercise
         </Text>
+        <TouchableOpacity
+          style={{
+            justifyContent: "center",
+            alignItems: "flex-end",
+            flex: 1,
+          }}
+          onPress={() => console.log("delete task")}
+        >
+          <Octicons
+            name="x"
+            size={20}
+            style={{
+              color: colors.border,
+            }}
+          />
+        </TouchableOpacity>
       </TouchableOpacity>
     </View>
   );

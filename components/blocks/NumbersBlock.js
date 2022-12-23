@@ -18,7 +18,10 @@ export function NumbersBlock() {
   const { colors } = useTheme();
   // const priceHistory = usePriceHistory("ethereum");
   return (
-    <TouchableOpacity onPress={() => navigation.navigate("Numbers Screen")}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("Numbers Screen")}
+      style={{ flex: 0.8 }}
+    >
       <View
         style={{
           ...s.rounded,
@@ -49,8 +52,13 @@ export function NumbersBlock() {
             <Octicons name="check" size={15} />
           </Text> */}
           </View>
-          <View style={s.block_btn}>
-            <Octicons name="chevron-right" size={20} color="#777777" />
+          <View style={{ ...s.row }}>
+            <View style={s.block_btn}>
+              <Octicons name="filter" size={20} color="#777777" />
+            </View>
+            {/* <View style={s.block_btn}>
+              <Octicons name="chevron-right" size={20} color="#777777" />
+            </View> */}
           </View>
         </View>
         <View
@@ -59,7 +67,7 @@ export function NumbersBlock() {
             paddingVertical: 100,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "rgba(16,16,16,.5)",
+            backgroundColor: colors.card,
             borderRadius: 10,
           }}
         >
