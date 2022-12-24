@@ -74,7 +74,9 @@ export function Support() {
               width: 20,
             }}
           />
-          <Text style={{ ...s.task_mini, color: "#777777" }}>Docs</Text>
+          <Text style={{ ...s.task_mini, color: "#777777" }}>
+            Documentation
+          </Text>
         </View>
       </TouchableOpacity>
     </View>

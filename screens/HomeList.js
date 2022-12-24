@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   Text,
   View,
@@ -9,6 +9,8 @@ import {
   SafeAreaView,
   Animated,
   Dimensions,
+  Modal,
+  TextInput,
 } from "react-native";
 import { styles as s } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
@@ -20,14 +22,16 @@ import { NumbersBlock } from "../components/blocks/NumbersBlock";
 import { PlanningBlock } from "../components/blocks/PlanningBlock";
 import { JournalBlock } from "../components/blocks/JournalBlock";
 import { Button, Row } from "../components/primitives";
+import { AccountModal } from "../components/AccountModal";
 
 const screenWidth = Dimensions.get("window").width;
 const isMobile = screenWidth < 769 ? true : false;
 
-let userIsLoggedIn = false;
+let userIsLoggedIn = true;
 
 export function HomeList({ navigation }) {
   const { colors } = useTheme();
+  const [modalVisible, setModalVisible] = useState(false);
   const scrollY = useRef(new Animated.Value(0)).current;
   const opacity = scrollY.interpolate({
     inputRange: [20, 40],
@@ -48,7 +52,7 @@ export function HomeList({ navigation }) {
     scrollY.setValue(e.nativeEvent.contentOffset.y);
   };
   return (
-    <SafeAreaView style={{ marginBottom: 39, flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <Animated.View
         style={{
           ...s.row,
@@ -61,7 +65,7 @@ export function HomeList({ navigation }) {
           paddingBottom: isMobile ? 10 : 0,
         }}
       >
-        {userIsLoggedIn ? (
+        {userIsLoggedIn && (
           <TouchableOpacity
             style={{
               ...s.row,
@@ -83,19 +87,6 @@ export function HomeList({ navigation }) {
                 borderRadius: 999,
               }}
             />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            style={{
-              ...s.row,
-              ...s.centered,
-              borderRadius: 999,
-              opacity: 0,
-            }}
-            onPress={() => console.log("edit")}
-          >
-            <Octicons name="sign-in" size={20} style={{ ...s.info_text }} />
-            <Text style={{ ...s.m_left, ...s.info_text }}>Log in</Text>
           </TouchableOpacity>
         )}
         <Animated.Text
@@ -108,7 +99,7 @@ export function HomeList({ navigation }) {
         >
           Home
         </Animated.Text>
-        {userIsLoggedIn ? (
+        {userIsLoggedIn && (
           <TouchableOpacity
             style={{
               ...s.row,
@@ -129,18 +120,6 @@ export function HomeList({ navigation }) {
                 borderRadius: 999,
               }}
             />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            style={{
-              ...s.row,
-              ...s.centered,
-              borderRadius: 999,
-            }}
-            onPress={() => console.log("edit")}
-          >
-            <Octicons name="sign-in" size={20} style={{ ...s.info_text }} />
-            <Text style={{ ...s.m_left, ...s.info_text }}>Log in</Text>
           </TouchableOpacity>
         )}
       </Animated.View>
@@ -175,7 +154,6 @@ export function HomeList({ navigation }) {
           <View
             style={{
               ...s.container,
-              marginBottom: 10,
             }}
           >
             <View
@@ -211,21 +189,46 @@ export function HomeList({ navigation }) {
             style={{
               ...s.centered,
               height: 330,
-              backgroundColor: colors.card,
               borderRadius: 20,
               marginTop: 25,
               ...s.m_horizontal,
             }}
           >
-            <Row>
+            <Row
+              style={{
+                borderBottomColor: colors.border,
+                borderBottomWidth: 1,
+                ...s.p_bottom_2,
+              }}
+            >
               <Button
                 type="Primary"
                 text="Log in"
-                onPress={() => console.log("log in :)")}
+                icon="sign-in"
+                onPress={() => setModalVisible(true)}
               />
-              <Text style={{ color: colors.text }}>to view dashboard</Text>
+              <Text style={{ color: colors.text, ...s.m_left }}>
+                to view dashboard
+              </Text>
             </Row>
-            <Button text="Wag1 though" icon="dependabot" />
+            <Text
+              style={{
+                color: colors.text,
+                ...s.m_top_2,
+                opacity: 0.5,
+              }}
+            >
+              Don't have an account?
+            </Text>
+            <Button
+              text="Sign up"
+              style={{ ...s.m_top }}
+              onPress={() => setModalVisible(true)}
+            />
+            <AccountModal
+              modalVisible={modalVisible}
+              setModalVisible={setModalVisible}
+            />
           </View>
         )}
       </ScrollView>
