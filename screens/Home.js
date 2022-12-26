@@ -26,6 +26,25 @@ export function Home({ route, navigation }) {
       }}
     >
       <Stack.Screen
+        name="Numbers Screen"
+        component={NumbersScreen}
+        options={{
+          headerTitle: "Numbers",
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ ...s.back_btn, padding: 10 }}
+              onPress={() => navigation.navigate("Home")}
+            >
+              <Octicons
+                name="chevron-left"
+                size={20}
+                style={{ color: "#777777" }}
+              />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
         name="Home"
         component={HomeList}
         options={{ headerShown: false }}
@@ -92,25 +111,6 @@ export function Home({ route, navigation }) {
         component={AffirmationsScreen}
         options={{
           headerTitle: "Affirmations",
-          headerLeft: () => (
-            <TouchableOpacity
-              style={{ ...s.back_btn, padding: 10 }}
-              onPress={() => navigation.navigate("Home")}
-            >
-              <Octicons
-                name="chevron-left"
-                size={20}
-                style={{ color: "#777777" }}
-              />
-            </TouchableOpacity>
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Numbers Screen"
-        component={NumbersScreen}
-        options={{
-          headerTitle: "Numbers",
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: 10 }}

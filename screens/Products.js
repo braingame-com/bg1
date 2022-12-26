@@ -16,33 +16,6 @@ export function Products({ navigation }) {
       <View
         style={{
           ...s.container,
-          ...s.row,
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Text style={{ ...s.title, ...s.m_horizontal, color: colors.text }}>
-          Shop
-        </Text>
-        <TouchableOpacity
-          style={{
-            ...s.row,
-            alignItems: "center",
-            padding: 10,
-          }}
-          onPress={() => navigation.toggleDrawer()}
-        >
-          <Text style={{ ...s.m_right, color: "#777777" }}>£0.00</Text>
-          <Octicons
-            name="sidebar-expand"
-            size={20}
-            style={{ color: "#777777" }}
-          />
-        </TouchableOpacity>
-      </View>
-      <View
-        style={{
-          ...s.container,
           ...s.centered,
         }}
       >

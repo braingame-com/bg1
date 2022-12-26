@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { Text, View, TouchableOpacity, FlatList } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  FlatList,
+  Dimensions,
+} from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { styles as s } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
@@ -9,6 +15,9 @@ import { Article } from "../screens/Article";
 
 const Stack = createNativeStackNavigator();
 
+const screenWidth = Dimensions.get("window").width;
+const isMobile = screenWidth < 769 ? true : false;
+
 export function Lessons({ route, navigation }) {
   const { colors } = useTheme();
   return (
@@ -16,17 +25,13 @@ export function Lessons({ route, navigation }) {
       screenOptions={{
         tabBarStyle: {
           color: "#777777",
-          // height: 100,
           borderTopWidth: 0,
         },
-        // headerShadowVisible: false,
-        // headerTintColor: "#777777",
         headerStyle: {
-          // backgroundColor: colors.card,
           backgroundColor: colors.background,
-          // height: 100,
-          // borderWidth: 1,
-          // borderColor: colors.border,
+        },
+        headerTitleStyle: {
+          marginLeft: isMobile ? 0 : 10,
         },
       }}
     >
@@ -47,8 +52,9 @@ export function Lessons({ route, navigation }) {
                 ...s.back_btn,
                 alignItems: "center",
                 justifyContent: "flex-start",
+                marginLeft: isMobile ? 0 : 20,
               }}
-              onPress={() => navigation.navigate("ArticleList")}
+              onPress={() => navigation.navigate("Lessons")}
             >
               <Octicons
                 name="chevron-left"

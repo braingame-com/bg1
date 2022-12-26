@@ -28,7 +28,6 @@ export function Settings({ route }) {
   return (
     <SafeAreaView style={{ ...s.container, flex: 1 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <SettingsHeader />
         <View style={{ maxWidth: 330 }}>
           <ThemeSelector />
         </View>

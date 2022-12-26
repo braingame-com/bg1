@@ -20,7 +20,6 @@ import {
   GRAPHQL_URL,
   GRAPHQL_BODY,
 } from "../setup/shopify-sapi";
-import { LessonsHeader } from "../components/LessonsHeader";
 
 const Stack = createNativeStackNavigator();
 
@@ -99,7 +98,6 @@ export function ArticleList({ route, navigation }) {
         style={{ padding: 10, marginHorizontal: 10 }}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 20 }}
-        ListHeaderComponent=<LessonsHeader />
       />
     </SafeAreaView>
   );

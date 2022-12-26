@@ -1,4 +1,10 @@
-import { Text, View, SafeAreaView, Dimensions } from "react-native";
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  SafeAreaView,
+  Dimensions,
+} from "react-native";
 import { styles as s } from "../setup/styles";
 import { Octicons } from "@expo/vector-icons";
 import {
@@ -18,19 +24,46 @@ export function Shop({ route, navigation }) {
   return (
     <Drawer.Navigator
       initialRouteName="Home"
-      screenOptions={{
+      screenOptions={({ navigation }) => ({
+        headerStyle: {
+          backgroundColor: "black",
+        },
+        headerTitleStyle: {
+          marginLeft: isMobile ? 0 : 10,
+        },
         drawerPosition: "right",
-        headerShown: false,
+        // headerShown: false,
         drawerStyle: {
           // right: isMobile ? 110 : 1175,
         },
-      }}
+        headerLeft: () => <View></View>,
+        headerRight: () => (
+          <TouchableOpacity
+            style={{
+              ...s.row,
+              alignItems: "center",
+              paddingVertical: 10,
+              marginRight: isMobile ? 20 : 30,
+            }}
+            onPress={() => {
+              navigation.toggleDrawer();
+            }}
+          >
+            <Text style={{ ...s.m_right, color: "#777777" }}>£0.00</Text>
+            <Octicons
+              name="sidebar-expand"
+              size={20}
+              style={{ color: "#777777" }}
+            />
+          </TouchableOpacity>
+        ),
+      })}
     >
       <Drawer.Screen
         name="Products"
         component={Products}
         options={{
-          headerTitle: " ",
+          headerTitle: "Shop",
         }}
       />
       <Drawer.Screen name="Checkout" component={Checkout} />

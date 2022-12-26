@@ -30,7 +30,7 @@ export function AccountSettings() {
             style={{ color: "#777777", ...s.m_right, opacity: 0.5 }}
           />
           <Text style={{ ...s.task_mini, color: "#777777" }}>
-            Notifications
+            Manage notifications
           </Text>
         </View>
       </TouchableOpacity>

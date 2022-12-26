@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import {
   Text,
+  Image,
   View,
   TouchableOpacity,
   Switch,
@@ -81,14 +82,16 @@ export default function App({ navigation }) {
           headerStyle: {
             backgroundColor: "black",
           },
-          headerTitleStyle: {},
-          headerShown: false,
+          headerTitleStyle: {
+            marginLeft: isMobile ? 0 : 10,
+          },
+          // headerShown: false,
         }}
       >
         <Tab.Screen
           name="Home "
           component={Home}
-          options={{
+          options={({ navigation }) => ({
             tabBarLabel: "Home",
             tabBarIcon: ({ fill, focused }) =>
               focused ? (
@@ -96,7 +99,31 @@ export default function App({ navigation }) {
               ) : (
                 <IconHome fill={fill} />
               ),
-          }}
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  ...s.row,
+                  alignItems: "center",
+                  marginRight: isMobile ? 20 : 30,
+                }}
+                onPress={() => navigation.navigate("Profile")}
+              >
+                <Image
+                  source={{
+                    uri:
+                      "https://cdn.shopify.com/s/files/1/0171/7947/6022/files/polish.jpg?v=1671745772",
+                  }}
+                  style={{
+                    width: isMobile ? 28 : 38,
+                    height: isMobile ? 28 : 38,
+                    borderColor: colors.border,
+                    borderWidth: 1,
+                    borderRadius: 999,
+                  }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
         />
         <Tab.Screen
           name="Lessons "
@@ -132,29 +159,7 @@ export default function App({ navigation }) {
             tabBarLabel: "Shop",
             tabBarIcon: ({ fill, focused }) =>
               focused ? <IconSolidTag fill={fill} /> : <IconTag fill={fill} />,
-            headerRight: () => (
-              <TouchableOpacity
-                style={{
-                  ...s.row,
-                  alignItems: "center",
-                  paddingVertical: 10,
-                  paddingHorizontal: 20,
-                }}
-                onPress={
-                  () => {
-                    console.log("toggle drawer");
-                  }
-                  // () => navigationRef.current?.toggleDrawer()
-                }
-              >
-                <Text style={{ ...s.m_right, color: "#777777" }}>£0.00</Text>
-                <Octicons
-                  name="sidebar-expand"
-                  size={20}
-                  style={{ color: "#777777" }}
-                />
-              </TouchableOpacity>
-            ),
+            headerShown: false,
             // tabBarBadge: "3",
           }}
         />
@@ -169,20 +174,6 @@ export default function App({ navigation }) {
               ) : (
                 <IconGear fill={fill} />
               ),
-            headerRight: () => (
-              <TouchableOpacity
-                style={{
-                  ...s.row,
-                  alignItems: "center",
-                  paddingVertical: 10,
-                  paddingHorizontal: 20,
-                }}
-                onPress={() => setModalVisible(true)}
-              >
-                <Text style={{ ...s.m_right, ...s.info_text }}>Log in</Text>
-                <Octicons name="sign-in" size={20} style={{ ...s.info_text }} />
-              </TouchableOpacity>
-            ),
           }}
         />
       </Tab.Navigator>
