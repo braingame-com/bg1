@@ -28,7 +28,7 @@ export function Lessons({ route, navigation }) {
           borderTopWidth: 0,
         },
         headerStyle: {
-          backgroundColor: colors.background,
+          backgroundColor: "black",
         },
         headerTitleStyle: {
           marginLeft: isMobile ? 0 : 10,

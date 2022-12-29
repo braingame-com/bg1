@@ -53,30 +53,6 @@ export default function App({ navigation }) {
         tabBar={(props) => <TabBar {...props} />}
         sceneContainerStyle={{ marginLeft: isMobile ? 0 : 128 }}
         screenOptions={{
-          tabBarActiveTintColor: "white",
-          tabBarInactiveTintColor: "#777777",
-          tabBarLabelPosition: isMobile ? "below-icon" : "beside-icon",
-          tabBarLabelStyle: {
-            fontSize: isMobile ? 10 : 20,
-          },
-          tabBarStyle: {
-            position: isMobile ? "relative" : "absolute",
-            height: isMobile ? 79 : "100vh",
-            width: isMobile ? "100%" : 128,
-            backgroundColor: "black",
-            overflow: "hidden",
-            borderColor: "rgb(39, 39, 41)",
-            padding: 0,
-            margin: 0,
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 4,
-            elevation: 5,
-          },
           headerMode: "none",
           headerShadowVisible: true,
           headerStyle: {
@@ -85,7 +61,6 @@ export default function App({ navigation }) {
           headerTitleStyle: {
             marginLeft: isMobile ? 0 : 10,
           },
-          // headerShown: false,
         }}
       >
         <Tab.Screen
@@ -116,7 +91,7 @@ export default function App({ navigation }) {
                   style={{
                     width: isMobile ? 28 : 38,
                     height: isMobile ? 28 : 38,
-                    borderColor: colors.border,
+                    borderColor: "rgb(216, 216, 216)",
                     borderWidth: 1,
                     borderRadius: 999,
                   }}

@@ -28,6 +28,7 @@ export function PlanningBlock() {
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
+          flex: 1,
         }}
       >
         <View style={{ ...s.row }}>

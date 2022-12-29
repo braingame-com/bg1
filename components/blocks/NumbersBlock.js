@@ -5,6 +5,7 @@ import {
   Button,
   Switch,
   SafeAreaView,
+  Dimensions,
 } from "react-native";
 import { styles as s } from "../../setup/styles";
 import { useTheme } from "@react-navigation/native";
@@ -12,6 +13,9 @@ import { Octicons } from "@expo/vector-icons";
 import { ChartRangeSelector } from "../../components/ChartRangeSelector";
 import { usePriceHistory } from "@shopify/react-native-skia";
 import { useNavigation } from "@react-navigation/native";
+
+const screenWidth = Dimensions.get("window").width;
+const isMobile = screenWidth < 769 ? true : false;
 
 export function NumbersBlock() {
   const navigation = useNavigation();
@@ -65,6 +69,7 @@ export function NumbersBlock() {
           style={{
             ...s.m_vertical,
             paddingVertical: 100,
+            height: isMobile ? 230 : 330,
             alignItems: "center",
             justifyContent: "center",
             backgroundColor: colors.card,

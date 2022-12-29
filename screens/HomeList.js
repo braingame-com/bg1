@@ -37,12 +37,17 @@ export function HomeList({ navigation }) {
       <ScrollView
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
-        style={{ ...s.m_horizontal, padding: isMobile ? 0 : 10 }}
+        contentContainerStyle={{ flex: !isMobile && 1 }}
+        style={{
+          ...s.m_horizontal,
+          padding: isMobile ? 0 : 10,
+        }}
       >
         {userIsLoggedIn ? (
           <View
             style={{
               ...s.container,
+              flex: 1,
             }}
           >
             <View
@@ -58,6 +63,7 @@ export function HomeList({ navigation }) {
               style={{
                 flexDirection: isMobile ? "column" : "row",
                 gap: 20,
+                flex: 1,
               }}
             >
               <VisualizationBlock />
@@ -67,6 +73,7 @@ export function HomeList({ navigation }) {
               style={{
                 flexDirection: isMobile ? "column" : "row",
                 gap: 20,
+                flex: 1,
               }}
             >
               <PlanningBlock />

@@ -67,10 +67,8 @@ export const styles = StyleSheet.create({
     position: isMobile ? "relative" : "absolute",
     height: isMobile ? 79 : "100vh",
     width: isMobile ? "100%" : 128,
-    backgroundColor: "black",
     borderTopWidth: isMobile ? 1 : 0,
     borderRightWidth: isMobile ? 0 : 1,
-    borderColor: "rgb(39, 39, 41)",
   },
   tabBarItem: {
     display: "flex",

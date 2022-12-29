@@ -11,6 +11,7 @@ import { AffirmationsScreen } from "../screens/AffirmationsScreen";
 import { NumbersScreen } from "../screens/NumbersScreen";
 import { PlanningScreen } from "../screens/PlanningScreen";
 import { JournalScreen } from "../screens/JournalScreen";
+import { Playground } from "../screens/Playground";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,41 +20,23 @@ export function Home({ route, navigation }) {
     <Stack.Navigator
       screenOptions={{
         headerShadowVisible: false,
-        headerStyle: {
-          // backgroundColor: "black",
-          // height: 100,
-        },
       }}
     >
-      <Stack.Screen
-        name="Numbers Screen"
-        component={NumbersScreen}
-        options={{
-          headerTitle: "Numbers",
-          headerLeft: () => (
-            <TouchableOpacity
-              style={{ ...s.back_btn, padding: 10 }}
-              onPress={() => navigation.navigate("Home")}
-            >
-              <Octicons
-                name="chevron-left"
-                size={20}
-                style={{ color: "#777777" }}
-              />
-            </TouchableOpacity>
-          ),
-        }}
-      />
+      {/*<Stack.Screen
+        name="Playground"
+        component={Playground}
+        options={{ headerShown: false }}
+      />*/}
       <Stack.Screen
         name="Home"
         component={HomeList}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="Profile"
-        component={Profile}
+        name="Numbers Screen"
+        component={NumbersScreen}
         options={{
-          headerTitle: "Profile",
+          headerTitle: "Numbers",
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: 10 }}
@@ -149,6 +132,25 @@ export function Home({ route, navigation }) {
         component={JournalScreen}
         options={{
           headerTitle: "Journal",
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ ...s.back_btn, padding: 10 }}
+              onPress={() => navigation.navigate("Home")}
+            >
+              <Octicons
+                name="chevron-left"
+                size={20}
+                style={{ color: "#777777" }}
+              />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          headerTitle: "Profile",
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: 10 }}

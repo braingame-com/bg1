@@ -1,3 +1,4 @@
+import { useTheme } from "@react-navigation/native";
 import { View, Pressable, Text, Dimensions } from "react-native";
 import { IconBG } from "../utilities/svg-icons";
 import { styles as s } from "../setup/styles";
@@ -6,18 +7,27 @@ const screenWidth = Dimensions.get("window").width;
 const isMobile = screenWidth < 769 ? true : false;
 
 export function TabBar({ state, descriptors, navigation }) {
+  const { colors } = useTheme();
   return (
-    <View style={{ ...s.tabBar }}>
+    <View
+      style={{
+        ...s.tabBar,
+        backgroundColor: colors.background,
+        borderColor: colors.border,
+      }}
+    >
       {!isMobile && (
         <View
           style={{
             height: 64,
             alignItems: "center",
             justifyContent: "center",
+            borderBottomWidth: 1,
+            // borderColor: colors.border,
           }}
         >
           <IconBG
-            fill="white"
+            fill={colors.text}
             onClick={() => {
               navigation.navigate("Home");
             }}
@@ -74,7 +84,12 @@ export function TabBar({ state, descriptors, navigation }) {
               background: isFocused ? "rgba(73, 166, 233, .2)" : "transparent",
               borderRadius: 20,
               marginHorizontal: isMobile ? 0 : 20,
-              marginTop: (label === "Settings") & !isMobile ? "auto" : 0,
+              marginTop:
+                (label === "Settings") & !isMobile
+                  ? "auto"
+                  : (label === "Home") & !isMobile
+                  ? 30
+                  : 0,
               marginBottom: (label === "Settings") & !isMobile ? 20 : 0,
             }}
             key={index}
