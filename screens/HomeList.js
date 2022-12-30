@@ -38,18 +38,10 @@ export function HomeList({ navigation }) {
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ flex: !isMobile && 1 }}
-        style={{
-          ...s.m_horizontal,
-          padding: isMobile ? 0 : 10,
-        }}
+        style={{ ...s.m_horizontal }}
       >
         {userIsLoggedIn ? (
-          <View
-            style={{
-              ...s.container,
-              flex: 1,
-            }}
-          >
+          <View style={{ ...s.container, flex: 1 }}>
             <View
               style={{
                 flexDirection: isMobile ? "column" : "row",

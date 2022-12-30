@@ -18,6 +18,7 @@ export function Button({ style, type, text, icon, onPress }) {
           ...s.p_horizontal_2,
           overflow: "hidden",
           ...s.row,
+          alignSelf: "flex-start",
           ...style,
         }}
       >
@@ -50,5 +51,18 @@ export function Row({ style, children }) {
     >
       {children}
     </View>
+  );
+}
+
+export function Divider({ style }) {
+  const { colors } = useTheme();
+  return (
+    <View
+      style={{
+        borderBottomWidth: 1,
+        borderBottomColor: colors.border,
+        ...style,
+      }}
+    ></View>
   );
 }

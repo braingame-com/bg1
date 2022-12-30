@@ -22,11 +22,11 @@ export function Home({ route, navigation }) {
         headerShadowVisible: false,
       }}
     >
-      {/*<Stack.Screen
+      <Stack.Screen
         name="Playground"
         component={Playground}
         options={{ headerShown: false }}
-      />*/}
+      />
       <Stack.Screen
         name="Home"
         component={HomeList}

@@ -35,26 +35,22 @@ export const styles = StyleSheet.create({
   },
   // Typography
   title: {
-    marginVertical: 10,
+    marginBottom: 10,
     color: fontColorPrimary,
     fontSize: 33,
     fontWeight: "bold",
   },
   heading: {
-    marginVertical: 10,
+    marginBottom: 10,
     color: fontColorSecondary,
-    fontSize: 20,
+    fontSize: 23,
     fontWeight: "bold",
   },
-  heading_secondary: {
-    marginVertical: 10,
-    color: fontColorSecondary,
-    fontSize: 20,
-  },
   subtitle: {
-    marginVertical: 10,
+    marginBottom: 10,
     color: fontColorSecondary,
-    fontSize: 15,
+    fontSize: 18,
+    fontWeight: "bold",
   },
   task_mini: {
     paddingVertical: 5,
@@ -145,6 +141,10 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
   },
   // Utilities
+  res_gap: {
+    marginTop: isMobile ? 10 : 0,
+    marginLeft: isMobile ? 0 : 10,
+  },
   shadow: {
     shadowColor: "#000",
     shadowOffset: {
