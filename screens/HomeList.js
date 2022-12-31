@@ -77,7 +77,7 @@ export function HomeList({ navigation }) {
             style={{
               ...s.centered,
               height: 330,
-              borderRadius: 20,
+              borderRadius: 16,
               marginTop: 25,
               ...s.m_horizontal,
             }}

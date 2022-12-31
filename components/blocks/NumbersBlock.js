@@ -73,7 +73,7 @@ export function NumbersBlock() {
             alignItems: "center",
             justifyContent: "center",
             backgroundColor: colors.card,
-            borderRadius: 10,
+            borderRadius: 12,
           }}
         >
           {/* <LineGraph points={priceHistory} color="#4484B2" /> */}

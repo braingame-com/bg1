@@ -49,6 +49,8 @@ export function Article({ route }) {
     <ScrollView
       contentContainerStyle={{
         padding: 20,
+        maxWidth: 600,
+        marginHorizontal: "auto",
       }}
       showsVerticalScrollIndicator={false}
     >

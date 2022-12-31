@@ -44,6 +44,12 @@ import { TabBar } from "./components/TabBar";
 const screenWidth = Dimensions.get("window").width;
 const isMobile = screenWidth < 769 ? true : false;
 
+if (!isMobile) {
+  document.body.style.backgroundColor = "black";
+  document.querySelector("#root").style.maxWidth = "1265px";
+  document.querySelector("#root").style.margin = "0 auto";
+}
+
 export default function App({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const { colors } = useTheme();
@@ -51,7 +57,9 @@ export default function App({ navigation }) {
     <AppProvider>
       <Tab.Navigator
         tabBar={(props) => <TabBar {...props} />}
-        sceneContainerStyle={{ marginLeft: isMobile ? 0 : 128 }}
+        sceneContainerStyle={{
+          marginLeft: isMobile ? 0 : 128,
+        }}
         screenOptions={{
           headerMode: "none",
           headerShadowVisible: true,
@@ -152,7 +160,6 @@ export default function App({ navigation }) {
           }}
         />
       </Tab.Navigator>
-      <StatusBar style="light" />
     </AppProvider>
   );
 }

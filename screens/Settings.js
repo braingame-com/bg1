@@ -49,7 +49,7 @@ export function Settings({ route }) {
               ...s.m_horizontal_2,
               marginTop: 10,
               marginBottom: 30,
-              borderRadius: 10,
+              borderRadius: 12,
               borderColor: "#49A6E9",
               borderWidth: 1,
               ...s.info,

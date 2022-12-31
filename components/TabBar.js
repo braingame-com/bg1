@@ -82,13 +82,13 @@ export function TabBar({ state, descriptors, navigation }) {
               ...s.tabBarItem,
               flex: 1,
               background: isFocused ? "rgba(73, 166, 233, .2)" : "transparent",
-              borderRadius: 20,
+              borderRadius: 16,
               marginHorizontal: isMobile ? 0 : 20,
               marginTop:
                 (label === "Settings") & !isMobile
                   ? "auto"
                   : (label === "Home") & !isMobile
-                  ? 30
+                  ? 20
                   : 0,
               marginBottom: (label === "Settings") & !isMobile ? 20 : 0,
             }}
@@ -102,14 +102,6 @@ export function TabBar({ state, descriptors, navigation }) {
             >
               {icon}
             </View>
-            {/* <Text
-              style={{
-                ...s.tabBarLabel,
-                color: isFocused ? "#49A6E9" : "#777777",
-              }}
-            >
-              {label}
-            </Text> */}
           </Pressable>
         );
       })}

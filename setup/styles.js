@@ -26,9 +26,14 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  card: {
+    margin: 10,
+    padding: 20,
+    borderRadius: 16,
+  },
   modalView: {
     margin: 20,
-    borderRadius: 20,
+    borderRadius: 16,
     padding: 40,
     alignItems: "center",
     justifyContent: "center",
@@ -83,11 +88,16 @@ export const styles = StyleSheet.create({
     fontSize: isMobile ? 10 : 20,
     marginLeft: isMobile ? 0 : 20,
   },
+  doc_block: {
+    marginBottom: 10,
+    paddingTop: 20,
+    borderTopWidth: 1,
+  },
   btn: {
     overflow: "hidden",
     fontSize: 15,
     backgroundColor: "#281640",
-    borderRadius: 10,
+    borderRadius: 12,
     paddingHorizontal: 15,
     paddingVertical: 5,
   },
@@ -96,7 +106,7 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     borderWidth: 1,
     borderColor: "#202020",
-    borderRadius: 10,
+    borderRadius: 12,
     paddingHorizontal: 15,
     paddingVertical: 5,
   },
@@ -138,7 +148,7 @@ export const styles = StyleSheet.create({
     width: 230,
     padding: 20,
     paddingLeft: 50,
-    borderRadius: 10,
+    borderRadius: 12,
   },
   // Utilities
   res_gap: {
@@ -160,14 +170,14 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     backgroundColor: "rgba(128,128,128,.2)",
-    borderRadius: 20,
+    borderRadius: 16,
     overflow: "hidden",
   },
   pill: {
     paddingHorizontal: 10,
     paddingVertical: 5,
     backgroundColor: "rgba(128,128,128,.2)",
-    borderRadius: 10,
+    borderRadius: 12,
     overflow: "hidden",
   },
   info: {
