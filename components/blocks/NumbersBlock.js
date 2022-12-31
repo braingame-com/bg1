@@ -28,10 +28,9 @@ export function NumbersBlock() {
     >
       <View
         style={{
-          ...s.rounded,
-          backgroundColor: "transparent",
-          borderColor: colors.border,
-          borderWidth: 1,
+          ...s.card,
+          backgroundColor: colors.card,
+          ...s.m_vertical,
         }}
       >
         <View
@@ -41,7 +40,7 @@ export function NumbersBlock() {
             justifyContent: "space-between",
           }}
         >
-          <View style={{ ...s.row }}>
+          <View style={{ ...s.row, ...s.m_bottom }}>
             <Text
               style={{
                 ...s.heading,
@@ -67,12 +66,13 @@ export function NumbersBlock() {
         </View>
         <View
           style={{
-            ...s.m_vertical,
-            paddingVertical: 100,
+            ...s.m_top,
+            ...s.m_bottom_2,
             height: isMobile ? 230 : 330,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: colors.card,
+            borderWidth: 1,
+            borderColor: colors.border,
             borderRadius: 12,
           }}
         >

@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
 import {
-  Text,
   View,
   FlatList,
-  Button,
   Image,
   TouchableOpacity,
   SafeAreaView,
+  Dimensions,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { styles as s } from "../setup/styles";
+import { styles as s, tokens } from "../setup/styles";
 import { IconArrow } from "../utilities/svg-icons";
 import { Octicons } from "@expo/vector-icons";
 import {
@@ -20,6 +19,13 @@ import {
   GRAPHQL_URL,
   GRAPHQL_BODY,
 } from "../setup/shopify-sapi";
+import { Heading, Text, Small } from "../components/typography";
+import { Row, Button } from "../components/primitives";
+
+console.log(tokens);
+
+const screenWidth = Dimensions.get("window").width;
+const isMobile = screenWidth < 769 ? true : false;
 
 const Stack = createNativeStackNavigator();
 
@@ -34,54 +40,95 @@ export function ArticleList({ route, navigation }) {
         setResults(json.data.articles.edges);
       });
   }, []);
-  const Item = ({ image, title, excerpt, id, content }) => {
+  const Item = ({ image, tags, title, excerpt, id, content }) => {
       return (
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("Article", {
-              itemId: id,
-              itemTitle: title,
-              itemImage: image,
-              itemExcerpt: excerpt,
-              itemContent: content,
-            })
-          }
+        <View
+          style={{
+            maxWidth: isMobile ? "100%" : "calc(33% - 20px)",
+            marginHorizontal: isMobile ? 0 : 10,
+            flex: 1,
+          }}
         >
-          <View
+          <TouchableOpacity
             style={{
-              ...s.rounded,
-              backgroundColor: "transparent",
-              borderColor: colors.border,
-              borderWidth: 1,
+              ...s.card,
+              backgroundColor: colors.card,
+              ...s.m_vertical,
+              flex: 1,
             }}
+            onPress={() =>
+              navigation.navigate("Article", {
+                itemId: id,
+                itemTags: tags,
+                itemTitle: title,
+                itemImage: image,
+                itemExcerpt: excerpt,
+                itemContent: content,
+              })
+            }
           >
-            {/* <Image
-              source={{
-                uri: image,
-              }}
+            <Row
               style={{
-                width: "120%",
-                height: 200,
-                // borderColor: colors.border,
-                // borderWidth: 1,
-                marginTop: -11,
-                marginLeft: "-10%",
-                marginBottom: 10,
+                justifyContent: "space-between",
+                alignItems: "flex-start",
               }}
-            /> */}
-            <Text style={{ ...s.heading, color: colors.text }}>{title}</Text>
-            {excerpt !== "" && (
-              <Text style={{ ...s.subtitle, color: colors.text }}>
-                {excerpt}
-              </Text>
-            )}
-          </View>
-        </TouchableOpacity>
+            >
+              {tags.map((tag, index) => {
+                return (
+                  <Small
+                    style={{
+                      ...s.pill,
+                      ...s.info,
+                      ...s.m_bottom_2,
+                      alignSelf: "flex-start",
+                    }}
+                    key={index}
+                  >
+                    {tag}
+                  </Small>
+                );
+              })}
+              <Button
+                type="Naked"
+                icon="kebab-horizontal"
+                onPress={() =>
+                  console.log(`more options for article id: ${id}`)
+                }
+                contentStyle={{ fontSize: tokens.medium, color: "#777777" }}
+              />
+            </Row>
+            <Heading>{title}</Heading>
+            {excerpt !== "" && <Text style={{ ...s.m_top }}>{excerpt}</Text>}
+            <Row
+              style={{
+                ...s.m_top_2,
+                flex: 1,
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+              }}
+            >
+              <Button
+                type="Naked"
+                text={Math.floor(Math.random() * (300 - 0)).toString()}
+                icon="thumbsup"
+                onPress={() => console.log(`like article id: ${id}`)}
+                contentStyle={{ fontSize: tokens.medium, color: "#777777" }}
+              />
+              <Button
+                type="Naked"
+                icon="bookmark"
+                onPress={() => console.log(`bookmark article id: ${id}`)}
+                contentStyle={{ fontSize: tokens.medium, color: "#777777" }}
+              />
+            </Row>
+          </TouchableOpacity>
+        </View>
       );
     },
     renderItem = ({ item }) => (
       <Item
         image={item.node.image}
+        tags={item.node.tags}
         title={item.node.title}
         // image={item.node.image.url}
         excerpt={item.node.excerpt}
@@ -91,14 +138,25 @@ export function ArticleList({ route, navigation }) {
     );
   return (
     <SafeAreaView style={{ flex: 1, padding: 10 }}>
-      <FlatList
-        data={results}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.node.id}
-        style={{ padding: 10, marginHorizontal: 10 }}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 20 }}
-      />
+      {isMobile ? (
+        <FlatList
+          data={results}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.node.id}
+          style={{ padding: 10, marginHorizontal: 10 }}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 20 }}
+        />
+      ) : (
+        <FlatList
+          data={results}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.node.id}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 20, marginRight: -10 }}
+          numColumns={3}
+        />
+      )}
     </SafeAreaView>
   );
 }

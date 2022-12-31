@@ -15,7 +15,6 @@ export function ChartRangeSelector() {
   return (
     <View
       style={{
-        ...s.m_vertical,
         flexDirection: "row",
       }}
     >
@@ -26,13 +25,13 @@ export function ChartRangeSelector() {
           borderTopRightRadius: 0,
           borderBottomRightRadius: 0,
           borderColor: colors.border,
-          backgroundColor: colors.card,
+          backgroundColor: colors.background,
         }}
         onPress={() => {
           console.log("1W");
         }}
       >
-        <Text style={{ color: "#777777" }}>1W</Text>
+        <Text style={{ color: colors.text }}>1W</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -47,7 +46,7 @@ export function ChartRangeSelector() {
           console.log("1M");
         }}
       >
-        <Text style={{ color: "#777777" }}>1M</Text>
+        <Text style={{ color: colors.text }}>1M</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -61,7 +60,7 @@ export function ChartRangeSelector() {
           console.log("1Y");
         }}
       >
-        <Text style={{ color: "#777777" }}>1Y</Text>
+        <Text style={{ color: colors.text }}>1Y</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -75,7 +74,7 @@ export function ChartRangeSelector() {
           console.log("All");
         }}
       >
-        <Text style={{ color: "#777777" }}>All</Text>
+        <Text style={{ color: colors.text }}>All</Text>
       </TouchableOpacity>
     </View>
   );

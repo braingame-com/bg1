@@ -26,11 +26,8 @@ let userIsASubscriber = false;
 export function Settings({ route }) {
   const { colors } = useTheme();
   return (
-    <SafeAreaView style={{ ...s.container, flex: 1 }}>
+    <SafeAreaView style={{ ...s.container, flex: 1, ...s.m_top }}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ maxWidth: 330 }}>
-          <ThemeSelector />
-        </View>
         <AccountSettings />
         <Support />
         <Links />

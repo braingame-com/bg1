@@ -17,7 +17,7 @@ export function UpcomingTasks() {
   const { colors } = useTheme();
   const [isChecked, setChecked] = useState(false);
   return (
-    <View>
+    <View style={{ ...s.m_top }}>
       <TouchableOpacity
         style={{
           flexDirection: "row",
@@ -54,24 +54,8 @@ export function UpcomingTasks() {
             borderTopWidth: 0,
           }}
         >
-          Take bins out
+          Take bins out, including recycling!
         </Text>
-        <TouchableOpacity
-          style={{
-            justifyContent: "center",
-            alignItems: "flex-end",
-            flex: 1,
-          }}
-          onPress={() => console.log("delete task")}
-        >
-          <Octicons
-            name="x"
-            size={20}
-            style={{
-              color: colors.border,
-            }}
-          />
-        </TouchableOpacity>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -112,22 +96,6 @@ export function UpcomingTasks() {
         >
           Do some exercise
         </Text>
-        <TouchableOpacity
-          style={{
-            justifyContent: "center",
-            alignItems: "flex-end",
-            flex: 1,
-          }}
-          onPress={() => console.log("delete task")}
-        >
-          <Octicons
-            name="x"
-            size={20}
-            style={{
-              color: colors.border,
-            }}
-          />
-        </TouchableOpacity>
       </TouchableOpacity>
     </View>
   );

@@ -37,6 +37,7 @@ import { Videos } from "./screens/Videos";
 import { Shop } from "./screens/Shop";
 import { Settings } from "./screens/Settings";
 import { useTheme, useNavigation } from "@react-navigation/native";
+// import { useColorScheme } from "react-native-appearance";
 import { BlurView } from "expo-blur";
 import { styles as s } from "./setup/styles";
 import { TabBar } from "./components/TabBar";
@@ -44,15 +45,23 @@ import { TabBar } from "./components/TabBar";
 const screenWidth = Dimensions.get("window").width;
 const isMobile = screenWidth < 769 ? true : false;
 
-if (!isMobile) {
-  document.body.style.backgroundColor = "black";
-  document.querySelector("#root").style.maxWidth = "1265px";
-  document.querySelector("#root").style.margin = "0 auto";
-}
-
 export default function App({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const { colors } = useTheme();
+
+  const userPrefersDark =
+    (window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches) ||
+    useColorScheme() === "dark"
+      ? true
+      : false;
+
+  if (!isMobile) {
+    document.body.style.backgroundColor = userPrefersDark ? "black" : "white";
+    document.querySelector("#root").style.maxWidth = "1265px";
+    document.querySelector("#root").style.margin = "0 auto";
+  }
+
   return (
     <AppProvider>
       <Tab.Navigator
@@ -64,14 +73,14 @@ export default function App({ navigation }) {
           headerMode: "none",
           headerShadowVisible: true,
           headerStyle: {
-            backgroundColor: "black",
+            backgroundColor: userPrefersDark ? "black" : "white",
           },
           headerTitleStyle: {
             marginLeft: isMobile ? 0 : 10,
           },
         }}
       >
-        <Tab.Screen
+        {/*<Tab.Screen
           name="Home "
           component={Home}
           options={({ navigation }) => ({
@@ -97,17 +106,15 @@ export default function App({ navigation }) {
                       "https://cdn.shopify.com/s/files/1/0171/7947/6022/files/polish.jpg?v=1671745772",
                   }}
                   style={{
-                    width: isMobile ? 28 : 38,
-                    height: isMobile ? 28 : 38,
-                    borderColor: "rgb(216, 216, 216)",
-                    borderWidth: 1,
+                    width: 30,
+                    height: 30,
                     borderRadius: 999,
                   }}
                 />
               </TouchableOpacity>
             ),
           })}
-        />
+        />*/}
         <Tab.Screen
           name="Lessons "
           component={Lessons}

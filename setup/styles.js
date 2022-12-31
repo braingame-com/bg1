@@ -6,12 +6,12 @@ const screenWidth = Dimensions.get("window").width;
 const isMobile = screenWidth < 769 ? true : false;
 
 // DESIGN TOKENS //
-const dark = true,
-  // Containers
-  containerBackground = dark ? "#202020" : "#FAFAFA",
-  // Typography
-  fontColorPrimary = dark ? "white" : "black",
-  fontColorSecondary = dark ? "whitesmoke" : "darkslategrey";
+export const tokens = {
+  small: 12,
+  medium: 16,
+  large: 24,
+  xl: 32,
+};
 
 // SUPER CLASSES //
 export const styles = StyleSheet.create({
@@ -27,7 +27,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   card: {
-    margin: 10,
     padding: 20,
     borderRadius: 16,
   },
@@ -40,20 +39,14 @@ export const styles = StyleSheet.create({
   },
   // Typography
   title: {
-    marginBottom: 10,
-    color: fontColorPrimary,
     fontSize: 33,
     fontWeight: "bold",
   },
   heading: {
-    marginBottom: 10,
-    color: fontColorSecondary,
     fontSize: 23,
     fontWeight: "bold",
   },
   subtitle: {
-    marginBottom: 10,
-    color: fontColorSecondary,
     fontSize: 18,
     fontWeight: "bold",
   },
@@ -111,10 +104,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   block_btn: {
-    width: 40,
-    height: 40,
     position: "relative",
-    right: -10,
     alignItems: "center",
     justifyContent: "center",
   },

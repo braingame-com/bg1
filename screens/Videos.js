@@ -48,7 +48,7 @@ export function Videos({ route }) {
   }, []);
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ ...s.heading, color: "white" }}>Videos</Text>
+      <Text style={{ ...s.heading, color: "#777777" }}>Videos</Text>
     </View>
   );
 }

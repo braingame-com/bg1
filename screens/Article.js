@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { styles as s } from "../setup/styles";
+import { styles as s, tokens } from "../setup/styles";
 import {
   GRAPHQL_URL,
   STOREFRONT_ACCESS_TOKEN,
@@ -27,13 +27,21 @@ export function Article({ route }) {
     itemContent,
   } = route.params;
 
-  const { width } = useWindowDimensions(),
-    dark = true,
-    fontColorPrimary = dark ? "white" : "black",
-    fontColorSecondary = dark ? "whitesmoke" : "darkslategrey";
-  // const fontColorPrimary = s.fontColorPrimary;
+  const { width } = useWindowDimensions();
+
+  const tagsStyles = {
+    body: {
+      color: colors.text,
+      fontSize: 16,
+      lineHeight: 24,
+    },
+    a: {
+      color: colors.primary,
+    },
+  };
+
   const source = {
-    html: `<div style="color: ${colors.text}">${itemContent}</div>`,
+    html: `<div>${itemContent}</div>`,
   };
 
   // Get Shopify JSON
@@ -45,6 +53,8 @@ export function Article({ route }) {
         setResults(json.data.articles.edges);
       });
   }, []);
+
+  // console.log(source);
   return (
     <ScrollView
       contentContainerStyle={{
@@ -68,8 +78,14 @@ export function Article({ route }) {
           marginBottom: 10,
         }}
       /> */}
-      <Text style={{ ...s.title, color: colors.text }}>{itemTitle}</Text>
-      <RenderHtml contentWidth={width} source={source} />
+      <Text style={{ ...s.title, color: colors.text, ...s.m_bottom }}>
+        {itemTitle}
+      </Text>
+      <RenderHtml
+        contentWidth={width}
+        source={source}
+        tagsStyles={tagsStyles}
+      />
     </ScrollView>
   );
 }

@@ -4,6 +4,7 @@ export const articleListQuery = () => `
       edges {
         node {
           id
+          tags
           title
           excerpt
         	content
@@ -23,6 +24,7 @@ export const articleListQuery = () => `
         edges {
           node {
             id
+            tags
             title
             excerpt
           	content

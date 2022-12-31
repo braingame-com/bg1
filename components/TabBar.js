@@ -22,8 +22,6 @@ export function TabBar({ state, descriptors, navigation }) {
             height: 64,
             alignItems: "center",
             justifyContent: "center",
-            borderBottomWidth: 1,
-            // borderColor: colors.border,
           }}
         >
           <IconBG

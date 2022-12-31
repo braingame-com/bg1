@@ -21,14 +21,12 @@ export function AffirmationsBlock() {
     >
       <View
         style={{
-          ...s.rounded,
-          backgroundColor: "transparent",
-          borderColor: colors.border,
-          borderWidth: 1,
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "space-between",
           flex: 1,
+          ...s.card,
+          backgroundColor: colors.card,
+          ...s.m_vertical,
         }}
       >
         <View style={{ ...s.row }}>

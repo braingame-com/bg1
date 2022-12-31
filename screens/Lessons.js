@@ -23,13 +23,10 @@ export function Lessons({ route, navigation }) {
   return (
     <Stack.Navigator
       screenOptions={{
-        tabBarStyle: {
-          color: "#777777",
-          borderTopWidth: 0,
-        },
         headerStyle: {
-          backgroundColor: "black",
+          backgroundColor: colors.background,
         },
+        headerShadowVisible: true,
         headerTitleStyle: {
           marginLeft: isMobile ? 0 : 10,
         },

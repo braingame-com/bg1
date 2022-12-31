@@ -6,6 +6,7 @@ import {
   Dimensions,
 } from "react-native";
 import { styles as s } from "../setup/styles";
+import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 import {
   createDrawerNavigator,
@@ -21,12 +22,13 @@ const isMobile = screenWidth < 769 ? true : false;
 const Drawer = createDrawerNavigator();
 
 export function Shop({ route, navigation }) {
+  const { colors } = useTheme();
   return (
     <Drawer.Navigator
       initialRouteName="Home"
       screenOptions={({ navigation }) => ({
         headerStyle: {
-          backgroundColor: "black",
+          backgroundColor: colors.background,
         },
         headerTitleStyle: {
           marginLeft: isMobile ? 0 : 10,

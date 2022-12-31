@@ -23,10 +23,9 @@ export function TasksBlock() {
     >
       <View
         style={{
-          ...s.rounded,
-          backgroundColor: "transparent",
-          borderColor: colors.border,
-          borderWidth: 1,
+          ...s.card,
+          backgroundColor: colors.card,
+          ...s.m_vertical,
           flex: 1,
         }}
       >

@@ -21,7 +21,6 @@ const DesignPrinciples = ({ style }) => {
       <View
         style={{
           flexDirection: isMobile ? "column" : "row",
-          marginHorizontal: -10,
         }}
       >
         <View
