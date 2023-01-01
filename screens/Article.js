@@ -16,6 +16,7 @@ import {
   GRAPHQL_BODY,
 } from "../setup/shopify-sapi";
 import RenderHtml from "react-native-render-html";
+import { Row, Button } from "../components/primitives";
 
 export function Article({ route }) {
   const { colors } = useTheme();
@@ -64,6 +65,30 @@ export function Article({ route }) {
       }}
       showsVerticalScrollIndicator={false}
     >
+      <Row
+        style={{
+          justifyContent: "center",
+          ...s.m_top,
+          paddingBottom: 30,
+          ...s.m_bottom_2,
+          borderBottomWidth: 1,
+          borderColor: colors.border,
+        }}
+      >
+        <Button
+          type="Secondary"
+          text="Watch Video"
+          icon="video"
+          onPress={() => console.log("watch video")}
+        />
+        <Button
+          type="Secondary"
+          text="Download Audio"
+          icon="download"
+          style={{ marginLeft: tokens.medium }}
+          onPress={() => console.log("download audio")}
+        />
+      </Row>
       {/* <Image
         source={{
           uri: itemImage,

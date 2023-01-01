@@ -10,20 +10,21 @@ export function Button({ style, type, text, icon, onPress, contentStyle }) {
   const isDestructive = type === "Destructive" ? true : false;
   const isNaked = type === "Naked" ? true : false;
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity
+      onPress={onPress}
+      hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+    >
       <View
         style={{
           backgroundColor: isPrimary ? "rgba(73, 166, 233, .2)" : colors.card,
           borderColor: isPrimary ? "#49A6E9" : colors.border,
           borderWidth: isNaked ? 0 : 1,
           borderRadius: isNaked ? 0 : 12,
-          ...s.p_all,
-          ...s.p_horizontal_2,
+          padding: isNaked ? 0 : 10,
+          paddingHorizontal: isNaked ? 0 : 20,
           overflow: "hidden",
           ...s.row,
           alignSelf: "flex-start",
-          padding: isNaked && 0,
-          paddingHorizontal: isNaked && 0,
           ...style,
         }}
       >

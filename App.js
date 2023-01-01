@@ -99,6 +99,7 @@ export default function App({ navigation }) {
                   marginRight: isMobile ? 20 : 30,
                 }}
                 onPress={() => navigation.navigate("Profile")}
+                hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
               >
                 <Image
                   source={{
@@ -115,7 +116,7 @@ export default function App({ navigation }) {
             ),
           })}
         />*/}
-        <Tab.Screen
+        {/*<Tab.Screen
           name="Lessons "
           component={Lessons}
           options={{
@@ -128,7 +129,7 @@ export default function App({ navigation }) {
               ),
             headerShown: false,
           }}
-        />
+        />*/}
         <Tab.Screen
           name="Videos"
           component={Videos}

@@ -10,6 +10,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { styles as s } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
+import { LessonCategories } from "../screens/LessonCategories";
 import { ArticleList } from "../screens/ArticleList";
 import { Article } from "../screens/Article";
 
@@ -33,9 +34,33 @@ export function Lessons({ route, navigation }) {
       }}
     >
       <Stack.Screen
+        name="Categories"
+        component={LessonCategories}
+        options={{ headerTitle: "Categories" }}
+      />
+      <Stack.Screen
         name="Lessons"
         component={ArticleList}
-        options={{ headerTitle: "Lessons" }}
+        options={{
+          headerTitle: "Lessons",
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{
+                alignItems: "center",
+                justifyContent: "flex-start",
+                marginLeft: isMobile ? 0 : 20,
+              }}
+              onPress={() => navigation.navigate("Categories")}
+              hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+            >
+              <Octicons
+                name="chevron-left"
+                size={20}
+                style={{ color: "#777777" }}
+              />
+            </TouchableOpacity>
+          ),
+        }}
       />
       <Stack.Screen
         name="Article"
@@ -45,13 +70,12 @@ export function Lessons({ route, navigation }) {
           headerLeft: () => (
             <TouchableOpacity
               style={{
-                ...s.row,
-                ...s.back_btn,
                 alignItems: "center",
                 justifyContent: "flex-start",
                 marginLeft: isMobile ? 0 : 20,
               }}
               onPress={() => navigation.navigate("Lessons")}
+              hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
             >
               <Octicons
                 name="chevron-left"

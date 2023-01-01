@@ -22,8 +22,6 @@ import {
 import { Heading, Text, Small } from "../components/typography";
 import { Row, Button } from "../components/primitives";
 
-console.log(tokens);
-
 const screenWidth = Dimensions.get("window").width;
 const isMobile = screenWidth < 769 ? true : false;
 
@@ -40,7 +38,7 @@ export function ArticleList({ route, navigation }) {
         setResults(json.data.articles.edges);
       });
   }, []);
-  const Item = ({ image, tags, title, excerpt, id, content }) => {
+  const LessonCard = ({ image, tags, title, excerpt, id, content }) => {
       return (
         <View
           style={{
@@ -69,23 +67,42 @@ export function ArticleList({ route, navigation }) {
           >
             <Row
               style={{
-                justifyContent: "space-between",
+                justifyContent:
+                  tags.length === 0 ? "flex-end" : "space-between",
                 alignItems: "flex-start",
               }}
             >
               {tags.map((tag, index) => {
+                console.log(index);
                 return (
-                  <Small
-                    style={{
-                      ...s.pill,
-                      ...s.info,
-                      ...s.m_bottom_2,
-                      alignSelf: "flex-start",
-                    }}
-                    key={index}
-                  >
-                    {tag}
-                  </Small>
+                  <Row key={index} style={{ ...s.centered }}>
+                    <Text
+                      style={{
+                        ...s.pill,
+                        ...s.info,
+                        ...s.m_bottom_2,
+                        alignSelf: "flex-start",
+                      }}
+                      key={index + 1}
+                    >
+                      {tag}
+                    </Text>
+                    <Text
+                      style={{
+                        ...s.pill,
+                        ...s.success,
+                        ...s.m_left,
+                        alignSelf: "flex-start",
+                        ...s.centered,
+                      }}
+                    >
+                      <Octicons
+                        name="check"
+                        size={16}
+                        style={{ ...s.success_text }}
+                      />
+                    </Text>
+                  </Row>
                 );
               })}
               <Button
@@ -126,7 +143,7 @@ export function ArticleList({ route, navigation }) {
       );
     },
     renderItem = ({ item }) => (
-      <Item
+      <LessonCard
         image={item.node.image}
         tags={item.node.tags}
         title={item.node.title}
