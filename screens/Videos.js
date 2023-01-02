@@ -1,54 +1,34 @@
 import { useState, useEffect } from "react";
-import {
-  Text,
-  Image,
-  View,
-  ScrollView,
-  FlatList,
-  useWindowDimensions,
-} from "react-native";
+import { View, ScrollView, FlatList, ActivityIndicator } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { styles as s } from "../setup/styles";
-import {
-  GRAPHQL_URL,
-  STOREFRONT_ACCESS_TOKEN,
-  GRAPHQL_BODY,
-} from "../setup/shopify-sapi";
-import RenderHtml from "react-native-render-html";
-import { Octicons } from "@expo/vector-icons";
+import { styles as s, tokens as t } from "../setup/styles";
+import { Text } from "../components/typography";
+import { isMobile } from "../utilities/isMobile";
+import { RenderVideoCard } from "../utilities/RenderVideoCard";
+import { fetchVideos } from "../utilities/fetch";
 
 export function Videos({ route }) {
   const { colors } = useTheme();
-  // const {
-  //   itemId,
-  //   itemTitle,
-  //   itemImage,
-  //   itemExcerpt,
-  //   itemContent,
-  // } = route.params;
-
-  const { width } = useWindowDimensions(),
-    dark = true,
-    fontColorPrimary = dark ? "white" : "black",
-    fontColorSecondary = dark ? "whitesmoke" : "darkslategrey";
-  // const fontColorPrimary = s.fontColorPrimary;
-  // const source = {
-  //   html: `<div style="color: ${colors.text}">${itemContent}</div>`,
-  // };
-
-  // Get Shopify JSON
-  const [results, setResults] = useState([]);
+  const [data, setData] = useState({ loaded: false, videos: [] });
   useEffect(() => {
-    fetch(GRAPHQL_URL, GRAPHQL_BODY())
-      .then((res) => res.json())
-      .then((json) => {
-        setResults(json.data.articles.edges);
-      });
+    fetchVideos(setData);
   }, []);
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ ...s.heading, color: "#777777" }}>Videos</Text>
+      {data.loaded ? (
+        <FlatList
+          data={data.videos}
+          renderItem={({ item }) => <RenderVideoCard item={item} />}
+          contentContainerStyle={{}}
+          numColumns={isMobile() ? 1 : 3}
+          showsVerticalScrollIndicator={false}
+        />
+      ) : (
+        <ActivityIndicator
+          size={isMobile() ? "small" : "large"}
+          color={colors.primary}
+        />
+      )}
     </View>
   );
 }

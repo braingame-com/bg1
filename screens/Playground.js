@@ -6,8 +6,8 @@ import {
   Title,
   Heading,
   Subtitle,
-  BoldText,
-  SmallText,
+  Bold,
+  Small,
 } from "../components/typography";
 
 const screenWidth = Dimensions.get("window").width;
@@ -70,7 +70,7 @@ const Typography = ({ style }) => {
       <Heading text="Heading" />
       <Subtitle text="Subtitle" />
       <Text style={{ color: colors.text }}>Text</Text>
-      <SmallText text="Small Text" style={{ ...s.m_vertical }} />
+      <Small text="Small Text" style={{ ...s.m_vertical }} />
     </View>
   );
 };
@@ -85,18 +85,18 @@ const Components = ({ style }) => {
         There are 4 main types of button. These are: Primary, Secondary,
         Destructive and Naked.
       </Text>
-      <BoldText text="Primary" style={{ ...s.m_top }} />
+      <Bold text="Primary" style={{ ...s.m_top }} />
       <Button text="Primary" type="Primary" style={{ ...s.m_vertical }} />
       <Text style={{ ...s.m_bottom, color: colors.text }}>
         This is a main button, used only for the primary action that we want a
         user to take, for example, log in or add to cart. It is in our primary
         colors, with a rounded border.
       </Text>
-      <BoldText text="Secondary" style={{ ...s.m_bottom, ...s.m_top }} />
+      <Bold text="Secondary" style={{ ...s.m_bottom, ...s.m_top }} />
       <Text style={{ ...s.m_bottom, color: colors.text }}>Something</Text>
-      <BoldText text="Destructive" style={{ ...s.m_bottom }} />
+      <Bold text="Destructive" style={{ ...s.m_bottom }} />
       <Text style={{ ...s.m_bottom, color: colors.text }}>Something</Text>
-      <BoldText text="Naked" style={{ ...s.m_bottom }} />
+      <Bold text="Naked" style={{ ...s.m_bottom }} />
       <Text style={{ ...s.m_bottom, color: colors.text }}>Something</Text>
       <View style={{ flexDirection: isMobile ? "column" : "row" }}>
         <Button text="Secondary" type="Secondary" style={{ ...s.res_gap }} />

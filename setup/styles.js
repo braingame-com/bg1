@@ -1,12 +1,34 @@
 import { useState, useContext } from "react";
-import { StyleSheet, Dimensions } from "react-native";
-import { useTheme, useThemeUpdate } from "../components/AppProvider";
+import { StyleSheet } from "react-native";
+import { isMobile } from "../utilities/isMobile";
 
-const screenWidth = Dimensions.get("window").width;
-const isMobile = screenWidth < 769 ? true : false;
+// THEMES //
+export const lightTheme = {
+  dark: false,
+  colors: {
+    primary: "#49A6E9",
+    background: "white",
+    card: "rgb(247, 249, 249)",
+    text: "rgb(15, 20, 25)",
+    border: "rgb(239, 243, 244)",
+    notification: "#E4616B",
+  },
+};
+export const darkTheme = {
+  dark: true,
+  colors: {
+    primary: "#49A6E9",
+    background: "black",
+    card: "rgb(22, 24, 28)",
+    text: "rgb(231, 233, 234)",
+    border: "rgb(47, 51, 54)",
+    notification: "#E4616B",
+  },
+};
 
 // DESIGN TOKENS //
 export const tokens = {
+  xs: 8,
   small: 12,
   medium: 16,
   large: 24,
@@ -57,29 +79,29 @@ export const styles = StyleSheet.create({
   },
   // Components
   tabBar: {
-    flexDirection: isMobile ? "row" : "column",
-    position: isMobile ? "relative" : "absolute",
-    height: isMobile ? 79 : "100vh",
-    width: isMobile ? "100%" : 128,
-    borderTopWidth: isMobile ? 1 : 0,
-    borderRightWidth: isMobile ? 0 : 1,
+    flexDirection: isMobile() ? "row" : "column",
+    position: isMobile() ? "relative" : "absolute",
+    height: isMobile() ? 79 : "100vh",
+    width: isMobile() ? "100%" : 128,
+    borderTopWidth: isMobile() ? 1 : 0,
+    borderRightWidth: isMobile() ? 0 : 1,
   },
   tabBarItem: {
     display: "flex",
     alignItems: "center",
-    justifyContent: isMobile ? "flex-start" : "center",
-    flexDirection: isMobile ? "column" : "row",
-    padding: isMobile ? 10 : 20,
+    justifyContent: isMobile() ? "flex-start" : "center",
+    flexDirection: isMobile() ? "column" : "row",
+    padding: isMobile() ? 10 : 20,
     maxHeight: 64,
   },
   tabBarIconWrapper: {
     alignItems: "center",
     height: 20,
-    marginBottom: isMobile ? 5 : 0,
+    marginBottom: isMobile() ? 5 : 0,
   },
   tabBarLabel: {
-    fontSize: isMobile ? 10 : 20,
-    marginLeft: isMobile ? 0 : 20,
+    fontSize: isMobile() ? 10 : 20,
+    marginLeft: isMobile() ? 0 : 20,
   },
   doc_block: {
     marginBottom: 10,
@@ -142,8 +164,8 @@ export const styles = StyleSheet.create({
   },
   // Utilities
   res_gap: {
-    marginTop: isMobile ? 10 : 0,
-    marginLeft: isMobile ? 0 : 10,
+    marginTop: isMobile() ? 10 : 0,
+    marginLeft: isMobile() ? 0 : 10,
   },
   shadow: {
     shadowColor: "#000",
