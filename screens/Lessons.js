@@ -1,39 +1,91 @@
 import { useState, useEffect } from "react";
-import { Text, View, FlatList } from "react-native";
 import {
-  articleQuery,
-  STOREFRONT_ACCESS_TOKEN,
-  GRAPHQL_URL,
-  GRAPHQL_BODY,
-} from "../setup/shopify-sapi";
-import { Item, renderItem } from "../components/Item";
+  Text,
+  View,
+  TouchableOpacity,
+  FlatList,
+  Dimensions,
+} from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { styles as s } from "../setup/styles";
+import { useTheme } from "@react-navigation/native";
+import { Octicons } from "@expo/vector-icons";
+import { LessonCategories } from "../screens/LessonCategories";
+import { ArticleList } from "../screens/ArticleList";
+import { Article } from "../screens/Article";
 
-export function Lessons({ route }) {
-  {
-    /* const { itemId, otherParam } = route.params;
-      return (
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-          <Text>Articles Screen for {itemId}</Text>
-          <Text className="text-xs mt-4">{otherParam}</Text>
-        </View>
-      ); */
-  }
-  // Get Shopify JSON
-  const [results, setResults] = useState([]);
-  useEffect(() => {
-    fetch(GRAPHQL_URL, GRAPHQL_BODY())
-      .then((res) => res.json())
-      .then((json) => {
-        setResults(json.data.articles.edges);
-      });
-  }, []);
+const Stack = createNativeStackNavigator();
+
+const screenWidth = Dimensions.get("window").width;
+const isMobile = screenWidth < 769 ? true : false;
+
+export function Lessons({ route, navigation }) {
+  const { colors } = useTheme();
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <FlatList
-        data={results}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.node.id}
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: colors.background,
+        },
+        headerShadowVisible: true,
+        headerTitleStyle: {
+          marginLeft: isMobile ? 0 : 10,
+        },
+      }}
+    >
+      <Stack.Screen
+        name="Categories"
+        component={LessonCategories}
+        options={{ headerTitle: "Categories" }}
       />
-    </View>
+      <Stack.Screen
+        name="Lessons"
+        component={ArticleList}
+        options={{
+          headerTitle: "Lessons",
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{
+                alignItems: "center",
+                justifyContent: "flex-start",
+                marginLeft: isMobile ? 0 : 20,
+              }}
+              onPress={() => navigation.navigate("Categories")}
+              hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+            >
+              <Octicons
+                name="chevron-left"
+                size={20}
+                style={{ color: "#777777" }}
+              />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Article"
+        component={Article}
+        options={{
+          headerTitle: " ",
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{
+                alignItems: "center",
+                justifyContent: "flex-start",
+                marginLeft: isMobile ? 0 : 20,
+              }}
+              onPress={() => navigation.navigate("Lessons")}
+              hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+            >
+              <Octicons
+                name="chevron-left"
+                size={20}
+                style={{ color: "#777777" }}
+              />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+    </Stack.Navigator>
   );
 }

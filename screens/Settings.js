@@ -1,112 +1,80 @@
-import { useState, useContext } from "react";
 import {
   Text,
   View,
   TouchableOpacity,
   Switch,
+  SafeAreaView,
+  ScrollView,
   useColorScheme,
+  Dimensions,
 } from "react-native";
-import { IconBrainGame, IconCode } from "../utilities/svg-icons";
-import { ThemeContext, useTheme, useThemeUpdate } from "../App";
+import { useThemeUpdate } from "../components/AppProvider";
+import { styles as s } from "../setup/styles";
+import { useTheme } from "@react-navigation/native";
+import { Octicons } from "@expo/vector-icons";
+import { SettingsHeader } from "../components/SettingsHeader";
+import { ThemeSelector } from "../components/ThemeSelector";
+import { AccountSettings } from "../components/AccountSettings";
+import { Support } from "../components/Support";
+import { Links } from "../components/Links";
+
+const screenWidth = Dimensions.get("window").width;
+const isMobile = screenWidth < 769 ? true : false;
+
+let userIsASubscriber = false;
 
 export function Settings({ route }) {
-  let auto = useColorScheme() === "dark" ? true : false;
-  const [isEnabled, setIsEnabled] = useState(darkTheme);
-  const toggleSwitch = useThemeUpdate();
-  let darkTheme = useTheme();
-
-  console.log(darkTheme);
-
-  const setDarkTheme = () => {
-    setIsEnabled(false);
-  };
-  const setLightTheme = () => {
-    setIsEnabled(true);
-  };
-  const setAutoTheme = () => {
-    setIsEnabled(auto);
-  };
-
+  const { colors } = useTheme();
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <View className="pt-4 my-10 items-center">
-        <Text
-          className={darkTheme === true ? "text-white pb-4" : "text-black pb-4"}
-        >
-          Dark Mode
-        </Text>
-        <Switch value={darkTheme} onValueChange={toggleSwitch} />
-      </View>
-      <View className="flex-row">
-        <TouchableOpacity
+    <SafeAreaView style={{ ...s.container, flex: 1, ...s.m_top }}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <AccountSettings />
+        <Support />
+        <Links />
+        <View
           style={{
-            backgroundColor: "dodgerblue",
-            margin: 10,
-            padding: 10,
-            color: "white",
-          }}
-          className="bg-slate-300 py-2 px-4 mt-4 rounded-full"
-          onPress={() => {
-            setDarkTheme();
-            console.log(darkTheme);
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "flex-start",
           }}
         >
-          <Text classname="text-xl">Light</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "dodgerblue",
-            margin: 10,
-            padding: 10,
-            color: "white",
-          }}
-          className="bg-slate-300 py-2 px-4 mt-4 rounded-full"
-          onPress={() => {
-            setLightTheme();
-            console.log(darkTheme);
-          }}
-        >
-          <Text classname="text-xl">Dark</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "dodgerblue",
-            margin: 10,
-            padding: 10,
-            color: "white",
-          }}
-          className="bg-slate-300 py-2 px-4 mt-4 rounded-full"
-          onPress={() => {
-            setAutoTheme();
-            console.log(darkTheme);
-          }}
-        >
-          <Text classname="text-xl">Auto</Text>
-        </TouchableOpacity>
-      </View>
-      <TouchableOpacity
-        style={{
-          backgroundColor: "green",
-          margin: 10,
-          padding: 10,
-          color: "white",
-        }}
-        className="bg-slate-300 py-2 px-4 mt-4 rounded-full"
-        onPress={(theme) => {
-          console.log(darkTheme);
-        }}
-      >
-        <Text classname="text-xl">Console log!</Text>
-      </TouchableOpacity>
-      <View className="flex-row mt-20">
-        <IconBrainGame fill={"rgb(107, 114, 128)"} />
-        <View className="flex-row ml-2">
-          <IconCode fill={"rgb(107, 114, 128)"} />
-          <Text className="text-sm font-semibold text-gray-500 ml-2">
-            v1.1.1
-          </Text>
+          <TouchableOpacity
+            style={{
+              ...s.row,
+              ...s.p_all,
+              ...s.p_horizontal_2,
+              ...s.m_horizontal_2,
+              marginTop: 10,
+              marginBottom: 30,
+              borderRadius: 12,
+              borderColor: "#49A6E9",
+              borderWidth: 1,
+              ...s.info,
+            }}
+            onPress={() => console.log("donate")}
+          >
+            {userIsASubscriber ? (
+              <View style={{ ...s.row }}>
+                <Octicons
+                  name="smiley"
+                  size={20}
+                  style={{ ...s.m_right, ...s.info_text }}
+                />
+                <Text style={{ ...s.info_text }}>View donations</Text>
+              </View>
+            ) : (
+              <View style={{ ...s.row }}>
+                <Octicons
+                  name="code-of-conduct"
+                  size={20}
+                  style={{ ...s.m_right, ...s.info_text }}
+                />
+                <Text style={{ ...s.info_text }}>Donate</Text>
+              </View>
+            )}
+          </TouchableOpacity>
         </View>
-      </View>
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }

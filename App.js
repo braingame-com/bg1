@@ -1,105 +1,173 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
+import { useState, useRef } from "react";
 import {
-  Image,
   Text,
+  Image,
   View,
-  FlatList,
-  Button,
   TouchableOpacity,
-  useColorScheme,
-  Appearance,
   Switch,
+  SafeAreaView,
+  useColorScheme,
+  StyleSheet,
+  Animated,
+  Dimensions,
 } from "react-native";
-import { TailwindProvider } from "tailwindcss-react-native";
-import { styles } from "./setup/styles";
 import {
-  IconBrainGame,
-  IconCode,
-  IconPie,
-  IconBookOpen,
-  IconShoppingBag,
-  IconCog,
-  IconArrowRightSmall,
+  AppProvider,
+  Tab,
+  navigationRef,
+  Navigation,
+} from "./components/AppProvider";
+import { StatusBar } from "expo-status-bar";
+import {
+  IconHome,
+  IconSolidHome,
+  IconBook,
+  IconSolidBook,
+  IconPlay,
+  IconSolidPlay,
+  IconTag,
+  IconSolidTag,
+  IconGear,
+  IconSolidGear,
 } from "./utilities/svg-icons";
-import { Dashboard } from "./screens/Dashboard";
+import { Octicons } from "@expo/vector-icons";
+import { Home } from "./screens/Home";
 import { Lessons } from "./screens/Lessons";
+import { Videos } from "./screens/Videos";
 import { Shop } from "./screens/Shop";
 import { Settings } from "./screens/Settings";
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useTheme, useNavigation } from "@react-navigation/native";
+// import { useColorScheme } from "react-native-appearance";
+import { BlurView } from "expo-blur";
+import { styles as s } from "./setup/styles";
+import { TabBar } from "./components/TabBar";
 
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+const screenWidth = Dimensions.get("window").width;
+const isMobile = screenWidth < 769 ? true : false;
 
-export const ThemeContext = React.createContext();
-export const ThemeUpdateContext = React.createContext();
-export function useTheme() {
-  return useContext(ThemeContext);
-}
-export function useThemeUpdate() {
-  return useContext(ThemeUpdateContext);
-}
+export default function App({ navigation }) {
+  const [modalVisible, setModalVisible] = useState(false);
+  const { colors } = useTheme();
 
-export default function App() {
-  let auto = useColorScheme() === "dark" ? true : false;
-  const [isEnabled, setIsEnabled] = useState(auto);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const userPrefersDark =
+    (window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches) ||
+    useColorScheme() === "dark"
+      ? true
+      : false;
+
+  if (!isMobile) {
+    document.body.style.backgroundColor = userPrefersDark ? "black" : "white";
+    document.querySelector("#root").style.maxWidth = "1265px";
+    document.querySelector("#root").style.margin = "0 auto";
+  }
+
   return (
-    <ThemeContext.Provider value={isEnabled}>
-      <ThemeUpdateContext.Provider value={toggleSwitch}>
-        <NavigationContainer
-          theme={isEnabled === true ? DarkTheme : DefaultTheme}
-        >
-          <TailwindProvider>
-            {/* <Stack.Navigator>
-              <Stack.Screen name="Dashboard" component={Dashboard} />
-              <Stack.Screen name="Lessons" component={Lessons} />
-              </Stack.Navigator> */}
-            <Tab.Navigator>
-              <Tab.Screen
-                name="Dashboard"
-                component={Dashboard}
-                options={{
-                  tabBarLabel: "",
-                  tabBarIcon: () => <IconPie />,
+    <AppProvider>
+      <Tab.Navigator
+        tabBar={(props) => <TabBar {...props} />}
+        sceneContainerStyle={{
+          marginLeft: isMobile ? 0 : 128,
+        }}
+        screenOptions={{
+          headerMode: "none",
+          headerShadowVisible: true,
+          headerStyle: {
+            backgroundColor: userPrefersDark ? "black" : "white",
+          },
+          headerTitleStyle: {
+            marginLeft: isMobile ? 0 : 10,
+          },
+        }}
+      >
+        {/*<Tab.Screen
+          name="Home "
+          component={Home}
+          options={({ navigation }) => ({
+            tabBarLabel: "Home",
+            tabBarIcon: ({ fill, focused }) =>
+              focused ? (
+                <IconSolidHome fill={fill} />
+              ) : (
+                <IconHome fill={fill} />
+              ),
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  ...s.row,
+                  alignItems: "center",
+                  marginRight: isMobile ? 20 : 30,
                 }}
-              />
-              <Tab.Screen
-                name="Lessons"
-                component={Lessons}
-                options={{
-                  tabBarLabel: "",
-                  tabBarIcon: () => <IconBookOpen />,
-                }}
-              />
-              <Tab.Screen
-                name="Shop"
-                component={Shop}
-                options={{
-                  tabBarLabel: "Shop",
-                  tabBarIcon: () => <IconShoppingBag />,
-                  /* tabBarBadge: 3, */
-                }}
-              />
-              <Tab.Screen
-                name="Settings"
-                component={Settings}
-                options={{
-                  tabBarLabel: "settings",
-                  tabBarIcon: () => <IconCog />,
-                  activeTintColor: "rgb(255, 0, 0)",
-                  inactiveTintColor: "rgb(0, 255, 0)",
-                }}
-              />
-            </Tab.Navigator>
-          </TailwindProvider>
-        </NavigationContainer>
-      </ThemeUpdateContext.Provider>
-    </ThemeContext.Provider>
+                onPress={() => navigation.navigate("Profile")}
+                hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+              >
+                <Image
+                  source={{
+                    uri:
+                      "https://cdn.shopify.com/s/files/1/0171/7947/6022/files/polish.jpg?v=1671745772",
+                  }}
+                  style={{
+                    width: 30,
+                    height: 30,
+                    borderRadius: 999,
+                  }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
+        />*/}
+        {/*<Tab.Screen
+          name="Lessons "
+          component={Lessons}
+          options={{
+            tabBarLabel: "Lessons",
+            tabBarIcon: ({ fill, focused }) =>
+              focused ? (
+                <IconSolidBook fill={fill} />
+              ) : (
+                <IconBook fill={fill} />
+              ),
+            headerShown: false,
+          }}
+        />*/}
+        <Tab.Screen
+          name="Videos"
+          component={Videos}
+          options={{
+            tabBarLabel: "Videos",
+            tabBarIcon: ({ fill, focused }) =>
+              focused ? (
+                <IconSolidPlay fill={fill} />
+              ) : (
+                <IconPlay fill={fill} />
+              ),
+          }}
+        />
+        <Tab.Screen
+          name="Shop"
+          component={Shop}
+          options={{
+            tabBarLabel: "Shop",
+            tabBarIcon: ({ fill, focused }) =>
+              focused ? <IconSolidTag fill={fill} /> : <IconTag fill={fill} />,
+            headerShown: false,
+            // tabBarBadge: "3",
+          }}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={Settings}
+          options={{
+            tabBarLabel: "Settings",
+            tabBarIcon: ({ fill, focused }) =>
+              focused ? (
+                <IconSolidGear fill={fill} />
+              ) : (
+                <IconGear fill={fill} />
+              ),
+          }}
+        />
+      </Tab.Navigator>
+    </AppProvider>
   );
 }

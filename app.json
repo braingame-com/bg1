@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "bg1",
+    "name": "BG1",
     "slug": "bg1",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/bg1-icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/bg1-splash-screen.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
@@ -16,16 +16,23 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jordancs.bg1"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/bg1-adaptive-icon.png",
         "backgroundColor": "#000000"
-      }
+      },
+      "package": "com.jordancs.bg1"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/bg1-favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "cf4a0356-3d92-480d-bc09-1ee1b273c811"
+      }
     }
   }
 }
