@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { useThemeUpdate } from "../components/AppProvider";
-import { styles as s } from "../setup/styles";
+import { s } from "../setup/styles";
 import { Octicons } from "@expo/vector-icons";
 
 export function ThemeSelector() {

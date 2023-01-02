@@ -2,7 +2,7 @@ import { TouchableOpacity, View, Dimensions } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { Row } from "../components/primitives";
 import { Text, Subtitle } from "../components/typography";
-import { styles as s } from "../setup/styles";
+import { s } from "../setup/styles";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;

@@ -39,7 +39,7 @@ import { Settings } from "./screens/Settings";
 import { useTheme, useNavigation } from "@react-navigation/native";
 // import { useColorScheme } from "react-native-appearance";
 import { BlurView } from "expo-blur";
-import { styles as s } from "./setup/styles";
+import { s } from "./setup/styles";
 import { TabBar } from "./components/TabBar";
 
 const screenWidth = Dimensions.get("window").width;
@@ -60,6 +60,7 @@ export default function App({ navigation }) {
     document.body.style.backgroundColor = userPrefersDark ? "black" : "white";
     document.querySelector("#root").style.maxWidth = "1265px";
     document.querySelector("#root").style.margin = "0 auto";
+    console.log("mmmmmyeah");
   }
 
   return (
@@ -141,6 +142,7 @@ export default function App({ navigation }) {
               ) : (
                 <IconPlay fill={fill} />
               ),
+            headerShown: false,
           }}
         />
         <Tab.Screen

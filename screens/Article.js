@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { styles as s, tokens } from "../setup/styles";
+import { s, tokens } from "../setup/styles";
 import {
   GRAPHQL_URL,
   STOREFRONT_ACCESS_TOKEN,
@@ -85,7 +85,7 @@ export function Article({ route }) {
           type="Secondary"
           text="Download Audio"
           icon="download"
-          style={{ marginLeft: tokens.medium }}
+          style={{ marginLeft: t.medium }}
           onPress={() => console.log("download audio")}
         />
       </Row>

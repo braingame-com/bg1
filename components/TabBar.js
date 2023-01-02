@@ -1,7 +1,7 @@
 import { useTheme } from "@react-navigation/native";
 import { View, Pressable, Text, Dimensions } from "react-native";
 import { IconBG } from "../utilities/svg-icons";
-import { styles as s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 
 const screenWidth = Dimensions.get("window").width;
 const isMobile = screenWidth < 769 ? true : false;
@@ -44,7 +44,7 @@ export function TabBar({ state, descriptors, navigation }) {
             ? options.title
             : route.name;
         const icon = options.tabBarIcon({
-          fill: isFocused ? "#49A6E9" : "#777777",
+          fill: isFocused ? colors.primary : "#777777",
           focused: isFocused ? true : false,
         });
 
@@ -79,7 +79,7 @@ export function TabBar({ state, descriptors, navigation }) {
             style={{
               ...s.tabBarItem,
               flex: 1,
-              background: isFocused ? "rgba(73, 166, 233, .2)" : "transparent",
+              background: isFocused ? t.primaryFaded : "transparent",
               borderRadius: 16,
               marginHorizontal: isMobile ? 0 : 20,
               marginTop:

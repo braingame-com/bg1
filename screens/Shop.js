@@ -5,7 +5,7 @@ import {
   SafeAreaView,
   Dimensions,
 } from "react-native";
-import { styles as s } from "../setup/styles";
+import { s } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 import {

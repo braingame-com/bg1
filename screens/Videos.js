@@ -1,34 +1,48 @@
-import { useState, useEffect } from "react";
-import { View, ScrollView, FlatList, ActivityIndicator } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import { styles as s, tokens as t } from "../setup/styles";
-import { Text } from "../components/typography";
+import { TouchableOpacity } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { isMobile } from "../utilities/isMobile";
-import { RenderVideoCard } from "../utilities/RenderVideoCard";
-import { fetchVideos } from "../utilities/fetch";
+import { Octicons } from "@expo/vector-icons";
+import { Button } from "../components/primitives";
+import { Text } from "../components/typography";
+import { VideosList } from "./VideosList";
+import { Video } from "./Video";
 
-export function Videos({ route }) {
+const Stack = createNativeStackNavigator();
+
+export function Videos({ route, navigation }) {
   const { colors } = useTheme();
-  const [data, setData] = useState({ loaded: false, videos: [] });
-  useEffect(() => {
-    fetchVideos(setData);
-  }, []);
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      {data.loaded ? (
-        <FlatList
-          data={data.videos}
-          renderItem={({ item }) => <RenderVideoCard item={item} />}
-          contentContainerStyle={{}}
-          numColumns={isMobile() ? 1 : 3}
-          showsVerticalScrollIndicator={false}
-        />
-      ) : (
-        <ActivityIndicator
-          size={isMobile() ? "small" : "large"}
-          color={colors.primary}
-        />
-      )}
-    </View>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: colors.background,
+        },
+        headerShadowVisible: true,
+        headerTitleStyle: {
+          marginLeft: isMobile ? 0 : 10,
+        },
+      }}
+    >
+      <Stack.Screen
+        name="VideosList"
+        component={VideosList}
+        options={{ headerTitle: "Videos" }}
+      />
+      <Stack.Screen
+        name="Video"
+        component={Video}
+        options={{
+          headerTitle: " ",
+          headerLeft: () => (
+            <Button
+              type="Naked"
+              icon="chevron-left"
+              onPress={() => navigation.goBack()}
+            />
+          ),
+        }}
+      />
+    </Stack.Navigator>
   );
 }

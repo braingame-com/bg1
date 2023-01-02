@@ -7,9 +7,9 @@ import {
   Dimensions,
 } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { styles as s } from "../setup/styles";
+import { s } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
-import { Octicons } from "@expo/vector-icons";
+import { Button } from "../components/primitives";
 import { LessonCategories } from "../screens/LessonCategories";
 import { ArticleList } from "../screens/ArticleList";
 import { Article } from "../screens/Article";
@@ -44,21 +44,11 @@ export function Lessons({ route, navigation }) {
         options={{
           headerTitle: "Lessons",
           headerLeft: () => (
-            <TouchableOpacity
-              style={{
-                alignItems: "center",
-                justifyContent: "flex-start",
-                marginLeft: isMobile ? 0 : 20,
-              }}
-              onPress={() => navigation.navigate("Categories")}
-              hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
-            >
-              <Octicons
-                name="chevron-left"
-                size={20}
-                style={{ color: "#777777" }}
-              />
-            </TouchableOpacity>
+            <Button
+              type="Naked"
+              icon="chevron-left"
+              onPress={() => navigation.goBack()}
+            />
           ),
         }}
       />

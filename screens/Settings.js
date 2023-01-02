@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from "react-native";
 import { useThemeUpdate } from "../components/AppProvider";
-import { styles as s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 import { SettingsHeader } from "../components/SettingsHeader";
@@ -28,6 +28,7 @@ export function Settings({ route }) {
   return (
     <SafeAreaView style={{ ...s.container, flex: 1, ...s.m_top }}>
       <ScrollView showsVerticalScrollIndicator={false}>
+        <ThemeSelector />
         <AccountSettings />
         <Support />
         <Links />
@@ -47,7 +48,7 @@ export function Settings({ route }) {
               marginTop: 10,
               marginBottom: 30,
               borderRadius: 12,
-              borderColor: "#49A6E9",
+              borderColor: t.primary,
               borderWidth: 1,
               ...s.info,
             }}

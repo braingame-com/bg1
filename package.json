@@ -18,10 +18,12 @@
     "@shopify/react-native-skia": "0.1.141",
     "@shopify/shopify-api": "^5.0.1",
     "expo": "~46.0.8",
+    "expo-blur": "~11.2.0",
     "expo-checkbox": "~2.2.0",
     "expo-font": "~10.2.0",
     "expo-linear-gradient": "~11.4.0",
     "expo-status-bar": "~1.4.0",
+    "expo-updates": "~0.14.7",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.6",
@@ -33,12 +35,11 @@
     "react-native-screens": "~3.15.0",
     "react-native-svg": "12.3.0",
     "react-native-web": "^0.18.7",
+    "react-native-web-webview": "^1.0.2",
     "react-native-webview": "^11.23.0",
     "react-native-youtube-iframe": "^2.2.2",
     "react-navigation": "^4.4.4",
-    "shopify-buy": "^2.16.1",
-    "expo-blur": "~11.2.0",
-    "expo-updates": "~0.14.7"
+    "shopify-buy": "^2.16.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

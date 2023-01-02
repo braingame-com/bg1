@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { styles as s, tokens } from "../setup/styles";
+import { s, tokens } from "../setup/styles";
 import { IconArrow } from "../utilities/svg-icons";
 import { Octicons } from "@expo/vector-icons";
 import {
@@ -109,7 +109,7 @@ export function ArticleList({ route, navigation }) {
               type="Naked"
               icon="kebab-horizontal"
               onPress={() => console.log(`more options for article id: ${id}`)}
-              contentStyle={{ fontSize: tokens.medium, color: "#777777" }}
+              contentStyle={{ fontSize: t.medium, color: "#777777" }}
             />
           </Row>
           <Heading>{title}</Heading>
@@ -127,13 +127,13 @@ export function ArticleList({ route, navigation }) {
               text={Math.floor(Math.random() * (300 - 0)).toString()}
               icon="thumbsup"
               onPress={() => console.log(`like article id: ${id}`)}
-              contentStyle={{ fontSize: tokens.medium, color: "#777777" }}
+              contentStyle={{ fontSize: t.medium, color: "#777777" }}
             />
             <Button
               type="Naked"
               icon="bookmark"
               onPress={() => console.log(`bookmark article id: ${id}`)}
-              contentStyle={{ fontSize: tokens.medium, color: "#777777" }}
+              contentStyle={{ fontSize: t.medium, color: "#777777" }}
             />
           </Row>
         </TouchableOpacity>

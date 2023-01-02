@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Modal, TextInput } from "react-native";
-import { styles as s } from "../setup/styles";
+import { s } from "../setup/styles";
 import { Octicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import { Button } from "../components/primitives";

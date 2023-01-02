@@ -6,28 +6,39 @@ import { isMobile } from "../utilities/isMobile";
 export const lightTheme = {
   dark: false,
   colors: {
-    primary: "#49A6E9",
+    primary: "rgb(59, 115, 245)",
     background: "white",
     card: "rgb(247, 249, 249)",
     text: "rgb(15, 20, 25)",
     border: "rgb(239, 243, 244)",
-    notification: "#E4616B",
+    notification: "rgb(240, 97, 109)",
   },
 };
 export const darkTheme = {
   dark: true,
   colors: {
-    primary: "#49A6E9",
+    primary: "rgb(59, 115, 245)",
     background: "black",
     card: "rgb(22, 24, 28)",
     text: "rgb(231, 233, 234)",
     border: "rgb(47, 51, 54)",
-    notification: "#E4616B",
+    notification: "rgb(240, 97, 109)",
   },
 };
 
 // DESIGN TOKENS //
-export const tokens = {
+export const t = {
+  //Palette
+  primary: "rgb(59, 115, 245)",
+  primaryFaded: "rgba(59, 115, 245, 0.2)",
+  positive: "rgb(39,173,117)",
+  positiveFaded: "rgba(39,173,117, 0.2)",
+  warn: "rgb(233, 179, 0)",
+  warnFaded: "rgba(233, 179, 0, 0.2)",
+  negative: "rgb(240, 97, 109)",
+  negativeFaded: "rgba(240, 97, 109, 0.2)",
+  grey: "#777777",
+  // Spacing
   xs: 8,
   small: 12,
   medium: 16,
@@ -36,7 +47,7 @@ export const tokens = {
 };
 
 // SUPER CLASSES //
-export const styles = StyleSheet.create({
+export const s = StyleSheet.create({
   // Containers
   container: {
     padding: 10,
@@ -45,6 +56,17 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   centered: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  centeredFlex: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  centeredFlexContainer: {
+    padding: 10,
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -79,29 +101,29 @@ export const styles = StyleSheet.create({
   },
   // Components
   tabBar: {
-    flexDirection: isMobile() ? "row" : "column",
-    position: isMobile() ? "relative" : "absolute",
-    height: isMobile() ? 79 : "100vh",
-    width: isMobile() ? "100%" : 128,
-    borderTopWidth: isMobile() ? 1 : 0,
-    borderRightWidth: isMobile() ? 0 : 1,
+    flexDirection: isMobile ? "row" : "column",
+    position: isMobile ? "relative" : "absolute",
+    height: isMobile ? 79 : "100vh",
+    width: isMobile ? "100%" : 128,
+    borderTopWidth: isMobile ? 1 : 0,
+    borderRightWidth: isMobile ? 0 : 1,
   },
   tabBarItem: {
     display: "flex",
     alignItems: "center",
-    justifyContent: isMobile() ? "flex-start" : "center",
-    flexDirection: isMobile() ? "column" : "row",
-    padding: isMobile() ? 10 : 20,
+    justifyContent: isMobile ? "flex-start" : "center",
+    flexDirection: isMobile ? "column" : "row",
+    padding: isMobile ? 10 : 20,
     maxHeight: 64,
   },
   tabBarIconWrapper: {
     alignItems: "center",
     height: 20,
-    marginBottom: isMobile() ? 5 : 0,
+    marginBottom: isMobile ? 5 : 0,
   },
   tabBarLabel: {
-    fontSize: isMobile() ? 10 : 20,
-    marginLeft: isMobile() ? 0 : 20,
+    fontSize: isMobile ? 10 : 20,
+    marginLeft: isMobile ? 0 : 20,
   },
   doc_block: {
     marginBottom: 10,
@@ -131,7 +153,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   back_btn: {
-    // backgroundColor: "rgba(0,255,0,.1)",
     width: 40,
     height: 40,
     position: "relative",
@@ -162,13 +183,41 @@ export const styles = StyleSheet.create({
     paddingLeft: 50,
     borderRadius: 12,
   },
+  videoThumbnail: {
+    width: 360,
+    height: 202,
+    maxWidth: "100%",
+    borderRadius: t.small,
+  },
+  videoDurationWrapper: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    backgroundColor: "rgba(0,0,0,.8)",
+    alignSelf: "flex-start",
+    margin: t.xs / 1.5,
+    padding: t.xs / 2,
+    borderRadius: t.xs / 2.5,
+  },
+  videoDurationText: {
+    fontSize: t.small,
+    color: "rgb(231, 233, 234)",
+    fontWeight: "bold",
+  },
+  dropdownMenu: {
+    position: "absolute",
+    bottom: t.large,
+    right: t.large,
+    paddingVertical: t.xs,
+    paddingHorizontal: t.medium,
+    borderRadius: t.small,
+  },
   // Utilities
   res_gap: {
-    marginTop: isMobile() ? 10 : 0,
-    marginLeft: isMobile() ? 0 : 10,
+    marginTop: isMobile ? 10 : 0,
+    marginLeft: isMobile ? 0 : 10,
   },
   shadow: {
-    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -181,44 +230,42 @@ export const styles = StyleSheet.create({
     marginVertical: 10,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    backgroundColor: "rgba(128,128,128,.2)",
     borderRadius: 16,
     overflow: "hidden",
   },
   pill: {
     paddingHorizontal: 10,
     paddingVertical: 5,
-    backgroundColor: "rgba(128,128,128,.2)",
     borderRadius: 12,
     overflow: "hidden",
   },
   info: {
-    backgroundColor: "rgba(73, 166, 233, .2)",
-    color: "#49A6E9",
+    backgroundColor: t.primaryFaded,
+    color: t.primary,
   },
   info_text: {
-    color: "#49A6E9",
+    color: t.primary,
   },
   success: {
-    backgroundColor: "rgba(137, 187, 114, .2)",
-    color: "#89BB72",
+    backgroundColor: t.positiveFaded,
+    color: t.positive,
   },
   success_text: {
-    color: "#89BB72",
+    color: t.positive,
   },
   warn: {
-    backgroundColor: "rgba(200, 138, 93, .2)",
-    color: "#C88A5D",
+    backgroundColor: t.warnFaded,
+    color: t.warn,
   },
   warn_text: {
-    color: "#C88A5D",
+    color: t.warn,
   },
   error: {
-    backgroundColor: "rgba(228, 97, 107, .2)",
-    color: "#E4616B",
+    backgroundColor: t.negativeFaded,
+    color: t.negative,
   },
   error_text: {
-    color: "#E4616B",
+    color: t.negative,
   },
   row: {
     flexDirection: "row",

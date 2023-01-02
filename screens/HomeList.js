@@ -12,7 +12,7 @@ import {
   Modal,
   TextInput,
 } from "react-native";
-import { styles as s } from "../setup/styles";
+import { s } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 import { TasksBlock } from "../components/blocks/TasksBlock";

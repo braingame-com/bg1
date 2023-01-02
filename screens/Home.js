@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity, FlatList } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { styles as s } from "../setup/styles";
+import { s } from "../setup/styles";
 import { Octicons } from "@expo/vector-icons";
 import { HomeList } from "../screens/HomeList";
 import { Profile } from "../screens/Profile";
