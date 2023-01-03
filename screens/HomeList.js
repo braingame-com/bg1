@@ -26,7 +26,9 @@ import { isMobile } from "../utilities/helpers";
 
 let userIsLoggedIn = true;
 
-console.log("hello vs code")
+console.log("hello vs code, and hello world!")
+
+console.log("how are you today?")
 
 export function HomeList({ navigation, scroll, setScroll }) {
   const { colors } = useTheme();
