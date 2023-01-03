@@ -4,7 +4,6 @@ import {
   Button,
   Switch,
   SafeAreaView,
-  Dimensions,
 } from "react-native";
 import { s, t } from "../../setup/styles";
 import { useTheme } from "@react-navigation/native";
@@ -13,9 +12,7 @@ import { ChartRangeSelector } from "../../components/ChartRangeSelector";
 import { usePriceHistory } from "@shopify/react-native-skia";
 import { useNavigation } from "@react-navigation/native";
 import { Text } from "../../components/typography";
-
-const screenWidth = Dimensions.get("window").width;
-const isMobile = screenWidth < 769 ? true : false;
+import { isMobile } from "../../utilities/helpers";
 
 export function NumbersBlock() {
   const navigation = useNavigation();
@@ -24,7 +21,7 @@ export function NumbersBlock() {
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate("Numbers Screen")}
-      style={{ flex: 0.7 }}
+      style={{ flex: 0.8 }}
     >
       <View
         style={{
@@ -52,15 +49,15 @@ export function NumbersBlock() {
             <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>To do</Text>
             {/* <Text style={{ ...s.pill, ...s.success, ...s.m_left }}>
             Done &nbsp;
-            <Octicons name="check" size={15} />
+            <Octicons name="check" size={t.medium} />
           </Text> */}
           </View>
           <View style={{ ...s.row }}>
             <View style={s.block_btn}>
-              <Octicons name="filter" size={t.large} color="#777777" />
+              <Octicons name="filter" size={t.large} color={t.grey} />
             </View>
             {/* <View style={s.block_btn}>
-              <Octicons name="chevron-right" size={t.large} color="#777777" />
+              <Octicons name="chevron-right" size={t.large} color={t.grey} />
             </View> */}
           </View>
         </View>
@@ -68,12 +65,12 @@ export function NumbersBlock() {
           style={{
             ...s.m_top,
             ...s.m_bottom_2,
-            height: isMobile ? 230 : 330,
+            height: isMobile ? t.medium ** 2 : t.medium * 24,
             alignItems: "center",
             justifyContent: "center",
             borderWidth: 1,
             borderColor: colors.border,
-            borderRadius: 12,
+            borderRadius: t.small,
           }}
         >
           {/* <LineGraph points={priceHistory} color="#4484B2" /> */}

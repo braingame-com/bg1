@@ -7,7 +7,6 @@ import {
   Image,
   SafeAreaView,
   Animated,
-  Dimensions,
   Modal,
   TextInput,
 } from "react-native";
@@ -22,26 +21,32 @@ import { PlanningBlock } from "../components/blocks/PlanningBlock";
 import { JournalBlock } from "../components/blocks/JournalBlock";
 import { Button, Row } from "../components/primitives";
 import { AccountModal } from "../components/AccountModal";
-import { Text } from "../components/typography";
-
-const screenWidth = Dimensions.get("window").width;
-const isMobile = screenWidth < 769 ? true : false;
+import { Text, Title } from "../components/typography";
+import { isMobile } from "../utilities/helpers";
 
 let userIsLoggedIn = true;
 
-export function HomeList({ navigation }) {
+export function HomeList({ navigation, scroll, setScroll }) {
   const { colors } = useTheme();
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      <Text>scroll is: {scroll.toString()}</Text>
+      <Button
+        type="Primary"
+        text="set scroll to 180"
+        icon="fold-down"
+        onPress={() => setScroll(180)}
+      />
       <ScrollView
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ flex: !isMobile && 1 }}
+        contentContainerStyle={{ flex: !isMobile ? 1 : 0 }}
         style={{ ...s.m_horizontal }}
       >
         {userIsLoggedIn ? (
           <View style={{ ...s.container, flex: 1 }}>
+            <Title style={{ marginVertical: t.xs }}>Home</Title>
             <View
               style={{
                 flexDirection: isMobile ? "column" : "row",
@@ -60,14 +65,6 @@ export function HomeList({ navigation }) {
             >
               <VisualizationBlock />
               <AffirmationsBlock />
-            </View>
-            <View
-              style={{
-                flexDirection: isMobile ? "column" : "row",
-                gap: t.large,
-                flex: 1,
-              }}
-            >
               <PlanningBlock />
               <JournalBlock />
             </View>
@@ -76,9 +73,9 @@ export function HomeList({ navigation }) {
           <View
             style={{
               ...s.centered,
-              height: 330,
-              borderRadius: 16,
-              marginTop: 25,
+              height: t.medium * 20,
+              borderRadius: t.medium,
+              marginTop: t.large,
               ...s.m_horizontal,
             }}
           >

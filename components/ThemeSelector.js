@@ -40,7 +40,7 @@ export function ThemeSelector() {
             console.log("light");
           }}
         >
-          <Octicons name="sun" size={t.large} color="#777777" />
+          <Octicons name="sun" size={t.large} color={t.grey} />
           <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
             Light
           </Text>
@@ -61,7 +61,7 @@ export function ThemeSelector() {
             console.log("dark");
           }}
         >
-          <Octicons name="moon" size={t.large} color="#777777" />
+          <Octicons name="moon" size={t.large} color={t.grey} />
           <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
             Dark
           </Text>

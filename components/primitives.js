@@ -1,7 +1,14 @@
-import { View, TouchableOpacity, Text, Platform } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  Platform,
+  ActivityIndicator as RNActivityIndicator,
+} from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { s, t } from "../setup/styles";
 import { Octicons } from "@expo/vector-icons";
+import { isMobile } from "../utilities/helpers";
 
 export function Button({ style, type, text, icon, onPress, contentStyle }) {
   const { colors } = useTheme();
@@ -25,7 +32,7 @@ export function Button({ style, type, text, icon, onPress, contentStyle }) {
             : "transparent",
           borderColor: isPrimary ? t.primary : colors.border,
           borderWidth: isNaked ? 0 : 1,
-          borderRadius: isNaked ? 0 : 12,
+          borderRadius: isNaked ? 0 : t.small,
           padding: isNaked ? 0 : t.small,
           paddingHorizontal: isNaked ? 0 : t.large,
           overflow: "hidden",
@@ -37,10 +44,11 @@ export function Button({ style, type, text, icon, onPress, contentStyle }) {
         {icon && (
           <Octicons
             name={icon}
-            size={t.large}
             style={{
-              marginRight: text == null || text === "" ? 0 : t.small,
-              color: isPrimary ? t.primary : "#777777",
+              marginRight:
+                text == null || text === "" ? 0 : isNaked ? t.xs : t.small,
+              color: isPrimary ? t.primary : t.grey,
+              fontSize: t.large,
               ...contentStyle,
             }}
           />
@@ -48,6 +56,7 @@ export function Button({ style, type, text, icon, onPress, contentStyle }) {
         <Text
           style={{
             color: isPrimary ? t.primary : colors.text,
+            fontSize: t.medium,
             ...contentStyle,
           }}
         >
@@ -57,6 +66,10 @@ export function Button({ style, type, text, icon, onPress, contentStyle }) {
     </TouchableOpacity>
   );
 }
+
+export const Dot = ({ contentStyle }) => (
+  <Button type="Naked" icon="dot-fill" contentStyle={contentStyle} />
+);
 
 export function Row({ style, children }) {
   return (
@@ -122,3 +135,7 @@ export const VideoDropdownMenu = () => {
     </View>
   );
 };
+
+export const ActivityIndicator = () => (
+  <RNActivityIndicator size={isMobile ? "small" : "large"} />
+);

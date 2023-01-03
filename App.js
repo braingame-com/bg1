@@ -8,7 +8,6 @@ import {
   useColorScheme,
   StyleSheet,
   Animated,
-  Dimensions,
 } from "react-native";
 import {
   AppProvider,
@@ -16,7 +15,6 @@ import {
   navigationRef,
   Navigation,
 } from "./components/AppProvider";
-import { StatusBar } from "expo-status-bar";
 import {
   IconHome,
   IconSolidHome,
@@ -40,49 +38,33 @@ import { BlurView } from "expo-blur";
 import { s, t } from "./setup/styles";
 import { TabBar } from "./components/TabBar";
 import { Text } from "./components/typography";
-
-const screenWidth = Dimensions.get("window").width;
-const isMobile = screenWidth < 769 ? true : false;
+import { isMobile, platform } from "./utilities/helpers";
+import { Header } from "./components/Header";
 
 export default function App({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const { colors } = useTheme();
-
-  const userPrefersDark =
-    (window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches) ||
-    useColorScheme() === "dark"
-      ? true
-      : false;
-
-  if (!isMobile) {
-    document.body.style.backgroundColor = userPrefersDark ? "black" : "white";
-    document.querySelector("#root").style.maxWidth = "1265px";
-    document.querySelector("#root").style.margin = "0 auto";
-    console.log("mmmmmyeah");
-  }
-
+  const [scroll, setScroll] = useState(0);
   return (
     <AppProvider>
       <Tab.Navigator
         tabBar={(props) => <TabBar {...props} />}
         sceneContainerStyle={{
-          marginLeft: isMobile ? 0 : 128,
+          paddingLeft: isMobile ? 0 : 128,
         }}
         screenOptions={{
           headerMode: "none",
           headerShadowVisible: true,
-          headerStyle: {
-            backgroundColor: userPrefersDark ? "black" : "white",
-          },
+          headerStyle: {},
           headerTitleStyle: {
+            fontSize: isMobile ? t.medium : t.large,
             marginLeft: isMobile ? 0 : t.small,
           },
         }}
       >
         <Tab.Screen
-          name="Home "
-          component={Home}
+          name={scroll.toString()}
+          children={() => <Home scroll={scroll} setScroll={setScroll} />}
           options={({ navigation }) => ({
             tabBarLabel: "Home",
             tabBarIcon: ({ fill, focused }) =>
@@ -112,8 +94,8 @@ export default function App({ navigation }) {
                       "https://cdn.shopify.com/s/files/1/0171/7947/6022/files/polish.jpg?v=1671745772",
                   }}
                   style={{
-                    width: 30,
-                    height: 30,
+                    width: isMobile ? t.large : t.xl,
+                    height: isMobile ? t.large : t.xl,
                     borderRadius: 999,
                   }}
                 />

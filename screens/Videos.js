@@ -1,7 +1,7 @@
 import { useTheme } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { isMobile } from "../utilities/isMobile";
+import { isMobile } from "../utilities/helpers";
 import { s, t } from "../setup/styles";
 import { Octicons } from "@expo/vector-icons";
 import { Button } from "../components/primitives";
@@ -21,6 +21,7 @@ export function Videos({ route, navigation }) {
         },
         headerShadowVisible: true,
         headerTitleStyle: {
+          fontSize: isMobile ? t.medium : t.large,
           marginLeft: isMobile ? 0 : t.small,
         },
       }}
@@ -39,7 +40,7 @@ export function Videos({ route, navigation }) {
             <Button
               type="Naked"
               icon="chevron-left"
-              onPress={() => navigation.navigate("Videos")}
+              onPress={() => navigation.navigate("VideosList")}
             />
           ),
         }}

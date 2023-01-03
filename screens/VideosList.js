@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { View, FlatList, ActivityIndicator } from "react-native";
+import { View, FlatList } from "react-native";
 import { s, t } from "../setup/styles";
 import { Text } from "../components/typography";
-import { isMobile } from "../utilities/isMobile";
+import { ActivityIndicator } from "../components/primitives";
+import { isMobile } from "../utilities/helpers";
 import { RenderVideoCard } from "../utilities/RenderVideoCard";
 import { fetchVideos } from "../setup/youtube-api";
 
@@ -23,7 +24,7 @@ export function VideosList({ route, navigation }) {
           showsVerticalScrollIndicator={false}
         />
       ) : (
-        <ActivityIndicator size={isMobile ? "small" : "large"} />
+        <ActivityIndicator />
       )}
     </View>
   );

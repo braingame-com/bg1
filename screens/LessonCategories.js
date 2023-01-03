@@ -1,14 +1,24 @@
-import { TouchableOpacity, View, Dimensions } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { Row } from "../components/primitives";
 import { Text, Subtitle } from "../components/typography";
 import { s, t } from "../setup/styles";
+import { isMobile } from "../utilities/helpers";
 
-const screenWidth = Dimensions.get("window").width;
-const screenHeight = Dimensions.get("window").height;
-const isMobile = screenWidth < 769 ? true : false;
-
-const blocks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const blocks = [
+  "Intro (whitepaper)",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "Other",
+];
 
 export function LessonCategories({ navigation }) {
   const { colors } = useTheme();
@@ -21,13 +31,13 @@ export function LessonCategories({ navigation }) {
         flex: 1,
       }}
     >
-      {blocks.map((index, value) => {
+      {blocks.map((value, index) => {
         value++;
         return (
           <View
             key={index}
             style={{
-              width: "50%",
+              width: isMobile ? "50%" : "25%",
               padding: t.small,
             }}
           >
@@ -36,13 +46,13 @@ export function LessonCategories({ navigation }) {
               style={{
                 ...s.card,
                 backgroundColor: colors.card,
-                height: isMobile ? screenHeight / 8 : "100%",
+                height: isMobile ? 600 / 8 : "100%",
                 ...s.centered,
               }}
               onPress={() => navigation.navigate("Lessons")}
             >
               <Row style={{}}>
-                <Subtitle key={index + 1}>Part {value}</Subtitle>
+                <Subtitle key={index + 1}>{value}</Subtitle>
                 {index === 1 ? (
                   <Text
                     style={{

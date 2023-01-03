@@ -7,7 +7,6 @@ import {
   View,
   ScrollView,
   FlatList,
-  useWindowDimensions,
   KeyboardAvoidingView,
   SafeAreaView,
   Keyboard,
@@ -16,43 +15,16 @@ import {
 import { useTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { s, t } from "../setup/styles";
-import {
-  GRAPHQL_URL,
-  STOREFRONT_ACCESS_TOKEN,
-  GRAPHQL_BODY,
-} from "../setup/shopify-sapi";
 import { Octicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import Checkbox from "expo-checkbox";
 import { Text } from "../components/typography";
 
-export function TestScreen() {
-  // return "Remaining = [" + remaining + "]";
-}
-
 export function TasksScreen({ route }) {
   const { colors } = useTheme();
-  // const {
-  //   itemId,
-  //   itemTitle,
-  //   itemImage,
-  //   itemExcerpt,
-  //   itemContent,
-  // } = route.params;
-
-  const { width } = useWindowDimensions(),
-    dark = true,
-    fontColorPrimary = dark ? "white" : "black",
-    fontColorSecondary = dark ? "whitesmoke" : "darkslategrey";
-  // const fontColorPrimary = s.fontColorPrimary;
-  // const source = {
-  //   html: `<div style="color: ${colors.text}">${itemContent}</div>`,
-  // };
-
   const [task, setTask] = useState();
   const [tasks, setTasks] = useState([]);
   const [remaining, setRemaining] = useState(0);
-
   const onKeyPress = (e) => {
     let key = e.nativeEvent.key;
     if (key == "Enter") {
@@ -66,11 +38,6 @@ export function TasksScreen({ route }) {
     setRemaining(tasks.length + 1);
   };
   const checkTask = (index) => {
-    // let tasksCopy = [...tasks];
-    // tasksCopy.splice(index, 1);
-    // setTasks(tasksCopy);
-    // setRemaining(tasks.length - 1);
-    // this.props.isChecked = "true";
     console.log("check");
   };
   const removeTask = (index) => {
@@ -80,10 +47,6 @@ export function TasksScreen({ route }) {
     setRemaining(tasks.length - 1);
   };
   const showHideChecked = (index) => {
-    // let tasksCopy = [...tasks];
-    // tasksCopy.splice(index, 1);
-    // setTasks(tasksCopy);
-    // setRemaining(tasks.length - 1);
     console.log("show/hide");
   };
   const clearChecked = (index) => {
@@ -91,7 +54,6 @@ export function TasksScreen({ route }) {
     setRemaining(tasks.length);
     console.log("clear");
   };
-
   const Task = (props) => {
     return (
       <View
@@ -113,7 +75,7 @@ export function TasksScreen({ route }) {
             height: 28,
             borderColor: colors.border,
             borderWidth: 1,
-            borderRadius: 12,
+            borderRadius: t.small,
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -204,16 +166,16 @@ export function TasksScreen({ route }) {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "center",
-            borderRadius: 12,
+            borderRadius: t.small,
             padding: t.large,
             borderColor: colors.border,
             borderWidth: 1,
           }}
           onPress={() => showHideChecked()}
         >
-          <Octicons name="eye-closed" size={t.large} color="#777777" />
-          {/* <Octicons name="eye" size={t.large} color="#777777" /> */}
-          {/* <Text style={{ color: "#777777", marginLeft: t.small }}>Hide/Show</Text> */}
+          <Octicons name="eye-closed" size={t.large} color={t.grey} />
+          {/* <Octicons name="eye" size={t.large} color={t.grey} /> */}
+          {/* <Text style={{ color: t.grey, marginLeft: t.small }}>Hide/Show</Text> */}
         </TouchableOpacity>
         <View style={{ flex: 2, marginHorizontal: t.small }}>
           <Text
@@ -235,15 +197,15 @@ export function TasksScreen({ route }) {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "center",
-            borderRadius: 12,
+            borderRadius: t.small,
             padding: t.large,
             borderColor: colors.border,
             borderWidth: 1,
           }}
           onPress={() => clearChecked()}
         >
-          {/* <Text style={{ color: "#777777", marginRight: t.small }}>Clear</Text> */}
-          <Octicons name="x" size={t.large} color="#777777" />
+          {/* <Text style={{ color: t.grey, marginRight: t.small }}>Clear</Text> */}
+          <Octicons name="x" size={t.large} color={t.grey} />
         </TouchableOpacity>
       </View>
       <View
@@ -265,7 +227,7 @@ export function TasksScreen({ route }) {
             paddingVertical: t.large,
             paddingLeft: 60,
             paddingRight: t.large,
-            borderRadius: 12,
+            borderRadius: t.small,
             borderWidth: 0,
             margin: t.small,
             flex: 1,
@@ -289,12 +251,12 @@ export function TasksScreen({ route }) {
             left: t.small,
             // backgroundColor: "rgba(0,0,0,.5)",
             borderWidth: 0,
-            borderRadius: 12,
+            borderRadius: t.small,
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <Octicons name="pencil" size={t.large} color="#777777" />
+          <Octicons name="pencil" size={t.large} color={t.grey} />
         </TouchableOpacity>
       </View>
       {/* <LinearGradient

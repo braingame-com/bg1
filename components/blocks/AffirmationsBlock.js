@@ -41,11 +41,11 @@ export function AffirmationsBlock() {
           <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>To do</Text>
           {/* <Text style={{ ...s.pill, ...s.success, ...s.m_left }}>
             Done &nbsp;
-            <Octicons name="check" size={15} />
+            <Octicons name="check" size={t.medium} />
           </Text> */}
         </View>
         {/* <View style={s.block_btn}>
-          <Octicons name="chevron-right" size={t.large} color="#777777" />
+          <Octicons name="chevron-right" size={t.large} color={t.grey} />
         </View> */}
       </View>
     </TouchableOpacity>

@@ -16,7 +16,7 @@ import { Text } from "../components/typography";
 
 const Stack = createNativeStackNavigator();
 
-export function Home({ route, navigation }) {
+export function Home({ route, navigation, scroll, setScroll }) {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -30,7 +30,7 @@ export function Home({ route, navigation }) {
       />*/}
       <Stack.Screen
         name="Home"
-        component={HomeList}
+        children={() => <HomeList scroll={scroll} setScroll={setScroll} />}
         options={{ headerShown: false }}
       />
       <Stack.Screen
@@ -46,7 +46,7 @@ export function Home({ route, navigation }) {
               <Octicons
                 name="chevron-left"
                 size={t.large}
-                style={{ color: "#777777" }}
+                style={{ color: t.grey }}
               />
             </TouchableOpacity>
           ),
@@ -65,7 +65,7 @@ export function Home({ route, navigation }) {
               <Octicons
                 name="chevron-left"
                 size={t.large}
-                style={{ color: "#777777" }}
+                style={{ color: t.grey }}
               />
             </TouchableOpacity>
           ),
@@ -84,7 +84,7 @@ export function Home({ route, navigation }) {
               <Octicons
                 name="chevron-left"
                 size={t.large}
-                style={{ color: "#777777" }}
+                style={{ color: t.grey }}
               />
             </TouchableOpacity>
           ),
@@ -103,7 +103,7 @@ export function Home({ route, navigation }) {
               <Octicons
                 name="chevron-left"
                 size={t.large}
-                style={{ color: "#777777" }}
+                style={{ color: t.grey }}
               />
             </TouchableOpacity>
           ),
@@ -122,7 +122,7 @@ export function Home({ route, navigation }) {
               <Octicons
                 name="chevron-left"
                 size={t.large}
-                style={{ color: "#777777" }}
+                style={{ color: t.grey }}
               />
             </TouchableOpacity>
           ),
@@ -141,7 +141,7 @@ export function Home({ route, navigation }) {
               <Octicons
                 name="chevron-left"
                 size={t.large}
-                style={{ color: "#777777" }}
+                style={{ color: t.grey }}
               />
             </TouchableOpacity>
           ),
@@ -160,7 +160,7 @@ export function Home({ route, navigation }) {
               <Octicons
                 name="chevron-left"
                 size={t.large}
-                style={{ color: "#777777" }}
+                style={{ color: t.grey }}
               />
             </TouchableOpacity>
           ),

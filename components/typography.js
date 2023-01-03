@@ -33,7 +33,12 @@ export function Bold({ style, children }) {
   const { colors } = useTheme();
   return (
     <RNText
-      style={{ color: colors.text, fontSize: 16, fontWeight: "bold", ...style }}
+      style={{
+        color: colors.text,
+        fontSize: t.medium,
+        fontWeight: "bold",
+        ...style,
+      }}
     >
       {children}
     </RNText>
@@ -43,7 +48,7 @@ export function Bold({ style, children }) {
 export function Text({ style, children }) {
   const { colors } = useTheme();
   return (
-    <RNText style={{ color: colors.text, fontSize: 16, ...style }}>
+    <RNText style={{ color: colors.text, fontSize: t.medium, ...style }}>
       {children}
     </RNText>
   );
@@ -52,7 +57,7 @@ export function Text({ style, children }) {
 export function Small({ style, children }) {
   const { colors } = useTheme();
   return (
-    <RNText style={{ fontSize: 12, color: colors.text, ...style }}>
+    <RNText style={{ fontSize: t.small, color: colors.text, ...style }}>
       {children}
     </RNText>
   );

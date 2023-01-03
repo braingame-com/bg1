@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { View, TouchableOpacity, FlatList, Dimensions } from "react-native";
+import { View, TouchableOpacity, FlatList } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { s, t } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
@@ -9,11 +9,9 @@ import { LessonCategories } from "../screens/LessonCategories";
 import { ArticleList } from "../screens/ArticleList";
 import { Article } from "../screens/Article";
 import { Text } from "../components/typography";
+import { isMobile } from "../utilities/helpers";
 
 const Stack = createNativeStackNavigator();
-
-const screenWidth = Dimensions.get("window").width;
-const isMobile = screenWidth < 769 ? true : false;
 
 export function Lessons({ route, navigation }) {
   const { colors } = useTheme();
@@ -25,6 +23,7 @@ export function Lessons({ route, navigation }) {
         },
         headerShadowVisible: true,
         headerTitleStyle: {
+          fontSize: isMobile ? t.medium : t.large,
           marginLeft: isMobile ? 0 : t.small,
         },
       }}
@@ -71,7 +70,7 @@ export function Lessons({ route, navigation }) {
               <Octicons
                 name="chevron-left"
                 size={t.large}
-                style={{ color: "#777777" }}
+                style={{ color: t.grey }}
               />
             </TouchableOpacity>
           ),

@@ -1,14 +1,14 @@
 import { useState, useContext } from "react";
 import { StyleSheet } from "react-native";
-import { isMobile } from "../utilities/isMobile";
+import { isMobile, platform } from "../utilities/helpers";
 
 // THEMES //
 export const lightTheme = {
   dark: false,
   colors: {
     primary: "rgb(59, 115, 245)",
-    background: "white",
-    card: "rgb(247, 249, 249)",
+    background: "rgb(247, 249, 249)",
+    card: "white",
     text: "rgb(15, 20, 25)",
     border: "rgb(239, 243, 244)",
     notification: "rgb(240, 97, 109)",
@@ -94,16 +94,16 @@ export const s = StyleSheet.create({
     fontSize: t.medium * 1.25,
     fontWeight: "bold",
   },
-  task_mini: {
-    paddingVertical: t.xs,
-    borderTopWidth: 1,
-    borderTopColor: t.grey,
-  },
   // Components
   tabBar: {
     flexDirection: isMobile ? "row" : "column",
     position: isMobile ? "relative" : "absolute",
-    height: isMobile ? t.medium * 5 : "100vh",
+    height:
+      platform === "ios"
+        ? t.medium * 5
+        : platform === "android" || platform === "mobWeb"
+        ? t.medium * 4
+        : "100vh",
     width: isMobile ? "100%" : t.medium * 8,
     borderTopWidth: isMobile ? 1 : 0,
     borderRightWidth: isMobile ? 0 : 1,
@@ -111,7 +111,7 @@ export const s = StyleSheet.create({
   tabBarItem: {
     display: "flex",
     alignItems: "center",
-    justifyContent: isMobile ? "flex-start" : "center",
+    justifyContent: platform === "ios" ? "flex-start" : "center",
     flexDirection: isMobile ? "column" : "row",
     padding: isMobile ? t.small : t.large,
     maxHeight: t.medium * 4,

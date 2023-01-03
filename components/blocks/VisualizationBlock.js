@@ -38,15 +38,10 @@ export function VisualizationBlock() {
           >
             Visualization
           </Text>
-          {/* <Text style={{ ...s.pill, ...s.info, ...s.m_left }}>To do</Text> */}
           <Text style={{ ...s.pill, ...s.success, ...s.m_left_2 }}>
-            Done &nbsp;
-            <Octicons name="check" size={15} />
+            <Octicons name="check" size={t.medium} />
           </Text>
         </View>
-        {/* <View style={s.block_btn}>
-          <Octicons name="chevron-right" size={t.large} color="#777777" />
-        </View> */}
       </View>
     </TouchableOpacity>
   );

@@ -32,7 +32,7 @@ export function LessonsHeader() {
           }}
           onPress={() => console.log("search")}
         >
-          <Octicons name="search" size={t.large} style={{ color: "#777777" }} />
+          <Octicons name="search" size={t.large} style={{ color: t.grey }} />
         </TouchableOpacity> */}
       </View>
     </View>

@@ -1,16 +1,7 @@
 import { useState, useEffect } from "react";
-import {
-  Image,
-  View,
-  ScrollView,
-  FlatList,
-  useWindowDimensions,
-} from "react-native";
+import { View } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { s, t } from "../setup/styles";
-import RenderHtml from "react-native-render-html";
-import { Octicons } from "@expo/vector-icons";
 import { Text } from "../components/typography";
 
 export function VisualizationScreen({ route }) {

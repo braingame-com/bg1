@@ -5,8 +5,6 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
-  Dimensions,
-  ActivityIndicator,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -21,10 +19,8 @@ import {
   GRAPHQL_BODY,
 } from "../setup/shopify-sapi";
 import { Heading, Text, Small } from "../components/typography";
-import { Row, Button } from "../components/primitives";
-
-const screenWidth = Dimensions.get("window").width;
-const isMobile = screenWidth < 769 ? true : false;
+import { Row, Button, ActivityIndicator } from "../components/primitives";
+import { isMobile } from "../utilities/helpers";
 
 const Stack = createNativeStackNavigator();
 
@@ -109,7 +105,7 @@ export function ArticleList({ route, navigation }) {
               type="Naked"
               icon="kebab-horizontal"
               onPress={() => console.log(`more options for article id: ${id}`)}
-              contentStyle={{ fontSize: t.medium, color: "#777777" }}
+              contentStyle={{ fontSize: t.medium, color: t.grey }}
             />
           </Row>
           <Heading>{title}</Heading>
@@ -125,15 +121,15 @@ export function ArticleList({ route, navigation }) {
             <Button
               type="Naked"
               text={Math.floor(Math.random() * (300 - 0)).toString()}
-              icon="thumbsup"
+              icon="heart"
               onPress={() => console.log(`like article id: ${id}`)}
-              contentStyle={{ fontSize: t.medium, color: "#777777" }}
+              contentStyle={{ fontSize: t.medium, color: t.grey }}
             />
             <Button
               type="Naked"
               icon="bookmark"
               onPress={() => console.log(`bookmark article id: ${id}`)}
-              contentStyle={{ fontSize: t.medium, color: "#777777" }}
+              contentStyle={{ fontSize: t.medium, color: t.grey }}
             />
           </Row>
         </TouchableOpacity>
@@ -181,14 +177,7 @@ export function ArticleList({ route, navigation }) {
   };
   return (
     <SafeAreaView style={{ flex: 1, padding: t.small, ...s.centered }}>
-      {loaded ? (
-        <LessonsFlatList />
-      ) : (
-        <ActivityIndicator
-          size={isMobile ? "small" : "large"}
-          color={colors.primary}
-        />
-      )}
+      {loaded ? <LessonsFlatList /> : <ActivityIndicator />}
     </SafeAreaView>
   );
 }

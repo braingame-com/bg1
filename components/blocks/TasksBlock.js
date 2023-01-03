@@ -19,7 +19,7 @@ export function TasksBlock() {
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate("Tasks Screen")}
-      style={{ flex: 0.3 }}
+      style={{ flex: 0.2 }}
     >
       <View
         style={{
@@ -37,31 +37,9 @@ export function TasksBlock() {
           }}
         >
           <View style={{ ...s.row }}>
-            <Text
-              style={{
-                ...s.heading,
-                color: colors.text,
-              }}
-            >
-              Tasks
-            </Text>
-            <Text style={{ ...s.pill, ...s.error, ...s.m_left_2 }}>0 / 3</Text>
-            {/* <Text style={{ ...s.pill, ...s.success, ...s.m_left }}>
-            Done &nbsp;
-            <Octicons name="check" size={15} />
-          </Text> */}
+            <Text style={{ ...s.heading }}>Tasks</Text>
+            <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>5</Text>
           </View>
-          {/* <View style={{ ...s.row }}> */}
-          {/* <Octicons
-            name="plus"
-            size={t.large}
-            color="#777777"
-            style={{ ...s.m_right_2 }}
-          /> */}
-          {/* <View style={s.block_btn}>
-            <Octicons name="chevron-right" size={t.large} color="#777777" />
-          </View> */}
-          {/* </View> */}
         </View>
         <UpcomingTasks />
       </View>
