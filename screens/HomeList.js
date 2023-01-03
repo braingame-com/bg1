@@ -26,6 +26,8 @@ import { isMobile } from "../utilities/helpers";
 
 let userIsLoggedIn = true;
 
+console.log("hello vs code")
+
 export function HomeList({ navigation, scroll, setScroll }) {
   const { colors } = useTheme();
   const [modalVisible, setModalVisible] = useState(false);
