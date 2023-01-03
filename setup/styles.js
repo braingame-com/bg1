@@ -50,7 +50,7 @@ export const t = {
 export const s = StyleSheet.create({
   // Containers
   container: {
-    padding: 10,
+    padding: t.small,
   },
   flex: {
     flex: 1,
@@ -65,46 +65,46 @@ export const s = StyleSheet.create({
     justifyContent: "center",
   },
   centeredFlexContainer: {
-    padding: 10,
+    padding: t.small,
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
   card: {
-    padding: 20,
-    borderRadius: 16,
+    padding: t.large,
+    borderRadius: t.medium,
   },
   modalView: {
-    margin: 20,
-    borderRadius: 16,
-    padding: 40,
+    margin: t.large,
+    borderRadius: t.medium,
+    padding: t.xl,
     alignItems: "center",
     justifyContent: "center",
   },
   // Typography
   title: {
-    fontSize: 33,
+    fontSize: t.xl,
     fontWeight: "bold",
   },
   heading: {
-    fontSize: 23,
+    fontSize: t.large,
     fontWeight: "bold",
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: t.medium * 1.25,
     fontWeight: "bold",
   },
   task_mini: {
-    paddingVertical: 5,
+    paddingVertical: t.xs,
     borderTopWidth: 1,
-    borderTopColor: "#777777",
+    borderTopColor: t.grey,
   },
   // Components
   tabBar: {
     flexDirection: isMobile ? "row" : "column",
     position: isMobile ? "relative" : "absolute",
-    height: isMobile ? 79 : "100vh",
-    width: isMobile ? "100%" : 128,
+    height: isMobile ? t.medium * 5 : "100vh",
+    width: isMobile ? "100%" : t.medium * 8,
     borderTopWidth: isMobile ? 1 : 0,
     borderRightWidth: isMobile ? 0 : 1,
   },
@@ -113,39 +113,24 @@ export const s = StyleSheet.create({
     alignItems: "center",
     justifyContent: isMobile ? "flex-start" : "center",
     flexDirection: isMobile ? "column" : "row",
-    padding: isMobile ? 10 : 20,
-    maxHeight: 64,
+    padding: isMobile ? t.small : t.large,
+    maxHeight: t.medium * 4,
   },
   tabBarIconWrapper: {
     alignItems: "center",
-    height: 20,
-    marginBottom: isMobile ? 5 : 0,
-  },
-  tabBarLabel: {
-    fontSize: isMobile ? 10 : 20,
-    marginLeft: isMobile ? 0 : 20,
+    height: t.large,
   },
   doc_block: {
-    marginBottom: 10,
-    paddingTop: 20,
+    marginBottom: t.small,
+    paddingTop: t.large,
     borderTopWidth: 1,
-  },
-  btn: {
-    overflow: "hidden",
-    fontSize: 15,
-    backgroundColor: "#281640",
-    borderRadius: 12,
-    paddingHorizontal: 15,
-    paddingVertical: 5,
   },
   btn_secondary: {
     overflow: "hidden",
-    fontSize: 20,
     borderWidth: 1,
-    borderColor: "#202020",
-    borderRadius: 12,
-    paddingHorizontal: 15,
-    paddingVertical: 5,
+    borderRadius: t.small,
+    paddingHorizontal: t.medium,
+    paddingVertical: t.xs,
   },
   block_btn: {
     position: "relative",
@@ -153,8 +138,8 @@ export const s = StyleSheet.create({
     justifyContent: "center",
   },
   back_btn: {
-    width: 40,
-    height: 40,
+    width: t.xl,
+    height: t.xl,
     position: "relative",
     alignItems: "center",
     justifyContent: "center",
@@ -166,26 +151,25 @@ export const s = StyleSheet.create({
     flexDirection: "row",
   },
   toggle: {
-    margin: 10,
+    margin: t.small,
   },
   checkbox: {
     margin: 0,
     borderWidth: 1,
-    width: 30,
-    height: 30,
-    padding: 10,
+    width: t.xl,
+    height: t.xl,
+    padding: t.small,
   },
   account_input: {
-    backgroundColor: "rgba(128,128,128,.5)",
     color: "white",
-    width: 230,
-    padding: 20,
-    paddingLeft: 50,
-    borderRadius: 12,
+    width: t.medium ** 2,
+    padding: t.large,
+    paddingLeft: t.medium * 3,
+    borderRadius: t.small,
   },
   videoThumbnail: {
-    width: 360,
-    height: 202,
+    width: 360, // From Youtube
+    height: 202, // From Youtube
     maxWidth: "100%",
     borderRadius: t.small,
   },
@@ -193,7 +177,7 @@ export const s = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     right: 0,
-    backgroundColor: "rgba(0,0,0,.8)",
+    backgroundColor: "rgba(0,0,0,.8)", // Hardcoded because it should ignore theme
     alignSelf: "flex-start",
     margin: t.xs / 1.5,
     padding: t.xs / 2,
@@ -201,7 +185,7 @@ export const s = StyleSheet.create({
   },
   videoDurationText: {
     fontSize: t.small,
-    color: "rgb(231, 233, 234)",
+    color: "rgb(231, 233, 234)", // Hardcoded because it should ignore theme
     fontWeight: "bold",
   },
   dropdownMenu: {
@@ -214,29 +198,20 @@ export const s = StyleSheet.create({
   },
   // Utilities
   res_gap: {
-    marginTop: isMobile ? 10 : 0,
-    marginLeft: isMobile ? 0 : 10,
-  },
-  shadow: {
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+    marginTop: isMobile ? t.small : 0,
+    marginLeft: isMobile ? 0 : t.small,
   },
   rounded: {
-    marginVertical: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 16,
+    marginVertical: t.small,
+    paddingHorizontal: t.large,
+    paddingVertical: t.small,
+    borderRadius: t.medium,
     overflow: "hidden",
   },
   pill: {
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 12,
+    paddingHorizontal: t.small,
+    paddingVertical: t.xs,
+    borderRadius: t.small,
     overflow: "hidden",
   },
   info: {
@@ -271,88 +246,89 @@ export const s = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  // Spacing
   m_top: {
-    marginTop: 10,
+    marginTop: t.small,
   },
   m_top_2: {
-    marginTop: 20,
+    marginTop: t.large,
   },
   m_left: {
-    marginLeft: 10,
+    marginLeft: t.small,
   },
   m_left_2: {
-    marginLeft: 20,
+    marginLeft: t.large,
   },
   m_right: {
-    marginRight: 10,
+    marginRight: t.small,
   },
   m_right_2: {
-    marginRight: 20,
+    marginRight: t.large,
   },
   m_bottom: {
-    marginBottom: 10,
+    marginBottom: t.small,
   },
   m_bottom_2: {
-    marginBottom: 20,
+    marginBottom: t.large,
   },
   m_vertical: {
-    marginVertical: 10,
+    marginVertical: t.small,
   },
   m_vertical_2: {
-    marginVertical: 20,
+    marginVertical: t.large,
   },
   m_horizontal: {
-    marginHorizontal: 10,
+    marginHorizontal: t.small,
   },
   m_horizontal_2: {
-    marginHorizontal: 20,
+    marginHorizontal: t.large,
   },
   m_all: {
-    margin: 10,
+    margin: t.small,
   },
   m_all_2: {
-    margin: 20,
+    margin: t.large,
   },
   p_top: {
-    paddingTop: 10,
+    paddingTop: t.small,
   },
   p_top_2: {
-    paddingTop: 20,
+    paddingTop: t.large,
   },
   p_left: {
-    paddingLeft: 10,
+    paddingLeft: t.small,
   },
   p_left_2: {
-    paddingLeft: 20,
+    paddingLeft: t.large,
   },
   p_right: {
-    paddingRight: 10,
+    paddingRight: t.small,
   },
   p_right_2: {
-    paddingRight: 20,
+    paddingRight: t.large,
   },
   p_bottom: {
-    paddingBottom: 10,
+    paddingBottom: t.small,
   },
   p_bottom_2: {
-    paddingBottom: 20,
+    paddingBottom: t.large,
   },
   p_vertical: {
-    paddingVertical: 10,
+    paddingVertical: t.small,
   },
   p_vertical_2: {
-    paddingVertical: 20,
+    paddingVertical: t.large,
   },
   p_horizontal: {
-    paddingHorizontal: 10,
+    paddingHorizontal: t.small,
   },
   p_horizontal_2: {
-    paddingHorizontal: 20,
+    paddingHorizontal: t.large,
   },
   p_all: {
-    padding: 10,
+    padding: t.small,
   },
   p_all_2: {
-    padding: 20,
+    padding: t.large,
   },
 });

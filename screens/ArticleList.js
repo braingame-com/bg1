@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { s, tokens } from "../setup/styles";
+import { s, t } from "../setup/styles";
 import { IconArrow } from "../utilities/svg-icons";
 import { Octicons } from "@expo/vector-icons";
 import {
@@ -45,7 +45,7 @@ export function ArticleList({ route, navigation }) {
       <View
         style={{
           maxWidth: isMobile ? "100%" : "calc(33% - 20px)",
-          marginHorizontal: isMobile ? 0 : 10,
+          marginHorizontal: isMobile ? 0 : t.small,
           flex: 1,
         }}
       >
@@ -158,9 +158,9 @@ export function ArticleList({ route, navigation }) {
           data={lessons}
           renderItem={renderItem}
           keyExtractor={(item) => item.node.id}
-          style={{ padding: 10, marginHorizontal: 10 }}
+          style={{ padding: t.small, marginHorizontal: t.small }}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 20 }}
+          contentContainerStyle={{ paddingBottom: t.large }}
         />
       );
     } else {
@@ -170,14 +170,17 @@ export function ArticleList({ route, navigation }) {
           renderItem={renderItem}
           keyExtractor={(item) => item.node.id}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 20, marginRight: -10 }}
+          contentContainerStyle={{
+            paddingBottom: t.large,
+            marginRight: -t.small,
+          }}
           numColumns={3}
         />
       );
     }
   };
   return (
-    <SafeAreaView style={{ flex: 1, padding: 10, ...s.centered }}>
+    <SafeAreaView style={{ flex: 1, padding: t.small, ...s.centered }}>
       {loaded ? (
         <LessonsFlatList />
       ) : (

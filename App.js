@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import {
-  Text,
   Image,
   View,
   TouchableOpacity,
@@ -37,10 +36,10 @@ import { Videos } from "./screens/Videos";
 import { Shop } from "./screens/Shop";
 import { Settings } from "./screens/Settings";
 import { useTheme, useNavigation } from "@react-navigation/native";
-// import { useColorScheme } from "react-native-appearance";
 import { BlurView } from "expo-blur";
-import { s } from "./setup/styles";
+import { s, t } from "./setup/styles";
 import { TabBar } from "./components/TabBar";
+import { Text } from "./components/typography";
 
 const screenWidth = Dimensions.get("window").width;
 const isMobile = screenWidth < 769 ? true : false;
@@ -77,11 +76,11 @@ export default function App({ navigation }) {
             backgroundColor: userPrefersDark ? "black" : "white",
           },
           headerTitleStyle: {
-            marginLeft: isMobile ? 0 : 10,
+            marginLeft: isMobile ? 0 : t.small,
           },
         }}
       >
-        {/*<Tab.Screen
+        <Tab.Screen
           name="Home "
           component={Home}
           options={({ navigation }) => ({
@@ -97,10 +96,15 @@ export default function App({ navigation }) {
                 style={{
                   ...s.row,
                   alignItems: "center",
-                  marginRight: isMobile ? 20 : 30,
+                  marginRight: isMobile ? t.large : t.xl,
                 }}
                 onPress={() => navigation.navigate("Profile")}
-                hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+                hitSlop={{
+                  top: t.small,
+                  bottom: t.small,
+                  left: t.small,
+                  right: t.small,
+                }}
               >
                 <Image
                   source={{
@@ -116,8 +120,8 @@ export default function App({ navigation }) {
               </TouchableOpacity>
             ),
           })}
-        />*/}
-        {/*<Tab.Screen
+        />
+        <Tab.Screen
           name="Lessons "
           component={Lessons}
           options={{
@@ -130,7 +134,7 @@ export default function App({ navigation }) {
               ),
             headerShown: false,
           }}
-        />*/}
+        />
         <Tab.Screen
           name="Videos"
           component={Videos}

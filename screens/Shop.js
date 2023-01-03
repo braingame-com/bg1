@@ -1,11 +1,5 @@
-import {
-  Text,
-  TouchableOpacity,
-  View,
-  SafeAreaView,
-  Dimensions,
-} from "react-native";
-import { s } from "../setup/styles";
+import { TouchableOpacity, View, SafeAreaView, Dimensions } from "react-native";
+import { s, t } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 import {
@@ -15,6 +9,7 @@ import {
 } from "@react-navigation/drawer";
 import { Products } from "../screens/Products";
 import { Checkout } from "../screens/Checkout";
+import { Text } from "../components/typography";
 
 const screenWidth = Dimensions.get("window").width;
 const isMobile = screenWidth < 769 ? true : false;
@@ -31,7 +26,7 @@ export function Shop({ route, navigation }) {
           backgroundColor: colors.background,
         },
         headerTitleStyle: {
-          marginLeft: isMobile ? 0 : 10,
+          marginLeft: isMobile ? 0 : t.small,
         },
         drawerPosition: "right",
         // headerShown: false,
@@ -44,8 +39,8 @@ export function Shop({ route, navigation }) {
             style={{
               ...s.row,
               alignItems: "center",
-              paddingVertical: 10,
-              marginRight: isMobile ? 20 : 30,
+              paddingVertical: t.small,
+              marginRight: isMobile ? t.large : t.xl,
             }}
             onPress={() => {
               navigation.toggleDrawer();
@@ -54,7 +49,7 @@ export function Shop({ route, navigation }) {
             <Text style={{ ...s.m_right, color: "#777777" }}>£0.00</Text>
             <Octicons
               name="sidebar-expand"
-              size={20}
+              size={t.large}
               style={{ color: "#777777" }}
             />
           </TouchableOpacity>

@@ -1,5 +1,5 @@
 import { useTheme } from "@react-navigation/native";
-import { View, Pressable, Text, Dimensions } from "react-native";
+import { View, Pressable, Dimensions } from "react-native";
 import { IconBG } from "../utilities/svg-icons";
 import { s, t } from "../setup/styles";
 
@@ -80,22 +80,22 @@ export function TabBar({ state, descriptors, navigation }) {
               ...s.tabBarItem,
               flex: 1,
               background: isFocused ? t.primaryFaded : "transparent",
-              borderRadius: 16,
-              marginHorizontal: isMobile ? 0 : 20,
+              borderRadius: t.medium,
+              marginHorizontal: isMobile ? 0 : t.large,
               marginTop:
                 (label === "Settings") & !isMobile
                   ? "auto"
                   : (label === "Home") & !isMobile
-                  ? 20
+                  ? t.large
                   : 0,
-              marginBottom: (label === "Settings") & !isMobile ? 20 : 0,
+              marginBottom: (label === "Settings") & !isMobile ? t.large : 0,
             }}
             key={index}
           >
             <View
               style={{
                 ...s.tabBarIconWrapper,
-                width: label === "Lessons" ? 24 : 20,
+                width: t.large,
               }}
             >
               {icon}

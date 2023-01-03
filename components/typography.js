@@ -1,6 +1,6 @@
 import { Text as RNText } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import { s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 
 export function Title({ style, children }) {
   const { colors } = useTheme();

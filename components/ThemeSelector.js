@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
 import {
-  Text,
   View,
   TouchableOpacity,
   Switch,
@@ -9,8 +8,9 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { useThemeUpdate } from "../components/AppProvider";
-import { s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 import { Octicons } from "@expo/vector-icons";
+import { Text } from "../components/typography";
 
 export function ThemeSelector() {
   const { colors } = useTheme();
@@ -19,7 +19,9 @@ export function ThemeSelector() {
   const toggleTheme = useThemeUpdate();
   return (
     <View style={{ ...s.container, ...s.m_horizontal }}>
-      <Text style={{ ...s.heading, color: colors.text, paddingBottom: 10 }}>
+      <Text
+        style={{ ...s.heading, color: colors.text, paddingBottom: t.small }}
+      >
         Theme
       </Text>
       <View style={{ flexDirection: "row" }}>
@@ -38,7 +40,7 @@ export function ThemeSelector() {
             console.log("light");
           }}
         >
-          <Octicons name="sun" size={20} color="#777777" />
+          <Octicons name="sun" size={t.large} color="#777777" />
           <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
             Light
           </Text>
@@ -59,7 +61,7 @@ export function ThemeSelector() {
             console.log("dark");
           }}
         >
-          <Octicons name="moon" size={20} color="#777777" />
+          <Octicons name="moon" size={t.large} color="#777777" />
           <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
             Dark
           </Text>

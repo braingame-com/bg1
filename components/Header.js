@@ -3,13 +3,13 @@ export function Header() {
     <Animated.View
       style={{
         ...s.row,
-        height: isMobile ? 49 : 64,
+        height: isMobile ? t.medium * 3 : t.medium * 4,
         alignItems: isMobile ? "flex-end" : "center",
         justifyContent: "space-between",
-        paddingHorizontal: isMobile ? 20 : 30,
+        paddingHorizontal: isMobile ? t.large : t.xl,
         borderBottomColor: isMobile ? borderOpacity : colors.border,
         borderBottomWidth: 1,
-        paddingBottom: isMobile ? 10 : 0,
+        paddingBottom: isMobile ? t.small : 0,
       }}
     >
       {userIsLoggedIn && (

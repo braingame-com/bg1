@@ -1,5 +1,4 @@
 import {
-  Text,
   View,
   TouchableOpacity,
   Button,
@@ -7,9 +6,10 @@ import {
   SafeAreaView,
   useColorScheme,
 } from "react-native";
-import { s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
+import { Text } from "../components/typography";
 
 export function Links() {
   const { colors } = useTheme();
@@ -18,29 +18,29 @@ export function Links() {
       style={{
         ...s.container,
         ...s.m_horizontal,
-        marginTop: -10,
+        marginTop: -t.small,
       }}
     >
-      <Text style={{ ...s.heading, color: colors.text }}>Links</Text>
+      <Text style={{ ...s.heading, color: colors.text, marginBottom: t.small }}>
+        Links
+      </Text>
       <TouchableOpacity>
         <View
           style={{
             flexDirection: "row",
             alignItems: "center",
-            paddingVertical: 5,
           }}
         >
           <Octicons
             name="bug"
-            size={20}
+            size={t.large}
             style={{
-              color: "#777777",
+              color: t.grey,
               ...s.m_right,
-              opacity: 0.5,
-              width: 20,
+              width: t.large,
             }}
           />
-          <Text style={{ ...s.task_mini, color: "#777777" }}>Report a bug</Text>
+          <Text style={{ ...s.task_mini }}>Report a bug</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -48,17 +48,14 @@ export function Links() {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            paddingVertical: 5,
           }}
         >
           <Octicons
             name="organization"
-            size={20}
-            style={{ color: "#777777", ...s.m_right, opacity: 0.5 }}
+            size={t.large}
+            style={{ color: t.grey, ...s.m_right }}
           />
-          <Text style={{ ...s.task_mini, color: "#777777" }}>
-            Legal policies
-          </Text>
+          <Text style={{ ...s.task_mini }}>Legal policies</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -66,22 +63,21 @@ export function Links() {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            paddingVertical: 5,
           }}
         >
           <Octicons
             name="mark-github"
-            size={20}
-            style={{ color: "#777777", ...s.m_right, opacity: 0.5 }}
+            size={t.large}
+            style={{ color: t.grey, ...s.m_right }}
           />
-          <Text style={{ ...s.task_mini, color: "#777777" }}>Github</Text>
+          <Text style={{ ...s.task_mini }}>Github</Text>
           <Octicons
             name="code"
-            color={colors.border}
-            size={20}
-            style={{ marginHorizontal: 10 }}
+            color={t.grey}
+            size={t.large}
+            style={{ marginHorizontal: t.small }}
           />
-          <Text style={{ color: colors.border }}>v1.1.1</Text>
+          <Text style={{ color: t.grey }}>v1.1.1</Text>
         </View>
       </TouchableOpacity>
     </View>

@@ -1,8 +1,9 @@
-import { View, Text, TouchableOpacity, Modal, TextInput } from "react-native";
-import { s } from "../setup/styles";
+import { View, TouchableOpacity, Modal, TextInput } from "react-native";
+import { s, t } from "../setup/styles";
 import { Octicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import { Button } from "../components/primitives";
+import { Text } from "../components/typography";
 
 export function AccountModal({ modalVisible, setModalVisible }) {
   const { colors } = useTheme();
@@ -42,17 +43,18 @@ export function AccountModal({ modalVisible, setModalVisible }) {
             >
               <Octicons
                 name="person"
-                size={20}
+                size={t.large}
                 style={{
                   color: "#fff",
                   position: "absolute",
-                  left: 20,
-                  zIndex: 10,
+                  left: t.large,
+                  zIndex: t.small,
                   opacity: 0.5,
                 }}
               />
               <TextInput
                 style={{
+                  backgroundColor: colors.card,
                   ...s.account_input,
                   ...s.subtitle,
                 }}
@@ -68,17 +70,18 @@ export function AccountModal({ modalVisible, setModalVisible }) {
             >
               <Octicons
                 name="unlock"
-                size={20}
+                size={t.large}
                 style={{
                   color: "#fff",
                   position: "absolute",
-                  left: 20,
-                  zIndex: 10,
+                  left: t.large,
+                  zIndex: t.small,
                   opacity: 0.5,
                 }}
               />
               <TextInput
                 style={{
+                  backgroundColor: colors.card,
                   ...s.account_input,
                   ...s.subtitle,
                 }}
@@ -92,8 +95,8 @@ export function AccountModal({ modalVisible, setModalVisible }) {
             style={{
               color: "white",
               opacity: 0.5,
-              paddingTop: 10,
-              marginTop: 20,
+              paddingTop: t.small,
+              marginTop: t.large,
             }}
           >
             Don't have an account?

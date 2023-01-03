@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import {
-  Text,
   Image,
   View,
   ScrollView,
@@ -9,7 +8,7 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 import {
   GRAPHQL_URL,
   STOREFRONT_ACCESS_TOKEN,
@@ -17,6 +16,7 @@ import {
 } from "../setup/shopify-sapi";
 import RenderHtml from "react-native-render-html";
 import { Octicons } from "@expo/vector-icons";
+import { Text } from "../components/typography";
 
 export function AffirmationsScreen({ route }) {
   const { colors } = useTheme();
@@ -48,9 +48,7 @@ export function AffirmationsScreen({ route }) {
   }, []);
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ ...s.heading, color: "white" }}>
-        Affirmations Screen
-      </Text>
+      <Text style={{ ...s.heading, color: "white" }}>Affirmations Screen</Text>
     </View>
   );
 }

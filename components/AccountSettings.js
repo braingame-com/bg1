@@ -1,5 +1,4 @@
 import {
-  Text,
   View,
   TouchableOpacity,
   Button,
@@ -7,31 +6,31 @@ import {
   SafeAreaView,
   useColorScheme,
 } from "react-native";
-import { s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
+import { Text } from "../components/typography";
 
 export function AccountSettings() {
   const { colors } = useTheme();
   return (
     <View style={{ ...s.container, ...s.m_horizontal }}>
-      <Text style={{ ...s.heading, color: colors.text }}>Account</Text>
+      <Text style={{ ...s.heading, color: colors.text, marginBottom: t.small }}>
+        Account
+      </Text>
       <TouchableOpacity>
         <View
           style={{
             flexDirection: "row",
             alignItems: "center",
-            paddingVertical: 5,
           }}
         >
           <Octicons
             name="bell"
-            size={20}
-            style={{ color: "#777777", ...s.m_right, opacity: 0.5 }}
+            size={t.large}
+            style={{ color: t.grey, ...s.m_right }}
           />
-          <Text style={{ ...s.task_mini, color: "#777777" }}>
-            Manage notifications
-          </Text>
+          <Text style={{ ...s.task_mini }}>Manage notifications</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -39,17 +38,14 @@ export function AccountSettings() {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            paddingVertical: 5,
           }}
         >
           <Octicons
             name="person"
-            size={20}
-            style={{ color: "#777777", ...s.m_right, opacity: 0.5 }}
+            size={t.large}
+            style={{ color: t.grey, ...s.m_right }}
           />
-          <Text style={{ ...s.task_mini, color: "#777777" }}>
-            Change username or email
-          </Text>
+          <Text style={{ ...s.task_mini }}>Change username or email</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -57,17 +53,14 @@ export function AccountSettings() {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            paddingVertical: 5,
           }}
         >
           <Octicons
             name="lock"
-            size={20}
-            style={{ color: "#777777", ...s.m_right, opacity: 0.5 }}
+            size={t.large}
+            style={{ color: t.grey, ...s.m_right }}
           />
-          <Text style={{ ...s.task_mini, color: "#777777" }}>
-            Change password
-          </Text>
+          <Text style={{ ...s.task_mini }}>Change password</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -75,33 +68,15 @@ export function AccountSettings() {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            paddingVertical: 5,
-          }}
-        >
-          <Octicons
-            name="credit-card"
-            size={20}
-            style={{ color: "#777777", ...s.m_right, opacity: 0.5 }}
-          />
-          <Text style={{ ...s.task_mini, color: "#777777" }}>
-            Payment methods
-          </Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            paddingVertical: 5,
+            opacity: 0.5,
           }}
         >
           <Octicons
             name="trash"
-            size={20}
-            style={{ ...s.error_text, ...s.m_right, opacity: 0.5 }}
+            size={t.large}
+            style={{ ...s.error_text, ...s.m_right }}
           />
-          <Text style={{ ...s.error_text, ...s.task_mini, opacity: 0.5 }}>
+          <Text style={{ ...s.error_text, ...s.task_mini }}>
             Delete account
           </Text>
         </View>

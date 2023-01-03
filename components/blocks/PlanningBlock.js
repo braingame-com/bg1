@@ -1,15 +1,15 @@
 import {
-  Text,
   View,
   Button,
   Switch,
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-import { s } from "../../setup/styles";
+import { s, t } from "../../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { Text } from "../../components/typography";
 
 export function PlanningBlock() {
   const navigation = useNavigation();
@@ -38,14 +38,14 @@ export function PlanningBlock() {
           >
             Planning
           </Text>
-          <Text style={{ ...s.pill, ...s.info, ...s.m_left_2 }}>To do</Text>
+          <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>To do</Text>
           {/* <Text style={{ ...s.pill, ...s.success, ...s.m_left }}>
             Done &nbsp;
             <Octicons name="check" size={15} />
           </Text> */}
         </View>
         {/* <View style={s.block_btn}>
-          <Octicons name="chevron-right" size={20} color="#777777" />
+          <Octicons name="chevron-right" size={t.large} color="#777777" />
         </View> */}
       </View>
     </TouchableOpacity>

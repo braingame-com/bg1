@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import {
-  Text,
   Image,
   View,
   ScrollView,
@@ -9,7 +8,8 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { s, tokens } from "../setup/styles";
+import { Octicons } from "@expo/vector-icons";
+import { s, t } from "../setup/styles";
 import {
   GRAPHQL_URL,
   STOREFRONT_ACCESS_TOKEN,
@@ -17,6 +17,7 @@ import {
 } from "../setup/shopify-sapi";
 import RenderHtml from "react-native-render-html";
 import { Row, Button } from "../components/primitives";
+import { Text } from "../components/typography";
 
 export function Article({ route }) {
   const { colors } = useTheme();
@@ -59,7 +60,7 @@ export function Article({ route }) {
   return (
     <ScrollView
       contentContainerStyle={{
-        padding: 20,
+        padding: t.large,
         maxWidth: 600,
         marginHorizontal: "auto",
       }}
@@ -98,9 +99,9 @@ export function Article({ route }) {
           height: 330,
           borderColor: colors.border,
           borderWidth: 0,
-          marginTop: -20,
+          marginTop: -t.large,
           marginHorizontal: "-10%",
-          marginBottom: 10,
+          marginBottom: t.small,
         }}
       /> */}
       <Text style={{ ...s.title, color: colors.text, ...s.m_bottom }}>

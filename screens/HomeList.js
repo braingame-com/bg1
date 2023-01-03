@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import {
-  Text,
   View,
   ScrollView,
   Switch,
@@ -12,7 +11,7 @@ import {
   Modal,
   TextInput,
 } from "react-native";
-import { s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 import { TasksBlock } from "../components/blocks/TasksBlock";
@@ -23,6 +22,7 @@ import { PlanningBlock } from "../components/blocks/PlanningBlock";
 import { JournalBlock } from "../components/blocks/JournalBlock";
 import { Button, Row } from "../components/primitives";
 import { AccountModal } from "../components/AccountModal";
+import { Text } from "../components/typography";
 
 const screenWidth = Dimensions.get("window").width;
 const isMobile = screenWidth < 769 ? true : false;
@@ -45,7 +45,7 @@ export function HomeList({ navigation }) {
             <View
               style={{
                 flexDirection: isMobile ? "column" : "row",
-                gap: 20,
+                gap: t.large,
               }}
             >
               <NumbersBlock />
@@ -54,7 +54,7 @@ export function HomeList({ navigation }) {
             <View
               style={{
                 flexDirection: isMobile ? "column" : "row",
-                gap: 20,
+                gap: t.large,
                 flex: 1,
               }}
             >
@@ -64,7 +64,7 @@ export function HomeList({ navigation }) {
             <View
               style={{
                 flexDirection: isMobile ? "column" : "row",
-                gap: 20,
+                gap: t.large,
                 flex: 1,
               }}
             >

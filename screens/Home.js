@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Text, View, TouchableOpacity, FlatList } from "react-native";
+import { View, TouchableOpacity, FlatList } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 import { Octicons } from "@expo/vector-icons";
 import { HomeList } from "../screens/HomeList";
 import { Profile } from "../screens/Profile";
@@ -12,6 +12,7 @@ import { NumbersScreen } from "../screens/NumbersScreen";
 import { PlanningScreen } from "../screens/PlanningScreen";
 import { JournalScreen } from "../screens/JournalScreen";
 import { Playground } from "../screens/Playground";
+import { Text } from "../components/typography";
 
 const Stack = createNativeStackNavigator();
 
@@ -39,12 +40,12 @@ export function Home({ route, navigation }) {
           headerTitle: "Numbers",
           headerLeft: () => (
             <TouchableOpacity
-              style={{ ...s.back_btn, padding: 10 }}
+              style={{ ...s.back_btn, padding: t.small }}
               onPress={() => navigation.navigate("Home")}
             >
               <Octicons
                 name="chevron-left"
-                size={20}
+                size={t.large}
                 style={{ color: "#777777" }}
               />
             </TouchableOpacity>
@@ -58,12 +59,12 @@ export function Home({ route, navigation }) {
           headerTitle: "Tasks",
           headerLeft: () => (
             <TouchableOpacity
-              style={{ ...s.back_btn, padding: 10 }}
+              style={{ ...s.back_btn, padding: t.small }}
               onPress={() => navigation.navigate("Home")}
             >
               <Octicons
                 name="chevron-left"
-                size={20}
+                size={t.large}
                 style={{ color: "#777777" }}
               />
             </TouchableOpacity>
@@ -77,12 +78,12 @@ export function Home({ route, navigation }) {
           headerTitle: "Visualization",
           headerLeft: () => (
             <TouchableOpacity
-              style={{ ...s.back_btn, padding: 10 }}
+              style={{ ...s.back_btn, padding: t.small }}
               onPress={() => navigation.navigate("Home")}
             >
               <Octicons
                 name="chevron-left"
-                size={20}
+                size={t.large}
                 style={{ color: "#777777" }}
               />
             </TouchableOpacity>
@@ -96,12 +97,12 @@ export function Home({ route, navigation }) {
           headerTitle: "Affirmations",
           headerLeft: () => (
             <TouchableOpacity
-              style={{ ...s.back_btn, padding: 10 }}
+              style={{ ...s.back_btn, padding: t.small }}
               onPress={() => navigation.navigate("Home")}
             >
               <Octicons
                 name="chevron-left"
-                size={20}
+                size={t.large}
                 style={{ color: "#777777" }}
               />
             </TouchableOpacity>
@@ -115,12 +116,12 @@ export function Home({ route, navigation }) {
           headerTitle: "Planning",
           headerLeft: () => (
             <TouchableOpacity
-              style={{ ...s.back_btn, padding: 10 }}
+              style={{ ...s.back_btn, padding: t.small }}
               onPress={() => navigation.navigate("Home")}
             >
               <Octicons
                 name="chevron-left"
-                size={20}
+                size={t.large}
                 style={{ color: "#777777" }}
               />
             </TouchableOpacity>
@@ -134,12 +135,12 @@ export function Home({ route, navigation }) {
           headerTitle: "Journal",
           headerLeft: () => (
             <TouchableOpacity
-              style={{ ...s.back_btn, padding: 10 }}
+              style={{ ...s.back_btn, padding: t.small }}
               onPress={() => navigation.navigate("Home")}
             >
               <Octicons
                 name="chevron-left"
-                size={20}
+                size={t.large}
                 style={{ color: "#777777" }}
               />
             </TouchableOpacity>
@@ -153,12 +154,12 @@ export function Home({ route, navigation }) {
           headerTitle: "Profile",
           headerLeft: () => (
             <TouchableOpacity
-              style={{ ...s.back_btn, padding: 10 }}
+              style={{ ...s.back_btn, padding: t.small }}
               onPress={() => navigation.navigate("Home")}
             >
               <Octicons
                 name="chevron-left"
-                size={20}
+                size={t.large}
                 style={{ color: "#777777" }}
               />
             </TouchableOpacity>

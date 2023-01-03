@@ -1,5 +1,4 @@
 import {
-  Text,
   View,
   TouchableOpacity,
   Button,
@@ -7,12 +6,13 @@ import {
   SafeAreaView,
   Dimensions,
 } from "react-native";
-import { s } from "../../setup/styles";
+import { s, t } from "../../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 import { ChartRangeSelector } from "../../components/ChartRangeSelector";
 import { usePriceHistory } from "@shopify/react-native-skia";
 import { useNavigation } from "@react-navigation/native";
+import { Text } from "../../components/typography";
 
 const screenWidth = Dimensions.get("window").width;
 const isMobile = screenWidth < 769 ? true : false;
@@ -24,7 +24,7 @@ export function NumbersBlock() {
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate("Numbers Screen")}
-      style={{ flex: 0.8 }}
+      style={{ flex: 0.7 }}
     >
       <View
         style={{
@@ -49,7 +49,7 @@ export function NumbersBlock() {
             >
               Numbers
             </Text>
-            <Text style={{ ...s.pill, ...s.info, ...s.m_left_2 }}>To do</Text>
+            <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>To do</Text>
             {/* <Text style={{ ...s.pill, ...s.success, ...s.m_left }}>
             Done &nbsp;
             <Octicons name="check" size={15} />
@@ -57,10 +57,10 @@ export function NumbersBlock() {
           </View>
           <View style={{ ...s.row }}>
             <View style={s.block_btn}>
-              <Octicons name="filter" size={20} color="#777777" />
+              <Octicons name="filter" size={t.large} color="#777777" />
             </View>
             {/* <View style={s.block_btn}>
-              <Octicons name="chevron-right" size={20} color="#777777" />
+              <Octicons name="chevron-right" size={t.large} color="#777777" />
             </View> */}
           </View>
         </View>

@@ -1,12 +1,13 @@
-import { View, Text, ScrollView, Dimensions } from "react-native";
+import { View, ScrollView, Dimensions } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import { s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 import { Row, Button, Divider } from "../components/primitives";
 import {
   Title,
   Heading,
   Subtitle,
   Bold,
+  Text,
   Small,
 } from "../components/typography";
 

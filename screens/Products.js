@@ -1,13 +1,8 @@
-import {
-  Text,
-  Button,
-  View,
-  TouchableOpacity,
-  SafeAreaView,
-} from "react-native";
+import { Button, View, TouchableOpacity, SafeAreaView } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import { s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 import { Octicons } from "@expo/vector-icons";
+import { Text } from "../components/typography";
 
 export function Products({ navigation }) {
   const { colors } = useTheme();

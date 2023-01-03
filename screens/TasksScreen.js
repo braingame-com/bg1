@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import {
-  Text,
   Image,
   Button,
   TouchableOpacity,
@@ -16,7 +15,7 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 import {
   GRAPHQL_URL,
   STOREFRONT_ACCESS_TOKEN,
@@ -25,6 +24,7 @@ import {
 import { Octicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import Checkbox from "expo-checkbox";
+import { Text } from "../components/typography";
 
 export function TestScreen() {
   // return "Remaining = [" + remaining + "]";
@@ -98,9 +98,9 @@ export function TasksScreen({ route }) {
         style={{
           borderBottomWidth: 1,
           borderColor: colors.border,
-          paddingVertical: 10,
+          paddingVertical: t.small,
           paddingHorizontal: 0,
-          marginHorizontal: 10,
+          marginHorizontal: t.small,
           overflow: "hidden",
           flexDirection: "row",
           alignItems: "center",
@@ -121,7 +121,7 @@ export function TasksScreen({ route }) {
         >
           <Octicons
             name="check"
-            size={20}
+            size={t.large}
             style={{
               ...s.success_text,
               // opacity: props.isChecked === "true" ? 1 : 0,
@@ -134,7 +134,7 @@ export function TasksScreen({ route }) {
             ...s.subtitle,
             marginVertical: 0,
             flex: 1,
-            marginHorizontal: 20,
+            marginHorizontal: t.large,
           }}
         >
           {props.text}
@@ -147,13 +147,13 @@ export function TasksScreen({ route }) {
             alignItems: "flex-end",
             opacity: 0.5,
             position: "relative",
-            marginVertical: 10,
+            marginVertical: t.small,
           }}
           onPress={() => removeTask(props.index)}
         >
           <Octicons
             name="x"
-            size={20}
+            size={t.large}
             style={{ color: colors.text, opacity: 0.5 }}
           />
         </TouchableOpacity>
@@ -164,9 +164,9 @@ export function TasksScreen({ route }) {
         /> */}
         {/* <TouchableOpacity
           style={{
-            marginLeft: 20,
-            height: 20,
-            width: 20,
+            marginLeft: t.large,
+            height: t.large,
+            width: t.large,
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -174,7 +174,7 @@ export function TasksScreen({ route }) {
         >
           <Octicons
             name="x-circle"
-            size={20}
+            size={t.large}
             style={{ ...s.error_text, opacity: 0.33 }}
           />
         </TouchableOpacity> */}
@@ -184,15 +184,15 @@ export function TasksScreen({ route }) {
   return (
     <View
       style={{
-        paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingHorizontal: t.large,
+        paddingVertical: t.small,
         paddingBottom: 140,
       }}
     >
       <View
         style={{
-          paddingHorizontal: 10,
-          paddingVertical: 20,
+          paddingHorizontal: t.small,
+          paddingVertical: t.large,
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
@@ -205,17 +205,17 @@ export function TasksScreen({ route }) {
             alignItems: "center",
             justifyContent: "center",
             borderRadius: 12,
-            padding: 20,
+            padding: t.large,
             borderColor: colors.border,
             borderWidth: 1,
           }}
           onPress={() => showHideChecked()}
         >
-          <Octicons name="eye-closed" size={20} color="#777777" />
-          {/* <Octicons name="eye" size={20} color="#777777" /> */}
-          {/* <Text style={{ color: "#777777", marginLeft: 10 }}>Hide/Show</Text> */}
+          <Octicons name="eye-closed" size={t.large} color="#777777" />
+          {/* <Octicons name="eye" size={t.large} color="#777777" /> */}
+          {/* <Text style={{ color: "#777777", marginLeft: t.small }}>Hide/Show</Text> */}
         </TouchableOpacity>
-        <View style={{ flex: 2, marginHorizontal: 20 }}>
+        <View style={{ flex: 2, marginHorizontal: t.small }}>
           <Text
             style={{
               ...s.pill,
@@ -236,14 +236,14 @@ export function TasksScreen({ route }) {
             alignItems: "center",
             justifyContent: "center",
             borderRadius: 12,
-            padding: 20,
+            padding: t.large,
             borderColor: colors.border,
             borderWidth: 1,
           }}
           onPress={() => clearChecked()}
         >
-          {/* <Text style={{ color: "#777777", marginRight: 10 }}>Clear</Text> */}
-          <Octicons name="x" size={20} color="#777777" />
+          {/* <Text style={{ color: "#777777", marginRight: t.small }}>Clear</Text> */}
+          <Octicons name="x" size={t.large} color="#777777" />
         </TouchableOpacity>
       </View>
       <View
@@ -253,7 +253,7 @@ export function TasksScreen({ route }) {
           // shadowColor: "#fff",
           // shadowOffset: { width: 0, height: 0 },
           // shadowOpacity: 1,
-          // shadowRadius: 10,
+          // shadowRadius: t.small,
           zIndex: 999,
           overflow: "hidden",
         }}
@@ -262,12 +262,12 @@ export function TasksScreen({ route }) {
           placeholder="Add a new task"
           style={{
             backgroundColor: colors.card,
-            paddingVertical: 20,
+            paddingVertical: t.large,
             paddingLeft: 60,
-            paddingRight: 20,
+            paddingRight: t.large,
             borderRadius: 12,
             borderWidth: 0,
-            margin: 10,
+            margin: t.small,
             flex: 1,
             color: "white",
             ...s.heading_secondary,
@@ -284,9 +284,9 @@ export function TasksScreen({ route }) {
           style={{
             width: 45,
             height: 45,
-            margin: 10,
+            margin: t.small,
             position: "absolute",
-            left: 10,
+            left: t.small,
             // backgroundColor: "rgba(0,0,0,.5)",
             borderWidth: 0,
             borderRadius: 12,
@@ -294,7 +294,7 @@ export function TasksScreen({ route }) {
             justifyContent: "center",
           }}
         >
-          <Octicons name="pencil" size={20} color="#777777" />
+          <Octicons name="pencil" size={t.large} color="#777777" />
         </TouchableOpacity>
       </View>
       {/* <LinearGradient
@@ -302,7 +302,7 @@ export function TasksScreen({ route }) {
         colors={[colors.background, colors.background, "rgba(0,0,0,0)"]}
         style={{
           height: 40,
-          marginTop: -10,
+          marginTop: -t.small,
           marginbottom: -40,
           width: "100%",
           zIndex: 100,
@@ -310,8 +310,8 @@ export function TasksScreen({ route }) {
       ></LinearGradient> */}
       <View
         style={{
-          marginTop: 20,
-          marginHorizontal: 10,
+          marginTop: t.large,
+          marginHorizontal: t.small,
           borderColor: colors.border,
           borderTopWidth: 1,
         }}

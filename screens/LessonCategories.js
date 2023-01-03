@@ -2,7 +2,7 @@ import { TouchableOpacity, View, Dimensions } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { Row } from "../components/primitives";
 import { Text, Subtitle } from "../components/typography";
-import { s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -17,7 +17,7 @@ export function LessonCategories({ navigation }) {
       style={{
         flexDirection: "row",
         flexWrap: "wrap",
-        padding: 10,
+        padding: t.small,
         flex: 1,
       }}
     >
@@ -28,7 +28,7 @@ export function LessonCategories({ navigation }) {
             key={index}
             style={{
               width: "50%",
-              padding: 10,
+              padding: t.small,
             }}
           >
             <TouchableOpacity
@@ -36,7 +36,7 @@ export function LessonCategories({ navigation }) {
               style={{
                 ...s.card,
                 backgroundColor: colors.card,
-                height: isMobile ? screenHeight / 5 - 60 : "100%",
+                height: isMobile ? screenHeight / 8 : "100%",
                 ...s.centered,
               }}
               onPress={() => navigation.navigate("Lessons")}
@@ -59,7 +59,7 @@ export function LessonCategories({ navigation }) {
                   <Text
                     style={{
                       ...s.pill,
-                      ...s.info,
+                      ...s.warn,
                       ...s.m_left,
                       alignSelf: "flex-start",
                     }}
@@ -71,7 +71,7 @@ export function LessonCategories({ navigation }) {
                   <Text
                     style={{
                       ...s.pill,
-                      ...s.warn,
+                      ...s.error,
                       ...s.m_left,
                       alignSelf: "flex-start",
                     }}

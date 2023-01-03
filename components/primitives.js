@@ -12,7 +12,7 @@ export function Button({ style, type, text, icon, onPress, contentStyle }) {
   return (
     <TouchableOpacity
       onPress={onPress}
-      hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+      hitSlop={{ top: t.small, bottom: t.small, left: t.small, right: t.small }}
     >
       <View
         style={{
@@ -26,8 +26,8 @@ export function Button({ style, type, text, icon, onPress, contentStyle }) {
           borderColor: isPrimary ? t.primary : colors.border,
           borderWidth: isNaked ? 0 : 1,
           borderRadius: isNaked ? 0 : 12,
-          padding: isNaked ? 0 : 10,
-          paddingHorizontal: isNaked ? 0 : 20,
+          padding: isNaked ? 0 : t.small,
+          paddingHorizontal: isNaked ? 0 : t.large,
           overflow: "hidden",
           ...s.row,
           alignSelf: "flex-start",
@@ -37,9 +37,9 @@ export function Button({ style, type, text, icon, onPress, contentStyle }) {
         {icon && (
           <Octicons
             name={icon}
-            size={20}
+            size={t.large}
             style={{
-              marginRight: text == null || text === "" ? 0 : 10,
+              marginRight: text == null || text === "" ? 0 : t.small,
               color: isPrimary ? t.primary : "#777777",
               ...contentStyle,
             }}

@@ -1,18 +1,14 @@
 import { useState, useEffect } from "react";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  FlatList,
-  Dimensions,
-} from "react-native";
+import { View, TouchableOpacity, FlatList, Dimensions } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
+import { Octicons } from "@expo/vector-icons";
 import { Button } from "../components/primitives";
 import { LessonCategories } from "../screens/LessonCategories";
 import { ArticleList } from "../screens/ArticleList";
 import { Article } from "../screens/Article";
+import { Text } from "../components/typography";
 
 const Stack = createNativeStackNavigator();
 
@@ -29,7 +25,7 @@ export function Lessons({ route, navigation }) {
         },
         headerShadowVisible: true,
         headerTitleStyle: {
-          marginLeft: isMobile ? 0 : 10,
+          marginLeft: isMobile ? 0 : t.small,
         },
       }}
     >
@@ -47,7 +43,7 @@ export function Lessons({ route, navigation }) {
             <Button
               type="Naked"
               icon="chevron-left"
-              onPress={() => navigation.goBack()}
+              onPress={() => navigation.navigate("Categories")}
             />
           ),
         }}
@@ -62,14 +58,19 @@ export function Lessons({ route, navigation }) {
               style={{
                 alignItems: "center",
                 justifyContent: "flex-start",
-                marginLeft: isMobile ? 0 : 20,
+                marginLeft: isMobile ? 0 : t.large,
               }}
               onPress={() => navigation.navigate("Lessons")}
-              hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+              hitSlop={{
+                top: t.small,
+                bottom: t.small,
+                left: t.small,
+                right: t.small,
+              }}
             >
               <Octicons
                 name="chevron-left"
-                size={20}
+                size={t.large}
                 style={{ color: "#777777" }}
               />
             </TouchableOpacity>

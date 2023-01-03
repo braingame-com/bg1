@@ -1,5 +1,4 @@
 import {
-  Text,
   View,
   TouchableOpacity,
   Button,
@@ -7,9 +6,10 @@ import {
   SafeAreaView,
   useColorScheme,
 } from "react-native";
-import { s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
+import { Text } from "../components/typography";
 
 export function Support() {
   const { colors } = useTheme();
@@ -18,26 +18,25 @@ export function Support() {
       style={{
         ...s.container,
         ...s.m_horizontal,
-        marginTop: -10,
+        marginTop: -t.small,
       }}
     >
-      <Text style={{ ...s.heading, color: colors.text }}>Support</Text>
+      <Text style={{ ...s.heading, color: colors.text, marginBottom: t.small }}>
+        Support
+      </Text>
       <TouchableOpacity>
         <View
           style={{
             flexDirection: "row",
             alignItems: "center",
-            paddingVertical: 5,
           }}
         >
           <Octicons
             name="question"
-            size={20}
-            style={{ color: "#777777", ...s.m_right, opacity: 0.5 }}
+            size={t.large}
+            style={{ color: t.grey, ...s.m_right }}
           />
-          <Text style={{ ...s.task_mini, color: "#777777" }}>
-            How do I use this app?
-          </Text>
+          <Text style={{ ...s.task_mini }}>How do I use this app?</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -45,15 +44,14 @@ export function Support() {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            paddingVertical: 5,
           }}
         >
           <Octicons
             name="comment"
-            size={20}
-            style={{ color: "#777777", ...s.m_right, opacity: 0.5 }}
+            size={t.large}
+            style={{ color: t.grey, ...s.m_right }}
           />
-          <Text style={{ ...s.task_mini, color: "#777777" }}>Contact us</Text>
+          <Text style={{ ...s.task_mini }}>Contact us</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -61,22 +59,19 @@ export function Support() {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            paddingVertical: 5,
           }}
         >
           <Octicons
             name="file"
-            size={20}
+            size={t.large}
             style={{
-              color: "#777777",
+              color: t.grey,
               ...s.m_right,
-              opacity: 0.5,
-              width: 20,
+
+              width: t.large,
             }}
           />
-          <Text style={{ ...s.task_mini, color: "#777777" }}>
-            Documentation
-          </Text>
+          <Text style={{ ...s.task_mini }}>Documentation</Text>
         </View>
       </TouchableOpacity>
     </View>

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  Text,
   View,
   TouchableOpacity,
   Switch,
@@ -10,9 +9,10 @@ import {
   Pressable,
   TextInput,
 } from "react-native";
-import { s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
+import { Text } from "../components/typography";
 
 export function SettingsHeader() {
   const { colors } = useTheme();
@@ -26,7 +26,9 @@ export function SettingsHeader() {
           justifyContent: "space-between",
         }}
       >
-        <Text style={{ ...s.title, color: colors.text, marginBottom: -10 }}>
+        <Text
+          style={{ ...s.title, color: colors.text, marginBottom: -t.small }}
+        >
           Settings
         </Text>
       </View>

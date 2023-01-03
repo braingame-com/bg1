@@ -1,15 +1,15 @@
 import {
-  Text,
   View,
   Button,
   Switch,
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-import { s } from "../../setup/styles";
+import { s, t } from "../../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { Text } from "../../components/typography";
 
 export function VisualizationBlock() {
   const navigation = useNavigation();
@@ -45,7 +45,7 @@ export function VisualizationBlock() {
           </Text>
         </View>
         {/* <View style={s.block_btn}>
-          <Octicons name="chevron-right" size={20} color="#777777" />
+          <Octicons name="chevron-right" size={t.large} color="#777777" />
         </View> */}
       </View>
     </TouchableOpacity>

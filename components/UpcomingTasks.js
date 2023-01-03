@@ -1,17 +1,17 @@
 import { useState } from "react";
 import {
-  Text,
   View,
   TouchableOpacity,
   Switch,
   SafeAreaView,
   useColorScheme,
 } from "react-native";
-import { s } from "../setup/styles";
+import { s, t } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { IconBG, IconCode } from "../utilities/svg-icons";
 import { Octicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox";
+import { Text } from "../components/typography";
 
 export function UpcomingTasks() {
   const { colors } = useTheme();
@@ -27,8 +27,8 @@ export function UpcomingTasks() {
       >
         <TouchableOpacity
           style={{
-            width: 20,
-            height: 20,
+            width: t.large,
+            height: t.large,
             borderColor: colors.border,
             borderWidth: 1,
             borderRadius: 12,
@@ -67,8 +67,8 @@ export function UpcomingTasks() {
       >
         <TouchableOpacity
           style={{
-            width: 20,
-            height: 20,
+            width: t.large,
+            height: t.large,
             borderColor: colors.border,
             borderWidth: 1,
             borderRadius: 12,
@@ -80,7 +80,7 @@ export function UpcomingTasks() {
         >
           <Octicons
             name="check"
-            size={20}
+            size={t.large}
             style={{
               ...s.success_text,
               opacity: 0,
