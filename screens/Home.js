@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { View, TouchableOpacity, FlatList } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { s, t } from "../setup/styles";
 import { Octicons } from "@expo/vector-icons";
@@ -11,12 +10,10 @@ import { AffirmationsScreen } from "../screens/AffirmationsScreen";
 import { NumbersScreen } from "../screens/NumbersScreen";
 import { PlanningScreen } from "../screens/PlanningScreen";
 import { JournalScreen } from "../screens/JournalScreen";
-import { Playground } from "../screens/Playground";
-import { Text } from "../components/typography";
 
 const Stack = createNativeStackNavigator();
 
-export function Home({ route, navigation, scroll, setScroll }) {
+export function Home({ navigation, scroll, setScroll }) {
   return (
     <Stack.Navigator
       screenOptions={{

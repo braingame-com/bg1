@@ -1,30 +1,14 @@
 import { useState, useEffect } from "react";
-import {
-  View,
-  FlatList,
-  Image,
-  TouchableOpacity,
-  SafeAreaView,
-} from "react-native";
+import { View, FlatList, TouchableOpacity, SafeAreaView } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { s, t } from "../setup/styles";
-import { IconArrow } from "../utilities/svg-icons";
 import { Octicons } from "@expo/vector-icons";
-import {
-  articleListQuery,
-  articleQuery,
-  STOREFRONT_ACCESS_TOKEN,
-  GRAPHQL_URL,
-  GRAPHQL_BODY,
-} from "../setup/shopify-sapi";
-import { Heading, Text, Small } from "../components/typography";
+import { GRAPHQL_URL, GRAPHQL_BODY } from "../setup/shopify-sapi";
+import { Heading, Text } from "../components/typography";
 import { Row, Button, ActivityIndicator } from "../components/primitives";
 import { isMobile } from "../utilities/helpers";
 
-const Stack = createNativeStackNavigator();
-
-export function ArticleList({ route, navigation }) {
+export function ArticleList({ navigation }) {
   const { colors } = useTheme();
   const [loaded, setLoaded] = useState(false);
   const [lessons, setLessons] = useState([]);
@@ -118,13 +102,23 @@ export function ArticleList({ route, navigation }) {
               alignItems: "flex-end",
             }}
           >
-            <Button
-              type="Naked"
-              text={Math.floor(Math.random() * (300 - 0)).toString()}
-              icon="heart"
-              onPress={() => console.log(`like article id: ${id}`)}
-              contentStyle={{ fontSize: t.medium, color: t.grey }}
-            />
+            <Row>
+              <Button
+                type="Naked"
+                text={Math.floor(Math.random() * (300 - 0)).toString()}
+                icon="heart"
+                onPress={() => console.log(`like article id: ${id}`)}
+                contentStyle={{ fontSize: t.medium, color: t.grey }}
+              />
+              <Button
+                type="Naked"
+                text={Math.floor(Math.random() * (300 - 0)).toString()}
+                icon="heart"
+                onPress={() => console.log(`like article id: ${id}`)}
+                style={{ marginLeft: t.xl }}
+                contentStyle={{ fontSize: t.medium, color: t.grey }}
+              />
+            </Row>
             <Button
               type="Naked"
               icon="bookmark"

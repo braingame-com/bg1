@@ -1,10 +1,9 @@
-import { Text } from "../components/typography";
 import { Row, Button } from "../components/primitives";
 import { s, t } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import { View, Alert, TouchableOpacity, Platform } from "react-native";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { View, Alert, Platform } from "react-native";
 import YoutubePlayer, { getYoutubeMeta } from "react-native-youtube-iframe";
 
 export function Video({ route }) {
@@ -23,10 +22,6 @@ export function Video({ route }) {
       setPlaying(false);
       Alert.alert("video has finished playing!");
     }
-  }, []);
-
-  const togglePlaying = useCallback(() => {
-    setPlaying((prev) => !prev);
   }, []);
 
   const containerRef = useRef();

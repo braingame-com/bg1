@@ -1,18 +1,7 @@
-import { useRef, useState } from "react";
-import {
-  View,
-  ScrollView,
-  Switch,
-  TouchableOpacity,
-  Image,
-  SafeAreaView,
-  Animated,
-  Modal,
-  TextInput,
-} from "react-native";
+import { useState } from "react";
+import { View, ScrollView, SafeAreaView } from "react-native";
 import { s, t } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
-import { Octicons } from "@expo/vector-icons";
 import { TasksBlock } from "../components/blocks/TasksBlock";
 import { VisualizationBlock } from "../components/blocks/VisualizationBlock";
 import { AffirmationsBlock } from "../components/blocks/AffirmationsBlock";
@@ -26,11 +15,9 @@ import { isMobile } from "../utilities/helpers";
 
 let userIsLoggedIn = true;
 
-console.log("hello vs code, and hello world!")
+console.log;
 
-console.log("how are you today?")
-
-export function HomeList({ navigation, scroll, setScroll }) {
+export function HomeList({ scroll, setScroll }) {
   const { colors } = useTheme();
   const [modalVisible, setModalVisible] = useState(false);
   return (

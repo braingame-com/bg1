@@ -42,7 +42,9 @@
     "shopify-buy": "^2.16.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "eslint": "^8.31.0",
+    "eslint-plugin-react": "^7.31.11"
   },
   "private": true
 }
