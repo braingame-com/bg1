@@ -1,19 +1,16 @@
-import { useState, useEffect } from "react";
-import { View, TouchableOpacity, FlatList } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { s, t } from "../setup/styles";
+import { t } from "../setup/styles";
 import { useTheme } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 import { Button } from "../components/primitives";
-import { LessonCategories } from "../screens/LessonCategories";
 import { ArticleList } from "../screens/ArticleList";
 import { Article } from "../screens/Article";
-import { Text } from "../components/typography";
 import { isMobile } from "../utilities/helpers";
 
 const Stack = createNativeStackNavigator();
 
-export function Lessons({ route, navigation }) {
+export function Lessons({ navigation }) {
   const { colors } = useTheme();
   return (
     <Stack.Navigator
@@ -28,11 +25,6 @@ export function Lessons({ route, navigation }) {
         },
       }}
     >
-      <Stack.Screen
-        name="Categories"
-        component={LessonCategories}
-        options={{ headerTitle: "Categories" }}
-      />
       <Stack.Screen
         name="Lessons"
         component={ArticleList}

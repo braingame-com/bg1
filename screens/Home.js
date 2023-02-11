@@ -1,44 +1,48 @@
-import { TouchableOpacity } from "react-native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { s, t } from "../setup/styles";
-import { Octicons } from "@expo/vector-icons";
-import { HomeList } from "../screens/HomeList";
-import { Profile } from "../screens/Profile";
-import { TasksScreen } from "../screens/TasksScreen";
-import { VisualizationScreen } from "../screens/VisualizationScreen";
-import { AffirmationsScreen } from "../screens/AffirmationsScreen";
-import { NumbersScreen } from "../screens/NumbersScreen";
-import { PlanningScreen } from "../screens/PlanningScreen";
-import { JournalScreen } from "../screens/JournalScreen";
+import { TouchableOpacity } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { s, t } from '../setup/styles';
+import { Octicons } from '@expo/vector-icons';
+import { AccountFlow } from '../screens/AccountFlow';
+import { HomeList } from '../screens/HomeList';
+import { Profile } from '../screens/Profile';
+import { TasksScreen } from '../screens/TasksScreen';
+import { VisualizationScreen } from '../screens/VisualizationScreen';
+import { AffirmationsScreen } from '../screens/AffirmationsScreen';
+import { NumbersScreen } from '../screens/NumbersScreen';
+import { PlanningScreen } from '../screens/PlanningScreen';
+import { JournalScreen } from '../screens/JournalScreen';
+// import { Playground } from '../screens/Playground';
 
 const Stack = createNativeStackNavigator();
 
-export function Home({ navigation, scroll, setScroll }) {
+const userIsLoggedIn = false;
+
+export function Home({ navigation }) {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShadowVisible: false,
       }}
     >
-      {/*<Stack.Screen
+      {/* <Stack.Screen
         name="Playground"
         component={Playground}
         options={{ headerShown: false }}
-      />*/}
+      /> */}
       <Stack.Screen
         name="Home"
-        children={() => <HomeList scroll={scroll} setScroll={setScroll} />}
+        component={userIsLoggedIn ? HomeList : AccountFlow}
         options={{ headerShown: false }}
       />
       <Stack.Screen
         name="Numbers Screen"
         component={NumbersScreen}
         options={{
-          headerTitle: "Numbers",
+          headerTitle: 'Numbers',
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: t.small }}
-              onPress={() => navigation.navigate("Home")}
+              onPress={() => navigation.navigate('Home')}
             >
               <Octicons
                 name="chevron-left"
@@ -53,11 +57,11 @@ export function Home({ navigation, scroll, setScroll }) {
         name="Tasks Screen"
         component={TasksScreen}
         options={{
-          headerTitle: "Tasks",
+          headerTitle: 'Tasks',
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: t.small }}
-              onPress={() => navigation.navigate("Home")}
+              onPress={() => navigation.navigate('Home')}
             >
               <Octicons
                 name="chevron-left"
@@ -72,11 +76,11 @@ export function Home({ navigation, scroll, setScroll }) {
         name="Visualization Screen"
         component={VisualizationScreen}
         options={{
-          headerTitle: "Visualization",
+          headerTitle: 'Visualization',
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: t.small }}
-              onPress={() => navigation.navigate("Home")}
+              onPress={() => navigation.navigate('Home')}
             >
               <Octicons
                 name="chevron-left"
@@ -91,11 +95,11 @@ export function Home({ navigation, scroll, setScroll }) {
         name="Affirmations Screen"
         component={AffirmationsScreen}
         options={{
-          headerTitle: "Affirmations",
+          headerTitle: 'Affirmations',
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: t.small }}
-              onPress={() => navigation.navigate("Home")}
+              onPress={() => navigation.navigate('Home')}
             >
               <Octicons
                 name="chevron-left"
@@ -110,11 +114,11 @@ export function Home({ navigation, scroll, setScroll }) {
         name="Planning Screen"
         component={PlanningScreen}
         options={{
-          headerTitle: "Planning",
+          headerTitle: 'Planning',
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: t.small }}
-              onPress={() => navigation.navigate("Home")}
+              onPress={() => navigation.navigate('Home')}
             >
               <Octicons
                 name="chevron-left"
@@ -129,11 +133,11 @@ export function Home({ navigation, scroll, setScroll }) {
         name="Journal Screen"
         component={JournalScreen}
         options={{
-          headerTitle: "Journal",
+          headerTitle: 'Journal',
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: t.small }}
-              onPress={() => navigation.navigate("Home")}
+              onPress={() => navigation.navigate('Home')}
             >
               <Octicons
                 name="chevron-left"
@@ -148,11 +152,11 @@ export function Home({ navigation, scroll, setScroll }) {
         name="Profile"
         component={Profile}
         options={{
-          headerTitle: "Profile",
+          headerTitle: 'Profile',
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: t.small }}
-              onPress={() => navigation.navigate("Home")}
+              onPress={() => navigation.navigate('Home')}
             >
               <Octicons
                 name="chevron-left"

@@ -1,43 +1,42 @@
-import { useState, useContext } from "react";
-import { StyleSheet } from "react-native";
-import { isMobile, platform } from "../utilities/helpers";
+import { StyleSheet } from 'react-native';
+import { isMobile, platform } from '../utilities/helpers';
 
 // THEMES //
 export const lightTheme = {
   dark: false,
   colors: {
-    primary: "rgb(59, 115, 245)",
-    background: "rgb(247, 249, 249)",
-    card: "white",
-    text: "rgb(15, 20, 25)",
-    border: "rgb(239, 243, 244)",
-    notification: "rgb(240, 97, 109)",
+    primary: 'rgb(59, 115, 245)',
+    background: 'rgb(247, 249, 249)',
+    card: 'white',
+    text: 'rgb(15, 20, 25)',
+    border: 'rgb(239, 243, 244)',
+    notification: 'rgb(240, 97, 109)',
   },
 };
 export const darkTheme = {
   dark: true,
   colors: {
-    primary: "rgb(59, 115, 245)",
-    background: "black",
-    card: "rgb(22, 24, 28)",
-    text: "rgb(231, 233, 234)",
-    border: "rgb(47, 51, 54)",
-    notification: "rgb(240, 97, 109)",
+    primary: 'rgb(59, 115, 245)',
+    background: 'black',
+    card: 'rgb(22, 24, 28)',
+    text: 'rgb(231, 233, 234)',
+    border: 'rgb(47, 51, 54)',
+    notification: 'rgb(240, 97, 109)',
   },
 };
 
 // DESIGN TOKENS //
 export const t = {
   //Palette
-  primary: "rgb(59, 115, 245)",
-  primaryFaded: "rgba(59, 115, 245, 0.2)",
-  positive: "rgb(39,173,117)",
-  positiveFaded: "rgba(39,173,117, 0.2)",
-  warn: "rgb(233, 179, 0)",
-  warnFaded: "rgba(233, 179, 0, 0.2)",
-  negative: "rgb(240, 97, 109)",
-  negativeFaded: "rgba(240, 97, 109, 0.2)",
-  grey: "#777777",
+  primary: 'rgb(59, 115, 245)',
+  primaryFaded: 'rgba(59, 115, 245, 0.2)',
+  positive: 'rgb(39,173,117)',
+  positiveFaded: 'rgba(39,173,117, 0.2)',
+  warn: 'rgb(233, 179, 0)',
+  warnFaded: 'rgba(233, 179, 0, 0.2)',
+  negative: 'rgb(240, 97, 109)',
+  negativeFaded: 'rgba(240, 97, 109, 0.2)',
+  grey: '#777777',
   // Spacing
   xs: 8,
   small: 12,
@@ -56,19 +55,19 @@ export const s = StyleSheet.create({
     flex: 1,
   },
   centered: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   centeredFlex: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   centeredFlexContainer: {
     padding: t.small,
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   card: {
     padding: t.large,
@@ -78,46 +77,46 @@ export const s = StyleSheet.create({
     margin: t.large,
     borderRadius: t.medium,
     padding: t.xl,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   // Typography
   title: {
     fontSize: t.xl,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   heading: {
     fontSize: t.large,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   subtitle: {
     fontSize: t.medium * 1.25,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   // Components
   tabBar: {
-    flexDirection: isMobile ? "row" : "column",
-    position: isMobile ? "relative" : "absolute",
+    flexDirection: isMobile ? 'row' : 'column',
+    position: isMobile ? 'relative' : 'absolute',
     height:
-      platform === "ios"
+      platform === 'ios'
         ? t.medium * 5
-        : platform === "android" || platform === "mobWeb"
+        : platform === 'android' || platform === 'mobWeb'
         ? t.medium * 4
-        : "100vh",
-    width: isMobile ? "100%" : t.medium * 8,
+        : '100vh',
+    width: isMobile ? '100%' : t.medium * 8,
     borderTopWidth: isMobile ? 1 : 0,
     borderRightWidth: isMobile ? 0 : 1,
   },
   tabBarItem: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: platform === "ios" ? "flex-start" : "center",
-    flexDirection: isMobile ? "column" : "row",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: platform === 'ios' ? 'flex-start' : 'center',
+    flexDirection: isMobile ? 'column' : 'row',
     padding: isMobile ? t.small : t.large,
     maxHeight: t.medium * 4,
   },
   tabBarIconWrapper: {
-    alignItems: "center",
+    alignItems: 'center',
     height: t.large,
   },
   doc_block: {
@@ -126,29 +125,29 @@ export const s = StyleSheet.create({
     borderTopWidth: 1,
   },
   btn_secondary: {
-    overflow: "hidden",
+    overflow: 'hidden',
     borderWidth: 1,
     borderRadius: t.small,
     paddingHorizontal: t.medium,
     paddingVertical: t.xs,
   },
   block_btn: {
-    position: "relative",
-    alignItems: "center",
-    justifyContent: "center",
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   back_btn: {
     width: t.xl,
     height: t.xl,
-    position: "relative",
-    alignItems: "center",
-    justifyContent: "center",
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   switch_btn: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
   toggle: {
     margin: t.small,
@@ -161,35 +160,35 @@ export const s = StyleSheet.create({
     padding: t.small,
   },
   account_input: {
-    color: "white",
-    width: t.medium ** 2,
-    padding: t.large,
-    paddingLeft: t.medium * 3,
-    borderRadius: t.small,
+    height: t.medium * 3,
+    padding: t.medium,
+    paddingLeft: t.medium * 3.5,
+    borderRadius: t.medium,
+    marginVertical: t.xs,
   },
   videoThumbnail: {
     width: 360, // From Youtube
     height: 202, // From Youtube
-    maxWidth: "100%",
+    maxWidth: '100%',
     borderRadius: t.small,
   },
   videoDurationWrapper: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     right: 0,
-    backgroundColor: "rgba(0,0,0,.8)", // Hardcoded because it should ignore theme
-    alignSelf: "flex-start",
+    backgroundColor: 'rgba(0,0,0,.8)', // Hardcoded because it should ignore theme
+    alignSelf: 'flex-start',
     margin: t.xs / 1.5,
     padding: t.xs / 2,
     borderRadius: t.xs / 2.5,
   },
   videoDurationText: {
     fontSize: t.small,
-    color: "rgb(231, 233, 234)", // Hardcoded because it should ignore theme
-    fontWeight: "bold",
+    color: 'rgb(231, 233, 234)', // Hardcoded because it should ignore theme
+    fontWeight: 'bold',
   },
   dropdownMenu: {
-    position: "absolute",
+    position: 'absolute',
     bottom: t.large,
     right: t.large,
     paddingVertical: t.xs,
@@ -206,13 +205,13 @@ export const s = StyleSheet.create({
     paddingHorizontal: t.large,
     paddingVertical: t.small,
     borderRadius: t.medium,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   pill: {
     paddingHorizontal: t.small,
     paddingVertical: t.xs,
     borderRadius: t.small,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   info: {
     backgroundColor: t.primaryFaded,
@@ -243,8 +242,8 @@ export const s = StyleSheet.create({
     color: t.negative,
   },
   row: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   // Spacing
   m_top: {

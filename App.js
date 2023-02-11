@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { Image, TouchableOpacity } from "react-native";
-import { AppProvider, Tab } from "./components/AppProvider";
+import { useContext, useEffect } from 'react';
+import { Image, TouchableOpacity } from 'react-native';
+import { AppProvider, Tab, ScrollContext } from './components/AppProvider';
 import {
   IconHome,
   IconSolidHome,
@@ -12,18 +12,21 @@ import {
   IconSolidTag,
   IconGear,
   IconSolidGear,
-} from "./utilities/svg-icons";
-import { Home } from "./screens/Home";
-import { Lessons } from "./screens/Lessons";
-import { Videos } from "./screens/Videos";
-import { Shop } from "./screens/Shop";
-import { Settings } from "./screens/Settings";
-import { s, t } from "./setup/styles";
-import { TabBar } from "./components/TabBar";
-import { isMobile } from "./utilities/helpers";
+} from './utilities/svg-icons';
+import { Home } from './screens/Home';
+import { Lessons } from './screens/Lessons';
+import { Videos } from './screens/Videos';
+import { Shop } from './screens/Shop';
+import { Settings } from './screens/Settings';
+import { s, t } from './setup/styles';
+import { TabBar } from './components/TabBar';
+import { isMobile } from './utilities/helpers';
 
 export default function App() {
-  const [scroll, setScroll] = useState(0);
+  const { opacity, oppositeOpacity } = useContext(ScrollContext);
+  useEffect(() => {
+    console.log({ opacity });
+  }, [opacity]);
   return (
     <AppProvider>
       <Tab.Navigator
@@ -32,22 +35,22 @@ export default function App() {
           paddingLeft: isMobile ? 0 : 128,
         }}
         screenOptions={{
-          headerMode: "none",
-          headerShadowVisible: true,
-          headerStyle: {},
+          headerMode: 'none',
+          headerStyle: {
+            backgroundColor: 'black',
+          },
           headerTitleStyle: {
             fontSize: isMobile ? t.medium : t.large,
             marginLeft: isMobile ? 0 : t.small,
+            opacity: oppositeOpacity,
           },
         }}
       >
         <Tab.Screen
-          name={scroll.toString()}
-          children={(props) => (
-            <Home scroll={scroll} setScroll={setScroll} {...props} />
-          )}
+          name={'Home '}
+          component={Home}
           options={({ navigation }) => ({
-            tabBarLabel: "Home",
+            headerTitle: 'Home',
             tabBarIcon: ({ fill, focused }) =>
               focused ? (
                 <IconSolidHome fill={fill} />
@@ -58,10 +61,10 @@ export default function App() {
               <TouchableOpacity
                 style={{
                   ...s.row,
-                  alignItems: "center",
+                  alignItems: 'center',
                   marginRight: isMobile ? t.large : t.xl,
                 }}
-                onPress={() => navigation.navigate("Profile")}
+                onPress={() => navigation.navigate('Profile')}
                 hitSlop={{
                   top: t.small,
                   bottom: t.small,
@@ -71,7 +74,7 @@ export default function App() {
               >
                 <Image
                   source={{
-                    uri: "https://cdn.shopify.com/s/files/1/0171/7947/6022/files/polish.jpg?v=1671745772",
+                    uri: 'https://cdn.shopify.com/s/files/1/0171/7947/6022/files/polish.jpg?v=1671745772',
                   }}
                   style={{
                     width: isMobile ? t.large : t.xl,
@@ -87,7 +90,7 @@ export default function App() {
           name="Lessons "
           component={Lessons}
           options={{
-            tabBarLabel: "Lessons",
+            headerTitle: 'Lessons',
             tabBarIcon: ({ fill, focused }) =>
               focused ? (
                 <IconSolidBook fill={fill} />
@@ -101,7 +104,6 @@ export default function App() {
           name="Videos"
           component={Videos}
           options={{
-            tabBarLabel: "Videos",
             tabBarIcon: ({ fill, focused }) =>
               focused ? (
                 <IconSolidPlay fill={fill} />
@@ -115,18 +117,15 @@ export default function App() {
           name="Shop"
           component={Shop}
           options={{
-            tabBarLabel: "Shop",
             tabBarIcon: ({ fill, focused }) =>
               focused ? <IconSolidTag fill={fill} /> : <IconTag fill={fill} />,
             headerShown: false,
-            // tabBarBadge: "3",
           }}
         />
         <Tab.Screen
           name="Settings"
           component={Settings}
           options={{
-            tabBarLabel: "Settings",
             tabBarIcon: ({ fill, focused }) =>
               focused ? (
                 <IconSolidGear fill={fill} />

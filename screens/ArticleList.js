@@ -1,15 +1,18 @@
-import { useState, useEffect } from "react";
-import { View, FlatList, TouchableOpacity, SafeAreaView } from "react-native";
+import { useState, useEffect, useContext } from "react";
+import { View, FlatList, TouchableOpacity, ScrollView } from "react-native";
+import { ScrollContext } from "../components/AppProvider";
 import { useTheme } from "@react-navigation/native";
 import { s, t } from "../setup/styles";
 import { Octicons } from "@expo/vector-icons";
 import { GRAPHQL_URL, GRAPHQL_BODY } from "../setup/shopify-sapi";
-import { Heading, Text } from "../components/typography";
+import { Title, Heading, Text } from "../components/typography";
 import { Row, Button, ActivityIndicator } from "../components/primitives";
 import { isMobile } from "../utilities/helpers";
 
 export function ArticleList({ navigation }) {
   const { colors } = useTheme();
+  const { opacity, onScroll } = useContext(ScrollContext);
+  console.log(opacity, " from ArticleList");
   const [loaded, setLoaded] = useState(false);
   const [lessons, setLessons] = useState([]);
   useEffect(() => {
@@ -141,37 +144,39 @@ export function ArticleList({ navigation }) {
       id={item.node.id}
     />
   );
-  const LessonsFlatList = () => {
-    if (isMobile) {
-      return (
-        <FlatList
-          data={lessons}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.node.id}
-          style={{ padding: t.small, marginHorizontal: t.small }}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: t.large }}
-        />
-      );
-    } else {
-      return (
-        <FlatList
-          data={lessons}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.node.id}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            paddingBottom: t.large,
-            marginRight: -t.small,
-          }}
-          numColumns={3}
-        />
-      );
-    }
-  };
+  const FlatListComponent = () => (
+    <FlatList
+      data={lessons}
+      renderItem={renderItem}
+      onScroll={onScroll}
+      keyExtractor={(item) => item.node.id}
+      style={{
+        padding: isMobile ? t.small : 0,
+        marginHorizontal: isMobile ? t.small : 0,
+      }}
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={{
+        paddingBottom: t.large,
+      }}
+      numColumns={isMobile ? 1 : 4}
+    />
+  );
+  const array = [1];
   return (
-    <SafeAreaView style={{ flex: 1, padding: t.small, ...s.centered }}>
-      {loaded ? <LessonsFlatList /> : <ActivityIndicator />}
-    </SafeAreaView>
+    <ScrollView style={{ flex: 1, padding: t.small }}>
+      <View style={{ marginLeft: isMobile ? 0 : t.small }}>
+        <Title style={{ marginVertical: t.xs }}>Lessons</Title>
+      </View>
+      {loaded ? (
+        <View>
+          {array.map((i) => (
+            <FlatListComponent key={i} />
+          ))}
+        </View>
+      ) : (
+        <ActivityIndicator />
+      )}
+    </ScrollView>
   );
 }

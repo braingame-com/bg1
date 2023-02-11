@@ -1,8 +1,8 @@
-import { useTheme } from "@react-navigation/native";
-import { View, Pressable } from "react-native";
-import { IconBG } from "../utilities/svg-icons";
-import { s, t } from "../setup/styles";
-import { isMobile, platform } from "../utilities/helpers";
+import { useTheme } from '@react-navigation/native';
+import { View, Pressable } from 'react-native';
+import { IconBG } from '../utilities/svg-icons';
+import { s, t } from '../setup/styles';
+import { isMobile, platform } from '../utilities/helpers';
 
 export function TabBar({ state, descriptors, navigation }) {
   const { colors } = useTheme();
@@ -18,14 +18,14 @@ export function TabBar({ state, descriptors, navigation }) {
         <View
           style={{
             height: t.medium * 4,
-            alignItems: "center",
-            justifyContent: "center",
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <IconBG
             fill={colors.text}
             onClick={() => {
-              navigation.navigate("Home");
+              navigation.navigate('Home');
             }}
           />
         </View>
@@ -48,7 +48,7 @@ export function TabBar({ state, descriptors, navigation }) {
 
         const onPress = () => {
           const event = navigation.emit({
-            type: "tabPress",
+            type: 'tabPress',
             target: route.key,
             canPreventDefault: true,
           });
@@ -61,7 +61,7 @@ export function TabBar({ state, descriptors, navigation }) {
 
         const onLongPress = () => {
           navigation.emit({
-            type: "tabLongPress",
+            type: 'tabLongPress',
             target: route.key,
           });
         };
@@ -78,18 +78,18 @@ export function TabBar({ state, descriptors, navigation }) {
               ...s.tabBarItem,
               flex: 1,
               background:
-                isFocused && platform === "web"
+                isFocused && platform === 'web'
                   ? t.primaryFaded
-                  : "transparent",
+                  : 'transparent',
               borderRadius: t.medium,
               marginHorizontal: isMobile ? 0 : t.large,
               marginTop:
-                (label === "Settings") & !isMobile
-                  ? "auto"
-                  : (label === "Home") & !isMobile
+                (label === 'Settings') & !isMobile
+                  ? 'auto'
+                  : (label === 'Home') & !isMobile
                   ? t.large
                   : 0,
-              marginBottom: (label === "Settings") & !isMobile ? t.large : 0,
+              marginBottom: (label === 'Settings') & !isMobile ? t.large : 0,
             }}
             key={index}
           >
