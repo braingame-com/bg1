@@ -4,46 +4,78 @@ import { s, t } from '../setup/styles';
 import { useTheme } from '@react-navigation/native';
 import { Button, Row, InputField, Divider } from '../components/primitives';
 import { Heading, Text, Small } from '../components/typography';
+import { auth } from '../firebaseConfig';
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 
-export function AccountModal({ modalVisible, setModalVisible, flow, setFlow }) {
+export function AccountModal({
+  navigation,
+  modalVisible,
+  setModalVisible,
+  flow,
+  setFlow,
+}) {
   const { colors } = useTheme();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [toast, setToast] = useState({ shown: false, message: '' });
   const handleAccountFormSubmit = () => {
     if (flow === 'Create account') {
       // Create account
-      console.log('Create account');
-      const auth = getAuth();
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          // Signed in
+          setToast({ shown: false, message: '' });
           const user = userCredential.user;
           console.log(user);
+          setModalVisible(false);
+          navigation.navigate('Home');
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
+          if (error.message.includes('invalid-email')) {
+            setToast({ shown: true, message: 'Invalid email' });
+          }
+          if (error.message.includes('internal-error')) {
+            setToast({
+              shown: true,
+              message: 'Internal error. Check password?',
+            });
+          }
+          if (error.message.includes('email-already-in-use')) {
+            setToast({ shown: true, message: 'Email already in use' });
+          }
         });
     } else {
       // Log in
-      console.log('Log in');
-      const auth = getAuth();
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          // Signed in
+          setToast({ shown: false, message: '' });
           const user = userCredential.user;
           console.log(user);
+          setModalVisible(false);
+          navigation.navigate('Home');
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
+          if (error.message.includes('invalid-email')) {
+            setToast({ shown: true, message: 'Invalid email' });
+          }
+          if (error.message.includes('internal-error')) {
+            setToast({
+              shown: true,
+              message: 'Internal error. Check password?',
+            });
+          }
+          if (error.message.includes('wrong-password')) {
+            setToast({ shown: true, message: 'Wrong password' });
+          }
+          if (error.message.includes('email-already-in-use')) {
+            setToast({ shown: true, message: 'Email already in use' });
+          }
+          if (error.message.includes('user')) {
+            setToast({ shown: true, message: 'User not found' });
+          }
+          console.log(error.message);
         });
     }
   };
@@ -80,11 +112,12 @@ export function AccountModal({ modalVisible, setModalVisible, flow, setFlow }) {
               <Button
                 type="Naked"
                 text={flow === 'Create account' ? 'Log In' : 'Create Account'}
-                onPress={() =>
+                onPress={() => {
+                  setToast({ shown: false, message: '' });
                   flow === 'Create account'
                     ? setFlow('Log in')
-                    : setFlow('Create account')
-                }
+                    : setFlow('Create account');
+                }}
                 contentStyle={{ color: colors.primary }}
               />
             </Row>
@@ -140,6 +173,23 @@ export function AccountModal({ modalVisible, setModalVisible, flow, setFlow }) {
               value={password}
               onChangeText={(text) => setPassword(text)}
             />
+            {toast.shown && (
+              <Row style={{ marginTop: t.medium }}>
+                <Button
+                  type="Naked"
+                  icon="alert"
+                  contentStyle={{ fontSize: t.medium, color: t.negative }}
+                />
+                <Text
+                  style={{
+                    color: t.negative,
+                    marginLeft: t.xs,
+                  }}
+                >
+                  {toast.message}
+                </Text>
+              </Row>
+            )}
             <Button
               type="Primary"
               text={flow}

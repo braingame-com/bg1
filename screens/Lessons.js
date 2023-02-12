@@ -1,12 +1,12 @@
-import { TouchableOpacity } from "react-native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { t } from "../setup/styles";
-import { useTheme } from "@react-navigation/native";
-import { Octicons } from "@expo/vector-icons";
-import { Button } from "../components/primitives";
-import { ArticleList } from "../screens/ArticleList";
-import { Article } from "../screens/Article";
-import { isMobile } from "../utilities/helpers";
+import { TouchableOpacity } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { t } from '../setup/styles';
+import { useTheme } from '@react-navigation/native';
+import { Octicons } from '@expo/vector-icons';
+import { Button } from '../components/primitives';
+import { ArticleList } from '../screens/ArticleList';
+import { Article } from '../screens/Article';
+import { isMobile } from '../utilities/helpers';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,12 +29,12 @@ export function Lessons({ navigation }) {
         name="Lessons"
         component={ArticleList}
         options={{
-          headerTitle: "Lessons",
+          headerTitle: 'Lessons',
           headerLeft: () => (
             <Button
               type="Naked"
               icon="chevron-left"
-              onPress={() => navigation.navigate("Categories")}
+              onPress={() => navigation.navigate('Categories')}
             />
           ),
         }}
@@ -43,20 +43,20 @@ export function Lessons({ navigation }) {
         name="Article"
         component={Article}
         options={{
-          headerTitle: " ",
+          headerTitle: ' ',
           headerLeft: () => (
             <TouchableOpacity
               style={{
-                alignItems: "center",
-                justifyContent: "flex-start",
+                alignItems: 'center',
+                justifyContent: 'flex-start',
                 marginLeft: isMobile ? 0 : t.large,
               }}
-              onPress={() => navigation.navigate("Lessons")}
+              onPress={() => navigation.navigate('Lessons')}
               hitSlop={{
-                top: t.small,
-                bottom: t.small,
-                left: t.small,
-                right: t.small,
+                top: t.xs,
+                bottom: t.xs,
+                left: t.xs,
+                right: t.xs,
               }}
             >
               <Octicons

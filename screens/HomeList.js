@@ -24,7 +24,7 @@ export function HomeList() {
       >
         <View style={{ ...s.container, flex: 1 }}>
           <Animated.View style={{ opacity: opacity }}>
-            <Title style={{ marginVertical: t.xs }}>Jordan</Title>
+            <Title style={{ marginVertical: t.xs }}>Home</Title>
           </Animated.View>
           <View
             style={{

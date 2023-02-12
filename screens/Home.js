@@ -12,24 +12,29 @@ import { NumbersScreen } from '../screens/NumbersScreen';
 import { PlanningScreen } from '../screens/PlanningScreen';
 import { JournalScreen } from '../screens/JournalScreen';
 // import { Playground } from '../screens/Playground';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
 
-// const auth = getAuth();
-// onAuthStateChanged(auth, (user) => {
-//   if (user) {
-//     // User is signed in, see docs for a list of available properties
-//     // https://firebase.google.com/docs/reference/js/firebase.User
-//     const uid = user.uid;
-//     console.log(uid);
-//   } else {
-//     // User is signed out
-//     console.log('User is signed out');
-//   }
-// });
+let userIsLoggedIn = false;
+let currentUser;
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log('User is signed out');
+    const uid = user.uid;
+    console.log(user.email);
+    userIsLoggedIn = true;
+    currentUser = user;
+  } else {
+    console.log('User is signed out');
+    userIsLoggedIn = false;
+    currentUser = null;
+  }
+});
+
+console.log('user is :', currentUser);
 
 const Stack = createNativeStackNavigator();
-
-const userIsLoggedIn = false;
 
 export function Home({ navigation }) {
   return (
@@ -43,11 +48,31 @@ export function Home({ navigation }) {
         component={Playground}
         options={{ headerShown: false }}
       /> */}
+      {!userIsLoggedIn && (
+        <Stack.Screen
+          name="Account Flow"
+          component={AccountFlow}
+          options={{ headerShown: false }}
+          navigation={navigation}
+          currentUser={currentUser}
+        />
+      )}
       <Stack.Screen
         name="Home"
-        component={userIsLoggedIn ? HomeList : AccountFlow}
+        component={HomeList}
         options={{ headerShown: false }}
+        navigation={navigation}
+        currentUser={currentUser}
       />
+      {userIsLoggedIn && (
+        <Stack.Screen
+          name="Account Flow"
+          component={AccountFlow}
+          options={{ headerShown: false }}
+          navigation={navigation}
+          currentUser={currentUser}
+        />
+      )}
       <Stack.Screen
         name="Numbers Screen"
         component={NumbersScreen}

@@ -31,7 +31,7 @@ export function Button({
   return (
     <TouchableOpacity
       onPress={onPress}
-      hitSlop={{ top: t.small, bottom: t.small, left: t.small, right: t.small }}
+      hitSlop={{ top: t.xs, bottom: t.xs, left: t.xs, right: t.xs }}
     >
       <View
         style={{

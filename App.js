@@ -66,10 +66,10 @@ export default function App() {
                 }}
                 onPress={() => navigation.navigate('Profile')}
                 hitSlop={{
-                  top: t.small,
-                  bottom: t.small,
-                  left: t.small,
-                  right: t.small,
+                  top: t.xs,
+                  bottom: t.xs,
+                  left: t.xs,
+                  right: t.xs,
                 }}
               >
                 <Image
