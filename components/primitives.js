@@ -27,6 +27,7 @@ export function Button({
   const isSecondary = type === 'Secondary' ? true : false;
   const isNegative = type === 'Negative' ? true : false;
   const isNaked = type === 'Naked' ? true : false;
+  const [loading, setLoading] = useState(loading);
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -56,6 +57,7 @@ export function Button({
           <Octicons
             name={icon}
             style={{
+              opacity: loading ? 0 : 1,
               marginRight:
                 text == null || text === '' ? 0 : isNaked ? t.xs : t.small,
               color: isPrimary ? t.primary : t.grey,
@@ -67,6 +69,7 @@ export function Button({
         {svg === 'Google' && (
           <IconGoogle
             style={{
+              opacity: loading ? 0 : 1,
               marginRight:
                 text == null || text === '' ? 0 : isNaked ? t.xs : t.small,
               fill: isPrimary ? t.primary : t.grey,
@@ -78,6 +81,7 @@ export function Button({
         {svg === 'Apple' && (
           <IconApple
             style={{
+              opacity: loading ? 0 : 1,
               marginRight:
                 text == null || text === '' ? 0 : isNaked ? t.xs : t.small,
               fill: isPrimary ? t.primary : t.grey,
@@ -88,6 +92,7 @@ export function Button({
         )}
         <Text
           style={{
+            opacity: loading ? 0 : 1,
             color: isPrimary ? t.primary : colors.text,
             fontSize: t.medium,
             ...contentStyle,
@@ -95,6 +100,17 @@ export function Button({
         >
           {text}
         </Text>
+        {loading && (
+          <View
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+            }}
+          >
+            <RNActivityIndicator />
+          </View>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -178,6 +194,8 @@ export const InputField = ({
   placeholder,
   textContentType,
   secureTextEntry,
+  value,
+  onChangeText,
 }) => {
   const { colors } = useTheme();
   const [secure, setSecure] = useState(secureTextEntry);
@@ -210,6 +228,8 @@ export const InputField = ({
         secureTextEntry={secure}
         autoCapitalize="none"
         autoCorrect={false}
+        value={value}
+        onChangeText={onChangeText}
       />
       {secureTextEntry && (
         <Octicons

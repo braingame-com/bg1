@@ -6,7 +6,7 @@ import { Button, Row } from '../components/primitives';
 import { Title, Text } from '../components/typography';
 import { AccountModal } from '../components/AccountModal';
 
-export const AccountFlow = ({ navigation }) => {
+export const AccountFlow = () => {
   const { colors } = useTheme();
   const [modalVisible, setModalVisible] = useState(false);
   const [flow, setFlow] = useState('');
@@ -14,12 +14,12 @@ export const AccountFlow = ({ navigation }) => {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Title>Start your journey</Title>
       <Image
-        source={require('../assets/illustrations/study-robot.png')}
+        source={require('../assets/illustrations/google-robot.png')}
         style={{
           width: t.medium ** 2,
           height: t.medium ** 2,
           marginVertical: t.large,
-          borderRadius: t.large,
+          borderRadius: t.medium ** 3,
         }}
       />
       <Button
@@ -47,7 +47,7 @@ export const AccountFlow = ({ navigation }) => {
         }}
       />
       <Row style={{ marginTop: t.large }}>
-        <Text>Already got an account?</Text>
+        <Text>Already a user?</Text>
         <Button
           type="Naked"
           text="Sign in"
