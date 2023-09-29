@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { View, Image } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { t } from '../setup/styles';
-import { Button, Row } from '../components/primitives';
-import { Title, Text } from '../components/typography';
+import { Button, Row } from '../setup/primitives';
+import { Title, Text } from '../setup/typography';
 import { AccountModal } from '../components/AccountModal';
 
 export const AccountFlow = ({ navigation }) => {

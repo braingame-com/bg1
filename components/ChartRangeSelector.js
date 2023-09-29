@@ -4,18 +4,18 @@ import {
   Switch,
   SafeAreaView,
   useColorScheme,
-} from "react-native";
-import { s, t } from "../setup/styles";
-import { useTheme } from "@react-navigation/native";
-import { Octicons } from "@expo/vector-icons";
-import { Text } from "../components/typography";
+} from 'react-native';
+import { s, t } from '../setup/styles';
+import { useTheme } from '@react-navigation/native';
+import { Octicons } from '@expo/vector-icons';
+import { Text } from '../setup/typography';
 
 export function ChartRangeSelector() {
   const { colors } = useTheme();
   return (
     <View
       style={{
-        flexDirection: "row",
+        flexDirection: 'row',
       }}
     >
       <TouchableOpacity
@@ -28,7 +28,7 @@ export function ChartRangeSelector() {
           backgroundColor: colors.background,
         }}
         onPress={() => {
-          console.log("1W");
+          console.log('1W');
         }}
       >
         <Text style={{ color: colors.text }}>1W</Text>
@@ -43,7 +43,7 @@ export function ChartRangeSelector() {
           borderColor: colors.border,
         }}
         onPress={() => {
-          console.log("1M");
+          console.log('1M');
         }}
       >
         <Text style={{ color: colors.text }}>1M</Text>
@@ -57,7 +57,7 @@ export function ChartRangeSelector() {
           borderColor: colors.border,
         }}
         onPress={() => {
-          console.log("1Y");
+          console.log('1Y');
         }}
       >
         <Text style={{ color: colors.text }}>1Y</Text>
@@ -71,7 +71,7 @@ export function ChartRangeSelector() {
           borderColor: colors.border,
         }}
         onPress={() => {
-          console.log("All");
+          console.log('All');
         }}
       >
         <Text style={{ color: colors.text }}>All</Text>

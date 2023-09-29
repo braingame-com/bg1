@@ -20,12 +20,14 @@ export function TabBar({ state, descriptors, navigation }) {
             height: t.medium * 4,
             alignItems: 'center',
             justifyContent: 'center',
+            marginTop: t.large,
           }}
         >
           <IconBG
             fill={colors.text}
-            onClick={() => {
-              navigation.navigate('Home');
+            style={{
+              width: t.large,
+              height: t.large,
             }}
           />
         </View>
@@ -86,7 +88,7 @@ export function TabBar({ state, descriptors, navigation }) {
               marginTop:
                 (label === 'Settings') & !isMobile
                   ? 'auto'
-                  : (label === 'Home') & !isMobile
+                  : (label === 'Dashboard') & !isMobile
                   ? t.large
                   : 0,
               marginBottom: (label === 'Settings') & !isMobile ? t.large : 0,

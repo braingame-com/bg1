@@ -13,7 +13,7 @@ import {
   IconGear,
   IconSolidGear,
 } from './utilities/svg-icons';
-import { Home } from './screens/Home';
+import { Dashboard } from './screens/Dashboard';
 import { Lessons } from './screens/Lessons';
 import { Videos } from './screens/Videos';
 import { Shop } from './screens/Shop';
@@ -47,10 +47,10 @@ export default function App() {
         }}
       >
         <Tab.Screen
-          name={'Home '}
-          component={Home}
+          name={'Dashboard '}
+          component={Dashboard}
           options={({ navigation }) => ({
-            headerTitle: 'Home',
+            headerTitle: 'Dashboard',
             tabBarIcon: ({ fill, focused }) =>
               focused ? (
                 <IconSolidHome fill={fill} />
@@ -77,8 +77,8 @@ export default function App() {
                     uri: 'https://cdn.shopify.com/s/files/1/0171/7947/6022/files/polish.jpg?v=1671745772',
                   }}
                   style={{
-                    width: isMobile ? t.large : t.xl,
-                    height: isMobile ? t.large : t.xl,
+                    width: (isMobile ? t.large : t.xl) * 1.5,
+                    height: (isMobile ? t.large : t.xl) * 1.5,
                     borderRadius: 999,
                   }}
                 />

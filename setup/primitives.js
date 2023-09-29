@@ -8,7 +8,7 @@ import {
   ActivityIndicator as RNActivityIndicator,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import { s, t } from '../setup/styles';
+import { s, t } from './styles';
 import { Octicons } from '@expo/vector-icons';
 import { isMobile } from '../utilities/helpers';
 import { IconGoogle, IconApple } from '../utilities/svg-icons';
@@ -73,7 +73,8 @@ export function Button({
               marginRight:
                 text == null || text === '' ? 0 : isNaked ? t.xs : t.small,
               fill: isPrimary ? t.primary : t.grey,
-              fontSize: t.large,
+              width: t.large,
+              height: t.large,
               ...contentStyle,
             }}
           />
@@ -85,7 +86,8 @@ export function Button({
               marginRight:
                 text == null || text === '' ? 0 : isNaked ? t.xs : t.small,
               fill: isPrimary ? t.primary : t.grey,
-              fontSize: t.large,
+              width: t.large,
+              height: t.large,
               ...contentStyle,
             }}
           />

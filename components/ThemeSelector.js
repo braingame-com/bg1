@@ -1,20 +1,20 @@
-import { useState, useContext } from "react";
+import { useState, useContext } from 'react';
 import {
   View,
   TouchableOpacity,
   Switch,
   SafeAreaView,
   useColorScheme,
-} from "react-native";
-import { useTheme } from "@react-navigation/native";
-import { useThemeUpdate } from "../components/AppProvider";
-import { s, t } from "../setup/styles";
-import { Octicons } from "@expo/vector-icons";
-import { Text } from "../components/typography";
+} from 'react-native';
+import { useTheme } from '@react-navigation/native';
+import { useThemeUpdate } from '../components/AppProvider';
+import { s, t } from '../setup/styles';
+import { Octicons } from '@expo/vector-icons';
+import { Text } from '../setup/typography';
 
 export function ThemeSelector() {
   const { colors } = useTheme();
-  const auto = useColorScheme() === "dark" ? true : false;
+  const auto = useColorScheme() === 'dark' ? true : false;
   const [isEnabled, setIsEnabled] = useState(auto);
   const toggleTheme = useThemeUpdate();
   return (
@@ -24,7 +24,7 @@ export function ThemeSelector() {
       >
         Theme
       </Text>
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity
           style={{
             ...s.btn_secondary,
@@ -32,12 +32,12 @@ export function ThemeSelector() {
             borderBottomRightRadius: 0,
             borderColor: colors.border,
             flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "row",
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row',
           }}
           onPress={() => {
-            console.log("light");
+            console.log('light');
           }}
         >
           <Octicons name="sun" size={t.large} color={t.grey} />
@@ -53,12 +53,12 @@ export function ThemeSelector() {
             borderRightWidth: 0,
             borderColor: colors.border,
             flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "row",
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row',
           }}
           onPress={() => {
-            console.log("dark");
+            console.log('dark');
           }}
         >
           <Octicons name="moon" size={t.large} color={t.grey} />
@@ -73,9 +73,9 @@ export function ThemeSelector() {
             borderBottomLeftRadius: 0,
             borderColor: colors.border,
             flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "row",
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row',
             backgroundColor: colors.card,
           }}
           onPress={toggleTheme}

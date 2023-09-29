@@ -1,5 +1,5 @@
-import { Button, SafeAreaView } from "react-native";
-import { Text } from "../components/typography";
+import { Button, SafeAreaView } from 'react-native';
+import { Text } from '../setup/typography';
 
 export function Checkout({ navigation }) {
   return (

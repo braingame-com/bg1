@@ -1,6 +1,6 @@
-import { Text as RNText } from "react-native";
-import { useTheme } from "@react-navigation/native";
-import { s, t } from "../setup/styles";
+import { Text as RNText } from 'react-native';
+import { useTheme } from '@react-navigation/native';
+import { s, t } from './styles';
 
 export function Title({ style, children }) {
   const { colors } = useTheme();
@@ -36,7 +36,7 @@ export function Bold({ style, children }) {
       style={{
         color: colors.text,
         fontSize: t.medium,
-        fontWeight: "bold",
+        fontWeight: 'bold',
         ...style,
       }}
     >

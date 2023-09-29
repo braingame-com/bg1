@@ -1,7 +1,7 @@
-import { View, ScrollView } from "react-native";
-import { useTheme } from "@react-navigation/native";
-import { s, t } from "../setup/styles";
-import { Row, Button, Divider } from "../components/primitives";
+import { View, ScrollView } from 'react-native';
+import { useTheme } from '@react-navigation/native';
+import { s, t } from '../setup/styles';
+import { Row, Button, Divider } from '../setup/primitives';
 import {
   Title,
   Heading,
@@ -9,8 +9,8 @@ import {
   Bold,
   Text,
   Small,
-} from "../components/typography";
-import { isMobile } from "../utilities/helpers";
+} from '../setup/typography';
+import { isMobile } from '../utilities/helpers';
 
 const DesignPrinciples = ({ style }) => {
   const { colors } = useTheme();
@@ -19,7 +19,7 @@ const DesignPrinciples = ({ style }) => {
       <Heading text="Design Principles" />
       <View
         style={{
-          flexDirection: isMobile ? "column" : "row",
+          flexDirection: isMobile ? 'column' : 'row',
         }}
       >
         <View
@@ -97,7 +97,7 @@ const Components = ({ style }) => {
       <Text style={{ ...s.m_bottom, color: colors.text }}>Something</Text>
       <Bold text="Naked" style={{ ...s.m_bottom }} />
       <Text style={{ ...s.m_bottom, color: colors.text }}>Something</Text>
-      <View style={{ flexDirection: isMobile ? "column" : "row" }}>
+      <View style={{ flexDirection: isMobile ? 'column' : 'row' }}>
         <Button text="Secondary" type="Secondary" style={{ ...s.res_gap }} />
         <Button
           text="Destructive"

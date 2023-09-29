@@ -39,10 +39,10 @@ export const t = {
   grey: '#777777',
   // Spacing
   xs: 8,
-  small: 12,
-  medium: 16,
-  large: 24,
-  xl: 32,
+  small: 10,
+  medium: 12,
+  large: 18,
+  xl: 26,
 };
 
 // SUPER CLASSES //
@@ -202,14 +202,13 @@ export const s = StyleSheet.create({
   },
   rounded: {
     marginVertical: t.small,
-    paddingHorizontal: t.large,
-    paddingVertical: t.small,
+    padding: t.small,
     borderRadius: t.medium,
     overflow: 'hidden',
   },
   pill: {
-    paddingHorizontal: t.small,
-    paddingVertical: t.xs,
+    paddingHorizontal: t.xs,
+    paddingVertical: t.xs / 2,
     borderRadius: t.small,
     overflow: 'hidden',
   },

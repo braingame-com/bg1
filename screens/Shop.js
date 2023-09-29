@@ -1,16 +1,16 @@
-import { TouchableOpacity, View, SafeAreaView } from "react-native";
-import { s, t } from "../setup/styles";
-import { useTheme } from "@react-navigation/native";
-import { Octicons } from "@expo/vector-icons";
+import { TouchableOpacity, View, SafeAreaView } from 'react-native';
+import { s, t } from '../setup/styles';
+import { useTheme } from '@react-navigation/native';
+import { Octicons } from '@expo/vector-icons';
 import {
   createDrawerNavigator,
   DrawerContent,
   useDrawerStatus,
-} from "@react-navigation/drawer";
-import { Products } from "../screens/Products";
-import { Checkout } from "../screens/Checkout";
-import { Text } from "../components/typography";
-import { isMobile } from "../utilities/helpers";
+} from '@react-navigation/drawer';
+import { Products } from '../screens/Products';
+import { Checkout } from '../screens/Checkout';
+import { Text } from '../setup/typography';
+import { isMobile } from '../utilities/helpers';
 
 const Drawer = createDrawerNavigator();
 
@@ -18,7 +18,7 @@ export function Shop({ route, navigation }) {
   const { colors } = useTheme();
   return (
     <Drawer.Navigator
-      initialRouteName="Home"
+      initialRouteName="Dashboard"
       screenOptions={({ navigation }) => ({
         headerStyle: {
           backgroundColor: colors.background,
@@ -27,7 +27,7 @@ export function Shop({ route, navigation }) {
           fontSize: isMobile ? t.medium : t.large,
           marginLeft: isMobile ? 0 : t.small,
         },
-        drawerPosition: "right",
+        drawerPosition: 'right',
         // headerShown: false,
         drawerStyle: {
           // right: isMobile ? 110 : 1175,
@@ -37,7 +37,7 @@ export function Shop({ route, navigation }) {
           <TouchableOpacity
             style={{
               ...s.row,
-              alignItems: "center",
+              alignItems: 'center',
               paddingVertical: t.small,
               marginRight: isMobile ? t.large : t.xl,
             }}
@@ -59,7 +59,7 @@ export function Shop({ route, navigation }) {
         name="Products"
         component={Products}
         options={{
-          headerTitle: "Shop",
+          headerTitle: 'Shop',
         }}
       />
       <Drawer.Screen name="Checkout" component={Checkout} />

@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { View, Modal, SafeAreaView } from 'react-native';
 import { s, t } from '../setup/styles';
 import { useTheme } from '@react-navigation/native';
-import { Button, Row, InputField, Divider } from '../components/primitives';
-import { Heading, Text, Small } from '../components/typography';
+import { Button, Row, InputField, Divider } from '../setup/primitives';
+import { Heading, Text, Small } from '../setup/typography';
 import { auth } from '../firebaseConfig';
 import {
   createUserWithEmailAndPassword,
@@ -30,7 +30,7 @@ export function AccountModal({
           const user = userCredential.user;
           console.log(user);
           setModalVisible(false);
-          navigation.navigate('Home');
+          navigation.navigate('Dashboard');
         })
         .catch((error) => {
           if (error.message.includes('invalid-email')) {
@@ -54,7 +54,7 @@ export function AccountModal({
           const user = userCredential.user;
           console.log(user);
           setModalVisible(false);
-          navigation.navigate('Home');
+          navigation.navigate('Dashboard');
         })
         .catch((error) => {
           if (error.message.includes('invalid-email')) {
