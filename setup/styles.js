@@ -38,11 +38,11 @@ export const t = {
   negativeFaded: 'rgba(240, 97, 109, 0.2)',
   grey: '#777777',
   // Spacing
-  xs: 8,
-  small: 10,
-  medium: 12,
-  large: 18,
-  xl: 26,
+  xs: 8, // .5rem
+  small: 12, // .75rem
+  medium: 16, // 1rem
+  large: 20, // 1.75rem
+  xl: 32, // 1.5rem
 };
 
 // SUPER CLASSES //

@@ -293,9 +293,9 @@ const DashboardList = () => {
 
     let tasks = [
       'Logo design and branding (colors)',
-      'Figma mockups',
+      'Illustrator assets (including fonts) & mockups',
       'Implement',
-      'Polish',
+      'Polish (animations/interactions)',
       'Testing',
       'Monitoring',
       'Optimization / Minification / Tree-shaking',
