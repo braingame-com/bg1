@@ -292,11 +292,15 @@ const DashboardList = () => {
     const { colors } = useTheme();
 
     let tasks = [
-      'Take bins out, including recycling!',
-      'Do some exercise',
-      'Pay phone bill',
-      'Go to Winchester',
-      'Wait for all this to blow over',
+      'Logo design and branding (colors)',
+      'Figma mockups',
+      'Implement',
+      'Polish',
+      'Testing',
+      'Monitoring',
+      'Optimization / Minification / Tree-shaking',
+      'Deployment/CI',
+      'Hosting',
     ];
 
     const UpcomingTasks = () => {
