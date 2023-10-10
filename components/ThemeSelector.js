@@ -1,29 +1,25 @@
-import { useState, useContext } from 'react';
+// import { useState, useContext } from 'react';
 import {
   View,
   TouchableOpacity,
-  Switch,
-  SafeAreaView,
-  useColorScheme,
+  // useColorScheme,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { useThemeUpdate } from '../components/AppProvider';
 import { s, t } from '../setup/styles';
-import { Octicons } from '@expo/vector-icons';
-import { Text } from '../setup/typography';
+import { Heading, Text } from '../setup/typography';
+import { Icon } from '../utilities/svg-icons';
 
 export function ThemeSelector() {
   const { colors } = useTheme();
-  const auto = useColorScheme() === 'dark' ? true : false;
-  const [isEnabled, setIsEnabled] = useState(auto);
+  // const auto = useColorScheme() === 'dark' ? true : false;
+  // const [isEnabled, setIsEnabled] = useState(auto);
   const toggleTheme = useThemeUpdate();
   return (
     <View style={{ ...s.container, ...s.m_horizontal }}>
-      <Text
-        style={{ ...s.heading, color: colors.text, paddingBottom: t.small }}
-      >
+      <Heading style={{ color: colors.text, paddingBottom: t.small }}>
         Theme
-      </Text>
+      </Heading>
       <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity
           style={{
@@ -40,7 +36,7 @@ export function ThemeSelector() {
             console.log('light');
           }}
         >
-          <Octicons name="sun" size={t.large} color={t.grey} />
+          <Icon name="sun" style={{ ...s.iconSmall, fill: t.white }} />
           <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
             Light
           </Text>
@@ -61,7 +57,7 @@ export function ThemeSelector() {
             console.log('dark');
           }}
         >
-          <Octicons name="moon" size={t.large} color={t.grey} />
+          <Icon name="moon" style={{ ...s.iconSmall, fill: t.white }} />
           <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
             Dark
           </Text>
@@ -80,7 +76,10 @@ export function ThemeSelector() {
           }}
           onPress={toggleTheme}
         >
-          <Text style={{ ...s.subtitle, color: colors.text }}>Auto</Text>
+          <Icon name="sparkle" style={{ ...s.iconSmall, fill: t.white }} />
+          <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
+            Auto
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

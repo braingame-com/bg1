@@ -11,11 +11,11 @@ import { ScrollContext } from '../components/AppProvider';
 import { s, t } from '../setup/styles';
 import { GRAPHQL_URL, GRAPHQL_BODY } from '../setup/shopify-sapi';
 import { useTheme } from '@react-navigation/native';
-import { Octicons } from '@expo/vector-icons';
-import { Title, Heading, Text } from '../setup/typography';
+import { Title, Heading, Text, Small } from '../setup/typography';
+import { Icon } from '../utilities/svg-icons';
 import { Row, Button, ActivityIndicator } from '../setup/primitives';
 import { isMobile } from '../utilities/helpers';
-import RenderHtml from 'react-native-render-html';
+import RenderHtml, { defaultSystemFonts } from 'react-native-render-html';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,18 +27,18 @@ export const Lessons = ({ navigation }) => {
         headerStyle: {
           backgroundColor: colors.background,
         },
-        headerShadowVisible: true,
         headerTitleStyle: {
           fontSize: isMobile ? t.medium : t.large,
           marginLeft: isMobile ? 0 : t.small,
         },
+        headerShadowVisible: false,
       }}
     >
       <Stack.Screen
         name="Lessons"
         component={ArticleList}
         options={{
-          headerTitle: 'Lessons',
+          headerTitle: () => <Text>Lessons</Text>,
           headerLeft: () => (
             <Button
               type="Naked"
@@ -52,7 +52,7 @@ export const Lessons = ({ navigation }) => {
         name="Article"
         component={Article}
         options={{
-          headerTitle: ' ',
+          headerTitle: () => <Text> </Text>,
           headerLeft: () => (
             <TouchableOpacity
               style={{
@@ -68,11 +68,7 @@ export const Lessons = ({ navigation }) => {
                 right: t.xs,
               }}
             >
-              <Octicons
-                name="chevron-left"
-                size={t.large}
-                style={{ color: t.grey }}
-              />
+              <Icon name="chevron-left" size="large" color={t.white} />
             </TouchableOpacity>
           ),
         }}
@@ -131,7 +127,7 @@ const ArticleList = ({ navigation }) => {
             {tags.map((tag, index) => {
               return (
                 <Row key={index} style={{ ...s.centered }}>
-                  <Text
+                  <Small
                     style={{
                       ...s.pill,
                       ...s.info,
@@ -141,8 +137,8 @@ const ArticleList = ({ navigation }) => {
                     key={index + 1}
                   >
                     {tag}
-                  </Text>
-                  <Text
+                  </Small>
+                  <Small
                     style={{
                       ...s.pill,
                       ...s.success,
@@ -151,12 +147,8 @@ const ArticleList = ({ navigation }) => {
                       ...s.centered,
                     }}
                   >
-                    <Octicons
-                      name="check"
-                      size={16}
-                      style={{ ...s.success_text }}
-                    />
-                  </Text>
+                    <Icon name="check" size="small" color={t.positive} />
+                  </Small>
                 </Row>
               );
             })}
@@ -183,15 +175,7 @@ const ArticleList = ({ navigation }) => {
                 text={Math.floor(Math.random() * (300 - 0)).toString()}
                 icon="heart"
                 onPress={() => console.log(`like article id: ${id}`)}
-                contentStyle={{ fontSize: t.medium, color: t.grey }}
-              />
-              <Button
-                type="Naked"
-                text={Math.floor(Math.random() * (300 - 0)).toString()}
-                icon="heart"
-                onPress={() => console.log(`like article id: ${id}`)}
-                style={{ marginLeft: t.xl }}
-                contentStyle={{ fontSize: t.medium, color: t.grey }}
+                contentStyle={{ fontSize: t.small, color: t.grey }}
               />
             </Row>
             <Button
@@ -267,6 +251,7 @@ const Article = ({ route }) => {
 
   const tagsStyles = {
     body: {
+      fontFamily: 'SohneBook',
       color: colors.text,
       fontSize: 16,
       lineHeight: 24,
@@ -306,7 +291,7 @@ const Article = ({ route }) => {
           ...s.m_top,
           paddingBottom: 30,
           ...s.m_bottom_2,
-          borderBottomWidth: 1,
+          borderBottomWidth: 0,
           borderColor: colors.border,
         }}
       >
@@ -345,6 +330,7 @@ const Article = ({ route }) => {
         contentWidth={width}
         source={source}
         tagsStyles={tagsStyles}
+        systemFonts={[...defaultSystemFonts, 'SohneBook']}
       />
     </ScrollView>
   );

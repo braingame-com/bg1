@@ -12,10 +12,10 @@ import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ScrollContext } from '../components/AppProvider';
 import { s, t } from '../setup/styles';
-import { Octicons } from '@expo/vector-icons';
 import { AccountFlow } from './AccountFlow';
-import { Title, Text } from '../setup/typography';
+import { Title, Text, Small } from '../setup/typography';
 import { Dot, Row } from '../setup/primitives';
+import { Icon } from '../utilities/svg-icons';
 import { isMobile } from '../utilities/helpers';
 import { ChartRangeSelector } from '../components/ChartRangeSelector';
 // import { Playground } from '../screens/Playground';
@@ -84,16 +84,15 @@ export const Dashboard = ({ navigation }) => {
         name="Numbers Screen"
         component={NumbersScreen}
         options={{
-          headerTitle: 'Numbers',
+          headerTitle: () => <Text>Numbers</Text>,
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: t.small }}
               onPress={() => navigation.navigate('Dashboard')}
             >
-              <Octicons
+              <Icon
                 name="chevron-left"
-                size={t.large}
-                style={{ color: t.grey }}
+                style={{ ...s.iconLarge, fill: t.white }}
               />
             </TouchableOpacity>
           ),
@@ -103,16 +102,15 @@ export const Dashboard = ({ navigation }) => {
         name="Tasks Screen"
         component={TasksScreen}
         options={{
-          headerTitle: 'Tasks',
+          headerTitle: () => <Text>Tasks</Text>,
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: t.small }}
               onPress={() => navigation.navigate('Dashboard')}
             >
-              <Octicons
+              <Icon
                 name="chevron-left"
-                size={t.large}
-                style={{ color: t.grey }}
+                style={{ ...s.iconLarge, fill: t.white }}
               />
             </TouchableOpacity>
           ),
@@ -122,16 +120,15 @@ export const Dashboard = ({ navigation }) => {
         name="Visualization Screen"
         component={VisualizationScreen}
         options={{
-          headerTitle: 'Visualization',
+          headerTitle: () => <Text>Visualization</Text>,
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: t.small }}
               onPress={() => navigation.navigate('Dashboard')}
             >
-              <Octicons
+              <Icon
                 name="chevron-left"
-                size={t.large}
-                style={{ color: t.grey }}
+                style={{ ...s.iconLarge, fill: t.white }}
               />
             </TouchableOpacity>
           ),
@@ -141,16 +138,15 @@ export const Dashboard = ({ navigation }) => {
         name="Affirmations Screen"
         component={AffirmationsScreen}
         options={{
-          headerTitle: 'Affirmations',
+          headerTitle: () => <Text>Affirmations</Text>,
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: t.small }}
               onPress={() => navigation.navigate('Dashboard')}
             >
-              <Octicons
+              <Icon
                 name="chevron-left"
-                size={t.large}
-                style={{ color: t.grey }}
+                style={{ ...s.iconLarge, fill: t.white }}
               />
             </TouchableOpacity>
           ),
@@ -160,16 +156,15 @@ export const Dashboard = ({ navigation }) => {
         name="Planning Screen"
         component={PlanningScreen}
         options={{
-          headerTitle: 'Planning',
+          headerTitle: () => <Text>Planning</Text>,
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: t.small }}
               onPress={() => navigation.navigate('Dashboard')}
             >
-              <Octicons
+              <Icon
                 name="chevron-left"
-                size={t.large}
-                style={{ color: t.grey }}
+                style={{ ...s.iconLarge, fill: t.white }}
               />
             </TouchableOpacity>
           ),
@@ -179,16 +174,15 @@ export const Dashboard = ({ navigation }) => {
         name="Journal Screen"
         component={JournalScreen}
         options={{
-          headerTitle: 'Journal',
+          headerTitle: () => <Text>Journal</Text>,
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: t.small }}
               onPress={() => navigation.navigate('Dashboard')}
             >
-              <Octicons
+              <Icon
                 name="chevron-left"
-                size={t.large}
-                style={{ color: t.grey }}
+                style={{ ...s.iconLarge, fill: t.white }}
               />
             </TouchableOpacity>
           ),
@@ -198,16 +192,15 @@ export const Dashboard = ({ navigation }) => {
         name="Profile"
         component={Profile}
         options={{
-          headerTitle: 'Profile',
+          headerTitle: () => <Text>Profile</Text>,
           headerLeft: () => (
             <TouchableOpacity
               style={{ ...s.back_btn, padding: t.small }}
               onPress={() => navigation.navigate('Dashboard')}
             >
-              <Octicons
+              <Icon
                 name="chevron-left"
-                size={t.large}
-                style={{ color: t.grey }}
+                style={{ ...s.iconLarge, fill: t.white }}
               />
             </TouchableOpacity>
           ),
@@ -252,19 +245,14 @@ const DashboardList = () => {
               >
                 Numbers
               </Text>
-              <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>To do</Text>
-              {/* <Text style={{ ...s.pill, ...s.success, ...s.m_left }}>
-              Done &nbsp;
-              <Octicons name="check" size={t.medium} />
-            </Text> */}
+              <Small style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>
+                To do
+              </Small>
             </View>
             <View style={{ ...s.row }}>
               <View style={s.block_btn}>
-                <Octicons name="filter" size={t.large} color={t.grey} />
+                <Icon name="filter" style={{ ...s.iconLarge, fill: t.white }} />
               </View>
-              {/* <View style={s.block_btn}>
-                <Octicons name="chevron-right" size={t.large} color={t.grey} />
-              </View> */}
             </View>
           </View>
           <View
@@ -295,7 +283,7 @@ const DashboardList = () => {
       'Logo design and branding (colors)',
       'Illustrator assets (including fonts) & mockups',
       'Implement',
-      'Polish (animations/interactions)',
+      'Polish (animations / interactions)',
       'Testing',
       'Monitoring',
       'Optimization / Minification / Tree-shaking',
@@ -377,7 +365,7 @@ const DashboardList = () => {
               Visualization
             </Text>
             <Text style={{ ...s.pill, ...s.success, ...s.m_left_2 }}>
-              <Octicons name="check" size={t.medium} />
+              <Icon name="check" style={{ ...s.iconSmall, fill: t.white }} />
             </Text>
           </View>
         </View>
@@ -413,14 +401,7 @@ const DashboardList = () => {
               Affirmations
             </Text>
             <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>To do</Text>
-            {/* <Text style={{ ...s.pill, ...s.success, ...s.m_left }}>
-              Done &nbsp;
-              <Octicons name="check" size={t.medium} />
-            </Text> */}
           </View>
-          {/* <View style={s.block_btn}>
-            <Octicons name="chevron-right" size={t.large} color={t.grey} />
-          </View> */}
         </View>
       </TouchableOpacity>
     );
@@ -454,14 +435,7 @@ const DashboardList = () => {
               Planning
             </Text>
             <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>To do</Text>
-            {/* <Text style={{ ...s.pill, ...s.success, ...s.m_left }}>
-              Done &nbsp;
-              <Octicons name="check" size={t.medium} />
-            </Text> */}
           </View>
-          {/* <View style={s.block_btn}>
-            <Octicons name="chevron-right" size={t.large} color={t.grey} />
-          </View> */}
         </View>
       </TouchableOpacity>
     );
@@ -495,13 +469,7 @@ const DashboardList = () => {
               Journal
             </Text>
             <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>To do</Text>
-            {/* <Text style={{ ...s.pill, ...s.success, ...s.m_left }}>
-            <Octicons name="check" size={t.medium} />
-          </Text> */}
           </View>
-          {/* <View style={s.block_btn}>
-            <Octicons name="chevron-right" size={t.large} color={t.grey} />
-          </View> */}
         </View>
       </TouchableOpacity>
     );
@@ -518,7 +486,7 @@ const DashboardList = () => {
       >
         <View style={{ ...s.container, flex: 1 }}>
           <Animated.View style={{ opacity: opacity }}>
-            <Title style={{ marginVertical: t.xs }}>Dashboard</Title>
+            <Title style={{ marginVertical: t.medium }}>Dashboard</Title>
           </Animated.View>
           <View
             style={{
@@ -593,7 +561,7 @@ const TasksScreen = () => {
     return (
       <View
         style={{
-          borderBottomWidth: 1,
+          borderBottomWidth: 0,
           borderColor: colors.border,
           paddingVertical: t.small,
           paddingHorizontal: 0,
@@ -616,14 +584,7 @@ const TasksScreen = () => {
           }}
           onPress={() => checkTask(props.index)}
         >
-          <Octicons
-            name="check"
-            size={t.large}
-            style={{
-              ...s.success_text,
-              // opacity: props.isChecked === "true" ? 1 : 0,
-            }}
-          />
+          <Icon name="check" style={{ ...s.iconSmall, fill: t.success }} />
         </TouchableOpacity>
         <Text
           style={{
@@ -648,33 +609,11 @@ const TasksScreen = () => {
           }}
           onPress={() => removeTask(props.index)}
         >
-          <Octicons
+          <Icon
             name="x"
-            size={t.large}
-            style={{ color: colors.text, opacity: 0.5 }}
+            style={{ ...s.iconSmall, fill: t.white, opacity: 0.5 }}
           />
         </TouchableOpacity>
-        {/* <Checkbox
-          style={styles.checkbox}
-          value={isChecked}
-          onValueChange={setChecked}
-        /> */}
-        {/* <TouchableOpacity
-          style={{
-            marginLeft: t.large,
-            height: t.large,
-            width: t.large,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          onPress={() => removeTask(props.index)}
-        >
-          <Octicons
-            name="x-circle"
-            size={t.large}
-            style={{ ...s.error_text, opacity: 0.33 }}
-          />
-        </TouchableOpacity> */}
       </View>
     );
   };
@@ -708,9 +647,7 @@ const TasksScreen = () => {
           }}
           onPress={() => showHideChecked()}
         >
-          <Octicons name="eye-closed" size={t.large} color={t.grey} />
-          {/* <Octicons name="eye" size={t.large} color={t.grey} /> */}
-          {/* <Text style={{ color: t.grey, marginLeft: t.small }}>Hide/Show</Text> */}
+          <Icon name="eye-slash" style={{ ...s.iconLarge, fill: t.white }} />
         </TouchableOpacity>
         <View style={{ flex: 2, marginHorizontal: t.small }}>
           <Text
@@ -719,8 +656,6 @@ const TasksScreen = () => {
               ...s.heading_secondary,
               ...s.info,
               alignSelf: 'center',
-              // justifyContent: "center",
-              // textAlign: "center",
             }}
           >
             0 / {remaining}
@@ -739,18 +674,16 @@ const TasksScreen = () => {
           }}
           onPress={() => clearChecked()}
         >
-          {/* <Text style={{ color: t.grey, marginRight: t.small }}>Clear</Text> */}
-          <Octicons name="x" size={t.large} color={t.grey} />
+          <Icon
+            name="x"
+            style={{ ...s.iconSmall, fill: t.white, opacity: 0.5 }}
+          />
         </TouchableOpacity>
       </View>
       <View
         style={{
           flexDirection: 'row',
           alignItems: 'center',
-          // shadowColor: "#fff",
-          // shadowOffset: { width: 0, height: 0 },
-          // shadowOpacity: 1,
-          // shadowRadius: t.small,
           zIndex: 999,
           overflow: 'hidden',
         }}
@@ -784,27 +717,15 @@ const TasksScreen = () => {
             margin: t.small,
             position: 'absolute',
             left: t.small,
-            // backgroundColor: "rgba(0,0,0,.5)",
             borderWidth: 0,
             borderRadius: t.small,
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
-          <Octicons name="pencil" size={t.large} color={t.grey} />
+          <Icon name="pencil" style={{ ...s.iconLarge, fill: t.white }} />
         </TouchableOpacity>
       </View>
-      {/* <LinearGradient
-        // Button Linear Gradient
-        colors={[colors.background, colors.background, "rgba(0,0,0,0)"]}
-        style={{
-          height: 40,
-          marginTop: -t.small,
-          marginbottom: -40,
-          width: "100%",
-          zIndex: 100,
-        }}
-      ></LinearGradient> */}
       <View
         style={{
           marginTop: t.large,

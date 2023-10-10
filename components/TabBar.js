@@ -1,37 +1,23 @@
 import { useTheme } from '@react-navigation/native';
-import { View, Pressable } from 'react-native';
-import { IconBG } from '../utilities/svg-icons';
+import { View, Pressable, StyleSheet } from 'react-native';
+import { Icon } from '../utilities/svg-icons';
 import { s, t } from '../setup/styles';
 import { isMobile, platform } from '../utilities/helpers';
 
-export function TabBar({ state, descriptors, navigation }) {
+export const TabBar = ({ state, descriptors, navigation }) => {
   const { colors } = useTheme();
+
   return (
     <View
       style={{
         ...s.tabBar,
         backgroundColor: colors.background,
         borderColor: colors.border,
+        borderTopWidth: StyleSheet.hairlineWidth,
+        borderRightWidth: StyleSheet.hairlineWidth,
       }}
     >
-      {!isMobile && (
-        <View
-          style={{
-            height: t.medium * 4,
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: t.large,
-          }}
-        >
-          <IconBG
-            fill={colors.text}
-            style={{
-              width: t.large,
-              height: t.large,
-            }}
-          />
-        </View>
-      )}
+      {!isMobile && <BrainGameLogo />}
 
       {state.routes.map((route, index) => {
         const isFocused = state.index === index;
@@ -44,7 +30,7 @@ export function TabBar({ state, descriptors, navigation }) {
             ? options.title
             : route.name;
         const icon = options.tabBarIcon({
-          fill: isFocused ? colors.primary : t.grey,
+          fill: !isMobile && isFocused ? colors.primary : t.white,
           focused: isFocused ? true : false,
         });
 
@@ -88,8 +74,8 @@ export function TabBar({ state, descriptors, navigation }) {
               marginTop:
                 (label === 'Settings') & !isMobile
                   ? 'auto'
-                  : (label === 'Dashboard') & !isMobile
-                  ? t.large
+                  : label.includes('Dashboard') & !isMobile
+                  ? t.xxl
                   : 0,
               marginBottom: (label === 'Settings') & !isMobile ? t.large : 0,
             }}
@@ -98,7 +84,6 @@ export function TabBar({ state, descriptors, navigation }) {
             <View
               style={{
                 ...s.tabBarIconWrapper,
-                width: t.large,
               }}
             >
               {icon}
@@ -108,4 +93,17 @@ export function TabBar({ state, descriptors, navigation }) {
       })}
     </View>
   );
-}
+};
+
+const BrainGameLogo = () => (
+  <View
+    style={{
+      height: t.medium * 4,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop: t.xxl,
+    }}
+  >
+    <Icon name="bg-logo" size="large" color={t.white} />
+  </View>
+);

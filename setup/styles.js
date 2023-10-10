@@ -28,28 +28,32 @@ export const darkTheme = {
 // DESIGN TOKENS //
 export const t = {
   //Palette
-  primary: 'rgb(59, 115, 245)',
-  primaryFaded: 'rgba(59, 115, 245, 0.2)',
-  positive: 'rgb(39,173,117)',
-  positiveFaded: 'rgba(39,173,117, 0.2)',
-  warn: 'rgb(233, 179, 0)',
-  warnFaded: 'rgba(233, 179, 0, 0.2)',
-  negative: 'rgb(240, 97, 109)',
-  negativeFaded: 'rgba(240, 97, 109, 0.2)',
+  white: '#ffffff',
   grey: '#777777',
+  black: '#000000',
+  primary: 'rgb(59, 115, 245)',
+  primaryFaded: 'rgba(59, 115, 245, .15)',
+  positive: 'rgb(39, 173, 117)',
+  positiveFaded: 'rgba(39, 173, 117, .15)',
+  warn: 'rgb(233, 179, 0)',
+  warnFaded: 'rgba(233, 179, 0, .15)',
+  negative: 'rgb(240, 97, 109)',
+  negativeFaded: 'rgba(240, 97, 109, .15)',
   // Spacing
+  xxs: 4, // .25rem
   xs: 8, // .5rem
   small: 12, // .75rem
   medium: 16, // 1rem
-  large: 20, // 1.75rem
-  xl: 32, // 1.5rem
+  large: 20, // 1.25rem
+  xl: 24, // 1.5rem
+  xxl: 32, // 2rem
 };
 
 // SUPER CLASSES //
 export const s = StyleSheet.create({
   // Containers
   container: {
-    padding: t.small,
+    padding: t.xs,
   },
   flex: {
     flex: 1,
@@ -80,19 +84,6 @@ export const s = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  // Typography
-  title: {
-    fontSize: t.xl,
-    fontWeight: 'bold',
-  },
-  heading: {
-    fontSize: t.large,
-    fontWeight: 'bold',
-  },
-  subtitle: {
-    fontSize: t.medium * 1.25,
-    fontWeight: 'bold',
-  },
   // Components
   tabBar: {
     flexDirection: isMobile ? 'row' : 'column',
@@ -104,8 +95,8 @@ export const s = StyleSheet.create({
         ? t.medium * 4
         : '100vh',
     width: isMobile ? '100%' : t.medium * 8,
-    borderTopWidth: isMobile ? 1 : 0,
-    borderRightWidth: isMobile ? 0 : 1,
+    borderTopWidth: 0, // previously: isMobile ? 1 : 0,
+    borderRightWidth: 0, // previously: isMobile ? 0 : 1,
   },
   tabBarItem: {
     display: 'flex',
@@ -117,7 +108,8 @@ export const s = StyleSheet.create({
   },
   tabBarIconWrapper: {
     alignItems: 'center',
-    height: t.large,
+    width: t.xl,
+    height: t.xl,
   },
   doc_block: {
     marginBottom: t.small,
@@ -185,7 +177,6 @@ export const s = StyleSheet.create({
   videoDurationText: {
     fontSize: t.small,
     color: 'rgb(231, 233, 234)', // Hardcoded because it should ignore theme
-    fontWeight: 'bold',
   },
   dropdownMenu: {
     position: 'absolute',
@@ -196,6 +187,14 @@ export const s = StyleSheet.create({
     borderRadius: t.small,
   },
   // Utilities
+  iconSmall: {
+    width: t.large,
+    height: t.large,
+  },
+  iconLarge: {
+    width: t.xl,
+    height: t.xl,
+  },
   res_gap: {
     marginTop: isMobile ? t.small : 0,
     marginLeft: isMobile ? 0 : t.small,
@@ -207,7 +206,7 @@ export const s = StyleSheet.create({
     overflow: 'hidden',
   },
   pill: {
-    paddingHorizontal: t.xs,
+    paddingHorizontal: isMobile ? t.xs : t.small,
     paddingVertical: t.xs / 2,
     borderRadius: t.small,
     overflow: 'hidden',

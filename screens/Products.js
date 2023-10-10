@@ -1,10 +1,9 @@
-import { Button, View, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import { s, t } from '../setup/styles';
-import { Octicons } from '@expo/vector-icons';
+import { s } from '../setup/styles';
 import { Text } from '../setup/typography';
 
-export function Products({ navigation }) {
+export function Products() {
   const { colors } = useTheme();
   return (
     <SafeAreaView style={{ ...s.container }}>

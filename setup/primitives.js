@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import {
   View,
+  Image,
   TouchableOpacity,
-  Text,
   TextInput,
   Platform,
   ActivityIndicator as RNActivityIndicator,
 } from 'react-native';
+import { Text } from './typography';
 import { useTheme } from '@react-navigation/native';
 import { s, t } from './styles';
-import { Octicons } from '@expo/vector-icons';
 import { isMobile } from '../utilities/helpers';
-import { IconGoogle, IconApple } from '../utilities/svg-icons';
+import { Icon } from '../utilities/svg-icons';
 
 export function Button({
   style,
@@ -53,10 +53,16 @@ export function Button({
           ...style,
         }}
       >
-        {icon && (
-          <Octicons
-            name={icon}
+        {icon === '' && (
+          <Icon
+            name="lock"
             style={{
+              ...s.iconMedium,
+              fill: t.white,
+              position: 'absolute',
+              left: t.medium,
+              top: t.xs * 2.5,
+              zIndex: 999,
               opacity: loading ? 0 : 1,
               marginRight:
                 text == null || text === '' ? 0 : isNaked ? t.xs : t.small,
@@ -67,7 +73,8 @@ export function Button({
           />
         )}
         {svg === 'Google' && (
-          <IconGoogle
+          <Icon
+            name="google"
             style={{
               opacity: loading ? 0 : 1,
               marginRight:
@@ -80,7 +87,8 @@ export function Button({
           />
         )}
         {svg === 'Apple' && (
-          <IconApple
+          <Icon
+            name="apple"
             style={{
               opacity: loading ? 0 : 1,
               marginRight:
@@ -203,12 +211,25 @@ export const InputField = ({
   const [secure, setSecure] = useState(secureTextEntry);
   return (
     <View style={{ position: 'relative', justifyContent: 'center' }}>
-      {icon && (
-        <Octicons
-          name={icon}
+      {icon === 'mail' && (
+        <Icon
+          name="Mail"
           style={{
-            color: t.grey,
-            fontSize: t.large,
+            ...s.iconMedium,
+            fill: t.white,
+            position: 'absolute',
+            left: t.medium,
+            top: t.xs * 2.5,
+            zIndex: 999,
+          }}
+        />
+      )}
+      {icon === 'lock' && (
+        <Icon
+          name="Lock"
+          style={{
+            ...s.iconMedium,
+            fill: t.white,
             position: 'absolute',
             left: t.medium,
             top: t.xs * 2.5,
@@ -219,6 +240,7 @@ export const InputField = ({
       <TextInput
         style={{
           ...s.account_input,
+          fontFamily: 'SohneBook',
           backgroundColor: colors.card,
           color: colors.text,
           paddingRight: secureTextEntry ? t.medium * 3.5 : t.medium,
@@ -233,20 +255,70 @@ export const InputField = ({
         value={value}
         onChangeText={onChangeText}
       />
-      {secureTextEntry && (
-        <Octicons
-          name={secure ? 'eye' : 'eye-closed'}
-          style={{
-            color: t.grey,
-            fontSize: t.large,
-            position: 'absolute',
-            right: t.medium,
-            top: t.xs * 2.5,
-            zIndex: 999,
-          }}
-          onPress={() => setSecure(!secure)}
-        />
-      )}
+      {secureTextEntry &&
+        secure(
+          <Icon
+            name="eye"
+            style={{
+              ...s.iconMedium,
+              fill: t.white,
+              position: 'absolute',
+              left: t.medium,
+              top: t.xs * 2.5,
+              zIndex: 999,
+              color: t.grey,
+              fontSize: t.large,
+              right: t.medium,
+            }}
+            onPress={() => setSecure(!secure)}
+          />
+        )}
+      {secureTextEntry &&
+        !secure(
+          <Icon
+            name="eye-slash"
+            style={{
+              ...s.iconMedium,
+              fill: t.white,
+              position: 'absolute',
+              left: t.medium,
+              top: t.xs * 2.5,
+              zIndex: 999,
+              color: t.grey,
+              fontSize: t.large,
+              right: t.medium,
+            }}
+            onPress={() => setSecure(!secure)}
+          />
+        )}
     </View>
   );
 };
+
+export const ProfileIcon = ({ navigation }) => (
+  <TouchableOpacity
+    style={{
+      ...s.row,
+      alignItems: 'center',
+      marginRight: isMobile ? t.large : t.xl,
+    }}
+    onPress={() => navigation.navigate('Profile')}
+    hitSlop={{
+      top: t.xs,
+      bottom: t.xs,
+      left: t.xs,
+      right: t.xs,
+    }}
+  >
+    <Image
+      source={{
+        uri: 'https://cdn.shopify.com/s/files/1/0171/7947/6022/files/polish.jpg?v=1671745772',
+      }}
+      style={{
+        width: (isMobile ? t.large : t.xl) * 1.5,
+        height: (isMobile ? t.large : t.xl) * 1.5,
+        borderRadius: 999,
+      }}
+    />
+  </TouchableOpacity>
+);

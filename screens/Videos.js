@@ -31,23 +31,25 @@ export const Videos = ({ navigation }) => {
         headerStyle: {
           backgroundColor: colors.background,
         },
-        headerShadowVisible: true,
         headerTitleStyle: {
           fontSize: isMobile ? t.medium : t.large,
           marginLeft: isMobile ? 0 : t.small,
         },
+        headerShadowVisible: false,
       }}
     >
       <Stack.Screen
         name="VideosList"
         component={VideosList}
-        options={{ headerTitle: 'Videos' }}
+        options={{
+          headerTitle: () => <Text>Videos</Text>,
+        }}
       />
       <Stack.Screen
         name="Video"
         component={Video}
         options={{
-          headerTitle: ' ',
+          headerTitle: () => <Text> </Text>,
           headerLeft: () => (
             <Button
               type="Naked"

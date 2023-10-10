@@ -1,20 +1,16 @@
-import { TouchableOpacity, View, SafeAreaView } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { s, t } from '../setup/styles';
 import { useTheme } from '@react-navigation/native';
-import { Octicons } from '@expo/vector-icons';
-import {
-  createDrawerNavigator,
-  DrawerContent,
-  useDrawerStatus,
-} from '@react-navigation/drawer';
-import { Products } from '../screens/Products';
-import { Checkout } from '../screens/Checkout';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Products } from './Products';
+import { Checkout } from './Checkout';
 import { Text } from '../setup/typography';
+import { Icon } from '../utilities/svg-icons';
 import { isMobile } from '../utilities/helpers';
 
 const Drawer = createDrawerNavigator();
 
-export function Shop({ route, navigation }) {
+export function Shop() {
   const { colors } = useTheme();
   return (
     <Drawer.Navigator
@@ -27,10 +23,14 @@ export function Shop({ route, navigation }) {
           fontSize: isMobile ? t.medium : t.large,
           marginLeft: isMobile ? 0 : t.small,
         },
+        headerShadowVisible: false,
         drawerPosition: 'right',
         // headerShown: false,
         drawerStyle: {
           // right: isMobile ? 110 : 1175,
+        },
+        drawerLabelStyle: {
+          fontFamily: 'SohneBook',
         },
         headerLeft: () => <View></View>,
         headerRight: () => (
@@ -46,11 +46,7 @@ export function Shop({ route, navigation }) {
             }}
           >
             <Text style={{ ...s.m_right, color: t.grey }}>£0.00</Text>
-            <Octicons
-              name="sidebar-expand"
-              size={t.large}
-              style={{ color: t.grey }}
-            />
+            <Icon name="burger" style={{ ...s.iconLarge, fill: t.white }} />
           </TouchableOpacity>
         ),
       })}
@@ -59,10 +55,16 @@ export function Shop({ route, navigation }) {
         name="Products"
         component={Products}
         options={{
-          headerTitle: 'Shop',
+          headerTitle: () => <Text>Shop</Text>,
         }}
       />
-      <Drawer.Screen name="Checkout" component={Checkout} />
+      <Drawer.Screen
+        name="Checkout"
+        component={Checkout}
+        options={{
+          headerTitle: () => <Text>Checkout</Text>,
+        }}
+      />
     </Drawer.Navigator>
   );
 }

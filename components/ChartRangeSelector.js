@@ -1,13 +1,6 @@
-import {
-  View,
-  TouchableOpacity,
-  Switch,
-  SafeAreaView,
-  useColorScheme,
-} from 'react-native';
-import { s, t } from '../setup/styles';
+import { View, TouchableOpacity } from 'react-native';
+import { s } from '../setup/styles';
 import { useTheme } from '@react-navigation/native';
-import { Octicons } from '@expo/vector-icons';
 import { Text } from '../setup/typography';
 
 export function ChartRangeSelector() {

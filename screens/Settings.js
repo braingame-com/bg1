@@ -1,11 +1,12 @@
 import { View, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import { s, t } from '../setup/styles';
 import { ThemeSelector } from '../components/ThemeSelector';
-import { Text } from '../setup/typography';
+import { Heading, Text } from '../setup/typography';
 import { Button } from '../setup/primitives';
+import { Icon } from '../utilities/svg-icons';
 import { auth } from '../firebaseConfig';
 import { useTheme } from '@react-navigation/native';
-import { Octicons } from '@expo/vector-icons';
+
 // import { onAuthStateChanged } from 'firebase/auth';
 
 let userIsLoggedIn = false;
@@ -53,6 +54,7 @@ export const Settings = ({ navigation }) => {
           text={subscriber ? 'View donations' : 'Donate'}
           icon={subscriber ? 'smiley' : 'code-of-conduct'}
           onPress={() => console.log(subscriber ? 'view donations' : 'donate')}
+          style={{ marginTop: t.large, marginLeft: t.medium }}
         />
       </ScrollView>
     </SafeAreaView>
@@ -63,72 +65,41 @@ const AccountSettings = () => {
   const { colors } = useTheme();
   return (
     <View style={{ ...s.container, ...s.m_horizontal }}>
-      <Text style={{ ...s.heading, color: colors.text, marginBottom: t.small }}>
+      <Heading
+        style={{
+          color: colors.text,
+          marginTop: t.large,
+          marginBottom: t.small,
+        }}
+      >
         Account
-      </Text>
-      <TouchableOpacity>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}
-        >
-          <Octicons
-            name="bell"
-            size={t.large}
-            style={{ color: t.grey, ...s.m_right }}
-          />
-          <Text style={{ ...s.task_mini }}>Manage notifications</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}
-        >
-          <Octicons
-            name="person"
-            size={t.large}
-            style={{ color: t.grey, ...s.m_right }}
-          />
-          <Text style={{ ...s.task_mini }}>Change username or email</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}
-        >
-          <Octicons
-            name="lock"
-            size={t.large}
-            style={{ color: t.grey, ...s.m_right }}
-          />
-          <Text style={{ ...s.task_mini }}>Change password</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            opacity: 0.5,
-          }}
-        >
-          <Octicons
-            name="trash"
-            size={t.large}
-            style={{ ...s.error_text, ...s.m_right }}
-          />
-          <Text style={{ ...s.error_text, ...s.task_mini }}>
-            Delete account
-          </Text>
-        </View>
-      </TouchableOpacity>
+      </Heading>
+
+      <SettingsLink>
+        <Icon name="bell" style={{ ...s.iconSmall, fill: t.white }} />
+        <Text style={{ ...s.task_mini, ...s.m_left }}>
+          Manage notifications
+        </Text>
+      </SettingsLink>
+
+      <SettingsLink>
+        <Icon name="user" style={{ ...s.iconSmall, fill: t.white }} />
+        <Text style={{ ...s.task_mini, ...s.m_left }}>
+          Change username or email
+        </Text>
+      </SettingsLink>
+
+      <SettingsLink>
+        <Icon name="lock" style={{ ...s.iconSmall, fill: t.white }} />
+        <Text style={{ ...s.task_mini, ...s.m_left }}>Change password</Text>
+      </SettingsLink>
+
+      <SettingsLink style={{ opacity: 0.5 }}>
+        <Icon name="trash" style={{ ...s.iconSmall, fill: t.negative }} />
+        <Text style={{ ...s.error_text, ...s.task_mini, ...s.m_left }}>
+          Delete account
+        </Text>
+      </SettingsLink>
     </View>
   );
 };
@@ -143,59 +114,32 @@ const Support = () => {
         marginTop: -t.small,
       }}
     >
-      <Text style={{ ...s.heading, color: colors.text, marginBottom: t.small }}>
+      <Heading
+        style={{
+          color: colors.text,
+          marginTop: t.large,
+          marginBottom: t.small,
+        }}
+      >
         Support
-      </Text>
-      <TouchableOpacity>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}
-        >
-          <Octicons
-            name="question"
-            size={t.large}
-            style={{ color: t.grey, ...s.m_right }}
-          />
-          <Text style={{ ...s.task_mini }}>How do I use this app?</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}
-        >
-          <Octicons
-            name="comment"
-            size={t.large}
-            style={{ color: t.grey, ...s.m_right }}
-          />
-          <Text style={{ ...s.task_mini }}>Contact us</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}
-        >
-          <Octicons
-            name="file"
-            size={t.large}
-            style={{
-              color: t.grey,
-              ...s.m_right,
+      </Heading>
 
-              width: t.large,
-            }}
-          />
-          <Text style={{ ...s.task_mini }}>Documentation</Text>
-        </View>
-      </TouchableOpacity>
+      <SettingsLink>
+        <Icon name="question-mark" style={{ ...s.iconSmall, fill: t.white }} />
+        <Text style={{ ...s.task_mini, ...s.m_left }}>
+          How do I use this app?
+        </Text>
+      </SettingsLink>
+
+      <SettingsLink>
+        <Icon name="message" style={{ ...s.iconSmall, fill: t.white }} />
+        <Text style={{ ...s.task_mini, ...s.m_left }}>Contact us</Text>
+      </SettingsLink>
+
+      <SettingsLink>
+        <Icon name="document" style={{ ...s.iconSmall, fill: t.white }} />
+        <Text style={{ ...s.task_mini, ...s.m_left }}>Documentation</Text>
+      </SettingsLink>
     </View>
   );
 };
@@ -210,65 +154,50 @@ const Links = () => {
         marginTop: -t.small,
       }}
     >
-      <Text style={{ ...s.heading, color: colors.text, marginBottom: t.small }}>
+      <Heading
+        style={{
+          color: colors.text,
+          marginTop: t.large,
+          marginBottom: t.small,
+        }}
+      >
         Links
-      </Text>
-      <TouchableOpacity>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}
-        >
-          <Octicons
-            name="bug"
-            size={t.large}
-            style={{
-              color: t.grey,
-              ...s.m_right,
-              width: t.large,
-            }}
-          />
-          <Text style={{ ...s.task_mini }}>Report a bug</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}
-        >
-          <Octicons
-            name="organization"
-            size={t.large}
-            style={{ color: t.grey, ...s.m_right }}
-          />
-          <Text style={{ ...s.task_mini }}>Legal policies</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}
-        >
-          <Octicons
-            name="mark-github"
-            size={t.large}
-            style={{ color: t.grey, ...s.m_right }}
-          />
-          <Text style={{ ...s.task_mini }}>Github</Text>
-          <Octicons
-            name="code"
-            color={t.grey}
-            size={t.large}
-            style={{ marginHorizontal: t.small }}
-          />
-          <Text style={{ color: t.grey }}>v1.1.1</Text>
-        </View>
-      </TouchableOpacity>
+      </Heading>
+
+      <SettingsLink>
+        <Icon name="bug" style={{ ...s.iconSmall, fill: t.white }} />
+        <Text style={{ ...s.task_mini, ...s.m_left }}>Report a bug</Text>
+      </SettingsLink>
+
+      <SettingsLink>
+        <Icon name="hammer" style={{ ...s.iconSmall, fill: t.white }} />
+        <Text style={{ ...s.task_mini, ...s.m_left }}>Legal policies</Text>
+      </SettingsLink>
+
+      <SettingsLink>
+        <Icon name="github-alt" style={{ ...s.iconSmall, fill: t.white }} />
+        <Text style={{ ...s.task_mini, ...s.m_left }}>Github</Text>
+        <Icon
+          name="code"
+          style={{ ...s.iconSmall, fill: t.white, marginHorizontal: t.small }}
+        />
+        <Text style={{ color: t.grey }}>v1.1.1</Text>
+      </SettingsLink>
     </View>
   );
 };
+
+const SettingsLink = ({ children, style }) => (
+  <TouchableOpacity>
+    <View
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginVertical: t.xs,
+        ...style,
+      }}
+    >
+      {children}
+    </View>
+  </TouchableOpacity>
+);
