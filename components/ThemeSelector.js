@@ -8,7 +8,7 @@ import { useTheme } from '@react-navigation/native';
 import { useThemeUpdate } from '../components/AppProvider';
 import { s, t } from '../setup/styles';
 import { Heading, Text } from '../setup/typography';
-import { Icon } from '../utilities/svg-icons';
+import { Icon } from '../setup/primitives';
 
 export function ThemeSelector() {
   const { colors } = useTheme();
@@ -36,7 +36,7 @@ export function ThemeSelector() {
             console.log('light');
           }}
         >
-          <Icon name="sun" style={{ ...s.iconSmall, fill: t.white }} />
+          <Icon name="sun" size="secondary" />
           <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
             Light
           </Text>
@@ -57,7 +57,7 @@ export function ThemeSelector() {
             console.log('dark');
           }}
         >
-          <Icon name="moon" style={{ ...s.iconSmall, fill: t.white }} />
+          <Icon name="moon" size="secondary" />
           <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
             Dark
           </Text>
@@ -76,7 +76,6 @@ export function ThemeSelector() {
           }}
           onPress={toggleTheme}
         >
-          <Icon name="sparkle" style={{ ...s.iconSmall, fill: t.white }} />
           <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
             Auto
           </Text>

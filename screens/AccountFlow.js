@@ -25,21 +25,21 @@ export const AccountFlow = ({ navigation }) => {
       <Button
         type="Secondary"
         text="Continue with Google"
-        svg="Google"
+        icon="google"
         onPress={() => console.log('Google')}
         style={{ marginVertical: t.xs }}
       />
       <Button
         type="Secondary"
         text="Continue with Apple"
-        svg="Apple"
+        icon="apple"
         onPress={() => console.log('Apple')}
         style={{ marginVertical: t.xs }}
       />
       <Button
         type="Secondary"
         text="Continue with email"
-        icon="mail"
+        icon="envelope"
         style={{ marginVertical: t.xs }}
         onPress={() => {
           setFlow('Create account');

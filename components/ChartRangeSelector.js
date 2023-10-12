@@ -1,7 +1,7 @@
 import { View, TouchableOpacity } from 'react-native';
 import { s } from '../setup/styles';
 import { useTheme } from '@react-navigation/native';
-import { Text } from '../setup/typography';
+import { Small } from '../setup/typography';
 
 export function ChartRangeSelector() {
   const { colors } = useTheme();
@@ -24,7 +24,7 @@ export function ChartRangeSelector() {
           console.log('1W');
         }}
       >
-        <Text style={{ color: colors.text }}>1W</Text>
+        <Small style={{ color: colors.text }}>1W</Small>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -39,7 +39,7 @@ export function ChartRangeSelector() {
           console.log('1M');
         }}
       >
-        <Text style={{ color: colors.text }}>1M</Text>
+        <Small style={{ color: colors.text }}>1M</Small>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -53,7 +53,7 @@ export function ChartRangeSelector() {
           console.log('1Y');
         }}
       >
-        <Text style={{ color: colors.text }}>1Y</Text>
+        <Small style={{ color: colors.text }}>1Y</Small>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -67,7 +67,7 @@ export function ChartRangeSelector() {
           console.log('All');
         }}
       >
-        <Text style={{ color: colors.text }}>All</Text>
+        <Small style={{ color: colors.text }}>All</Small>
       </TouchableOpacity>
     </View>
   );

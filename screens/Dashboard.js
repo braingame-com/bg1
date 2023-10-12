@@ -14,8 +14,7 @@ import { ScrollContext } from '../components/AppProvider';
 import { s, t } from '../setup/styles';
 import { AccountFlow } from './AccountFlow';
 import { Title, Text, Small } from '../setup/typography';
-import { Dot, Row } from '../setup/primitives';
-import { Icon } from '../utilities/svg-icons';
+import { Icon, Dot, Row, BackButton } from '../setup/primitives';
 import { isMobile } from '../utilities/helpers';
 import { ChartRangeSelector } from '../components/ChartRangeSelector';
 // import { Playground } from '../screens/Playground';
@@ -43,172 +42,135 @@ let currentUser;
 
 const Stack = createNativeStackNavigator();
 
-export const Dashboard = ({ navigation }) => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShadowVisible: false,
-      }}
-    >
-      {/* <Stack.Screen
+export const Dashboard = ({ navigation }) => (
+  <Stack.Navigator
+    screenOptions={{
+      headerShadowVisible: false,
+    }}
+  >
+    {/* <Stack.Screen
         name="Playground"
         component={Playground}
         options={{ headerShown: false }}
       /> */}
-      {!userIsLoggedIn && (
-        <Stack.Screen
-          name="Account Flow"
-          component={AccountFlow}
-          options={{ headerShown: false }}
-          navigation={navigation}
-          currentUser={currentUser}
-        />
-      )}
+    {!userIsLoggedIn && (
       <Stack.Screen
-        name="Dashboard"
-        component={DashboardList}
+        name="Account Flow"
+        component={AccountFlow}
         options={{ headerShown: false }}
         navigation={navigation}
         currentUser={currentUser}
       />
-      {userIsLoggedIn && (
-        <Stack.Screen
-          name="Account Flow"
-          component={AccountFlow}
-          options={{ headerShown: false }}
-          navigation={navigation}
-          currentUser={currentUser}
-        />
-      )}
+    )}
+    <Stack.Screen
+      name="Dashboard"
+      component={DashboardList}
+      options={{ headerShown: false }}
+      navigation={navigation}
+      currentUser={currentUser}
+    />
+    {userIsLoggedIn && (
       <Stack.Screen
-        name="Numbers Screen"
-        component={NumbersScreen}
-        options={{
-          headerTitle: () => <Text>Numbers</Text>,
-          headerLeft: () => (
-            <TouchableOpacity
-              style={{ ...s.back_btn, padding: t.small }}
-              onPress={() => navigation.navigate('Dashboard')}
-            >
-              <Icon
-                name="chevron-left"
-                style={{ ...s.iconLarge, fill: t.white }}
-              />
-            </TouchableOpacity>
-          ),
-        }}
+        name="Account Flow"
+        component={AccountFlow}
+        options={{ headerShown: false }}
+        navigation={navigation}
+        currentUser={currentUser}
       />
-      <Stack.Screen
-        name="Tasks Screen"
-        component={TasksScreen}
-        options={{
-          headerTitle: () => <Text>Tasks</Text>,
-          headerLeft: () => (
-            <TouchableOpacity
-              style={{ ...s.back_btn, padding: t.small }}
-              onPress={() => navigation.navigate('Dashboard')}
-            >
-              <Icon
-                name="chevron-left"
-                style={{ ...s.iconLarge, fill: t.white }}
-              />
-            </TouchableOpacity>
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Visualization Screen"
-        component={VisualizationScreen}
-        options={{
-          headerTitle: () => <Text>Visualization</Text>,
-          headerLeft: () => (
-            <TouchableOpacity
-              style={{ ...s.back_btn, padding: t.small }}
-              onPress={() => navigation.navigate('Dashboard')}
-            >
-              <Icon
-                name="chevron-left"
-                style={{ ...s.iconLarge, fill: t.white }}
-              />
-            </TouchableOpacity>
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Affirmations Screen"
-        component={AffirmationsScreen}
-        options={{
-          headerTitle: () => <Text>Affirmations</Text>,
-          headerLeft: () => (
-            <TouchableOpacity
-              style={{ ...s.back_btn, padding: t.small }}
-              onPress={() => navigation.navigate('Dashboard')}
-            >
-              <Icon
-                name="chevron-left"
-                style={{ ...s.iconLarge, fill: t.white }}
-              />
-            </TouchableOpacity>
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Planning Screen"
-        component={PlanningScreen}
-        options={{
-          headerTitle: () => <Text>Planning</Text>,
-          headerLeft: () => (
-            <TouchableOpacity
-              style={{ ...s.back_btn, padding: t.small }}
-              onPress={() => navigation.navigate('Dashboard')}
-            >
-              <Icon
-                name="chevron-left"
-                style={{ ...s.iconLarge, fill: t.white }}
-              />
-            </TouchableOpacity>
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Journal Screen"
-        component={JournalScreen}
-        options={{
-          headerTitle: () => <Text>Journal</Text>,
-          headerLeft: () => (
-            <TouchableOpacity
-              style={{ ...s.back_btn, padding: t.small }}
-              onPress={() => navigation.navigate('Dashboard')}
-            >
-              <Icon
-                name="chevron-left"
-                style={{ ...s.iconLarge, fill: t.white }}
-              />
-            </TouchableOpacity>
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          headerTitle: () => <Text>Profile</Text>,
-          headerLeft: () => (
-            <TouchableOpacity
-              style={{ ...s.back_btn, padding: t.small }}
-              onPress={() => navigation.navigate('Dashboard')}
-            >
-              <Icon
-                name="chevron-left"
-                style={{ ...s.iconLarge, fill: t.white }}
-              />
-            </TouchableOpacity>
-          ),
-        }}
-      />
-    </Stack.Navigator>
-  );
-};
+    )}
+    <Stack.Screen
+      name="Numbers Screen"
+      component={NumbersScreen}
+      options={{
+        headerTitle: '',
+        headerLeft: () => (
+          <BackButton
+            text="Dashboard"
+            onPress={() => navigation.navigate('Dashboard')}
+          />
+        ),
+      }}
+    />
+    <Stack.Screen
+      name="Tasks Screen"
+      component={TasksScreen}
+      options={{
+        headerTitle: '',
+        headerLeft: () => (
+          <BackButton
+            text="Dashboard"
+            onPress={() => navigation.navigate('Dashboard')}
+          />
+        ),
+      }}
+    />
+    <Stack.Screen
+      name="Visualization Screen"
+      component={VisualizationScreen}
+      options={{
+        headerTitle: '',
+        headerLeft: () => (
+          <BackButton
+            text="Dashboard"
+            onPress={() => navigation.navigate('Dashboard')}
+          />
+        ),
+      }}
+    />
+    <Stack.Screen
+      name="Affirmations Screen"
+      component={AffirmationsScreen}
+      options={{
+        headerTitle: '',
+        headerLeft: () => (
+          <BackButton
+            text="Dashboard"
+            onPress={() => navigation.navigate('Dashboard')}
+          />
+        ),
+      }}
+    />
+    <Stack.Screen
+      name="Planning Screen"
+      component={PlanningScreen}
+      options={{
+        headerTitle: '',
+        headerLeft: () => (
+          <BackButton
+            text="Dashboard"
+            onPress={() => navigation.navigate('Dashboard')}
+          />
+        ),
+      }}
+    />
+    <Stack.Screen
+      name="Journal Screen"
+      component={JournalScreen}
+      options={{
+        headerTitle: '',
+        headerLeft: () => (
+          <BackButton
+            text="Dashboard"
+            onPress={() => navigation.navigate('Dashboard')}
+          />
+        ),
+      }}
+    />
+    <Stack.Screen
+      name="Profile"
+      component={Profile}
+      options={{
+        headerTitle: '',
+        headerLeft: () => (
+          <BackButton
+            text="Dashboard"
+            onPress={() => navigation.navigate('Dashboard')}
+          />
+        ),
+      }}
+    />
+  </Stack.Navigator>
+);
 
 const DashboardList = () => {
   const { opacity, onScroll } = useContext(ScrollContext);
@@ -251,7 +213,7 @@ const DashboardList = () => {
             </View>
             <View style={{ ...s.row }}>
               <View style={s.block_btn}>
-                <Icon name="filter" style={{ ...s.iconLarge, fill: t.white }} />
+                <Icon name="filter" size="secondary" type="fas" />
               </View>
             </View>
           </View>
@@ -365,7 +327,7 @@ const DashboardList = () => {
               Visualization
             </Text>
             <Text style={{ ...s.pill, ...s.success, ...s.m_left_2 }}>
-              <Icon name="check" style={{ ...s.iconSmall, fill: t.white }} />
+              <Icon name="check" color={t.positive} type="fas" />
             </Text>
           </View>
         </View>
@@ -584,7 +546,7 @@ const TasksScreen = () => {
           }}
           onPress={() => checkTask(props.index)}
         >
-          <Icon name="check" style={{ ...s.iconSmall, fill: t.success }} />
+          <Icon name="check" color={t.positive} type="fas" />
         </TouchableOpacity>
         <Text
           style={{
@@ -609,10 +571,7 @@ const TasksScreen = () => {
           }}
           onPress={() => removeTask(props.index)}
         >
-          <Icon
-            name="x"
-            style={{ ...s.iconSmall, fill: t.white, opacity: 0.5 }}
-          />
+          <Icon name="times" type="fas" />
         </TouchableOpacity>
       </View>
     );
@@ -647,7 +606,7 @@ const TasksScreen = () => {
           }}
           onPress={() => showHideChecked()}
         >
-          <Icon name="eye-slash" style={{ ...s.iconLarge, fill: t.white }} />
+          <Icon name="eye-slash" size="secondary" />
         </TouchableOpacity>
         <View style={{ flex: 2, marginHorizontal: t.small }}>
           <Text
@@ -674,10 +633,7 @@ const TasksScreen = () => {
           }}
           onPress={() => clearChecked()}
         >
-          <Icon
-            name="x"
-            style={{ ...s.iconSmall, fill: t.white, opacity: 0.5 }}
-          />
+          <Icon name="times" size="secondary" type="fas" />
         </TouchableOpacity>
       </View>
       <View
@@ -723,7 +679,7 @@ const TasksScreen = () => {
             justifyContent: 'center',
           }}
         >
-          <Icon name="pencil" style={{ ...s.iconLarge, fill: t.white }} />
+          <Icon name="edit" size="secondary" color={t.grey} />
         </TouchableOpacity>
       </View>
       <View

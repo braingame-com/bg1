@@ -5,7 +5,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Products } from './Products';
 import { Checkout } from './Checkout';
 import { Text } from '../setup/typography';
-import { Icon } from '../utilities/svg-icons';
+import { Icon } from '../setup/primitives';
 import { isMobile } from '../utilities/helpers';
 
 const Drawer = createDrawerNavigator();
@@ -46,7 +46,7 @@ export function Shop() {
             }}
           >
             <Text style={{ ...s.m_right, color: t.grey }}>£0.00</Text>
-            <Icon name="burger" style={{ ...s.iconLarge, fill: t.white }} />
+            <Icon name="bars" size="primary" type="fas" />
           </TouchableOpacity>
         ),
       })}

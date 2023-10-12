@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import {
   Button,
+  BackButton,
   ActivityIndicator,
   Row,
   VideoDropdownMenu,
@@ -51,9 +52,8 @@ export const Videos = ({ navigation }) => {
         options={{
           headerTitle: () => <Text> </Text>,
           headerLeft: () => (
-            <Button
-              type="Naked"
-              icon="chevron-left"
+            <BackButton
+              text="Videos"
               onPress={() => navigation.navigate('VideosList')}
             />
           ),
@@ -107,7 +107,7 @@ const VideosList = ({ navigation }) => {
             />
             <Button
               type="Naked"
-              icon="dot-fill"
+              icon="circle"
               style={{ marginHorizontal: t.xs }}
               contentStyle={{ fontSize: t.xs }}
             />
@@ -193,13 +193,14 @@ const Video = ({ route }) => {
           <Button
             type="Secondary"
             text="Share"
-            icon={Platform.OS === 'ios' ? 'share' : 'share-android'}
+            icon={Platform.OS === 'ios' ? 'share' : 'share-alt'}
+            iconType="fas"
             onPress={() => console.log('share')}
           />
           <Button
             type="Secondary"
             text="Download"
-            icon="download"
+            icon="arrow-alt-circle-down"
             style={{ marginLeft: t.medium }}
             onPress={() => console.log('download')}
           />

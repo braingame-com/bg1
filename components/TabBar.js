@@ -1,7 +1,7 @@
 import { useTheme } from '@react-navigation/native';
 import { View, Pressable, StyleSheet } from 'react-native';
-import { Icon } from '../utilities/svg-icons';
 import { s, t } from '../setup/styles';
+import { Icon } from '../setup/primitives';
 import { isMobile, platform } from '../utilities/helpers';
 
 export const TabBar = ({ state, descriptors, navigation }) => {
@@ -104,6 +104,6 @@ const BrainGameLogo = () => (
       marginTop: t.xxl,
     }}
   >
-    <Icon name="bg-logo" size="large" color={t.white} />
+    <Icon name="brain-game" size="primary" />
   </View>
 );

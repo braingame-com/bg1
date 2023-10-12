@@ -12,8 +12,13 @@ import { s, t } from '../setup/styles';
 import { GRAPHQL_URL, GRAPHQL_BODY } from '../setup/shopify-sapi';
 import { useTheme } from '@react-navigation/native';
 import { Title, Heading, Text, Small } from '../setup/typography';
-import { Icon } from '../utilities/svg-icons';
-import { Row, Button, ActivityIndicator } from '../setup/primitives';
+import {
+  Icon,
+  Row,
+  Button,
+  BackButton,
+  ActivityIndicator,
+} from '../setup/primitives';
 import { isMobile } from '../utilities/helpers';
 import RenderHtml, { defaultSystemFonts } from 'react-native-render-html';
 
@@ -54,22 +59,10 @@ export const Lessons = ({ navigation }) => {
         options={{
           headerTitle: () => <Text> </Text>,
           headerLeft: () => (
-            <TouchableOpacity
-              style={{
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                marginLeft: isMobile ? 0 : t.large,
-              }}
+            <BackButton
+              text="Lessons"
               onPress={() => navigation.navigate('Lessons')}
-              hitSlop={{
-                top: t.xs,
-                bottom: t.xs,
-                left: t.xs,
-                right: t.xs,
-              }}
-            >
-              <Icon name="chevron-left" size="large" color={t.white} />
-            </TouchableOpacity>
+            />
           ),
         }}
       />
@@ -147,14 +140,20 @@ const ArticleList = ({ navigation }) => {
                       ...s.centered,
                     }}
                   >
-                    <Icon name="check" size="small" color={t.positive} />
+                    <Icon
+                      name="check"
+                      color={t.positive}
+                      size="small"
+                      type="fas"
+                    />
                   </Small>
                 </Row>
               );
             })}
             <Button
               type="Naked"
-              icon="kebab-horizontal"
+              icon="ellipsis-h"
+              iconType="fas"
               onPress={() => console.log(`more options for article id: ${id}`)}
               contentStyle={{ fontSize: t.medium, color: t.grey }}
             />
@@ -174,6 +173,7 @@ const ArticleList = ({ navigation }) => {
                 type="Naked"
                 text={Math.floor(Math.random() * (300 - 0)).toString()}
                 icon="heart"
+                iconSize="small"
                 onPress={() => console.log(`like article id: ${id}`)}
                 contentStyle={{ fontSize: t.small, color: t.grey }}
               />
@@ -181,6 +181,7 @@ const ArticleList = ({ navigation }) => {
             <Button
               type="Naked"
               icon="bookmark"
+              iconSize="small"
               onPress={() => console.log(`bookmark article id: ${id}`)}
               contentStyle={{ fontSize: t.medium, color: t.grey }}
             />
@@ -298,13 +299,14 @@ const Article = ({ route }) => {
         <Button
           type="Secondary"
           text="Watch Video"
-          icon="video"
+          icon="play-circle"
+          iconType="fas"
           onPress={() => console.log('watch video')}
         />
         <Button
           type="Secondary"
           text="Download Audio"
-          icon="download"
+          icon="arrow-alt-circle-down"
           style={{ marginLeft: t.medium }}
           onPress={() => console.log('download audio')}
         />

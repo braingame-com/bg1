@@ -1,15 +1,14 @@
 import { useContext, useEffect } from 'react';
 import { AppProvider, Tab, ScrollContext } from './components/AppProvider';
 import { useFonts } from 'expo-font';
-import { Icon } from './utilities/svg-icons';
 import { Dashboard } from './screens/Dashboard';
 import { Search } from './screens/Search';
 import { Lessons } from './screens/Lessons';
-// import { Videos } from './screens/Videos';
+import { Videos } from './screens/Videos';
 import { Shop } from './screens/Shop';
 import { Settings } from './screens/Settings';
 import { t } from './setup/styles';
-import { ProfileIcon } from './setup/primitives';
+import { Icon, ProfileIcon } from './setup/primitives';
 import { TabBar } from './components/TabBar';
 import { isMobile } from './utilities/helpers';
 
@@ -50,11 +49,12 @@ export default function App() {
           name={'Dashboard '}
           component={Dashboard}
           options={({ navigation }) => ({
-            tabBarIcon: ({ focused }) => (
+            tabBarIcon: ({ fill, focused }) => (
               <Icon
-                name={focused ? 'dashboard-solid' : 'dashboard'}
-                size="large"
-                color={t.white}
+                name={focused ? 'home-user' : 'home'}
+                color={fill}
+                size="primary"
+                type="fas"
               />
             ),
             headerRight: () => <ProfileIcon navigation={navigation} />,
@@ -64,8 +64,8 @@ export default function App() {
           name="Search"
           component={Search}
           options={{
-            tabBarIcon: () => (
-              <Icon name="search" size="large" color={t.white} />
+            tabBarIcon: ({ fill }) => (
+              <Icon name="search" color={fill} size="primary" type="fas" />
             ),
             headerShown: false,
           }}
@@ -74,35 +74,42 @@ export default function App() {
           name="Lessons "
           component={Lessons}
           options={{
-            tabBarIcon: ({ focused }) => (
+            tabBarIcon: ({ fill, focused }) => (
               <Icon
-                name={focused ? 'book-solid' : 'book'}
-                size="large"
-                color={t.white}
+                name={focused ? 'book-reader' : 'book-open'}
+                color={fill}
+                size="primary"
+                type="fas"
               />
             ),
             headerShown: false,
           }}
         />
-        {/* <Tab.Screen
+        <Tab.Screen
           name="Videos"
           component={Videos}
           options={{
             tabBarIcon: ({ fill, focused }) => (
-              <Icon name={focused ? 'play-solid' : 'play'} size="large" color={t.white}/>
+              <Icon
+                name="play-circle"
+                color={fill}
+                size="primary"
+                type={focused && 'fas'}
+              />
             ),
             headerShown: false,
           }}
-        /> */}
+        />
         <Tab.Screen
           name="Shop"
           component={Shop}
           options={{
-            tabBarIcon: ({ focused }) => (
+            tabBarIcon: ({ fill, focused }) => (
               <Icon
-                name={focused ? 'bag-solid' : 'bag'}
-                size="large"
-                color={t.white}
+                name="shopping-bag"
+                color={fill}
+                size="primary"
+                type="fas"
               />
             ),
             headerShown: false,
@@ -112,11 +119,12 @@ export default function App() {
           name="Settings"
           component={Settings}
           options={{
-            tabBarIcon: ({ focused }) => (
+            tabBarIcon: ({ fill, focused }) => (
               <Icon
-                name={focused ? 'user-circle-solid' : 'user-circle'}
-                size="large"
-                color={t.white}
+                name="user-circle"
+                color={fill}
+                size="primary"
+                type={focused && 'fas'}
               />
             ),
           }}

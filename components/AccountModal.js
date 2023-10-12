@@ -106,7 +106,8 @@ export function AccountModal({
             >
               <Button
                 type="Naked"
-                icon="x"
+                icon="times"
+                iconType="fas"
                 onPress={() => setModalVisible(!modalVisible)}
               />
               <Button
@@ -133,14 +134,14 @@ export function AccountModal({
                 <Button
                   type="Secondary"
                   text="Continue with Google"
-                  svg="Google"
+                  icon="google"
                   style={{ marginVertical: t.xs }}
                   onPress={() => console.log('Google')}
                 />
                 <Button
                   type="Secondary"
                   text="Continue with Apple"
-                  svg="Apple"
+                  icon="apple"
                   style={{ marginVertical: t.xs }}
                   onPress={() => console.log('Apple')}
                 />
@@ -160,13 +161,14 @@ export function AccountModal({
               </View>
             )}
             <InputField
-              icon="mail"
+              icon="envelope"
               placeholder="Email"
               value={email}
               onChangeText={(text) => setEmail(text)}
             />
             <InputField
               icon="unlock"
+              iconType="fas"
               placeholder="Password"
               textContentType={'password'}
               secureTextEntry
@@ -177,7 +179,8 @@ export function AccountModal({
               <Row style={{ marginTop: t.medium }}>
                 <Button
                   type="Naked"
-                  icon="alert"
+                  icon="exclamation-circle"
+                  iconType={'fas'}
                   contentStyle={{ fontSize: t.medium, color: t.negative }}
                 />
                 <Text
