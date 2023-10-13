@@ -16,10 +16,13 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fal } from '@fortawesome/pro-light-svg-icons';
+import { fat } from '@fortawesome/pro-thin-svg-icons';
+
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import Svg, { Path } from 'react-native-svg';
 
-library.add(fab, far, fas);
+library.add(fab, far, fas, fal, fat);
 
 export function Button({
   style,
@@ -125,7 +128,6 @@ export const BackButton = ({ text, onPress }) => (
       <Icon
         name="chevron-left"
         size="primary"
-        type="fas"
         style={{ marginRight: t.medium }}
       />
       <Text>{text}</Text>
@@ -133,8 +135,8 @@ export const BackButton = ({ text, onPress }) => (
   </TouchableOpacity>
 );
 
-export const Dot = ({ contentStyle }) => (
-  <Button type="Naked" icon="circle" contentStyle={contentStyle} />
+export const Dot = ({ style }) => (
+  <Icon name="circle" type="fas" size={t.xxs} color={t.grey} style={style} />
 );
 
 export function Row({ style, children }) {
@@ -176,26 +178,29 @@ export const VideoDropdownMenu = () => {
       <Button
         type="Naked"
         text="Save"
-        icon={'bookmark'}
+        icon="bookmark"
+        iconSize={t.medium}
         style={{ padding: t.xs }}
-        contentStyle={{ color: colors.text }}
+        contentStyle={{ color: colors.text, fontSize: t.medium }}
         onPress={() => console.log('Save')}
       />
       <Button
         type="Naked"
         text="Share"
-        icon={Platform.OS === 'ios' ? 'share' : 'share-android'}
+        icon={Platform.OS === 'ios' ? 'share' : 'share-nodes'}
+        iconSize={t.medium}
         style={{ padding: t.xs }}
-        contentStyle={{ color: colors.text }}
+        contentStyle={{ color: colors.text, fontSize: t.medium }}
         onPress={() => console.log('Share')}
       />
       <Divider style={{ marginVertical: t.xs, marginHorizontal: -t.medium }} />
       <Button
         type="Naked"
         text="Not interested"
-        icon={'skip'}
+        icon="ban"
+        iconSize={t.medium}
         style={{ padding: t.xs }}
-        contentStyle={{ color: colors.text }}
+        contentStyle={{ color: colors.text, fontSize: t.medium }}
         onPress={() => console.log('Not interested')}
       />
     </View>
@@ -303,7 +308,12 @@ export const ProfileIcon = ({ navigation }) => (
 
 export const Icon = ({ name, color, size, type, style }) => {
   const sizeMap =
-    { primary: t.xl, secondary: t.large, small: t.small }[size] || t.medium;
+    // human readable size
+    { primary: t.xl, secondary: t.large, small: t.small }[size] ||
+    // or provided value
+    size ||
+    // else medium
+    t.medium;
 
   if (name === 'brain-game') {
     return (
@@ -357,11 +367,35 @@ export const Icon = ({ name, color, size, type, style }) => {
         />
       </Svg>
     );
+  } else if (name === 'grid-dashboard-light') {
+    return (
+      <Svg
+        viewBox="0 0 448 512"
+        fill={color || t.white}
+        width={sizeMap}
+        height={sizeMap}
+        style={{ outline: 'none', strokeWidth: '0px', ...style }}
+      >
+        <Path d="m248,128H40c-22.1,0-40,17.9-40,40v48c0,22.1,17.9,40,40,40h208c22.1,0,40-17.9,40-40v-48c0-22.1-17.9-40-40-40Zm8,88c0,4.4-3.6,8-8,8H40c-4.4,0-8-3.6-8-8v-48c0-4.4,3.6-8,8-8h208c4.4,0,8,3.6,8,8v48Zm104-88h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48c0-22.1,17.9-40,40-40ZM40,320c-4.4,0-8,3.6-8,8v48c0,4.4,3.6,8,8,8h48c4.4,0,8-3.6,8-8v-48c0-4.4-3.6-8-8-8h-48ZM0,328c0-22.1,17.9-40,40-40h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48Zm200-8c-4.4,0-8,3.6-8,8v48c0,4.4,3.6,8,8,8h48c4.4,0,8-3.6,8-8v-48c0-4.4-3.6-8-8-8h-48Zm-40,8c0-22.1,17.9-40,40-40h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48Zm248-168h-48c-4.4,0-8,3.6-8,8v48c0,4.4,3.6,8,8,8h48c4.4,0,8-3.6,8-8v-48c0-4.4-3.6-8-8-8Zm-48,160c-4.4,0-8,3.6-8,8v48c0,4.4,3.6,8,8,8h48c4.4,0,8-3.6,8-8v-48c0-4.4-3.6-8-8-8h-48Zm-40,8c0-22.1,17.9-40,40-40h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48Z" />
+      </Svg>
+    );
+  } else if (name === 'grid-dashboard-solid') {
+    return (
+      <Svg
+        viewBox="0 0 448 512"
+        fill={color || t.white}
+        width={sizeMap}
+        height={sizeMap}
+        style={{ outline: 'none', strokeWidth: '0px', ...style }}
+      >
+        <Path d="m0,328c0-22.1,17.9-40,40-40h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48Zm160,0c0-22.1,17.9-40,40-40h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48Zm160,0c0-22.1,17.9-40,40-40h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48Zm-72-200H40c-22.1,0-40,17.9-40,40v48c0,22.1,17.9,40,40,40h208c22.1,0,40-17.9,40-40v-48c0-22.1-17.9-40-40-40Zm112,0h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48c0-22.1,17.9-40,40-40Z" />
+      </Svg>
+    );
   } else {
     return (
       name && (
         <FontAwesomeIcon
-          icon={[type || 'far', name]}
+          icon={[type || 'fal', name]}
           color={color || t.white}
           size={sizeMap}
           style={{ outline: 'none', ...style }}

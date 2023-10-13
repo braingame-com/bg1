@@ -107,7 +107,6 @@ export function AccountModal({
               <Button
                 type="Naked"
                 icon="times"
-                iconType="fas"
                 onPress={() => setModalVisible(!modalVisible)}
               />
               <Button
@@ -168,7 +167,6 @@ export function AccountModal({
             />
             <InputField
               icon="unlock"
-              iconType="fas"
               placeholder="Password"
               textContentType={'password'}
               secureTextEntry
@@ -180,7 +178,6 @@ export function AccountModal({
                 <Button
                   type="Naked"
                   icon="exclamation-circle"
-                  iconType={'fas'}
                   contentStyle={{ fontSize: t.medium, color: t.negative }}
                 />
                 <Text

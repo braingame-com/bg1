@@ -140,12 +140,7 @@ const ArticleList = ({ navigation }) => {
                       ...s.centered,
                     }}
                   >
-                    <Icon
-                      name="check"
-                      color={t.positive}
-                      size="small"
-                      type="fas"
-                    />
+                    <Icon name="check" color={t.positive} size="small" />
                   </Small>
                 </Row>
               );
@@ -153,7 +148,6 @@ const ArticleList = ({ navigation }) => {
             <Button
               type="Naked"
               icon="ellipsis-h"
-              iconType="fas"
               onPress={() => console.log(`more options for article id: ${id}`)}
               contentStyle={{ fontSize: t.medium, color: t.grey }}
             />
@@ -300,7 +294,6 @@ const Article = ({ route }) => {
           type="Secondary"
           text="Watch Video"
           icon="play-circle"
-          iconType="fas"
           onPress={() => console.log('watch video')}
         />
         <Button

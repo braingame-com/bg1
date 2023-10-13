@@ -46,7 +46,7 @@ export function Shop() {
             }}
           >
             <Text style={{ ...s.m_right, color: t.grey }}>£0.00</Text>
-            <Icon name="bars" size="primary" type="fas" />
+            <Icon name="bars" size="primary" />
           </TouchableOpacity>
         ),
       })}

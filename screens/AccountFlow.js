@@ -56,7 +56,7 @@ export const AccountFlow = ({ navigation }) => {
             setModalVisible(true);
           }}
           style={{ marginLeft: t.xs }}
-          contentStyle={{ color: colors.primary, fontWeight: 'bold' }}
+          contentStyle={{ color: colors.primary }}
         />
       </Row>
       <AccountModal

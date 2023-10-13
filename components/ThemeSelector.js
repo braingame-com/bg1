@@ -36,7 +36,7 @@ export function ThemeSelector() {
             console.log('light');
           }}
         >
-          <Icon name="sun" size="secondary" />
+          <Icon name="sun-bright" size="secondary" />
           <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
             Light
           </Text>
@@ -76,6 +76,7 @@ export function ThemeSelector() {
           }}
           onPress={toggleTheme}
         >
+          <Icon name="sparkles" size="secondary" />
           <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
             Auto
           </Text>

@@ -51,7 +51,7 @@ export const Settings = ({ navigation }) => {
         <Button
           type="Primary"
           text={subscriber ? 'View donations' : 'Donate'}
-          icon={subscriber ? 'smile' : 'heart'}
+          icon={subscriber ? 'face-smile-relaxed' : 'box-heart'}
           onPress={() => console.log(subscriber ? 'view donations' : 'donate')}
           style={{ marginTop: t.large, marginLeft: t.medium }}
         />
@@ -89,12 +89,12 @@ const AccountSettings = () => {
       </SettingsLink>
 
       <SettingsLink>
-        <Icon name="lock" size="secondary" type="fas" />
+        <Icon name="lock" size="secondary" />
         <Text style={{ ...s.task_mini, ...s.m_left }}>Change password</Text>
       </SettingsLink>
 
       <SettingsLink style={{ opacity: 0.5 }}>
-        <Icon name="trash" color={t.negative} size="secondary" type="fas" />
+        <Icon name="trash" color={t.negative} size="secondary" />
         <Text style={{ ...s.error_text, ...s.task_mini, ...s.m_left }}>
           Delete account
         </Text>
@@ -164,19 +164,19 @@ const Links = () => {
       </Heading>
 
       <SettingsLink>
-        <Icon name="bug" size="secondary" type="fas" />
+        <Icon name="bug" size="secondary" />
         <Text style={{ ...s.task_mini, ...s.m_left }}>Report a bug</Text>
       </SettingsLink>
 
       <SettingsLink>
-        <Icon name="gavel" size="secondary" type="fas" />
+        <Icon name="gavel" size="secondary" />
         <Text style={{ ...s.task_mini, ...s.m_left }}>Legal policies</Text>
       </SettingsLink>
 
       <SettingsLink>
         <Icon name="github-alt" size="secondary" type="fab" />
         <Text style={{ ...s.task_mini, ...s.m_left }}>Github</Text>
-        <Icon name="code" type="fas" style={{ ...s.m_horizontal }} />
+        <Icon name="code" style={{ ...s.m_horizontal }} />
         <Text style={{ color: t.grey }}>v1.1.1</Text>
       </SettingsLink>
     </View>

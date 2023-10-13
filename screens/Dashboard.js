@@ -21,7 +21,7 @@ import { ChartRangeSelector } from '../components/ChartRangeSelector';
 // import { auth } from '../firebaseConfig';
 // import { onAuthStateChanged } from 'firebase/auth';
 
-let userIsLoggedIn = true;
+let userIsLoggedIn = false;
 let currentUser;
 
 // onAuthStateChanged(auth, (user) => {
@@ -213,7 +213,7 @@ const DashboardList = () => {
             </View>
             <View style={{ ...s.row }}>
               <View style={s.block_btn}>
-                <Icon name="filter" size="secondary" type="fas" />
+                <Icon name="filter" size="secondary" />
               </View>
             </View>
           </View>
@@ -258,7 +258,7 @@ const DashboardList = () => {
         <View style={{ marginTop: t.small }}>
           {tasks.map((task, i) => (
             <Row key={i}>
-              <Dot contentStyle={{ fontSize: t.small }} />
+              <Dot />
               <Text style={{ paddingVertical: t.xs, marginLeft: t.small }}>
                 {task}
               </Text>
@@ -327,7 +327,7 @@ const DashboardList = () => {
               Visualization
             </Text>
             <Text style={{ ...s.pill, ...s.success, ...s.m_left_2 }}>
-              <Icon name="check" color={t.positive} type="fas" />
+              <Icon name="check" color={t.positive} />
             </Text>
           </View>
         </View>
@@ -546,7 +546,7 @@ const TasksScreen = () => {
           }}
           onPress={() => checkTask(props.index)}
         >
-          <Icon name="check" color={t.positive} type="fas" />
+          <Icon name="check" color={t.positive} />
         </TouchableOpacity>
         <Text
           style={{
@@ -571,7 +571,7 @@ const TasksScreen = () => {
           }}
           onPress={() => removeTask(props.index)}
         >
-          <Icon name="times" type="fas" />
+          <Icon name="times" />
         </TouchableOpacity>
       </View>
     );
@@ -633,7 +633,7 @@ const TasksScreen = () => {
           }}
           onPress={() => clearChecked()}
         >
-          <Icon name="times" size="secondary" type="fas" />
+          <Icon name="times" size="secondary" />
         </TouchableOpacity>
       </View>
       <View

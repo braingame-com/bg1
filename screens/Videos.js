@@ -14,6 +14,7 @@ import {
 import {
   Button,
   BackButton,
+  Dot,
   ActivityIndicator,
   Row,
   VideoDropdownMenu,
@@ -92,9 +93,8 @@ const VideosList = ({ navigation }) => {
             <Subtitle>{title}</Subtitle>
             <Button
               type="Naked"
-              icon="kebab-horizontal"
-              style={{ transform: [{ rotate: '90deg' }] }}
-              contentStyle={{ fontSize: t.medium }}
+              icon="ellipsis-vertical"
+              iconSize="secondary"
               onPress={() => setMenuVisible(!menuVisible)}
             />
           </Row>
@@ -105,12 +105,7 @@ const VideosList = ({ navigation }) => {
               text="12K views"
               contentStyle={{ fontSize: t.small, color: t.grey }}
             />
-            <Button
-              type="Naked"
-              icon="circle"
-              style={{ marginHorizontal: t.xs }}
-              contentStyle={{ fontSize: t.xs }}
-            />
+            <Dot style={{ marginHorizontal: t.xs }} />
             <Button
               type="Naked"
               text="4 months ago"
@@ -193,8 +188,7 @@ const Video = ({ route }) => {
           <Button
             type="Secondary"
             text="Share"
-            icon={Platform.OS === 'ios' ? 'share' : 'share-alt'}
-            iconType="fas"
+            icon={Platform.OS === 'ios' ? 'share' : 'share-nodes'}
             onPress={() => console.log('share')}
           />
           <Button
