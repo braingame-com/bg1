@@ -1,8 +1,8 @@
-import { View, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
+import { View, Pressable, SafeAreaView, ScrollView } from 'react-native';
 import { s, t } from '../setup/styles';
 import { ThemeSelector } from '../components/ThemeSelector';
-import { Heading, Text } from '../setup/typography';
-import { Icon, Button } from '../setup/primitives';
+import { Heading, Text } from '../design/typography';
+import { Icon, Button } from '../design/primitives';
 import { auth } from '../firebaseConfig';
 import { useTheme } from '@react-navigation/native';
 
@@ -184,7 +184,7 @@ const Links = () => {
 };
 
 const SettingsLink = ({ children, style }) => (
-  <TouchableOpacity>
+  <Pressable>
     <View
       style={{
         flexDirection: 'row',
@@ -195,5 +195,5 @@ const SettingsLink = ({ children, style }) => (
     >
       {children}
     </View>
-  </TouchableOpacity>
+  </Pressable>
 );

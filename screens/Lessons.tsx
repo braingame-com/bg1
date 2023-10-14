@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import {
   View,
-  TouchableOpacity,
+  Pressable,
   FlatList,
   ScrollView,
   useWindowDimensions,
@@ -11,15 +11,15 @@ import { ScrollContext } from '../components/AppProvider';
 import { s, t } from '../setup/styles';
 import { GRAPHQL_URL, GRAPHQL_BODY } from '../setup/shopify-sapi';
 import { useTheme } from '@react-navigation/native';
-import { Title, Heading, Text, Small } from '../setup/typography';
+import { Title, Heading, Text, Small } from '../design/typography';
 import {
   Icon,
   Row,
   Button,
   BackButton,
   ActivityIndicator,
-} from '../setup/primitives';
-import { isMobile } from '../utilities/helpers';
+} from '../design/primitives';
+import { isMobile } from '../setup/helpers';
 import RenderHtml, { defaultSystemFonts } from 'react-native-render-html';
 
 const Stack = createNativeStackNavigator();
@@ -93,7 +93,7 @@ const ArticleList = ({ navigation }) => {
           flex: 1,
         }}
       >
-        <TouchableOpacity
+        <Pressable
           style={{
             ...s.card,
             backgroundColor: colors.card,
@@ -180,7 +180,7 @@ const ArticleList = ({ navigation }) => {
               contentStyle={{ fontSize: t.medium, color: t.grey }}
             />
           </Row>
-        </TouchableOpacity>
+        </Pressable>
       </View>
     );
   };

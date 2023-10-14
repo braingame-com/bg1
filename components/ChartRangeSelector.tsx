@@ -1,7 +1,7 @@
-import { View, TouchableOpacity } from 'react-native';
+import { View, Pressable } from 'react-native';
 import { s } from '../setup/styles';
 import { useTheme } from '@react-navigation/native';
-import { Small } from '../setup/typography';
+import { Small } from '../design/typography';
 
 export function ChartRangeSelector() {
   const { colors } = useTheme();
@@ -11,7 +11,7 @@ export function ChartRangeSelector() {
         flexDirection: 'row',
       }}
     >
-      <TouchableOpacity
+      <Pressable
         style={{
           ...s.btn_secondary,
           ...s.switch_btn,
@@ -25,8 +25,8 @@ export function ChartRangeSelector() {
         }}
       >
         <Small style={{ color: colors.text }}>1W</Small>
-      </TouchableOpacity>
-      <TouchableOpacity
+      </Pressable>
+      <Pressable
         style={{
           ...s.btn_secondary,
           ...s.switch_btn,
@@ -40,8 +40,8 @@ export function ChartRangeSelector() {
         }}
       >
         <Small style={{ color: colors.text }}>1M</Small>
-      </TouchableOpacity>
-      <TouchableOpacity
+      </Pressable>
+      <Pressable
         style={{
           ...s.btn_secondary,
           ...s.switch_btn,
@@ -54,8 +54,8 @@ export function ChartRangeSelector() {
         }}
       >
         <Small style={{ color: colors.text }}>1Y</Small>
-      </TouchableOpacity>
-      <TouchableOpacity
+      </Pressable>
+      <Pressable
         style={{
           ...s.btn_secondary,
           ...s.switch_btn,
@@ -68,7 +68,7 @@ export function ChartRangeSelector() {
         }}
       >
         <Small style={{ color: colors.text }}>All</Small>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 }

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { isMobile, platform } from '../utilities/helpers';
+import { isMobile, platform } from './helpers';
 
 // THEMES //
 export const lightTheme = {

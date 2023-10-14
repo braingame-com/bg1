@@ -1,7 +1,7 @@
 import { View, SafeAreaView } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { s } from '../setup/styles';
-import { Text } from '../setup/typography';
+import { Text } from '../design/typography';
 
 export function Products() {
   const { colors } = useTheme();

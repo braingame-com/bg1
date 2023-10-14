@@ -1,12 +1,12 @@
-import { TouchableOpacity, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { s, t } from '../setup/styles';
 import { useTheme } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Products } from './Products';
 import { Checkout } from './Checkout';
-import { Text } from '../setup/typography';
-import { Icon } from '../setup/primitives';
-import { isMobile } from '../utilities/helpers';
+import { Text } from '../design/typography';
+import { Icon } from '../design/primitives';
+import { isMobile } from '../setup/helpers';
 
 const Drawer = createDrawerNavigator();
 
@@ -34,7 +34,7 @@ export function Shop() {
         },
         headerLeft: () => <View></View>,
         headerRight: () => (
-          <TouchableOpacity
+          <Pressable
             style={{
               ...s.row,
               alignItems: 'center',
@@ -47,7 +47,7 @@ export function Shop() {
           >
             <Text style={{ ...s.m_right, color: t.grey }}>£0.00</Text>
             <Icon name="bars" size="primary" />
-          </TouchableOpacity>
+          </Pressable>
         ),
       })}
     >

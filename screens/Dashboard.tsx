@@ -4,7 +4,7 @@ import {
   ScrollView,
   SafeAreaView,
   Animated,
-  TouchableOpacity,
+  Pressable,
   TextInput,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
@@ -13,9 +13,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ScrollContext } from '../components/AppProvider';
 import { s, t } from '../setup/styles';
 import { AccountFlow } from './AccountFlow';
-import { Title, Text, Small } from '../setup/typography';
-import { Icon, Dot, Row, BackButton } from '../setup/primitives';
-import { isMobile } from '../utilities/helpers';
+import { Title, Text, Small } from '../design/typography';
+import { Icon, Dot, Row, BackButton } from '../design/primitives';
+import { isMobile } from '../setup/helpers';
 import { ChartRangeSelector } from '../components/ChartRangeSelector';
 // import { Playground } from '../screens/Playground';
 // import { auth } from '../firebaseConfig';
@@ -180,7 +180,7 @@ const DashboardList = () => {
     const { colors } = useTheme();
     // const priceHistory = usePriceHistory("ethereum");
     return (
-      <TouchableOpacity
+      <Pressable
         onPress={() => navigation.navigate('Numbers Screen')}
         style={{ flex: 0.8 }}
       >
@@ -233,7 +233,7 @@ const DashboardList = () => {
           </View>
           <ChartRangeSelector />
         </View>
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 
@@ -269,7 +269,7 @@ const DashboardList = () => {
     };
 
     return (
-      <TouchableOpacity
+      <Pressable
         onPress={() => navigation.navigate('Tasks Screen')}
         style={{ flex: 0.2 }}
       >
@@ -295,7 +295,7 @@ const DashboardList = () => {
           </View>
           <UpcomingTasks />
         </View>
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 
@@ -303,7 +303,7 @@ const DashboardList = () => {
     const navigation = useNavigation();
     const { colors } = useTheme();
     return (
-      <TouchableOpacity
+      <Pressable
         onPress={() => navigation.navigate('Visualization Screen')}
         style={{ ...s.flex }}
       >
@@ -331,7 +331,7 @@ const DashboardList = () => {
             </Text>
           </View>
         </View>
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 
@@ -339,7 +339,7 @@ const DashboardList = () => {
     const navigation = useNavigation();
     const { colors } = useTheme();
     return (
-      <TouchableOpacity
+      <Pressable
         onPress={() => navigation.navigate('Affirmations Screen')}
         style={{ ...s.flex }}
       >
@@ -365,7 +365,7 @@ const DashboardList = () => {
             <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>To do</Text>
           </View>
         </View>
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 
@@ -373,7 +373,7 @@ const DashboardList = () => {
     const navigation = useNavigation();
     const { colors } = useTheme();
     return (
-      <TouchableOpacity
+      <Pressable
         onPress={() => navigation.navigate('Planning Screen')}
         style={{ ...s.flex }}
       >
@@ -399,7 +399,7 @@ const DashboardList = () => {
             <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>To do</Text>
           </View>
         </View>
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 
@@ -407,7 +407,7 @@ const DashboardList = () => {
     const navigation = useNavigation();
     const { colors } = useTheme();
     return (
-      <TouchableOpacity
+      <Pressable
         onPress={() => navigation.navigate('Journal Screen')}
         style={{ ...s.flex }}
       >
@@ -433,7 +433,7 @@ const DashboardList = () => {
             <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>To do</Text>
           </View>
         </View>
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 
@@ -534,7 +534,7 @@ const TasksScreen = () => {
           flex: 1,
         }}
       >
-        <TouchableOpacity
+        <Pressable
           style={{
             width: 28,
             height: 28,
@@ -547,7 +547,7 @@ const TasksScreen = () => {
           onPress={() => checkTask(props.index)}
         >
           <Icon name="check" color={t.positive} />
-        </TouchableOpacity>
+        </Pressable>
         <Text
           style={{
             color: colors.text,
@@ -559,7 +559,7 @@ const TasksScreen = () => {
         >
           {props.text}
         </Text>
-        <TouchableOpacity
+        <Pressable
           style={{
             width: 30,
             height: 30,
@@ -572,7 +572,7 @@ const TasksScreen = () => {
           onPress={() => removeTask(props.index)}
         >
           <Icon name="times" />
-        </TouchableOpacity>
+        </Pressable>
       </View>
     );
   };
@@ -593,7 +593,7 @@ const TasksScreen = () => {
           justifyContent: 'space-between',
         }}
       >
-        <TouchableOpacity
+        <Pressable
           style={{
             flex: 1,
             flexDirection: 'row',
@@ -607,7 +607,7 @@ const TasksScreen = () => {
           onPress={() => showHideChecked()}
         >
           <Icon name="eye-slash" size="secondary" />
-        </TouchableOpacity>
+        </Pressable>
         <View style={{ flex: 2, marginHorizontal: t.small }}>
           <Text
             style={{
@@ -620,7 +620,7 @@ const TasksScreen = () => {
             0 / {remaining}
           </Text>
         </View>
-        <TouchableOpacity
+        <Pressable
           style={{
             flex: 1,
             flexDirection: 'row',
@@ -634,7 +634,7 @@ const TasksScreen = () => {
           onPress={() => clearChecked()}
         >
           <Icon name="times" size="secondary" />
-        </TouchableOpacity>
+        </Pressable>
       </View>
       <View
         style={{
@@ -665,7 +665,7 @@ const TasksScreen = () => {
           }}
           value={task}
         />
-        <TouchableOpacity
+        <Pressable
           onPress={() => addTask()}
           style={{
             width: 45,
@@ -680,7 +680,7 @@ const TasksScreen = () => {
           }}
         >
           <Icon name="edit" size="secondary" color={t.grey} />
-        </TouchableOpacity>
+        </Pressable>
       </View>
       <View
         style={{

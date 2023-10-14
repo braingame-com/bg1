@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { isMobile } from '../utilities/helpers';
+import { isMobile } from '../setup/helpers';
 import { s, t } from '../setup/styles';
 import {
   View,
   FlatList,
-  TouchableOpacity,
+  Pressable,
   Image,
   Alert,
   Platform,
@@ -18,8 +18,8 @@ import {
   ActivityIndicator,
   Row,
   VideoDropdownMenu,
-} from '../setup/primitives';
-import { Text, Small, Subtitle } from '../setup/typography';
+} from '../design/primitives';
+import { Text, Small, Subtitle } from '../design/typography';
 import { fetchVideos } from '../setup/youtube-api';
 import YoutubePlayer, { getYoutubeMeta } from 'react-native-youtube-iframe';
 
@@ -77,7 +77,7 @@ const VideosList = ({ navigation }) => {
     console.log(menuVisible);
     return (
       <View>
-        <TouchableOpacity
+        <Pressable
           style={{ ...s.m_all }}
           onPress={() => {
             navigation.navigate('Video', { id: id });
@@ -104,7 +104,7 @@ const VideosList = ({ navigation }) => {
             <Dot style={{ marginHorizontal: t.xs }} />
             <Small style={{ color: t.grey }}>4 months ago</Small>
           </Row>
-        </TouchableOpacity>
+        </Pressable>
       </View>
     );
   };

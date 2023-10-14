@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import {
+  StyleProp,
+  ViewStyle,
+  TextStyle,
   View,
   Image,
-  TouchableOpacity,
+  Pressable,
   TextInput,
   Platform,
   ActivityIndicator as RNActivityIndicator,
 } from 'react-native';
 import { Text } from './typography';
 import { useTheme } from '@react-navigation/native';
-import { s, t } from './styles';
-import { isMobile } from '../utilities/helpers';
+import { s, t } from '../setup/styles';
+import { isMobile } from '../setup/helpers';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
@@ -24,17 +27,27 @@ import Svg, { Path } from 'react-native-svg';
 
 library.add(fab, far, fas, fal, fat);
 
-export function Button({
+interface ButtonProps {
+  style?: StyleProp<ViewStyle>;
+  type?: string;
+  text?: string;
+  icon?: string;
+  iconSize?: string;
+  iconType?: string;
+  onPress?: () => void;
+  contentStyle?: StyleProp<TextStyle>;
+}
+
+export const Button: React.FC<ButtonProps> = ({
   style,
   type,
   text,
   icon,
   iconSize,
   iconType,
-  // svg,
   onPress,
   contentStyle,
-}) {
+}) => {
   const { colors } = useTheme();
   const isPrimary = type === 'Primary' ? true : false;
   const isSecondary = type === 'Secondary' ? true : false;
@@ -43,7 +56,7 @@ export function Button({
   const [loading, setLoading] = useState(loading);
 
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={onPress}
       hitSlop={{ top: t.xs, bottom: t.xs, left: t.xs, right: t.xs }}
     >
@@ -70,7 +83,7 @@ export function Button({
         {icon && (
           <Icon
             name={icon}
-            size={iconSize === 'small' ? null : 'secondary'}
+            size={iconSize === 'small' ? undefined : 'secondary'}
             style={{ marginRight: text ? t.small : 0 }}
             type={iconType}
           />
@@ -118,12 +131,12 @@ export function Button({
           </View>
         )}
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
-}
+};
 
 export const BackButton = ({ text, onPress }) => (
-  <TouchableOpacity onPress={onPress}>
+  <Pressable onPress={onPress}>
     <Row style={{ padding: t.medium }}>
       <Icon
         name="chevron-left"
@@ -132,7 +145,7 @@ export const BackButton = ({ text, onPress }) => (
       />
       <Text>{text}</Text>
     </Row>
-  </TouchableOpacity>
+  </Pressable>
 );
 
 export const Dot = ({ style }) => (
@@ -211,7 +224,17 @@ export const ActivityIndicator = () => (
   <RNActivityIndicator size={isMobile ? 'small' : 'large'} />
 );
 
-export const InputField = ({
+interface InputFieldProps {
+  icon?: string;
+  iconType?: string;
+  placeholder?: string;
+  textContentType?: 'none' | 'URL' | 'addressCity' | 'username' | 'password';
+  secureTextEntry?: boolean;
+  value?: string;
+  onChangeText?: (text: string) => void;
+}
+
+export const InputField: React.FC<InputFieldProps> = ({
   icon,
   iconType,
   placeholder,
@@ -279,7 +302,7 @@ export const InputField = ({
 };
 
 export const ProfileIcon = ({ navigation }) => (
-  <TouchableOpacity
+  <Pressable
     style={{
       ...s.row,
       alignItems: 'center',
@@ -303,10 +326,23 @@ export const ProfileIcon = ({ navigation }) => (
         borderRadius: 999,
       }}
     />
-  </TouchableOpacity>
+  </Pressable>
 );
 
-export const Icon = ({ name, color, size, type, style }) => {
+interface IconProps {
+  name: string;
+  color?: string;
+  size?: string | number;
+  type?: string;
+  style?: React.CSSProperties;
+}
+export const Icon: React.FC<IconProps> = ({
+  name,
+  color,
+  size,
+  type,
+  style,
+}) => {
   const sizeMap =
     // human readable size
     { primary: t.xl, secondary: t.large, small: t.small }[size] ||

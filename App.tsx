@@ -1,6 +1,11 @@
 import { useContext, useEffect, useCallback } from 'react';
 import { View } from 'react-native';
-import { AppProvider, Tab, ScrollContext } from './components/AppProvider';
+import {
+  AppProvider,
+  Tab,
+  ScrollContext,
+  // ScrollContextInterface,
+} from './components/AppProvider';
 import { Dashboard } from './screens/Dashboard';
 // import { Search } from './screens/Search';
 import { Lessons } from './screens/Lessons';
@@ -8,10 +13,9 @@ import { Videos } from './screens/Videos';
 import { Shop } from './screens/Shop';
 import { Settings } from './screens/Settings';
 import { t } from './setup/styles';
-import { Text } from './setup/typography';
-import { Icon, ProfileIcon } from './setup/primitives';
+import { Icon, ProfileIcon } from './design/primitives';
 import { TabBar } from './components/TabBar';
-import { isMobile } from './utilities/helpers';
+import { isMobile } from './setup/helpers';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -51,7 +55,6 @@ export default function App() {
           paddingLeft: isMobile ? 0 : 128,
         }}
         screenOptions={{
-          headerMode: 'none',
           headerStyle: {
             backgroundColor: 'black',
           },
@@ -67,10 +70,10 @@ export default function App() {
           name={'Dashboard '}
           component={Dashboard}
           options={({ navigation }) => ({
-            tabBarIcon: ({ fill, focused }) => (
+            tabBarIcon: ({ color, focused }) => (
               <Icon
                 name={focused ? 'grid-dashboard-solid' : 'grid-dashboard-light'}
-                color={fill}
+                color={color}
                 size="primary"
               />
             ),
@@ -81,9 +84,9 @@ export default function App() {
           name="Search"
           component={Search}
           options={{
-            tabBarIcon: ({ fill }) => (
+            tabBarIcon: ({ color }) => (
               <>
-                <Icon name="search" color={fill} size="primary" type="fal" />
+                <Icon name="search" color={color} size="primary" type="fal" />
               </>
             ),
             headerShown: false,
@@ -93,12 +96,12 @@ export default function App() {
           name="Lessons "
           component={Lessons}
           options={{
-            tabBarIcon: ({ fill, focused }) => (
+            tabBarIcon: ({ color, focused }) => (
               <Icon
                 name="book-open"
-                color={fill}
+                color={color}
                 size="primary"
-                type={focused && 'fas'}
+                type={focused ? 'fas' : undefined}
               />
             ),
             headerShown: false,
@@ -108,12 +111,12 @@ export default function App() {
           name="Videos"
           component={Videos}
           options={{
-            tabBarIcon: ({ fill, focused }) => (
+            tabBarIcon: ({ color, focused }) => (
               <Icon
                 name="play"
-                color={fill}
+                color={color}
                 size="primary"
-                type={focused && 'fas'}
+                type={focused ? 'fas' : undefined}
               />
             ),
             headerShown: false,
@@ -123,12 +126,12 @@ export default function App() {
           name="Shop"
           component={Shop}
           options={{
-            tabBarIcon: ({ fill, focused }) => (
+            tabBarIcon: ({ color, focused }) => (
               <Icon
                 name="bag-shopping"
-                color={fill}
+                color={color}
                 size="primary"
-                type={focused && 'fas'}
+                type={focused ? 'fas' : undefined}
               />
             ),
             headerShown: false,
@@ -138,12 +141,12 @@ export default function App() {
           name="Settings"
           component={Settings}
           options={{
-            tabBarIcon: ({ fill, focused }) => (
+            tabBarIcon: ({ color, focused }) => (
               <Icon
                 name="circle-user"
-                color={fill}
+                color={color}
                 size="primary"
-                type={focused && 'fas'}
+                type={focused ? 'fas' : undefined}
               />
             ),
           }}

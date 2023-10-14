@@ -1,14 +1,14 @@
 // import { useState, useContext } from 'react';
 import {
   View,
-  TouchableOpacity,
+  Pressable,
   // useColorScheme,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import { useThemeUpdate } from '../components/AppProvider';
+import { useThemeUpdate } from './AppProvider';
 import { s, t } from '../setup/styles';
-import { Heading, Text } from '../setup/typography';
-import { Icon } from '../setup/primitives';
+import { Heading, Text } from '../design/typography';
+import { Icon } from '../design/primitives';
 
 export function ThemeSelector() {
   const { colors } = useTheme();
@@ -21,7 +21,7 @@ export function ThemeSelector() {
         Theme
       </Heading>
       <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity
+        <Pressable
           style={{
             ...s.btn_secondary,
             borderTopRightRadius: 0,
@@ -40,8 +40,8 @@ export function ThemeSelector() {
           <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
             Light
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </Pressable>
+        <Pressable
           style={{
             ...s.btn_secondary,
             borderRadius: 0,
@@ -61,8 +61,8 @@ export function ThemeSelector() {
           <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
             Dark
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </Pressable>
+        <Pressable
           style={{
             ...s.btn_secondary,
             borderTopLeftRadius: 0,
@@ -80,7 +80,7 @@ export function ThemeSelector() {
           <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
             Auto
           </Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
     </View>
   );

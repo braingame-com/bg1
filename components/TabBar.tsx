@@ -1,8 +1,8 @@
 import { useTheme } from '@react-navigation/native';
 import { View, Pressable, StyleSheet } from 'react-native';
 import { s, t } from '../setup/styles';
-import { Icon } from '../setup/primitives';
-import { isMobile, platform } from '../utilities/helpers';
+import { Icon } from '../design/primitives';
+import { isMobile, platform } from '../setup/helpers';
 
 export const TabBar = ({ state, descriptors, navigation }) => {
   const { colors } = useTheme();

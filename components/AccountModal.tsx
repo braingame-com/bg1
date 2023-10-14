@@ -1,22 +1,30 @@
 import { useState } from 'react';
 import { View, Modal, SafeAreaView } from 'react-native';
 import { s, t } from '../setup/styles';
-import { useTheme } from '@react-navigation/native';
-import { Button, Row, InputField, Divider } from '../setup/primitives';
-import { Heading, Text, Small } from '../setup/typography';
+import { useTheme, NavigationProp, RouteProp } from '@react-navigation/native';
+import { Button, Row, InputField, Divider } from '../design/primitives';
+import { Heading, Text, Small } from '../design/typography';
 import { auth } from '../firebaseConfig';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 
-export function AccountModal({
+interface AccountModalProps {
+  navigation: NavigationProp<any>;
+  modalVisible: boolean;
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  flow: string;
+  setFlow: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const AccountModal: React.FC<AccountModalProps> = ({
   navigation,
   modalVisible,
   setModalVisible,
   flow,
   setFlow,
-}) {
+}) => {
   const { colors } = useTheme();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -226,4 +234,4 @@ export function AccountModal({
       </Modal>
     </SafeAreaView>
   );
-}
+};

@@ -1,7 +1,7 @@
 import { View, ScrollView } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { s, t } from '../setup/styles';
-import { Row, Button, Divider } from '../setup/primitives';
+import { Row, Button, Divider } from '../design/primitives';
 import {
   Title,
   Heading,
@@ -9,8 +9,8 @@ import {
   Bold,
   Text,
   Small,
-} from '../setup/typography';
-import { isMobile } from '../utilities/helpers';
+} from '../design/typography';
+import { isMobile } from '../setup/helpers';
 
 const DesignPrinciples = ({ style }) => {
   const { colors } = useTheme();
