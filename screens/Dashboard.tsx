@@ -10,6 +10,7 @@ import {
 import { useTheme } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ScrollContext } from '../components/AppProvider';
 import { s, t } from '../setup/styles';
 import { AccountFlow } from './AccountFlow';
@@ -22,7 +23,7 @@ import { ChartRangeSelector } from '../components/ChartRangeSelector';
 // import { onAuthStateChanged } from 'firebase/auth';
 
 let userIsLoggedIn = true;
-let currentUser;
+let currentUser: any;
 
 // onAuthStateChanged(auth, (user) => {
 //   if (user) {
@@ -42,7 +43,11 @@ let currentUser;
 
 const Stack = createNativeStackNavigator();
 
-export const Dashboard = ({ navigation }) => (
+type DashboardProps = {
+  navigation: NativeStackNavigationProp<any, 'Dashboard'>;
+};
+
+export const Dashboard: React.FC<DashboardProps> = ({ navigation }) => (
   <Stack.Navigator
     screenOptions={{
       headerShadowVisible: false,
@@ -58,24 +63,18 @@ export const Dashboard = ({ navigation }) => (
         name="Account Flow"
         component={AccountFlow}
         options={{ headerShown: false }}
-        navigation={navigation}
-        currentUser={currentUser}
       />
     )}
     <Stack.Screen
       name="Dashboard"
       component={DashboardList}
       options={{ headerShown: false }}
-      navigation={navigation}
-      currentUser={currentUser}
     />
     {userIsLoggedIn && (
       <Stack.Screen
         name="Account Flow"
         component={AccountFlow}
         options={{ headerShown: false }}
-        navigation={navigation}
-        currentUser={currentUser}
       />
     )}
     <Stack.Screen
@@ -181,7 +180,7 @@ const DashboardList = () => {
     // const priceHistory = usePriceHistory("ethereum");
     return (
       <Pressable
-        onPress={() => navigation.navigate('Numbers Screen')}
+        onPress={() => (navigation as any).navigate('Numbers Screen')}
         style={{ flex: 0.8 }}
       >
         <View
@@ -201,7 +200,6 @@ const DashboardList = () => {
             <View style={{ ...s.row, ...s.m_bottom }}>
               <Text
                 style={{
-                  ...s.heading,
                   color: colors.text,
                 }}
               >
@@ -270,7 +268,7 @@ const DashboardList = () => {
 
     return (
       <Pressable
-        onPress={() => navigation.navigate('Tasks Screen')}
+        onPress={() => (navigation as any).navigate('Tasks Screen')}
         style={{ flex: 0.2 }}
       >
         <View
@@ -289,7 +287,7 @@ const DashboardList = () => {
             }}
           >
             <View style={{ ...s.row }}>
-              <Text style={{ ...s.heading }}>Tasks</Text>
+              <Text>Tasks</Text>
               <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>5</Text>
             </View>
           </View>
@@ -304,7 +302,7 @@ const DashboardList = () => {
     const { colors } = useTheme();
     return (
       <Pressable
-        onPress={() => navigation.navigate('Visualization Screen')}
+        onPress={() => (navigation as any).navigate('Visualization Screen')}
         style={{ ...s.flex }}
       >
         <View
@@ -320,7 +318,6 @@ const DashboardList = () => {
           <View style={{ ...s.row }}>
             <Text
               style={{
-                ...s.heading,
                 color: colors.text,
               }}
             >
@@ -340,7 +337,7 @@ const DashboardList = () => {
     const { colors } = useTheme();
     return (
       <Pressable
-        onPress={() => navigation.navigate('Affirmations Screen')}
+        onPress={() => (navigation as any).navigate('Affirmations Screen')}
         style={{ ...s.flex }}
       >
         <View
@@ -356,7 +353,6 @@ const DashboardList = () => {
           <View style={{ ...s.row }}>
             <Text
               style={{
-                ...s.heading,
                 color: colors.text,
               }}
             >
@@ -374,7 +370,7 @@ const DashboardList = () => {
     const { colors } = useTheme();
     return (
       <Pressable
-        onPress={() => navigation.navigate('Planning Screen')}
+        onPress={() => (navigation as any).navigate('Planning Screen')}
         style={{ ...s.flex }}
       >
         <View
@@ -390,7 +386,6 @@ const DashboardList = () => {
           <View style={{ ...s.row }}>
             <Text
               style={{
-                ...s.heading,
                 color: colors.text,
               }}
             >
@@ -408,7 +403,7 @@ const DashboardList = () => {
     const { colors } = useTheme();
     return (
       <Pressable
-        onPress={() => navigation.navigate('Journal Screen')}
+        onPress={() => (navigation as any).navigate('Journal Screen')}
         style={{ ...s.flex }}
       >
         <View
@@ -424,7 +419,6 @@ const DashboardList = () => {
           <View style={{ ...s.row }}>
             <Text
               style={{
-                ...s.heading,
                 color: colors.text,
               }}
             >
@@ -480,17 +474,17 @@ const DashboardList = () => {
 const NumbersScreen = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ ...s.heading, color: 'white' }}>Numbers Screen</Text>
+      <Text style={{ color: 'white' }}>Numbers Screen</Text>
     </View>
   );
 };
 
 const TasksScreen = () => {
   const { colors } = useTheme();
-  const [task, setTask] = useState();
-  const [tasks, setTasks] = useState([]);
+  const [task, setTask] = useState('');
+  const [tasks, setTasks] = useState<any[]>([]);
   const [remaining, setRemaining] = useState(0);
-  const onKeyPress = (e) => {
+  const onKeyPress = (e: any) => {
     let key = e.nativeEvent.key;
     if (key == 'Enter') {
       addTask();
@@ -498,28 +492,28 @@ const TasksScreen = () => {
     console.log('You pressed a key: ' + key);
   };
   const addTask = () => {
-    setTasks([...tasks, task]);
-    setTask(null);
-    setRemaining(tasks.length + 1);
+    setTasks([...(tasks as any), task] as any);
+    setTask('');
+    setRemaining((prevRemaining) => prevRemaining + 1);
   };
-  const checkTask = () => {
-    console.log('check');
+  const checkTask = (index: number) => {
+    console.log('check @ index: ' + index);
   };
-  const removeTask = (index) => {
-    let tasksCopy = [...tasks];
+  const removeTask = (index: number) => {
+    let tasksCopy = [...(tasks as any)];
     tasksCopy.splice(index, 1);
-    setTasks(tasksCopy);
-    setRemaining(tasks.length - 1);
+    setTasks(tasksCopy as any);
+    setRemaining((prevRemaining) => prevRemaining - 1);
   };
   const showHideChecked = () => {
     console.log('show/hide');
   };
   const clearChecked = () => {
     setTasks([]);
-    setRemaining(tasks.length);
+    setRemaining((tasks as any).length);
     console.log('clear');
   };
-  const Task = (props) => {
+  const Task = (props: any) => {
     return (
       <View
         style={{
@@ -551,7 +545,6 @@ const TasksScreen = () => {
         <Text
           style={{
             color: colors.text,
-            ...s.subtitle,
             marginVertical: 0,
             flex: 1,
             marginHorizontal: t.large,
@@ -612,7 +605,6 @@ const TasksScreen = () => {
           <Text
             style={{
               ...s.pill,
-              ...s.heading_secondary,
               ...s.info,
               alignSelf: 'center',
             }}
@@ -656,7 +648,6 @@ const TasksScreen = () => {
             margin: t.small,
             flex: 1,
             color: 'white',
-            ...s.heading_secondary,
           }}
           onSubmitEditing={() => addTask()}
           onChangeText={(text) => setTask(text)}
@@ -700,12 +691,12 @@ const TasksScreen = () => {
             opacity: 0.5,
             textAlign: 'center',
             padding: 30,
-            display: tasks.length === 0 ? 'flex' : 'none',
+            display: tasks?.length === 0 ? 'flex' : 'none',
           }}
         >
           Your task list is empty
         </Text>
-        {tasks.map((text, index) => {
+        {(tasks as any).map((text: string, index: number) => {
           let hIndex = index + 1;
           let isChecked = 'false';
           return (
@@ -726,7 +717,7 @@ const TasksScreen = () => {
 const VisualizationScreen = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ ...s.heading, color: 'white' }}>Visualization Screen</Text>
+      <Text style={{ color: 'white' }}>Visualization Screen</Text>
     </View>
   );
 };
@@ -734,7 +725,7 @@ const VisualizationScreen = () => {
 const AffirmationsScreen = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ ...s.heading, color: 'white' }}>Affirmations Screen</Text>
+      <Text style={{ color: 'white' }}>Affirmations Screen</Text>
     </View>
   );
 };
@@ -742,7 +733,7 @@ const AffirmationsScreen = () => {
 const PlanningScreen = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ ...s.heading, color: 'white' }}>Planning Screen</Text>
+      <Text style={{ color: 'white' }}>Planning Screen</Text>
     </View>
   );
 };
@@ -750,7 +741,7 @@ const PlanningScreen = () => {
 const JournalScreen = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ ...s.heading, color: 'white' }}>Journal Screen</Text>
+      <Text style={{ color: 'white' }}>Journal Screen</Text>
     </View>
   );
 };
@@ -758,7 +749,7 @@ const JournalScreen = () => {
 const Profile = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ ...s.heading, color: 'white' }}>Profile</Text>
+      <Text style={{ color: 'white' }}>Profile</Text>
     </View>
   );
 };

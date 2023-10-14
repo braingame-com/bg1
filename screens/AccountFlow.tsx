@@ -6,7 +6,7 @@ import { Button, Row } from '../design/primitives';
 import { Title, Text } from '../design/typography';
 import { AccountModal } from '../components/AccountModal';
 
-export const AccountFlow = ({ navigation }) => {
+export const AccountFlow = ({ navigation }: any) => {
   const { colors } = useTheme();
   const [modalVisible, setModalVisible] = useState(false);
   const [flow, setFlow] = useState('');

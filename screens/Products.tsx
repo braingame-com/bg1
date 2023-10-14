@@ -7,20 +7,8 @@ export function Products() {
   const { colors } = useTheme();
   return (
     <SafeAreaView style={{ ...s.container }}>
-      <View
-        style={{
-          ...s.container,
-          ...s.centered,
-        }}
-      >
-        <Text
-          style={{
-            ...s.subtitle,
-            color: colors.text,
-          }}
-        >
-          Products Screen!
-        </Text>
+      <View style={{ ...s.container, ...s.centered }}>
+        <Text style={{ color: colors.text }}>Products Screen!</Text>
       </View>
       {/* <Button
           title="Go to Articles"

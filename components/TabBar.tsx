@@ -1,10 +1,18 @@
-import { useTheme } from '@react-navigation/native';
+import { useTheme, Route } from '@react-navigation/native';
 import { View, Pressable, StyleSheet } from 'react-native';
 import { s, t } from '../setup/styles';
 import { Icon } from '../design/primitives';
 import { isMobile, platform } from '../setup/helpers';
+import {
+  BottomTabBarProps,
+  BottomTabNavigationOptions,
+} from '@react-navigation/bottom-tabs';
 
-export const TabBar = ({ state, descriptors, navigation }) => {
+export const TabBar = ({
+  state,
+  descriptors,
+  navigation,
+}: BottomTabBarProps) => {
   const { colors } = useTheme();
 
   return (
@@ -17,7 +25,7 @@ export const TabBar = ({ state, descriptors, navigation }) => {
     >
       {!isMobile && <BrainGameLogo />}
 
-      {state.routes.map((route, index) => {
+      {state.routes.map((route: Route<string>, index: number) => {
         const isFocused = state.index === index;
 
         const { options } = descriptors[route.key];
@@ -27,9 +35,10 @@ export const TabBar = ({ state, descriptors, navigation }) => {
             : options.title !== undefined
             ? options.title
             : route.name;
-        const icon = options.tabBarIcon({
-          fill: !isMobile && isFocused ? colors.primary : t.white,
+        const icon = options?.tabBarIcon?.({
+          color: !isMobile && isFocused ? colors.primary : t.white,
           focused: isFocused ? true : false,
+          size: t.xl,
         });
 
         const onPress = () => {
@@ -41,7 +50,7 @@ export const TabBar = ({ state, descriptors, navigation }) => {
 
           if (!isFocused && !event.defaultPrevented) {
             // The `merge: true` option makes sure that the params inside the tab screen are preserved
-            navigation.navigate({ name: route.name, merge: true });
+            navigation.navigate({ name: route.name, params: {}, merge: true });
           }
         };
 
@@ -63,19 +72,21 @@ export const TabBar = ({ state, descriptors, navigation }) => {
             style={{
               ...s.tabBarItem,
               flex: 1,
-              background:
+              backgroundColor:
                 isFocused && platform === 'web'
                   ? t.primaryFaded
                   : 'transparent',
               borderRadius: t.medium,
               marginHorizontal: isMobile ? 0 : t.large,
               marginTop:
-                (label === 'Settings') & !isMobile
+                label === 'Settings' && !isMobile
                   ? 'auto'
-                  : label.includes('Dashboard') & !isMobile
+                  : typeof label === 'string' &&
+                    label.includes('Dashboard') &&
+                    !isMobile
                   ? t.xxl
                   : 0,
-              marginBottom: (label === 'Settings') & !isMobile ? t.large : 0,
+              marginBottom: label === 'Settings' && !isMobile ? t.large : 0,
             }}
             key={index}
           >

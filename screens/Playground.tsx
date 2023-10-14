@@ -1,4 +1,4 @@
-import { View, ScrollView } from 'react-native';
+import { StyleProp, ViewStyle, View, ScrollView } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { s, t } from '../setup/styles';
 import { Row, Button, Divider } from '../design/primitives';
@@ -12,7 +12,7 @@ import {
 } from '../design/typography';
 import { isMobile } from '../setup/helpers';
 
-const DesignPrinciples = ({ style }) => {
+const DesignPrinciples = ({ style }: { style: any }) => {
   const { colors } = useTheme();
   return (
     <View style={{ ...style }}>
@@ -51,20 +51,28 @@ const DesignPrinciples = ({ style }) => {
   );
 };
 
-const Styling = ({ style }) => {
+const Styling = ({ style }: { style: StyleProp<ViewStyle> }) => {
   const { colors } = useTheme();
   return (
-    <View style={{ ...style }}>
+    <View
+      style={{
+        ...(typeof style === 'object' && style !== null ? style : {}),
+      }}
+    >
       <Heading text="Styling" />
       <Text style={{ ...s.m_bottom, color: colors.text }}>Coming soon...</Text>
     </View>
   );
 };
 
-const Typography = ({ style }) => {
+const Typography = ({ style }: { style: StyleProp<ViewStyle> }) => {
   const { colors } = useTheme();
   return (
-    <View style={{ ...style }}>
+    <View
+      style={{
+        ...(typeof style === 'object' && style !== null ? style : {}),
+      }}
+    >
       <Heading text="Typography" />
       <Heading text="Heading" />
       <Subtitle text="Subtitle" />
@@ -74,10 +82,14 @@ const Typography = ({ style }) => {
   );
 };
 
-const Components = ({ style }) => {
+const Components = ({ style }: { style: StyleProp<ViewStyle> }) => {
   const { colors } = useTheme();
   return (
-    <View style={{ ...style }}>
+    <View
+      style={{
+        ...(typeof style === 'object' && style !== null ? style : {}),
+      }}
+    >
       <Heading text="Components" />
       <Subtitle text="Button" style={{ ...s.m_top }} />
       <Text style={{ ...s.m_bottom, color: colors.text }}>

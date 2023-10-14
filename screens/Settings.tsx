@@ -24,7 +24,7 @@ let userIsLoggedIn = false;
 
 let subscriber = false;
 
-export const Settings = ({ navigation }) => {
+export const Settings = ({ navigation }: any) => {
   const handleSignOut = () => {
     auth.signOut();
     userIsLoggedIn = false;
@@ -76,28 +76,22 @@ const AccountSettings = () => {
 
       <SettingsLink>
         <Icon name="bell" size="secondary" />
-        <Text style={{ ...s.task_mini, ...s.m_left }}>
-          Manage notifications
-        </Text>
+        <Text style={{ ...s.m_left }}>Manage notifications</Text>
       </SettingsLink>
 
       <SettingsLink>
         <Icon name="user" size="secondary" />
-        <Text style={{ ...s.task_mini, ...s.m_left }}>
-          Change username or email
-        </Text>
+        <Text style={{ ...s.m_left }}>Change username or email</Text>
       </SettingsLink>
 
       <SettingsLink>
         <Icon name="lock" size="secondary" />
-        <Text style={{ ...s.task_mini, ...s.m_left }}>Change password</Text>
+        <Text style={{ ...s.m_left }}>Change password</Text>
       </SettingsLink>
 
       <SettingsLink style={{ opacity: 0.5 }}>
         <Icon name="trash" color={t.negative} size="secondary" />
-        <Text style={{ ...s.error_text, ...s.task_mini, ...s.m_left }}>
-          Delete account
-        </Text>
+        <Text style={{ ...s.error_text, ...s.m_left }}>Delete account</Text>
       </SettingsLink>
     </View>
   );
@@ -125,19 +119,17 @@ const Support = () => {
 
       <SettingsLink>
         <Icon name="question-circle" size="secondary" />
-        <Text style={{ ...s.task_mini, ...s.m_left }}>
-          How do I use this app?
-        </Text>
+        <Text style={{ ...s.m_left }}>How do I use this app?</Text>
       </SettingsLink>
 
       <SettingsLink>
         <Icon name="message" size="secondary" />
-        <Text style={{ ...s.task_mini, ...s.m_left }}>Contact us</Text>
+        <Text style={{ ...s.m_left }}>Contact us</Text>
       </SettingsLink>
 
       <SettingsLink>
         <Icon name="file" size="secondary" />
-        <Text style={{ ...s.task_mini, ...s.m_left }}>Documentation</Text>
+        <Text style={{ ...s.m_left }}>Documentation</Text>
       </SettingsLink>
     </View>
   );
@@ -165,17 +157,17 @@ const Links = () => {
 
       <SettingsLink>
         <Icon name="bug" size="secondary" />
-        <Text style={{ ...s.task_mini, ...s.m_left }}>Report a bug</Text>
+        <Text style={{ ...s.m_left }}>Report a bug</Text>
       </SettingsLink>
 
       <SettingsLink>
         <Icon name="gavel" size="secondary" />
-        <Text style={{ ...s.task_mini, ...s.m_left }}>Legal policies</Text>
+        <Text style={{ ...s.m_left }}>Legal policies</Text>
       </SettingsLink>
 
       <SettingsLink>
         <Icon name="github-alt" size="secondary" type="fab" />
-        <Text style={{ ...s.task_mini, ...s.m_left }}>Github</Text>
+        <Text style={{ ...s.m_left }}>Github</Text>
         <Icon name="code" style={{ ...s.m_horizontal }} />
         <Text style={{ color: t.grey }}>v1.1.1</Text>
       </SettingsLink>
@@ -183,7 +175,7 @@ const Links = () => {
   );
 };
 
-const SettingsLink = ({ children, style }) => (
+const SettingsLink = ({ children, style }: { children: any; style?: any }) => (
   <Pressable>
     <View
       style={{

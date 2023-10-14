@@ -2,6 +2,7 @@
 import {
   View,
   Pressable,
+  GestureResponderEvent,
   // useColorScheme,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
@@ -37,9 +38,7 @@ export function ThemeSelector() {
           }}
         >
           <Icon name="sun-bright" size="secondary" />
-          <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
-            Light
-          </Text>
+          <Text style={{ ...s.m_left, color: colors.text }}>Light</Text>
         </Pressable>
         <Pressable
           style={{
@@ -58,9 +57,7 @@ export function ThemeSelector() {
           }}
         >
           <Icon name="moon" size="secondary" />
-          <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
-            Dark
-          </Text>
+          <Text style={{ ...s.m_left, color: colors.text }}>Dark</Text>
         </Pressable>
         <Pressable
           style={{
@@ -74,12 +71,10 @@ export function ThemeSelector() {
             flexDirection: 'row',
             backgroundColor: colors.card,
           }}
-          onPress={toggleTheme}
+          // onPress={(e: GestureResponderEvent) => toggleTheme()}
         >
           <Icon name="sparkles" size="secondary" />
-          <Text style={{ ...s.subtitle, ...s.m_left, color: colors.text }}>
-            Auto
-          </Text>
+          <Text style={{ ...s.m_left, color: colors.text }}>Auto</Text>
         </Pressable>
       </View>
     </View>

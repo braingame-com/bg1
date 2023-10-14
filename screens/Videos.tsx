@@ -25,20 +25,22 @@ import YoutubePlayer, { getYoutubeMeta } from 'react-native-youtube-iframe';
 
 const Stack = createNativeStackNavigator();
 
-export const Videos = ({ navigation }) => {
+export const Videos = ({ navigation }: any) => {
   const { colors } = useTheme();
   return (
     <Stack.Navigator
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: colors.background,
-        },
-        headerTitleStyle: {
-          fontSize: isMobile ? t.medium : t.large,
-          marginLeft: isMobile ? 0 : t.small,
-        },
-        headerShadowVisible: false,
-      }}
+      screenOptions={
+        {
+          headerStyle: {
+            backgroundColor: colors.background,
+          },
+          headerTitleStyle: {
+            fontSize: isMobile ? t.medium : t.large,
+            marginLeft: isMobile ? 0 : t.small,
+          },
+          headerShadowVisible: false,
+        } as any
+      }
     >
       <Stack.Screen
         name="VideosList"
@@ -64,12 +66,18 @@ export const Videos = ({ navigation }) => {
   );
 };
 
-const VideosList = ({ navigation }) => {
+const VideosList = ({ navigation }: { navigation: any }) => {
   const [data, setData] = useState({ loaded: false, videos: [] });
   useEffect(() => {
     fetchVideos(setData);
   }, []);
-  const RenderVideoCard = ({ item, navigation }) => {
+  const RenderVideoCard = ({
+    item,
+    navigation,
+  }: {
+    item: any;
+    navigation: any;
+  }) => {
     const id = item.contentDetails.videoId;
     const title = item.snippet.title;
     const uri = item.snippet.thumbnails.standard.url;
@@ -127,7 +135,7 @@ const VideosList = ({ navigation }) => {
   );
 };
 
-const Video = ({ route }) => {
+const Video = ({ route }: any) => {
   const { id } = route.params;
   const [playing, setPlaying] = useState(false);
   const { colors } = useTheme();
@@ -138,30 +146,30 @@ const Video = ({ route }) => {
     );
   });
 
-  const onStateChange = useCallback((state) => {
+  const onStateChange = useCallback((state: any) => {
     if (state === 'ended') {
       setPlaying(false);
       Alert.alert('video has finished playing!');
     }
   }, []);
 
-  const containerRef = useRef();
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    containerRef.current.measure((x, y, width, height) => {
-      console.log(width); // width of the container
-      console.log(height); // height of the container
-    });
+    (containerRef as any).current.measure(
+      (x: any, y: any, width: any, height: any) => {
+        console.log(width); // width of the container
+        console.log(height); // height of the container
+      }
+    );
   }, []);
 
   return (
     <View ref={containerRef} style={{ backgroundColor: 'purple', flex: 1 }}>
       <View style={{ backgroundColor: 'orange' }}>
         <YoutubePlayer
-          width="100%"
-          height="75%"
-          maxWidth={1280}
-          maxHeight={720}
+          width={'100%' as any}
+          height={'75%' as any}
           play={playing}
           videoId={id}
           onChangeState={onStateChange}

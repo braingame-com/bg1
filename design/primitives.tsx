@@ -11,7 +11,12 @@ import {
   ActivityIndicator as RNActivityIndicator,
 } from 'react-native';
 import { Text } from './typography';
-import { useTheme } from '@react-navigation/native';
+import {
+  NavigationProp,
+  ParamListBase,
+  useTheme,
+} from '@react-navigation/native';
+
 import { s, t } from '../setup/styles';
 import { isMobile } from '../setup/helpers';
 
@@ -28,11 +33,11 @@ import Svg, { Path } from 'react-native-svg';
 library.add(fab, far, fas, fal, fat);
 
 interface ButtonProps {
-  style?: StyleProp<ViewStyle>;
+  style?: StyleProp<TextStyle>;
   type?: string;
   text?: string;
   icon?: string;
-  iconSize?: string;
+  iconSize?: string | number;
   iconType?: string;
   onPress?: () => void;
   contentStyle?: StyleProp<TextStyle>;
@@ -53,7 +58,7 @@ export const Button: React.FC<ButtonProps> = ({
   const isSecondary = type === 'Secondary' ? true : false;
   const isNegative = type === 'Negative' ? true : false;
   const isNaked = type === 'Naked' ? true : false;
-  const [loading, setLoading] = useState(loading);
+  const [loading, setLoading] = useState(false);
 
   return (
     <Pressable
@@ -77,7 +82,7 @@ export const Button: React.FC<ButtonProps> = ({
           overflow: 'hidden',
           ...s.row,
           alignSelf: 'flex-start',
-          ...style,
+          ...(typeof style === 'object' && style !== null ? style : {}),
         }}
       >
         {icon && (
@@ -114,7 +119,9 @@ export const Button: React.FC<ButtonProps> = ({
             opacity: loading ? 0 : 1,
             color: isPrimary ? t.primary : colors.text,
             fontSize: t.medium,
-            ...contentStyle,
+            ...(typeof contentStyle === 'object' && contentStyle !== null
+              ? contentStyle
+              : {}),
           }}
         >
           {text}
@@ -135,7 +142,12 @@ export const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export const BackButton = ({ text, onPress }) => (
+interface BackButtonProps {
+  text?: string;
+  onPress: () => void;
+}
+
+export const BackButton: React.FC<BackButtonProps> = ({ text, onPress }) => (
   <Pressable onPress={onPress}>
     <Row style={{ padding: t.medium }}>
       <Icon
@@ -148,17 +160,23 @@ export const BackButton = ({ text, onPress }) => (
   </Pressable>
 );
 
-export const Dot = ({ style }) => (
+export const Dot = ({ style }: { style?: StyleProp<ViewStyle> }) => (
   <Icon name="circle" type="fas" size={t.xxs} color={t.grey} style={style} />
 );
 
-export function Row({ style, children }) {
+export function Row({
+  style,
+  children,
+}: {
+  style?: StyleProp<ViewStyle>;
+  children?: React.ReactNode;
+}) {
   return (
     <View
       style={{
         flexDirection: 'row',
         alignItems: 'center',
-        ...style,
+        ...(typeof style === 'object' && style !== null ? style : {}),
       }}
     >
       {children}
@@ -166,14 +184,14 @@ export function Row({ style, children }) {
   );
 }
 
-export function Divider({ style }) {
+export function Divider({ style }: { style?: StyleProp<ViewStyle> }) {
   const { colors } = useTheme();
   return (
     <View
       style={{
         borderBottomWidth: 1,
         borderBottomColor: colors.border,
-        ...style,
+        ...(typeof style === 'object' && style !== null ? style : {}),
       }}
     ></View>
   );
@@ -301,7 +319,11 @@ export const InputField: React.FC<InputFieldProps> = ({
   );
 };
 
-export const ProfileIcon = ({ navigation }) => (
+type ProfileIconProps = {
+  navigation: NavigationProp<ParamListBase>;
+};
+
+export const ProfileIcon: React.FC<ProfileIconProps> = ({ navigation }) => (
   <Pressable
     style={{
       ...s.row,
@@ -334,8 +356,11 @@ interface IconProps {
   color?: string;
   size?: string | number;
   type?: string;
-  style?: React.CSSProperties;
+  style?: StyleProp<ViewStyle>;
 }
+
+type IconPrefix = 'far' | 'fas' | 'fab';
+
 export const Icon: React.FC<IconProps> = ({
   name,
   color,
@@ -345,7 +370,9 @@ export const Icon: React.FC<IconProps> = ({
 }) => {
   const sizeMap =
     // human readable size
-    { primary: t.xl, secondary: t.large, small: t.small }[size] ||
+    { primary: t.xl, secondary: t.large, small: t.small }[
+      size as 'primary' | 'secondary' | 'small'
+    ] ||
     // or provided value
     size ||
     // else medium
@@ -358,7 +385,9 @@ export const Icon: React.FC<IconProps> = ({
         fill={color || t.white}
         width={sizeMap}
         height={sizeMap}
-        style={{ outline: 'none', ...style }}
+        style={{
+          ...(typeof style === 'object' && style !== null ? style : {}),
+        }}
       >
         <Path d="m20.88,7.56l1.56-.78,1.56-.78v-2.88c0-.57-.15-1.1-.42-1.56-.27-.47-.67-.87-1.14-1.14C21.98.15,21.45,0,20.88,0H3.12C2.55,0,2.02.15,1.56.42c-.47.27-.87.67-1.14,1.14-.27.46-.42.99-.42,1.56v17.76c0,.57.15,1.1.42,1.56.27.47.67.87,1.14,1.14.46.27.99.42,1.56.42h17.76c.57,0,1.1-.15,1.56-.42.47-.27.87-.67,1.14-1.14.27-.46.42-.99.42-1.56v-10.44h-8.88l-3.12,1.56,3.12,1.56h5.76v5.76c0,.19-.03.38-.1.55l-2.2-1.1-.58-.29-12.95-6.48,12.95-6.48.58-.29,2.2-1.1c.06.17.1.35.1.55v2.88Zm-5.05,13.32H4.68c-.86,0-1.56-.7-1.56-1.56v-4.79l12.71,6.35ZM3.12,9.47v-4.79c0-.86.7-1.56,1.56-1.56h11.14L3.12,9.47Z" />
       </Svg>
@@ -370,7 +399,9 @@ export const Icon: React.FC<IconProps> = ({
         fill={color || t.white}
         width={sizeMap}
         height={sizeMap}
-        style={{ outline: 'none', strokeWidth: '0px', ...style }}
+        style={{
+          ...(typeof style === 'object' && style !== null ? style : {}),
+        }}
       >
         <Path d="m248,128H40c-22.1,0-40,17.9-40,40v48c0,22.1,17.9,40,40,40h208c22.1,0,40-17.9,40-40v-48c0-22.1-17.9-40-40-40Zm8,88c0,4.4-3.6,8-8,8H40c-4.4,0-8-3.6-8-8v-48c0-4.4,3.6-8,8-8h208c4.4,0,8,3.6,8,8v48Zm104-88h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48c0-22.1,17.9-40,40-40ZM40,320c-4.4,0-8,3.6-8,8v48c0,4.4,3.6,8,8,8h48c4.4,0,8-3.6,8-8v-48c0-4.4-3.6-8-8-8h-48ZM0,328c0-22.1,17.9-40,40-40h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48Zm200-8c-4.4,0-8,3.6-8,8v48c0,4.4,3.6,8,8,8h48c4.4,0,8-3.6,8-8v-48c0-4.4-3.6-8-8-8h-48Zm-40,8c0-22.1,17.9-40,40-40h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48Zm248-168h-48c-4.4,0-8,3.6-8,8v48c0,4.4,3.6,8,8,8h48c4.4,0,8-3.6,8-8v-48c0-4.4-3.6-8-8-8Zm-48,160c-4.4,0-8,3.6-8,8v48c0,4.4,3.6,8,8,8h48c4.4,0,8-3.6,8-8v-48c0-4.4-3.6-8-8-8h-48Zm-40,8c0-22.1,17.9-40,40-40h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48Z" />
       </Svg>
@@ -382,7 +413,9 @@ export const Icon: React.FC<IconProps> = ({
         fill={color || t.white}
         width={sizeMap}
         height={sizeMap}
-        style={{ outline: 'none', strokeWidth: '0px', ...style }}
+        style={{
+          ...(typeof style === 'object' && style !== null ? style : {}),
+        }}
       >
         <Path d="m0,328c0-22.1,17.9-40,40-40h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48Zm160,0c0-22.1,17.9-40,40-40h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48Zm160,0c0-22.1,17.9-40,40-40h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48Zm-72-200H40c-22.1,0-40,17.9-40,40v48c0,22.1,17.9,40,40,40h208c22.1,0,40-17.9,40-40v-48c0-22.1-17.9-40-40-40Zm112,0h48c22.1,0,40,17.9,40,40v48c0,22.1-17.9,40-40,40h-48c-22.1,0-40-17.9-40-40v-48c0-22.1,17.9-40,40-40Z" />
       </Svg>
@@ -391,10 +424,12 @@ export const Icon: React.FC<IconProps> = ({
     return (
       name && (
         <FontAwesomeIcon
-          icon={[type || 'fal', name]}
+          icon={[(type as IconPrefix) || 'fal', name as any]}
           color={color || t.white}
-          size={sizeMap}
-          style={{ outline: 'none', ...style }}
+          size={sizeMap as number}
+          style={{
+            ...(typeof style === 'object' && style !== null ? style : {}),
+          }}
         />
       )
     );

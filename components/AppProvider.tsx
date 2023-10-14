@@ -11,7 +11,11 @@ import {
   useColorScheme,
   Animated,
 } from 'react-native';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  NavigationContainerRef,
+  useNavigation,
+} from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { lightTheme, darkTheme, t } from '../setup/styles';
 
@@ -25,8 +29,8 @@ export function useThemeUpdate() {
 }
 
 // export interface ScrollContextInterface = {
-//   opacity: number,
-//   oppositeOpacity: number,
+//   opacity?: number | AnimatedInterpolation<number>,
+//   oppositeOpacity?: number,
 // }
 
 export const ScrollContext = createContext({
@@ -37,7 +41,7 @@ export const ScrollContext = createContext({
 });
 
 export const Tab = createBottomTabNavigator();
-export const navigationRef = React.createRef();
+export const navigationRef = React.createRef<NavigationContainerRef<any>>();
 export function Navigation() {
   return useNavigation();
 }
@@ -47,17 +51,17 @@ interface AppProviderProps {
 }
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
-  const scroll = useRef(new Animated.Value(0)).current;
+  const scroll = useRef<Animated.Value>(new Animated.Value(0)).current;
   const opacity = scroll.interpolate({
     inputRange: [t.medium, t.xl],
     outputRange: [1, 0],
     extrapolate: 'clamp',
-  });
+  }) as Animated.AnimatedInterpolation<number>;
   const oppositeOpacity = scroll.interpolate({
     inputRange: [t.medium, t.xl],
     outputRange: [0, 1],
     extrapolate: 'clamp',
-  });
+  }) as Animated.AnimatedInterpolation<number>;
   const onScroll = (
     e: SyntheticEvent | NativeSyntheticEvent<NativeScrollEvent>
   ) => {
@@ -72,15 +76,17 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const theme = isEnabled === true ? darkTheme : lightTheme;
 
   return (
-    <ThemeContext.Provider value={isEnabled}>
-      <ThemeUpdateContext.Provider value={toggleSwitch}>
+    <ThemeContext.Provider value={theme}>
+      <ThemeUpdateContext.Provider value={theme}>
         <ScrollContext.Provider
-          value={{
-            scroll,
-            opacity,
-            oppositeOpacity,
-            onScroll,
-          }}
+          value={
+            {
+              scroll,
+              opacity,
+              oppositeOpacity,
+              onScroll,
+            } as any
+          }
         >
           <NavigationContainer ref={navigationRef} theme={theme}>
             {children}

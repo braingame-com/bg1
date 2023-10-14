@@ -1,8 +1,14 @@
-import { Text as RNText } from 'react-native';
+import { Text as RNText, StyleProp, TextStyle } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { t } from '../setup/styles';
 
-export function Title({ style, children }) {
+interface TypographyProps {
+  text?: string;
+  style?: StyleProp<TextStyle>;
+  children?: React.ReactNode;
+}
+
+export const Title: React.FC<TypographyProps> = ({ style, children }) => {
   const { colors } = useTheme();
   return (
     <RNText
@@ -10,15 +16,15 @@ export function Title({ style, children }) {
         fontFamily: 'SohneHalfFat',
         fontSize: t.xxl,
         color: colors.text,
-        ...style,
+        ...(typeof style === 'object' && style !== null ? style : {}),
       }}
     >
       {children}
     </RNText>
   );
-}
+};
 
-export function Heading({ style, children }) {
+export const Heading: React.FC<TypographyProps> = ({ style, children }) => {
   const { colors } = useTheme();
   return (
     <RNText
@@ -26,15 +32,15 @@ export function Heading({ style, children }) {
         fontFamily: 'SohneStrong',
         fontSize: t.large,
         color: colors.text,
-        ...style,
+        ...(typeof style === 'object' && style !== null ? style : {}),
       }}
     >
       {children}
     </RNText>
   );
-}
+};
 
-export function Subtitle({ style, children }) {
+export const Subtitle: React.FC<TypographyProps> = ({ style, children }) => {
   const { colors } = useTheme();
   return (
     <RNText
@@ -42,15 +48,15 @@ export function Subtitle({ style, children }) {
         fontFamily: 'SohneStrong',
         fontSize: t.medium * 1.25,
         color: colors.text,
-        ...style,
+        ...(typeof style === 'object' && style !== null ? style : {}),
       }}
     >
       {children}
     </RNText>
   );
-}
+};
 
-export function Bold({ style, children }) {
+export const Bold: React.FC<TypographyProps> = ({ style, children }) => {
   const { colors } = useTheme();
   return (
     <RNText
@@ -58,15 +64,15 @@ export function Bold({ style, children }) {
         fontFamily: 'SohneStrong',
         color: colors.text,
         fontSize: t.medium,
-        ...style,
+        ...(typeof style === 'object' && style !== null ? style : {}),
       }}
     >
       {children}
     </RNText>
   );
-}
+};
 
-export function Text({ style, children }) {
+export const Text: React.FC<TypographyProps> = ({ style, children }) => {
   const { colors } = useTheme();
   return (
     <RNText
@@ -74,15 +80,15 @@ export function Text({ style, children }) {
         fontFamily: 'SohneBook',
         color: colors.text,
         fontSize: t.medium,
-        ...style,
+        ...(typeof style === 'object' && style !== null ? style : {}),
       }}
     >
       {children}
     </RNText>
   );
-}
+};
 
-export function Small({ style, children }) {
+export const Small: React.FC<TypographyProps> = ({ style, children }) => {
   const { colors } = useTheme();
   return (
     <RNText
@@ -90,15 +96,15 @@ export function Small({ style, children }) {
         fontFamily: 'SohneBook',
         fontSize: t.small,
         color: colors.text,
-        ...style,
+        ...(typeof style === 'object' && style !== null ? style : {}),
       }}
     >
       {children}
     </RNText>
   );
-}
+};
 
-export function SmallThin({ style, children }) {
+export const SmallThin: React.FC<TypographyProps> = ({ style, children }) => {
   const { colors } = useTheme();
   return (
     <RNText
@@ -106,10 +112,10 @@ export function SmallThin({ style, children }) {
         fontFamily: 'SohneLight',
         fontSize: t.small,
         color: colors.text,
-        ...style,
+        ...(typeof style === 'object' && style !== null ? style : {}),
       }}
     >
       {children}
     </RNText>
   );
-}
+};

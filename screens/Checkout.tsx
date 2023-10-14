@@ -1,7 +1,7 @@
 import { Button, SafeAreaView } from 'react-native';
 import { Text } from '../design/typography';
 
-export function Checkout({ navigation }) {
+export function Checkout({ navigation }: { navigation: any }) {
   return (
     <SafeAreaView>
       <Text style={{ color: 'grey' }}>Checkout Screen</Text>

@@ -24,7 +24,7 @@ import RenderHtml, { defaultSystemFonts } from 'react-native-render-html';
 
 const Stack = createNativeStackNavigator();
 
-export const Lessons = ({ navigation }) => {
+export const Lessons = ({ navigation }: { navigation: any }) => {
   const { colors } = useTheme();
   return (
     <Stack.Navigator
@@ -35,7 +35,7 @@ export const Lessons = ({ navigation }) => {
         headerTitleStyle: {
           fontSize: isMobile ? t.medium : t.large,
           marginLeft: isMobile ? 0 : t.small,
-        },
+        } as any,
         headerShadowVisible: false,
       }}
     >
@@ -70,7 +70,7 @@ export const Lessons = ({ navigation }) => {
   );
 };
 
-const ArticleList = ({ navigation }) => {
+const ArticleList = ({ navigation }: { navigation: any }) => {
   const { colors } = useTheme();
   const { opacity, onScroll } = useContext(ScrollContext);
   console.log(opacity, ' from ArticleList');
@@ -84,14 +84,30 @@ const ArticleList = ({ navigation }) => {
         setLoaded(true);
       });
   }, []);
-  const LessonCard = ({ image, tags, title, excerpt, id, content }) => {
+  const LessonCard = ({
+    image,
+    tags,
+    title,
+    excerpt,
+    id,
+    content,
+  }: {
+    image: any;
+    tags: any;
+    title: string;
+    excerpt: string;
+    id: string;
+    content: string;
+  }) => {
     return (
       <View
-        style={{
-          maxWidth: isMobile ? '100%' : 'calc(33% - 20px)',
-          marginHorizontal: isMobile ? 0 : t.small,
-          flex: 1,
-        }}
+        style={
+          {
+            maxWidth: isMobile ? '100%' : 'calc(33% - 20px)',
+            marginHorizontal: isMobile ? 0 : t.small,
+            flex: 1,
+          } as any
+        }
       >
         <Pressable
           style={{
@@ -117,7 +133,7 @@ const ArticleList = ({ navigation }) => {
               alignItems: 'flex-start',
             }}
           >
-            {tags.map((tag, index) => {
+            {tags.map((tag: any, index: number) => {
               return (
                 <Row key={index} style={{ ...s.centered }}>
                   <Small
@@ -184,7 +200,7 @@ const ArticleList = ({ navigation }) => {
       </View>
     );
   };
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item }: { item: any }) => (
     <LessonCard
       image={item.node.image}
       tags={item.node.tags}
@@ -232,7 +248,7 @@ const ArticleList = ({ navigation }) => {
   );
 };
 
-const Article = ({ route }) => {
+const Article = ({ route }: { route: any }) => {
   const { colors } = useTheme();
   const {
     // itemId,
@@ -318,9 +334,7 @@ const Article = ({ route }) => {
           marginBottom: t.small,
         }}
       /> */}
-      <Text style={{ ...s.title, color: colors.text, ...s.m_bottom }}>
-        {itemTitle}
-      </Text>
+      <Text style={{ color: colors.text, ...s.m_bottom }}>{itemTitle}</Text>
       <RenderHtml
         contentWidth={width}
         source={source}

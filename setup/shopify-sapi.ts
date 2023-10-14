@@ -18,7 +18,7 @@ export const articleListQuery = () => `
     }
   }
   `,
-  articleQuery = (id) => `
+  articleQuery = (id?: any) => `
     {
       articles(first: 100) {
         edges {
@@ -38,16 +38,16 @@ export const articleListQuery = () => `
       }
     }
     `,
-  STOREFRONT_ACCESS_TOKEN = "5551cf9a06d14a0dd0bfb3a4a4494ca6",
-  GRAPHQL_URL = "https://braingame-com.myshopify.com/api/2022-07/graphql.json",
+  STOREFRONT_ACCESS_TOKEN = '5551cf9a06d14a0dd0bfb3a4a4494ca6',
+  GRAPHQL_URL = 'https://braingame-com.myshopify.com/api/2022-07/graphql.json',
   GRAPHQL_BODY = () => {
     return {
       async: true,
       crossDomain: true,
-      method: "POST",
+      method: 'POST',
       headers: {
-        "X-Shopify-Storefront-Access-Token": STOREFRONT_ACCESS_TOKEN,
-        "Content-Type": "application/graphql",
+        'X-Shopify-Storefront-Access-Token': STOREFRONT_ACCESS_TOKEN,
+        'Content-Type': 'application/graphql',
       },
       body: articleQuery(),
     };

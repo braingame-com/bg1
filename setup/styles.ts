@@ -1,5 +1,8 @@
+import { Dimensions } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { isMobile, platform } from './helpers';
+
+const screenHeight = Dimensions.get('window').height;
 
 // THEMES //
 export const lightTheme = {
@@ -95,7 +98,7 @@ export const s = StyleSheet.create({
         ? t.medium * 5
         : platform === 'android' || platform === 'mobWeb'
         ? t.medium * 4
-        : '100vh',
+        : screenHeight,
     width: isMobile ? '100%' : t.medium * 8,
     borderTopWidth: isMobile ? 1 : 0,
     borderRightWidth: isMobile ? 0 : 1,
