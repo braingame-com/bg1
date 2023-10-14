@@ -134,6 +134,7 @@ export function AccountModal({
                   type="Secondary"
                   text="Continue with Google"
                   icon="google"
+                  iconType="fab"
                   style={{ marginVertical: t.xs }}
                   onPress={() => console.log('Google')}
                 />
@@ -141,6 +142,7 @@ export function AccountModal({
                   type="Secondary"
                   text="Continue with Apple"
                   icon="apple"
+                  iconType="fab"
                   style={{ marginVertical: t.xs }}
                   onPress={() => console.log('Apple')}
                 />

@@ -26,6 +26,7 @@ export const AccountFlow = ({ navigation }) => {
         type="Secondary"
         text="Continue with Google"
         icon="google"
+        iconType="fab"
         onPress={() => console.log('Google')}
         style={{ marginVertical: t.xs }}
       />
@@ -33,6 +34,7 @@ export const AccountFlow = ({ navigation }) => {
         type="Secondary"
         text="Continue with Apple"
         icon="apple"
+        iconType="fab"
         onPress={() => console.log('Apple')}
         style={{ marginVertical: t.xs }}
       />

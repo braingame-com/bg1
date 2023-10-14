@@ -13,8 +13,6 @@ export const TabBar = ({ state, descriptors, navigation }) => {
         ...s.tabBar,
         backgroundColor: colors.background,
         borderColor: colors.border,
-        borderTopWidth: isMobile && StyleSheet.hairlineWidth,
-        borderRightWidth: !isMobile && StyleSheet.hairlineWidth,
       }}
     >
       {!isMobile && <BrainGameLogo />}

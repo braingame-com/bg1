@@ -19,7 +19,7 @@ import {
   Row,
   VideoDropdownMenu,
 } from '../setup/primitives';
-import { Text, Subtitle } from '../setup/typography';
+import { Text, Small, Subtitle } from '../setup/typography';
 import { fetchVideos } from '../setup/youtube-api';
 import YoutubePlayer, { getYoutubeMeta } from 'react-native-youtube-iframe';
 
@@ -100,17 +100,9 @@ const VideosList = ({ navigation }) => {
           </Row>
           <Row style={{ marginTop: t.xs, marginBottom: t.small }}>
             {menuVisible && <VideoDropdownMenu />}
-            <Button
-              type="Naked"
-              text="12K views"
-              contentStyle={{ fontSize: t.small, color: t.grey }}
-            />
+            <Small style={{ color: t.grey }}>12K views</Small>
             <Dot style={{ marginHorizontal: t.xs }} />
-            <Button
-              type="Naked"
-              text="4 months ago"
-              contentStyle={{ fontSize: t.small, color: t.grey }}
-            />
+            <Small style={{ color: t.grey }}>4 months ago</Small>
           </Row>
         </TouchableOpacity>
       </View>

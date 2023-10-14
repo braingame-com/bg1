@@ -7,7 +7,7 @@ export function Title({ style, children }) {
   return (
     <RNText
       style={{
-        fontFamily: 'SohnePowerful',
+        fontFamily: 'SohneHalfFat',
         fontSize: t.xxl,
         color: colors.text,
         ...style,
@@ -23,7 +23,7 @@ export function Heading({ style, children }) {
   return (
     <RNText
       style={{
-        fontFamily: 'SohnePowerful',
+        fontFamily: 'SohneStrong',
         fontSize: t.large,
         color: colors.text,
         ...style,
@@ -39,7 +39,7 @@ export function Subtitle({ style, children }) {
   return (
     <RNText
       style={{
-        fontFamily: 'SohnePowerful',
+        fontFamily: 'SohneStrong',
         fontSize: t.medium * 1.25,
         color: colors.text,
         ...style,
@@ -55,7 +55,7 @@ export function Bold({ style, children }) {
   return (
     <RNText
       style={{
-        fontFamily: 'SohnePowerful',
+        fontFamily: 'SohneStrong',
         color: colors.text,
         fontSize: t.medium,
         ...style,
@@ -98,7 +98,7 @@ export function Small({ style, children }) {
   );
 }
 
-export function ReallySmall({ style, children }) {
+export function SmallThin({ style, children }) {
   const { colors } = useTheme();
   return (
     <RNText

@@ -1,6 +1,6 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useCallback } from 'react';
+import { View } from 'react-native';
 import { AppProvider, Tab, ScrollContext } from './components/AppProvider';
-import { useFonts } from 'expo-font';
 import { Dashboard } from './screens/Dashboard';
 // import { Search } from './screens/Search';
 import { Lessons } from './screens/Lessons';
@@ -8,9 +8,14 @@ import { Videos } from './screens/Videos';
 import { Shop } from './screens/Shop';
 import { Settings } from './screens/Settings';
 import { t } from './setup/styles';
+import { Text } from './setup/typography';
 import { Icon, ProfileIcon } from './setup/primitives';
 import { TabBar } from './components/TabBar';
 import { isMobile } from './utilities/helpers';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const { opacity, oppositeOpacity } = useContext(ScrollContext);
@@ -19,14 +24,27 @@ export default function App() {
     console.log({ opacity });
   }, [opacity]);
 
-  // useFonts({
-  //   SohneLight: require('./assets/fonts/TestSöhne-Buch.otf'),
-  //   SohneBook: require('./assets/fonts/TestSöhne-Buch.otf'),
-  //   SohnePowerful: require('./assets/fonts/TestSöhne-Kräftig.otf'),
-  // });
+  const [fontsLoaded] = useFonts({
+    // if you load any fonts, you need to reomve the special 'ö' character from the file name
+    SohneHalfFat: require('./assets/fonts/TestSohne-Halbfett.otf'),
+    SohneStrong: require('./assets/fonts/TestSohne-Kraftig.otf'),
+    SohneBook: require('./assets/fonts/TestSohne-Buch.otf'),
+    SohneLight: require('./assets/fonts/TestSohne-Leicht.otf'),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <AppProvider>
+      <View onLayout={onLayoutRootView}></View>
       <Tab.Navigator
         tabBar={(props) => <TabBar {...props} />}
         sceneContainerStyle={{

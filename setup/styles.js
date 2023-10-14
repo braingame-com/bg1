@@ -40,6 +40,7 @@ export const t = {
   negative: 'rgb(240, 97, 109)',
   negativeFaded: 'rgba(240, 97, 109, .15)',
   // Spacing
+  xxxs: 2, // .125rem
   xxs: 4, // .25rem
   xs: 8, // .5rem
   small: 12, // .75rem
@@ -47,6 +48,7 @@ export const t = {
   large: 20, // 1.25rem
   xl: 24, // 1.5rem
   xxl: 32, // 2rem
+  xxxl: 40, // 2.5rem
 };
 
 // SUPER CLASSES //
@@ -95,8 +97,8 @@ export const s = StyleSheet.create({
         ? t.medium * 4
         : '100vh',
     width: isMobile ? '100%' : t.medium * 8,
-    borderTopWidth: 0, // previously: isMobile ? 1 : 0,
-    borderRightWidth: 0, // previously: isMobile ? 0 : 1,
+    borderTopWidth: isMobile ? 1 : 0,
+    borderRightWidth: isMobile ? 0 : 1,
   },
   tabBarItem: {
     display: 'flex',

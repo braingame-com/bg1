@@ -21,7 +21,7 @@ import { ChartRangeSelector } from '../components/ChartRangeSelector';
 // import { auth } from '../firebaseConfig';
 // import { onAuthStateChanged } from 'firebase/auth';
 
-let userIsLoggedIn = false;
+let userIsLoggedIn = true;
 let currentUser;
 
 // onAuthStateChanged(auth, (user) => {
