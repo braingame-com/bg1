@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  ScrollView,
   StyleProp,
   ViewStyle,
   TextStyle,
@@ -10,7 +11,7 @@ import {
   Platform,
   ActivityIndicator as RNActivityIndicator,
 } from 'react-native';
-import { Text } from './typography';
+import { Text, Small } from './typography';
 import {
   NavigationProp,
   ParamListBase,
@@ -29,8 +30,25 @@ import { fat } from '@fortawesome/pro-thin-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import Svg, { Path } from 'react-native-svg';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { TagProps } from '../setup/types';
 
 library.add(fab, far, fas, fal, fat);
+
+export const ScrollPage = ({
+  children,
+  style,
+}: {
+  children?: any;
+  style?: any;
+}) => (
+  <ScrollView
+    style={{ padding: t.large, ...style }}
+    showsVerticalScrollIndicator={false}
+  >
+    {children}
+  </ScrollView>
+);
 
 interface ButtonProps {
   style?: StyleProp<TextStyle>;
@@ -38,6 +56,7 @@ interface ButtonProps {
   text?: string;
   icon?: string;
   iconSize?: string | number;
+  iconColor?: string;
   iconType?: string;
   onPress?: () => void;
   contentStyle?: StyleProp<TextStyle>;
@@ -49,6 +68,7 @@ export const Button: React.FC<ButtonProps> = ({
   text,
   icon,
   iconSize,
+  iconColor,
   iconType,
   onPress,
   contentStyle,
@@ -88,7 +108,14 @@ export const Button: React.FC<ButtonProps> = ({
         {icon && (
           <Icon
             name={icon}
-            size={iconSize === 'small' ? undefined : 'secondary'}
+            size={
+              iconSize === 'small'
+                ? undefined
+                : iconSize
+                ? iconSize
+                : 'secondary'
+            }
+            color={iconColor ? iconColor : isPrimary ? t.primary : colors.text}
             style={{ marginRight: text ? t.small : 0 }}
             type={iconType}
           />
@@ -164,13 +191,33 @@ export const Dot = ({ style }: { style?: StyleProp<ViewStyle> }) => (
   <Icon name="circle" type="fas" size={t.xxs} color={t.grey} style={style} />
 );
 
-export function Row({
+export const Column = ({
   style,
   children,
 }: {
   style?: StyleProp<ViewStyle>;
   children?: React.ReactNode;
-}) {
+}) => {
+  return (
+    <View
+      style={{
+        flexDirection: 'column',
+        justifyContent: 'center',
+        ...(typeof style === 'object' && style !== null ? style : {}),
+      }}
+    >
+      {children}
+    </View>
+  );
+};
+
+export const Row = ({
+  style,
+  children,
+}: {
+  style?: StyleProp<ViewStyle>;
+  children?: React.ReactNode;
+}) => {
   return (
     <View
       style={{
@@ -182,15 +229,44 @@ export function Row({
       {children}
     </View>
   );
-}
+};
 
-export function Divider({ style }: { style?: StyleProp<ViewStyle> }) {
+export const ResponsiveRow = ({
+  style,
+  children,
+}: {
+  style?: StyleProp<ViewStyle>;
+  children?: React.ReactNode;
+}) => {
+  return (
+    <View
+      style={{
+        flexDirection: isMobile ? 'column' : 'row',
+        alignItems: 'center',
+        ...(typeof style === 'object' && style !== null ? style : {}),
+      }}
+    >
+      {children}
+    </View>
+  );
+};
+
+export function Divider({
+  height,
+  color,
+  style,
+}: {
+  height?: number;
+  color?: string;
+  style?: StyleProp<ViewStyle>;
+}) {
   const { colors } = useTheme();
   return (
     <View
       style={{
-        borderBottomWidth: 1,
-        borderBottomColor: colors.border,
+        height: height || 1,
+        backgroundColor: color || colors.border,
+        marginVertical: t.large,
         ...(typeof style === 'object' && style !== null ? style : {}),
       }}
     ></View>
@@ -263,6 +339,7 @@ export const InputField: React.FC<InputFieldProps> = ({
 }) => {
   const { colors } = useTheme();
   const [secure, setSecure] = useState(secureTextEntry);
+
   return (
     <View style={{ position: 'relative', justifyContent: 'center' }}>
       {icon && (
@@ -434,4 +511,15 @@ export const Icon: React.FC<IconProps> = ({
       )
     );
   }
+};
+
+export const Tag: React.FC<TagProps> = ({ children, icon, position }) => {
+  const { colors } = useTheme();
+
+  return (
+    <Small style={{ ...s.tag, color: colors.text, gap: t.xs }} mono={true}>
+      {children}
+      {icon && <Icon name={icon} color={t.grey} size={t.small} />}
+    </Small>
+  );
 };

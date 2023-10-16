@@ -45,7 +45,7 @@ export function Shop() {
               navigation.toggleDrawer();
             }}
           >
-            <Text style={{ ...s.m_right, color: t.grey }}>£0.00</Text>
+            <Text style={{ marginRight: t.small, color: t.grey }}>£0.00</Text>
             <Icon name="bars" size="primary" />
           </Pressable>
         ),

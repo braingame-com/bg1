@@ -14,11 +14,11 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ScrollContext } from '../components/AppProvider';
 import { s, t } from '../setup/styles';
 import { AccountFlow } from './AccountFlow';
-import { Title, Text, Small } from '../design/typography';
-import { Icon, Dot, Row, BackButton } from '../design/primitives';
+import { Title, Heading, Text, Small } from '../design/typography';
+import { Icon, Dot, Row, BackButton, Divider } from '../design/primitives';
 import { isMobile } from '../setup/helpers';
 import { ChartRangeSelector } from '../components/ChartRangeSelector';
-// import { Playground } from '../screens/Playground';
+import { Playground } from './Playground/Playground';
 // import { auth } from '../firebaseConfig';
 // import { onAuthStateChanged } from 'firebase/auth';
 
@@ -53,11 +53,11 @@ export const Dashboard: React.FC<DashboardProps> = ({ navigation }) => (
       headerShadowVisible: false,
     }}
   >
-    {/* <Stack.Screen
-        name="Playground"
-        component={Playground}
-        options={{ headerShown: false }}
-      /> */}
+    <Stack.Screen
+      name="Playground"
+      component={Playground}
+      options={{ headerShown: false }}
+    />
     {!userIsLoggedIn && (
       <Stack.Screen
         name="Account Flow"
@@ -187,7 +187,7 @@ const DashboardList = () => {
           style={{
             ...s.card,
             backgroundColor: colors.card,
-            ...s.m_vertical,
+            marginVertical: t.small,
           }}
         >
           <View
@@ -197,15 +197,9 @@ const DashboardList = () => {
               justifyContent: 'space-between',
             }}
           >
-            <View style={{ ...s.row, ...s.m_bottom }}>
-              <Text
-                style={{
-                  color: colors.text,
-                }}
-              >
-                Numbers
-              </Text>
-              <Small style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>
+            <View style={{ ...s.row, marginBottom: t.small }}>
+              <Heading>Numbers</Heading>
+              <Small style={{ ...s.pill, ...s.warn, marginLeft: t.large }}>
                 To do
               </Small>
             </View>
@@ -217,8 +211,8 @@ const DashboardList = () => {
           </View>
           <View
             style={{
-              ...s.m_top,
-              ...s.m_bottom_2,
+              marginTop: t.small,
+              marginBottom: t.large,
               height: isMobile ? t.medium ** 2 : t.medium * 24,
               alignItems: 'center',
               justifyContent: 'center',
@@ -275,7 +269,7 @@ const DashboardList = () => {
           style={{
             ...s.card,
             backgroundColor: colors.card,
-            ...s.m_vertical,
+            marginVertical: t.small,
             flex: 1,
           }}
         >
@@ -287,8 +281,10 @@ const DashboardList = () => {
             }}
           >
             <View style={{ ...s.row }}>
-              <Text>Tasks</Text>
-              <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>5</Text>
+              <Heading>Tasks</Heading>
+              <Text style={{ ...s.pill, ...s.warn, marginLeft: t.large }}>
+                5
+              </Text>
             </View>
           </View>
           <UpcomingTasks />
@@ -312,18 +308,12 @@ const DashboardList = () => {
             flex: 1,
             ...s.card,
             backgroundColor: colors.card,
-            ...s.m_vertical,
+            marginVertical: t.small,
           }}
         >
           <View style={{ ...s.row }}>
-            <Text
-              style={{
-                color: colors.text,
-              }}
-            >
-              Visualization
-            </Text>
-            <Text style={{ ...s.pill, ...s.success, ...s.m_left_2 }}>
+            <Heading>Visualization</Heading>
+            <Text style={{ ...s.pill, ...s.success, marginLeft: t.large }}>
               <Icon name="check" color={t.positive} />
             </Text>
           </View>
@@ -347,18 +337,14 @@ const DashboardList = () => {
             flex: 1,
             ...s.card,
             backgroundColor: colors.card,
-            ...s.m_vertical,
+            marginVertical: t.small,
           }}
         >
           <View style={{ ...s.row }}>
-            <Text
-              style={{
-                color: colors.text,
-              }}
-            >
-              Affirmations
+            <Heading>Affirmations</Heading>
+            <Text style={{ ...s.pill, ...s.warn, marginLeft: t.large }}>
+              To do
             </Text>
-            <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>To do</Text>
           </View>
         </View>
       </Pressable>
@@ -380,18 +366,14 @@ const DashboardList = () => {
             flex: 1,
             ...s.card,
             backgroundColor: colors.card,
-            ...s.m_vertical,
+            marginVertical: t.small,
           }}
         >
           <View style={{ ...s.row }}>
-            <Text
-              style={{
-                color: colors.text,
-              }}
-            >
-              Planning
+            <Heading>Planning</Heading>
+            <Text style={{ ...s.pill, ...s.warn, marginLeft: t.large }}>
+              To do
             </Text>
-            <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>To do</Text>
           </View>
         </View>
       </Pressable>
@@ -413,18 +395,14 @@ const DashboardList = () => {
             flex: 1,
             ...s.card,
             backgroundColor: colors.card,
-            ...s.m_vertical,
+            marginVertical: t.small,
           }}
         >
           <View style={{ ...s.row }}>
-            <Text
-              style={{
-                color: colors.text,
-              }}
-            >
-              Journal
+            <Heading>Journal</Heading>
+            <Text style={{ ...s.pill, ...s.warn, marginLeft: t.large }}>
+              To do
             </Text>
-            <Text style={{ ...s.pill, ...s.warn, ...s.m_left_2 }}>To do</Text>
           </View>
         </View>
       </Pressable>
@@ -438,11 +416,26 @@ const DashboardList = () => {
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ flex: !isMobile ? 1 : 0 }}
-        style={{ ...s.m_horizontal }}
+        style={{ marginHorizontal: t.small }}
       >
         <View style={{ ...s.container, flex: 1 }}>
           <Animated.View style={{ opacity: opacity }}>
-            <Title style={{ marginVertical: t.medium }}>Dashboard</Title>
+            <Divider
+              style={{ marginRight: -t.large, marginTop: t.small }}
+              height={4}
+              color={t.tabPurple}
+            />
+            <Title
+              mono={true}
+              style={{
+                ...s.bigChip,
+                color: t.tabPurple,
+                backgroundColor: t.tabPurpleFaded,
+                marginBottom: t.xs,
+              }}
+            >
+              Dashboard
+            </Title>
           </Animated.View>
           <View
             style={{

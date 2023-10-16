@@ -26,8 +26,26 @@ export const TabBar = ({
       {!isMobile && <BrainGameLogo />}
 
       {state.routes.map((route: Route<string>, index: number) => {
+        const getTabColor = (
+          isFocused: boolean,
+          label: string,
+          isFaded = true
+        ) => {
+          if (isFocused && typeof label === 'string') {
+            if (label.includes('Dashboard'))
+              return isFaded ? t.tabPurpleFaded : t.tabPurple;
+            if (label.includes('Lessons'))
+              return isFaded ? t.tabGreenFaded : t.tabGreen;
+            if (label.includes('Videos'))
+              return isFaded ? t.tabOrangeFaded : t.tabOrange;
+            if (label.includes('Shop'))
+              return isFaded ? t.tabBlueFaded : t.tabBlue;
+            if (label.includes('Profile'))
+              return isFaded ? t.tabYellowFaded : t.tabYellow;
+          }
+          return 'transparent';
+        };
         const isFocused = state.index === index;
-
         const { options } = descriptors[route.key];
         const label =
           options.tabBarLabel !== undefined
@@ -36,11 +54,12 @@ export const TabBar = ({
             ? options.title
             : route.name;
         const icon = options?.tabBarIcon?.({
-          color: !isMobile && isFocused ? colors.primary : t.white,
+          color: isFocused
+            ? getTabColor(isFocused, label.toString(), false)
+            : t.white,
           focused: isFocused ? true : false,
           size: t.xl,
         });
-
         const onPress = () => {
           const event = navigation.emit({
             type: 'tabPress',
@@ -53,7 +72,6 @@ export const TabBar = ({
             navigation.navigate({ name: route.name, params: {}, merge: true });
           }
         };
-
         const onLongPress = () => {
           navigation.emit({
             type: 'tabLongPress',
@@ -69,25 +87,25 @@ export const TabBar = ({
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{
-              ...s.tabBarItem,
-              flex: 1,
-              backgroundColor:
-                isFocused && platform === 'web'
-                  ? t.primaryFaded
-                  : 'transparent',
-              borderRadius: t.medium,
-              marginHorizontal: isMobile ? 0 : t.large,
-              marginTop:
-                label === 'Settings' && !isMobile
-                  ? 'auto'
-                  : typeof label === 'string' &&
-                    label.includes('Dashboard') &&
-                    !isMobile
-                  ? t.xxl
-                  : 0,
-              marginBottom: label === 'Settings' && !isMobile ? t.large : 0,
-            }}
+            style={
+              {
+                ...s.tabBarItem,
+                flex: 1,
+                backgroundColor:
+                  !isMobile && getTabColor(isFocused, label.toString()),
+                borderRadius: t.medium,
+                marginHorizontal: isMobile ? 0 : t.large,
+                marginTop:
+                  label === 'Profile' && !isMobile
+                    ? 'auto'
+                    : typeof label === 'string' &&
+                      label.includes('Dashboard') &&
+                      !isMobile
+                    ? t.xxl
+                    : 0,
+                marginBottom: label === 'Profile' && !isMobile ? t.large : 0,
+              } as any
+            }
             key={index}
           >
             <View

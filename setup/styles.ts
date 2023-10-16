@@ -33,7 +33,9 @@ export const t = {
   //Palette
   white: '#ffffff',
   grey: '#777777',
+  greyFaded: 'rgba(128, 128, 128, .15)',
   black: '#000000',
+
   primary: 'rgb(59, 115, 245)',
   primaryFaded: 'rgba(59, 115, 245, .15)',
   positive: 'rgb(39, 173, 117)',
@@ -42,6 +44,18 @@ export const t = {
   warnFaded: 'rgba(233, 179, 0, .15)',
   negative: 'rgb(240, 97, 109)',
   negativeFaded: 'rgba(240, 97, 109, .15)',
+
+  tabPurple: 'rgb(182, 111, 247)',
+  tabPurpleFaded: 'rgba(182, 111, 247, .15)',
+  tabGreen: 'rgb(113, 192, 131)',
+  tabGreenFaded: 'rgba(113, 192, 131, .15)',
+  tabOrange: 'rgb(236, 117, 111)',
+  tabOrangeFaded: 'rgba(236, 117, 111, .15)',
+  tabBlue: 'rgb(120, 162, 246)',
+  tabBlueFaded: 'rgba(120, 162, 246, .15)',
+  tabYellow: 'rgb(252, 206, 81)',
+  tabYellowFaded: 'rgba(252, 206, 81, .15)',
+
   // Spacing
   xxxs: 2, // .125rem
   xxs: 4, // .25rem
@@ -59,6 +73,11 @@ export const s = StyleSheet.create({
   // Containers
   container: {
     padding: t.xs,
+  },
+  flexBox: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   flex: {
     flex: 1,
@@ -117,8 +136,6 @@ export const s = StyleSheet.create({
     height: t.xl,
   },
   doc_block: {
-    marginBottom: t.small,
-    paddingTop: t.large,
     borderTopWidth: 1,
   },
   btn_secondary: {
@@ -191,6 +208,27 @@ export const s = StyleSheet.create({
     paddingHorizontal: t.medium,
     borderRadius: t.small,
   },
+  tag: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: t.greyFaded,
+    paddingHorizontal: t.xs,
+    paddingVertical: t.xxs,
+    borderRadius: t.xs,
+    alignSelf: 'flex-start',
+    overflow: 'hidden',
+  },
+  bigChip: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: t.small,
+    paddingVertical: t.xs,
+    borderRadius: t.small,
+    alignSelf: 'flex-start',
+    overflow: 'hidden',
+  },
   // Utilities
   iconSmall: {
     width: t.large,
@@ -247,90 +285,5 @@ export const s = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  // Spacing
-  m_top: {
-    marginTop: t.small,
-  },
-  m_top_2: {
-    marginTop: t.large,
-  },
-  m_left: {
-    marginLeft: t.small,
-  },
-  m_left_2: {
-    marginLeft: t.large,
-  },
-  m_right: {
-    marginRight: t.small,
-  },
-  m_right_2: {
-    marginRight: t.large,
-  },
-  m_bottom: {
-    marginBottom: t.small,
-  },
-  m_bottom_2: {
-    marginBottom: t.large,
-  },
-  m_vertical: {
-    marginVertical: t.small,
-  },
-  m_vertical_2: {
-    marginVertical: t.large,
-  },
-  m_horizontal: {
-    marginHorizontal: t.small,
-  },
-  m_horizontal_2: {
-    marginHorizontal: t.large,
-  },
-  m_all: {
-    margin: t.small,
-  },
-  m_all_2: {
-    margin: t.large,
-  },
-  p_top: {
-    paddingTop: t.small,
-  },
-  p_top_2: {
-    paddingTop: t.large,
-  },
-  p_left: {
-    paddingLeft: t.small,
-  },
-  p_left_2: {
-    paddingLeft: t.large,
-  },
-  p_right: {
-    paddingRight: t.small,
-  },
-  p_right_2: {
-    paddingRight: t.large,
-  },
-  p_bottom: {
-    paddingBottom: t.small,
-  },
-  p_bottom_2: {
-    paddingBottom: t.large,
-  },
-  p_vertical: {
-    paddingVertical: t.small,
-  },
-  p_vertical_2: {
-    paddingVertical: t.large,
-  },
-  p_horizontal: {
-    paddingHorizontal: t.small,
-  },
-  p_horizontal_2: {
-    paddingHorizontal: t.large,
-  },
-  p_all: {
-    padding: t.small,
-  },
-  p_all_2: {
-    padding: t.large,
   },
 });

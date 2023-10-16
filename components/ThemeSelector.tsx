@@ -17,7 +17,7 @@ export function ThemeSelector() {
   // const [isEnabled, setIsEnabled] = useState(auto);
   const toggleTheme = useThemeUpdate();
   return (
-    <View style={{ ...s.container, ...s.m_horizontal }}>
+    <View style={{ ...s.container, marginHorizontal: t.small }}>
       <Heading style={{ color: colors.text, paddingBottom: t.small }}>
         Theme
       </Heading>
@@ -38,7 +38,7 @@ export function ThemeSelector() {
           }}
         >
           <Icon name="sun-bright" size="secondary" />
-          <Text style={{ ...s.m_left, color: colors.text }}>Light</Text>
+          <Text style={{ marginLeft: t.small, color: colors.text }}>Light</Text>
         </Pressable>
         <Pressable
           style={{
@@ -57,7 +57,7 @@ export function ThemeSelector() {
           }}
         >
           <Icon name="moon" size="secondary" />
-          <Text style={{ ...s.m_left, color: colors.text }}>Dark</Text>
+          <Text style={{ marginLeft: t.small, color: colors.text }}>Dark</Text>
         </Pressable>
         <Pressable
           style={{
@@ -74,7 +74,7 @@ export function ThemeSelector() {
           // onPress={(e: GestureResponderEvent) => toggleTheme()}
         >
           <Icon name="sparkles" size="secondary" />
-          <Text style={{ ...s.m_left, color: colors.text }}>Auto</Text>
+          <Text style={{ marginLeft: t.small, color: colors.text }}>Auto</Text>
         </Pressable>
       </View>
     </View>

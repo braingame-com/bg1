@@ -18,6 +18,7 @@ import {
   Button,
   BackButton,
   ActivityIndicator,
+  Divider,
 } from '../design/primitives';
 import { isMobile } from '../setup/helpers';
 import RenderHtml, { defaultSystemFonts } from 'react-native-render-html';
@@ -42,16 +43,18 @@ export const Lessons = ({ navigation }: { navigation: any }) => {
       <Stack.Screen
         name="Lessons"
         component={ArticleList}
-        options={{
-          headerTitle: () => <Text>Lessons</Text>,
-          headerLeft: () => (
-            <Button
-              type="Naked"
-              icon="chevron-left"
-              onPress={() => navigation.navigate('Categories')}
-            />
-          ),
-        }}
+        options={
+          {
+            // headerTitle: () => <Text>Lessons</Text>,
+            // headerLeft: () => (
+            //   <Button
+            //     type="Naked"
+            //     icon="chevron-left"
+            //     onPress={() => navigation.navigate('Categories')}
+            //   />
+            // ),
+          }
+        }
       />
       <Stack.Screen
         name="Article"
@@ -113,7 +116,7 @@ const ArticleList = ({ navigation }: { navigation: any }) => {
           style={{
             ...s.card,
             backgroundColor: colors.card,
-            ...s.m_vertical,
+            marginVertical: t.small,
             flex: 1,
           }}
           onPress={() =>
@@ -140,7 +143,7 @@ const ArticleList = ({ navigation }: { navigation: any }) => {
                     style={{
                       ...s.pill,
                       ...s.info,
-                      ...s.m_bottom_2,
+                      marginBottom: t.large,
                       alignSelf: 'flex-start',
                     }}
                     key={index + 1}
@@ -151,7 +154,7 @@ const ArticleList = ({ navigation }: { navigation: any }) => {
                     style={{
                       ...s.pill,
                       ...s.success,
-                      ...s.m_left,
+                      marginLeft: t.small,
                       alignSelf: 'flex-start',
                       ...s.centered,
                     }}
@@ -169,10 +172,12 @@ const ArticleList = ({ navigation }: { navigation: any }) => {
             />
           </Row>
           <Heading>{title}</Heading>
-          {excerpt !== '' && <Text style={{ ...s.m_top }}>{excerpt}</Text>}
+          {excerpt !== '' && (
+            <Text style={{ marginTop: t.small }}>{excerpt}</Text>
+          )}
           <Row
             style={{
-              ...s.m_top_2,
+              marginTop: t.large,
               flex: 1,
               justifyContent: 'space-between',
               alignItems: 'flex-end',
@@ -231,9 +236,27 @@ const ArticleList = ({ navigation }: { navigation: any }) => {
   );
   const array = [1];
   return (
-    <ScrollView style={{ flex: 1, padding: t.small }}>
+    <ScrollView
+      style={{ flex: 1, padding: t.xs }}
+      showsVerticalScrollIndicator={false}
+    >
       <View style={{ marginLeft: isMobile ? 0 : t.small }}>
-        <Title style={{ marginVertical: t.xs }}>Lessons</Title>
+        <Divider
+          style={{ marginRight: -t.large, marginTop: t.small }}
+          height={4}
+          color={t.tabGreen}
+        />
+        <Title
+          mono={true}
+          style={{
+            ...s.bigChip,
+            color: t.tabGreen,
+            backgroundColor: t.tabGreenFaded,
+            marginBottom: t.xs,
+          }}
+        >
+          Lessons
+        </Title>
       </View>
       {loaded ? (
         <View>
@@ -299,9 +322,9 @@ const Article = ({ route }: { route: any }) => {
       <Row
         style={{
           justifyContent: 'center',
-          ...s.m_top,
+          marginTop: t.small,
           paddingBottom: 30,
-          ...s.m_bottom_2,
+          marginBottom: t.large,
           borderBottomWidth: 0,
           borderColor: colors.border,
         }}
@@ -334,7 +357,9 @@ const Article = ({ route }: { route: any }) => {
           marginBottom: t.small,
         }}
       /> */}
-      <Text style={{ color: colors.text, ...s.m_bottom }}>{itemTitle}</Text>
+      <Text style={{ color: colors.text, marginBottom: t.small }}>
+        {itemTitle}
+      </Text>
       <RenderHtml
         contentWidth={width}
         source={source}

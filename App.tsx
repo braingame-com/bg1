@@ -11,7 +11,7 @@ import { Dashboard } from './screens/Dashboard';
 import { Lessons } from './screens/Lessons';
 import { Videos } from './screens/Videos';
 import { Shop } from './screens/Shop';
-import { Settings } from './screens/Settings';
+import { Profile } from './screens/Profile';
 import { t } from './setup/styles';
 import { Icon, ProfileIcon } from './design/primitives';
 import { TabBar } from './components/TabBar';
@@ -34,6 +34,10 @@ export default function App() {
     SohneStrong: require('./assets/fonts/TestSohne-Kraftig.otf'),
     SohneBook: require('./assets/fonts/TestSohne-Buch.otf'),
     SohneLight: require('./assets/fonts/TestSohne-Leicht.otf'),
+    SohneMonoHalfFat: require('./assets/fonts/TestSohneMono-Halbfett.otf'),
+    SohneMonoStrong: require('./assets/fonts/TestSohneMono-Kraftig.otf'),
+    SohneMonoBook: require('./assets/fonts/TestSohneMono-Buch.otf'),
+    SohneMonoLight: require('./assets/fonts/TestSohneMono-Leicht.otf'),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -138,8 +142,8 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="Settings"
-          component={Settings}
+          name="Profile"
+          component={Profile}
           options={{
             tabBarIcon: ({ color, focused }) => (
               <Icon

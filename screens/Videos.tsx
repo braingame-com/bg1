@@ -18,8 +18,9 @@ import {
   ActivityIndicator,
   Row,
   VideoDropdownMenu,
+  Divider,
 } from '../design/primitives';
-import { Text, Small, Subtitle } from '../design/typography';
+import { Text, Small, Subtitle, Title } from '../design/typography';
 import { fetchVideos } from '../setup/youtube-api';
 import YoutubePlayer, { getYoutubeMeta } from 'react-native-youtube-iframe';
 
@@ -86,7 +87,7 @@ const VideosList = ({ navigation }: { navigation: any }) => {
     return (
       <View>
         <Pressable
-          style={{ ...s.m_all }}
+          style={{ margin: t.small }}
           onPress={() => {
             navigation.navigate('Video', { id: id });
           }}
@@ -118,7 +119,23 @@ const VideosList = ({ navigation }: { navigation: any }) => {
   };
 
   return (
-    <View style={{ ...s.centeredFlexContainer }}>
+    <View style={{ padding: t.large }}>
+      <Divider
+        style={{ marginRight: -t.large, marginTop: 0 }}
+        height={4}
+        color={t.tabOrange}
+      />
+      <Title
+        mono={true}
+        style={{
+          ...s.bigChip,
+          color: t.tabOrange,
+          backgroundColor: t.tabOrangeFaded,
+          marginBottom: t.xs,
+        }}
+      >
+        Videos
+      </Title>
       {data.loaded ? (
         <FlatList
           data={data.videos}
@@ -178,9 +195,9 @@ const Video = ({ route }: any) => {
         <Row
           style={{
             justifyContent: 'center',
-            ...s.m_top,
+            marginTop: t.small,
             paddingTop: 30,
-            ...s.m_bottom_2,
+            marginBottom: t.large,
             borderTopWidth: 1,
             borderColor: colors.border,
           }}

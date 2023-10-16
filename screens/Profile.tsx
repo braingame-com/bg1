@@ -1,8 +1,8 @@
 import { View, Pressable, SafeAreaView, ScrollView } from 'react-native';
 import { s, t } from '../setup/styles';
 import { ThemeSelector } from '../components/ThemeSelector';
-import { Heading, Text } from '../design/typography';
-import { Icon, Button } from '../design/primitives';
+import { Heading, Text, Title } from '../design/typography';
+import { Icon, Button, Divider } from '../design/primitives';
 import { auth } from '../firebaseConfig';
 import { useTheme } from '@react-navigation/native';
 
@@ -24,15 +24,31 @@ let userIsLoggedIn = false;
 
 let subscriber = false;
 
-export const Settings = ({ navigation }: any) => {
+export const Profile = ({ navigation }: any) => {
   const handleSignOut = () => {
     auth.signOut();
     userIsLoggedIn = false;
     navigation.navigate('Account Flow');
   };
   return (
-    <SafeAreaView style={{ ...s.container, flex: 1, ...s.m_top }}>
+    <SafeAreaView style={{ padding: t.large }}>
       <ScrollView showsVerticalScrollIndicator={false}>
+        <Divider
+          style={{ marginRight: -t.large, marginTop: 0 }}
+          height={4}
+          color={t.tabYellow}
+        />
+        <Title
+          mono={true}
+          style={{
+            ...s.bigChip,
+            color: t.tabYellow,
+            backgroundColor: t.tabYellowFaded,
+            marginBottom: t.xs,
+          }}
+        >
+          Profile
+        </Title>
         {userIsLoggedIn && (
           <View>
             <Text>Signed in as: {auth.currentUser?.email}</Text>
@@ -63,7 +79,7 @@ export const Settings = ({ navigation }: any) => {
 const AccountSettings = () => {
   const { colors } = useTheme();
   return (
-    <View style={{ ...s.container, ...s.m_horizontal }}>
+    <View style={{ ...s.container, marginHorizontal: t.small }}>
       <Heading
         style={{
           color: colors.text,
@@ -75,23 +91,30 @@ const AccountSettings = () => {
       </Heading>
 
       <SettingsLink>
-        <Icon name="bell" size="secondary" />
-        <Text style={{ ...s.m_left }}>Manage notifications</Text>
+        <Icon name="bell" size="secondary" style={{ opacity: 0.5 }} />
+        <Text style={{ marginLeft: t.small }}>Manage notifications</Text>
       </SettingsLink>
 
       <SettingsLink>
-        <Icon name="user" size="secondary" />
-        <Text style={{ ...s.m_left }}>Change username or email</Text>
+        <Icon name="user" size="secondary" style={{ opacity: 0.5 }} />
+        <Text style={{ marginLeft: t.small }}>Change username or email</Text>
       </SettingsLink>
 
       <SettingsLink>
-        <Icon name="lock" size="secondary" />
-        <Text style={{ ...s.m_left }}>Change password</Text>
+        <Icon name="lock" size="secondary" style={{ opacity: 0.5 }} />
+        <Text style={{ marginLeft: t.small }}>Change password</Text>
       </SettingsLink>
 
       <SettingsLink style={{ opacity: 0.5 }}>
-        <Icon name="trash" color={t.negative} size="secondary" />
-        <Text style={{ ...s.error_text, ...s.m_left }}>Delete account</Text>
+        <Icon
+          name="trash"
+          color={t.negative}
+          size="secondary"
+          style={{ opacity: 0.5 }}
+        />
+        <Text style={{ ...s.error_text, marginLeft: t.small }}>
+          Delete account
+        </Text>
       </SettingsLink>
     </View>
   );
@@ -103,7 +126,7 @@ const Support = () => {
     <View
       style={{
         ...s.container,
-        ...s.m_horizontal,
+        marginHorizontal: t.small,
         marginTop: -t.small,
       }}
     >
@@ -118,18 +141,22 @@ const Support = () => {
       </Heading>
 
       <SettingsLink>
-        <Icon name="question-circle" size="secondary" />
-        <Text style={{ ...s.m_left }}>How do I use this app?</Text>
+        <Icon
+          name="question-circle"
+          size="secondary"
+          style={{ opacity: 0.5 }}
+        />
+        <Text style={{ marginLeft: t.small }}>How do I use this app?</Text>
       </SettingsLink>
 
       <SettingsLink>
-        <Icon name="message" size="secondary" />
-        <Text style={{ ...s.m_left }}>Contact us</Text>
+        <Icon name="message" size="secondary" style={{ opacity: 0.5 }} />
+        <Text style={{ marginLeft: t.small }}>Contact us</Text>
       </SettingsLink>
 
       <SettingsLink>
-        <Icon name="file" size="secondary" />
-        <Text style={{ ...s.m_left }}>Documentation</Text>
+        <Icon name="file" size="secondary" style={{ opacity: 0.5 }} />
+        <Text style={{ marginLeft: t.small }}>Documentation</Text>
       </SettingsLink>
     </View>
   );
@@ -141,7 +168,7 @@ const Links = () => {
     <View
       style={{
         ...s.container,
-        ...s.m_horizontal,
+        marginHorizontal: t.small,
         marginTop: -t.small,
       }}
     >
@@ -156,19 +183,24 @@ const Links = () => {
       </Heading>
 
       <SettingsLink>
-        <Icon name="bug" size="secondary" />
-        <Text style={{ ...s.m_left }}>Report a bug</Text>
+        <Icon name="bug" size="secondary" style={{ opacity: 0.5 }} />
+        <Text style={{ marginLeft: t.small }}>Report a bug</Text>
       </SettingsLink>
 
       <SettingsLink>
-        <Icon name="gavel" size="secondary" />
-        <Text style={{ ...s.m_left }}>Legal policies</Text>
+        <Icon name="gavel" size="secondary" style={{ opacity: 0.5 }} />
+        <Text style={{ marginLeft: t.small }}>Legal policies</Text>
       </SettingsLink>
 
       <SettingsLink>
-        <Icon name="github-alt" size="secondary" type="fab" />
-        <Text style={{ ...s.m_left }}>Github</Text>
-        <Icon name="code" style={{ ...s.m_horizontal }} />
+        <Icon
+          name="github-alt"
+          size="secondary"
+          type="fab"
+          style={{ opacity: 0.5 }}
+        />
+        <Text style={{ marginLeft: t.small }}>Github</Text>
+        <Icon name="code" style={{ marginHorizontal: t.small }} />
         <Text style={{ color: t.grey }}>v1.1.1</Text>
       </SettingsLink>
     </View>
