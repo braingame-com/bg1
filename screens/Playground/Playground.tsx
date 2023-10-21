@@ -23,6 +23,7 @@ import {
   Subtitle,
   Bold,
   Text,
+  SecondaryText,
   Small,
   SmallThin,
 } from '../../design/typography';
@@ -33,7 +34,7 @@ import { useState } from 'react';
 
 export const Playground = () => (
   <ScrollPage>
-    <DisplayTitle style={{ marginBottom: t.small }}>BGUI Docs</DisplayTitle>
+    <DisplayTitle style={{ marginBottom: t.s }}>BGUI Docs</DisplayTitle>
     <Text>Brand guidelines & component library</Text>
 
     <Palette />
@@ -47,45 +48,46 @@ export const Playground = () => (
 const DocBlock = ({
   title,
   icon,
-  colors,
+  color,
   children,
 }: {
   title: string;
   icon: string;
-  colors: string[];
+  color: string[];
   children: any;
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { colors } = useTheme();
+  const [isOpen, setIsOpen] = useState(title === 'Components');
 
   return (
-    <View style={{ ...s.doc_block }}>
-      <Divider style={{ marginRight: -t.large }} height={4} color={colors[0]} />
+    <View>
+      <Divider style={{ marginRight: -t.l }} height={4} color={color[0]} />
       <Pressable onPress={() => setIsOpen(!isOpen)}>
         <Row>
           <Title
             mono={true}
             style={{
-              color: colors[0],
-              backgroundColor: colors[1],
               ...s.bigChip,
+              backgroundColor: color[1],
+              color: colors.text,
             }}
           >
             <Icon
               name={icon}
               size={t.xxl}
-              color={colors[0]}
-              style={{ marginRight: t.small }}
+              color={colors.text}
+              style={{ marginRight: t.s }}
             />
             {title}
+            <Button
+              type="Naked"
+              icon={isOpen ? 'chevron-up' : 'chevron-down'}
+              iconSize={t.xxl}
+              iconColor={colors.text}
+              onPress={() => setIsOpen(!isOpen)}
+              style={{ marginLeft: t.s }}
+            />
           </Title>
-          <Button
-            type="Naked"
-            icon={isOpen ? 'chevron-up' : 'chevron-down'}
-            iconSize={t.xxl}
-            iconColor={colors[0]}
-            onPress={() => setIsOpen(!isOpen)}
-            style={{ marginTop: -t.large, marginLeft: t.large }}
-          />
         </Row>
       </Pressable>
       {isOpen && children}
@@ -101,13 +103,13 @@ const Palette = () => {
     <DocBlock
       title="Palette"
       icon="palette"
-      colors={[t.tabPurple, t.tabPurpleFaded]}
+      color={[t.tabPurple, t.tabPurpleFaded]}
     >
       <Column
         style={{
           alignItems: 'flex-start',
-          gap: t.large,
-          marginBottom: t.large,
+          gap: t.l,
+          marginBottom: t.l,
         }}
       >
         {palette.map((category: any) => (
@@ -136,9 +138,10 @@ const Tokens = () => {
     't.xxxs': 2, // .125rem
     't.xxs': 4, // .25rem
     't.xs': 8, // .5rem
-    't.small': 12, // .75rem
-    't.medium': 16, // 1rem
-    't.large': 20, // 1.25rem
+    't.s': 12, // .75rem
+    't.ms': 14, // .875rem
+    't.m': 16, // 1rem
+    't.l': 20, // 1.25rem
     't.xl': 24, // 1.5rem
     't.xxl': 32, // 2rem
     't.xxxl': 40, // 2.5rem
@@ -148,13 +151,13 @@ const Tokens = () => {
     <DocBlock
       title="Tokens"
       icon="pen-ruler"
-      colors={[t.tabGreen, t.tabGreenFaded]}
+      color={[t.tabGreen, t.tabGreenFaded]}
     >
       <Column
         style={{
           alignItems: 'flex-start',
-          gap: t.large,
-          marginBottom: t.large,
+          gap: t.l,
+          marginBottom: t.l,
         }}
       >
         <PaletteCard
@@ -179,6 +182,11 @@ const Typography = () => {
     { component: Subtitle, label: '<Subtitle>', text: 'Subtitle' },
     { component: Bold, label: '<Bold>', text: 'Bold' },
     { component: Text, label: '<Text>', text: 'Text' },
+    {
+      component: SecondaryText,
+      label: '<SecondaryText>',
+      text: 'Secondary Text',
+    },
     { component: Small, label: '<Small>', text: 'Small' },
     { component: SmallThin, label: '<SmallThin>', text: 'SmallThin' },
   ];
@@ -195,13 +203,13 @@ const Typography = () => {
     <DocBlock
       title="Typography"
       icon="font"
-      colors={[t.tabOrange, t.tabOrangeFaded]}
+      color={[t.tabOrange, t.tabOrangeFaded]}
     >
       <Column
         style={{
           alignItems: 'flex-start',
-          gap: t.large,
-          marginBottom: t.large,
+          gap: t.l,
+          marginBottom: t.l,
         }}
       >
         {Object.keys(variants).map((category) => (
@@ -307,7 +315,7 @@ const Components = () => {
     <DocBlock
       title="Components"
       icon="cubes"
-      colors={[t.tabBlue, t.tabBlueFaded]}
+      color={[t.tabBlue, t.tabBlueFaded]}
     >
       <Text>Coming soon...</Text>
     </DocBlock>
@@ -325,7 +333,7 @@ const Helpers = () => {
     <DocBlock
       title="Helpers"
       icon="screwdriver-wrench"
-      colors={[t.tabYellow, t.tabYellowFaded]}
+      color={[t.tabYellow, t.tabYellowFaded]}
     >
       <PaletteCard
         heading={'Helpers'}

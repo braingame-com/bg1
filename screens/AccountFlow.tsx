@@ -16,10 +16,10 @@ export const AccountFlow = ({ navigation }: any) => {
       <Image
         source={require('../assets/illustrations/google-robot.png')}
         style={{
-          width: t.medium ** 2,
-          height: t.medium ** 2,
-          marginVertical: t.large,
-          borderRadius: t.medium ** 3,
+          width: t.m ** 2,
+          height: t.m ** 2,
+          marginVertical: t.l,
+          borderRadius: t.m ** 3,
         }}
       />
       <Button
@@ -48,7 +48,7 @@ export const AccountFlow = ({ navigation }: any) => {
           setModalVisible(true);
         }}
       />
-      <Row style={{ marginTop: t.large }}>
+      <Row style={{ marginTop: t.l }}>
         <Text>Already a user?</Text>
         <Button
           type="Naked"

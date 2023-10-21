@@ -11,7 +11,13 @@ import { ScrollContext } from '../components/AppProvider';
 import { s, t } from '../setup/styles';
 import { GRAPHQL_URL, GRAPHQL_BODY } from '../setup/shopify-sapi';
 import { useTheme } from '@react-navigation/native';
-import { Title, Heading, Text, Small } from '../design/typography';
+import {
+  Title,
+  Heading,
+  Text,
+  Small,
+  SecondaryText,
+} from '../design/typography';
 import {
   Icon,
   Row,
@@ -34,8 +40,8 @@ export const Lessons = ({ navigation }: { navigation: any }) => {
           backgroundColor: colors.background,
         },
         headerTitleStyle: {
-          fontSize: isMobile ? t.medium : t.large,
-          marginLeft: isMobile ? 0 : t.small,
+          fontSize: isMobile ? t.m : t.l,
+          marginLeft: isMobile ? 0 : t.s,
         } as any,
         headerShadowVisible: false,
       }}
@@ -107,7 +113,7 @@ const ArticleList = ({ navigation }: { navigation: any }) => {
         style={
           {
             maxWidth: isMobile ? '100%' : 'calc(33% - 20px)',
-            marginHorizontal: isMobile ? 0 : t.small,
+            marginHorizontal: isMobile ? 0 : t.s,
             flex: 1,
           } as any
         }
@@ -116,7 +122,7 @@ const ArticleList = ({ navigation }: { navigation: any }) => {
           style={{
             ...s.card,
             backgroundColor: colors.card,
-            marginVertical: t.small,
+            marginVertical: t.s,
             flex: 1,
           }}
           onPress={() =>
@@ -143,7 +149,7 @@ const ArticleList = ({ navigation }: { navigation: any }) => {
                     style={{
                       ...s.pill,
                       ...s.info,
-                      marginBottom: t.large,
+                      marginBottom: t.l,
                       alignSelf: 'flex-start',
                     }}
                     key={index + 1}
@@ -154,7 +160,7 @@ const ArticleList = ({ navigation }: { navigation: any }) => {
                     style={{
                       ...s.pill,
                       ...s.success,
-                      marginLeft: t.small,
+                      marginLeft: t.s,
                       alignSelf: 'flex-start',
                       ...s.centered,
                     }}
@@ -168,16 +174,16 @@ const ArticleList = ({ navigation }: { navigation: any }) => {
               type="Naked"
               icon="ellipsis-h"
               onPress={() => console.log(`more options for article id: ${id}`)}
-              contentStyle={{ fontSize: t.medium, color: t.grey }}
+              contentStyle={{ fontSize: t.m, color: t.grey }}
             />
           </Row>
           <Heading>{title}</Heading>
           {excerpt !== '' && (
-            <Text style={{ marginTop: t.small }}>{excerpt}</Text>
+            <SecondaryText style={{ marginTop: t.s }}>{excerpt}</SecondaryText>
           )}
           <Row
             style={{
-              marginTop: t.large,
+              marginTop: t.l,
               flex: 1,
               justifyContent: 'space-between',
               alignItems: 'flex-end',
@@ -190,7 +196,7 @@ const ArticleList = ({ navigation }: { navigation: any }) => {
                 icon="heart"
                 iconSize="small"
                 onPress={() => console.log(`like article id: ${id}`)}
-                contentStyle={{ fontSize: t.small, color: t.grey }}
+                contentStyle={{ fontSize: t.s, color: t.grey }}
               />
             </Row>
             <Button
@@ -198,7 +204,7 @@ const ArticleList = ({ navigation }: { navigation: any }) => {
               icon="bookmark"
               iconSize="small"
               onPress={() => console.log(`bookmark article id: ${id}`)}
-              contentStyle={{ fontSize: t.medium, color: t.grey }}
+              contentStyle={{ fontSize: t.m, color: t.grey }}
             />
           </Row>
         </Pressable>
@@ -223,13 +229,13 @@ const ArticleList = ({ navigation }: { navigation: any }) => {
       onScroll={onScroll}
       keyExtractor={(item) => item.node.id}
       style={{
-        padding: isMobile ? t.small : 0,
-        marginHorizontal: isMobile ? t.small : 0,
+        padding: isMobile ? t.s : 0,
+        marginHorizontal: isMobile ? t.s : 0,
       }}
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{
-        paddingBottom: t.large,
+        paddingBottom: t.l,
       }}
       numColumns={isMobile ? 1 : 4}
     />
@@ -240,23 +246,8 @@ const ArticleList = ({ navigation }: { navigation: any }) => {
       style={{ flex: 1, padding: t.xs }}
       showsVerticalScrollIndicator={false}
     >
-      <View style={{ marginLeft: isMobile ? 0 : t.small }}>
-        <Divider
-          style={{ marginRight: -t.large, marginTop: t.small }}
-          height={4}
-          color={t.tabGreen}
-        />
-        <Title
-          mono={true}
-          style={{
-            ...s.bigChip,
-            color: t.tabGreen,
-            backgroundColor: t.tabGreenFaded,
-            marginBottom: t.xs,
-          }}
-        >
-          Lessons
-        </Title>
+      <View style={{ marginLeft: isMobile ? 0 : t.s }}>
+        <Title>Lessons</Title>
       </View>
       {loaded ? (
         <View>
@@ -313,7 +304,7 @@ const Article = ({ route }: { route: any }) => {
   return (
     <ScrollView
       contentContainerStyle={{
-        padding: t.large,
+        padding: t.l,
         maxWidth: 600,
         marginHorizontal: 'auto',
       }}
@@ -322,9 +313,9 @@ const Article = ({ route }: { route: any }) => {
       <Row
         style={{
           justifyContent: 'center',
-          marginTop: t.small,
+          marginTop: t.s,
           paddingBottom: 30,
-          marginBottom: t.large,
+          marginBottom: t.l,
           borderBottomWidth: 0,
           borderColor: colors.border,
         }}
@@ -339,7 +330,7 @@ const Article = ({ route }: { route: any }) => {
           type="Secondary"
           text="Download Audio"
           icon="arrow-alt-circle-down"
-          style={{ marginLeft: t.medium }}
+          style={{ marginLeft: t.m }}
           onPress={() => console.log('download audio')}
         />
       </Row>
@@ -352,14 +343,12 @@ const Article = ({ route }: { route: any }) => {
           height: 330,
           borderColor: colors.border,
           borderWidth: 0,
-          marginTop: -t.large,
+          marginTop: -t.l,
           marginHorizontal: "-10%",
-          marginBottom: t.small,
+          marginBottom: t.s,
         }}
       /> */}
-      <Text style={{ color: colors.text, marginBottom: t.small }}>
-        {itemTitle}
-      </Text>
+      <Text style={{ color: colors.text, marginBottom: t.s }}>{itemTitle}</Text>
       <RenderHtml
         contentWidth={width}
         source={source}

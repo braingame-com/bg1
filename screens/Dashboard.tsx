@@ -14,7 +14,13 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ScrollContext } from '../components/AppProvider';
 import { s, t } from '../setup/styles';
 import { AccountFlow } from './AccountFlow';
-import { Title, Heading, Text, Small } from '../design/typography';
+import {
+  Title,
+  Heading,
+  Text,
+  Small,
+  SecondaryText,
+} from '../design/typography';
 import { Icon, Dot, Row, BackButton, Divider } from '../design/primitives';
 import { isMobile } from '../setup/helpers';
 import { ChartRangeSelector } from '../components/ChartRangeSelector';
@@ -104,21 +110,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ navigation }) => (
       }}
     />
     <Stack.Screen
-      name="Visualization Screen"
-      component={VisualizationScreen}
-      options={{
-        headerTitle: '',
-        headerLeft: () => (
-          <BackButton
-            text="Dashboard"
-            onPress={() => navigation.navigate('Dashboard')}
-          />
-        ),
-      }}
-    />
-    <Stack.Screen
-      name="Affirmations Screen"
-      component={AffirmationsScreen}
+      name="Mindset Screen"
+      component={MindsetScreen}
       options={{
         headerTitle: '',
         headerLeft: () => (
@@ -173,62 +166,67 @@ export const Dashboard: React.FC<DashboardProps> = ({ navigation }) => (
 
 const DashboardList = () => {
   const { opacity, onScroll } = useContext(ScrollContext);
+  const { colors } = useTheme();
 
   const NumbersBlock = () => {
     const navigation = useNavigation();
-    const { colors } = useTheme();
     // const priceHistory = usePriceHistory("ethereum");
+
     return (
       <Pressable
         onPress={() => (navigation as any).navigate('Numbers Screen')}
-        style={{ flex: 0.8 }}
+        style={{ flex: 2 }}
       >
         <View
           style={{
             ...s.card,
             backgroundColor: colors.card,
-            marginVertical: t.small,
+            marginVertical: t.s,
+            flex: 1,
           }}
         >
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <View style={{ ...s.row, marginBottom: t.small }}>
-              <Heading>Numbers</Heading>
-              <Small style={{ ...s.pill, ...s.warn, marginLeft: t.large }}>
-                To do
-              </Small>
-            </View>
-            <View style={{ ...s.row }}>
-              <View style={s.block_btn}>
-                <Icon name="filter" size="secondary" />
+          <>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+            >
+              <View style={{ ...s.row, marginBottom: t.s }}>
+                <Heading>Numbers</Heading>
+                <Small style={{ ...s.pill, ...s.warn, marginLeft: t.l }}>
+                  To do
+                </Small>
+              </View>
+              <View style={{ ...s.row }}>
+                <View style={s.block_btn}>
+                  <Icon name="filter" size="secondary" />
+                </View>
               </View>
             </View>
-          </View>
-          <View
-            style={{
-              marginTop: t.small,
-              marginBottom: t.large,
-              height: isMobile ? t.medium ** 2 : t.medium * 24,
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderWidth: 1,
-              borderColor: colors.border,
-              borderRadius: t.small,
-            }}
-          >
-            {/* <LineGraph points={priceHistory} color="#4484B2" /> */}
-          </View>
-          <ChartRangeSelector />
+            <View
+              style={{
+                marginTop: t.s,
+                marginBottom: t.l,
+                display: 'flex',
+                flexDirection: 'row',
+                flex: 1,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderWidth: 1,
+                borderColor: colors.border,
+                borderRadius: t.s,
+              }}
+            >
+              {/* <LineGraph points={priceHistory} color="#4484B2" /> */}
+            </View>
+            <ChartRangeSelector />
+          </>
         </View>
       </Pressable>
     );
   };
-
   const TasksBlock = () => {
     const navigation = useNavigation();
     const { colors } = useTheme();
@@ -247,13 +245,13 @@ const DashboardList = () => {
 
     const UpcomingTasks = () => {
       return (
-        <View style={{ marginTop: t.small }}>
+        <View style={{ marginTop: t.s }}>
           {tasks.map((task, i) => (
             <Row key={i}>
               <Dot />
-              <Text style={{ paddingVertical: t.xs, marginLeft: t.small }}>
+              <SecondaryText style={{ paddingVertical: t.xs, marginLeft: t.s }}>
                 {task}
-              </Text>
+              </SecondaryText>
             </Row>
           ))}
         </View>
@@ -263,13 +261,13 @@ const DashboardList = () => {
     return (
       <Pressable
         onPress={() => (navigation as any).navigate('Tasks Screen')}
-        style={{ flex: 0.2 }}
+        style={{ flex: 1 }}
       >
         <View
           style={{
             ...s.card,
             backgroundColor: colors.card,
-            marginVertical: t.small,
+            marginVertical: t.s,
             flex: 1,
           }}
         >
@@ -282,9 +280,7 @@ const DashboardList = () => {
           >
             <View style={{ ...s.row }}>
               <Heading>Tasks</Heading>
-              <Text style={{ ...s.pill, ...s.warn, marginLeft: t.large }}>
-                5
-              </Text>
+              <Text style={{ ...s.pill, ...s.warn, marginLeft: t.l }}>5</Text>
             </View>
           </View>
           <UpcomingTasks />
@@ -292,13 +288,12 @@ const DashboardList = () => {
       </Pressable>
     );
   };
-
-  const VisualizationBlock = () => {
+  const MindsetBlock = () => {
     const navigation = useNavigation();
     const { colors } = useTheme();
     return (
       <Pressable
-        onPress={() => (navigation as any).navigate('Visualization Screen')}
+        onPress={() => (navigation as any).navigate('Mindset Screen')}
         style={{ ...s.flex }}
       >
         <View
@@ -308,12 +303,12 @@ const DashboardList = () => {
             flex: 1,
             ...s.card,
             backgroundColor: colors.card,
-            marginVertical: t.small,
+            marginVertical: t.s,
           }}
         >
           <View style={{ ...s.row }}>
-            <Heading>Visualization</Heading>
-            <Text style={{ ...s.pill, ...s.success, marginLeft: t.large }}>
+            <Heading>Mindset</Heading>
+            <Text style={{ ...s.pill, ...s.success, marginLeft: t.l }}>
               <Icon name="check" color={t.positive} />
             </Text>
           </View>
@@ -321,36 +316,6 @@ const DashboardList = () => {
       </Pressable>
     );
   };
-
-  const AffirmationsBlock = () => {
-    const navigation = useNavigation();
-    const { colors } = useTheme();
-    return (
-      <Pressable
-        onPress={() => (navigation as any).navigate('Affirmations Screen')}
-        style={{ ...s.flex }}
-      >
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            flex: 1,
-            ...s.card,
-            backgroundColor: colors.card,
-            marginVertical: t.small,
-          }}
-        >
-          <View style={{ ...s.row }}>
-            <Heading>Affirmations</Heading>
-            <Text style={{ ...s.pill, ...s.warn, marginLeft: t.large }}>
-              To do
-            </Text>
-          </View>
-        </View>
-      </Pressable>
-    );
-  };
-
   const PlanningBlock = () => {
     const navigation = useNavigation();
     const { colors } = useTheme();
@@ -366,20 +331,17 @@ const DashboardList = () => {
             flex: 1,
             ...s.card,
             backgroundColor: colors.card,
-            marginVertical: t.small,
+            marginVertical: t.s,
           }}
         >
           <View style={{ ...s.row }}>
             <Heading>Planning</Heading>
-            <Text style={{ ...s.pill, ...s.warn, marginLeft: t.large }}>
-              To do
-            </Text>
+            <Text style={{ ...s.pill, ...s.warn, marginLeft: t.l }}>To do</Text>
           </View>
         </View>
       </Pressable>
     );
   };
-
   const JournalBlock = () => {
     const navigation = useNavigation();
     const { colors } = useTheme();
@@ -395,14 +357,12 @@ const DashboardList = () => {
             flex: 1,
             ...s.card,
             backgroundColor: colors.card,
-            marginVertical: t.small,
+            marginVertical: t.s,
           }}
         >
           <View style={{ ...s.row }}>
             <Heading>Journal</Heading>
-            <Text style={{ ...s.pill, ...s.warn, marginLeft: t.large }}>
-              To do
-            </Text>
+            <Text style={{ ...s.pill, ...s.warn, marginLeft: t.l }}>To do</Text>
           </View>
         </View>
       </Pressable>
@@ -416,47 +376,34 @@ const DashboardList = () => {
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ flex: !isMobile ? 1 : 0 }}
-        style={{ marginHorizontal: t.small }}
+        style={{ marginHorizontal: t.s }}
       >
         <View style={{ ...s.container, flex: 1 }}>
           <Animated.View style={{ opacity: opacity }}>
-            <Divider
-              style={{ marginRight: -t.large, marginTop: t.small }}
-              height={4}
-              color={t.tabPurple}
-            />
-            <Title
-              mono={true}
+            <Title>Dashboard</Title>
+          </Animated.View>
+
+          <View style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+            <View
               style={{
-                ...s.bigChip,
-                color: t.tabPurple,
-                backgroundColor: t.tabPurpleFaded,
-                marginBottom: t.xs,
+                flexDirection: isMobile ? 'column' : 'row',
+                flex: 1,
               }}
             >
-              Dashboard
-            </Title>
-          </Animated.View>
-          <View
-            style={{
-              flexDirection: isMobile ? 'column' : 'row',
-              gap: t.large,
-            }}
-          >
-            <NumbersBlock />
-            <TasksBlock />
-          </View>
-          <View
-            style={{
-              flexDirection: isMobile ? 'column' : 'row',
-              gap: t.large,
-              flex: 1,
-            }}
-          >
-            <VisualizationBlock />
-            <AffirmationsBlock />
-            <PlanningBlock />
-            <JournalBlock />
+              <NumbersBlock />
+              <TasksBlock />
+            </View>
+
+            <View
+              style={{
+                flexDirection: isMobile ? 'column' : 'row',
+                flex: 1,
+              }}
+            >
+              <MindsetBlock />
+              <PlanningBlock />
+              <JournalBlock />
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -512,9 +459,9 @@ const TasksScreen = () => {
         style={{
           borderBottomWidth: 0,
           borderColor: colors.border,
-          paddingVertical: t.small,
+          paddingVertical: t.s,
           paddingHorizontal: 0,
-          marginHorizontal: t.small,
+          marginHorizontal: t.s,
           overflow: 'hidden',
           flexDirection: 'row',
           alignItems: 'center',
@@ -527,7 +474,7 @@ const TasksScreen = () => {
             height: 28,
             borderColor: colors.border,
             borderWidth: 1,
-            borderRadius: t.small,
+            borderRadius: t.s,
             justifyContent: 'center',
             alignItems: 'center',
           }}
@@ -540,7 +487,7 @@ const TasksScreen = () => {
             color: colors.text,
             marginVertical: 0,
             flex: 1,
-            marginHorizontal: t.large,
+            marginHorizontal: t.l,
           }}
         >
           {props.text}
@@ -553,7 +500,7 @@ const TasksScreen = () => {
             alignItems: 'flex-end',
             opacity: 0.5,
             position: 'relative',
-            marginVertical: t.small,
+            marginVertical: t.s,
           }}
           onPress={() => removeTask(props.index)}
         >
@@ -565,15 +512,15 @@ const TasksScreen = () => {
   return (
     <View
       style={{
-        paddingHorizontal: t.large,
-        paddingVertical: t.small,
+        paddingHorizontal: t.l,
+        paddingVertical: t.s,
         paddingBottom: 140,
       }}
     >
       <View
         style={{
-          paddingHorizontal: t.small,
-          paddingVertical: t.large,
+          paddingHorizontal: t.s,
+          paddingVertical: t.l,
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -585,8 +532,8 @@ const TasksScreen = () => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: t.small,
-            padding: t.large,
+            borderRadius: t.s,
+            padding: t.l,
             borderColor: colors.border,
             borderWidth: 1,
           }}
@@ -594,7 +541,7 @@ const TasksScreen = () => {
         >
           <Icon name="eye-slash" size="secondary" />
         </Pressable>
-        <View style={{ flex: 2, marginHorizontal: t.small }}>
+        <View style={{ flex: 1, marginHorizontal: t.s }}>
           <Text
             style={{
               ...s.pill,
@@ -611,8 +558,8 @@ const TasksScreen = () => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: t.small,
-            padding: t.large,
+            borderRadius: t.s,
+            padding: t.l,
             borderColor: colors.border,
             borderWidth: 1,
           }}
@@ -633,12 +580,12 @@ const TasksScreen = () => {
           placeholder="Add a new task"
           style={{
             backgroundColor: colors.card,
-            paddingVertical: t.large,
+            paddingVertical: t.l,
             paddingLeft: 60,
-            paddingRight: t.large,
-            borderRadius: t.small,
+            paddingRight: t.l,
+            borderRadius: t.s,
             borderWidth: 0,
-            margin: t.small,
+            margin: t.s,
             flex: 1,
             color: 'white',
           }}
@@ -654,11 +601,11 @@ const TasksScreen = () => {
           style={{
             width: 45,
             height: 45,
-            margin: t.small,
+            margin: t.s,
             position: 'absolute',
-            left: t.small,
+            left: t.s,
             borderWidth: 0,
-            borderRadius: t.small,
+            borderRadius: t.s,
             alignItems: 'center',
             justifyContent: 'center',
           }}
@@ -668,8 +615,8 @@ const TasksScreen = () => {
       </View>
       <View
         style={{
-          marginTop: t.large,
-          marginHorizontal: t.small,
+          marginTop: t.l,
+          marginHorizontal: t.s,
           borderColor: colors.border,
           borderTopWidth: 1,
         }}
@@ -707,18 +654,12 @@ const TasksScreen = () => {
   );
 };
 
-const VisualizationScreen = () => {
+const MindsetScreen = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ color: 'white' }}>Visualization Screen</Text>
-    </View>
-  );
-};
-
-const AffirmationsScreen = () => {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ color: 'white' }}>Affirmations Screen</Text>
+      <Text style={{ color: 'white' }}>
+        Mindset (Affirmations & Visualization) Screen
+      </Text>
     </View>
   );
 };

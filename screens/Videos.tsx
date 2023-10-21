@@ -36,8 +36,8 @@ export const Videos = ({ navigation }: any) => {
             backgroundColor: colors.background,
           },
           headerTitleStyle: {
-            fontSize: isMobile ? t.medium : t.large,
-            marginLeft: isMobile ? 0 : t.small,
+            fontSize: isMobile ? t.m : t.l,
+            marginLeft: isMobile ? 0 : t.s,
           },
           headerShadowVisible: false,
         } as any
@@ -68,6 +68,7 @@ export const Videos = ({ navigation }: any) => {
 };
 
 const VideosList = ({ navigation }: { navigation: any }) => {
+  const { colors } = useTheme();
   const [data, setData] = useState({ loaded: false, videos: [] });
   useEffect(() => {
     fetchVideos(setData);
@@ -84,10 +85,11 @@ const VideosList = ({ navigation }: { navigation: any }) => {
     const uri = item.snippet.thumbnails.standard.url;
     const [menuVisible, setMenuVisible] = useState(false);
     console.log(menuVisible);
+
     return (
       <View>
         <Pressable
-          style={{ margin: t.small }}
+          style={{ margin: t.s }}
           onPress={() => {
             navigation.navigate('Video', { id: id });
           }}
@@ -98,7 +100,7 @@ const VideosList = ({ navigation }: { navigation: any }) => {
               <Text style={{ ...s.videoDurationText }}>17:15</Text>
             </View>
           </View>
-          <Row style={{ justifyContent: 'space-between', marginTop: t.small }}>
+          <Row style={{ justifyContent: 'space-between', marginTop: t.s }}>
             <Subtitle>{title}</Subtitle>
             <Button
               type="Naked"
@@ -107,7 +109,7 @@ const VideosList = ({ navigation }: { navigation: any }) => {
               onPress={() => setMenuVisible(!menuVisible)}
             />
           </Row>
-          <Row style={{ marginTop: t.xs, marginBottom: t.small }}>
+          <Row style={{ marginTop: t.xs, marginBottom: t.s }}>
             {menuVisible && <VideoDropdownMenu />}
             <Small style={{ color: t.grey }}>12K views</Small>
             <Dot style={{ marginHorizontal: t.xs }} />
@@ -119,23 +121,8 @@ const VideosList = ({ navigation }: { navigation: any }) => {
   };
 
   return (
-    <View style={{ padding: t.large }}>
-      <Divider
-        style={{ marginRight: -t.large, marginTop: 0 }}
-        height={4}
-        color={t.tabOrange}
-      />
-      <Title
-        mono={true}
-        style={{
-          ...s.bigChip,
-          color: t.tabOrange,
-          backgroundColor: t.tabOrangeFaded,
-          marginBottom: t.xs,
-        }}
-      >
-        Videos
-      </Title>
+    <View style={{ padding: t.l }}>
+      <Title>Videos</Title>
       {data.loaded ? (
         <FlatList
           data={data.videos}
@@ -195,9 +182,9 @@ const Video = ({ route }: any) => {
         <Row
           style={{
             justifyContent: 'center',
-            marginTop: t.small,
+            marginTop: t.s,
             paddingTop: 30,
-            marginBottom: t.large,
+            marginBottom: t.l,
             borderTopWidth: 1,
             borderColor: colors.border,
           }}
@@ -212,7 +199,7 @@ const Video = ({ route }: any) => {
             type="Secondary"
             text="Download"
             icon="arrow-alt-circle-down"
-            style={{ marginLeft: t.medium }}
+            style={{ marginLeft: t.m }}
             onPress={() => console.log('download')}
           />
         </Row>

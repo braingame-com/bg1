@@ -63,8 +63,8 @@ export default function App() {
             backgroundColor: 'black',
           },
           headerTitleStyle: {
-            fontSize: isMobile ? t.medium : t.large,
-            marginLeft: isMobile ? 0 : t.small,
+            fontSize: isMobile ? t.m : t.l,
+            marginLeft: isMobile ? 0 : t.s,
             opacity: oppositeOpacity,
           },
           headerShadowVisible: false,

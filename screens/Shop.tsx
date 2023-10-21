@@ -20,8 +20,8 @@ export function Shop() {
           backgroundColor: colors.background,
         },
         headerTitleStyle: {
-          fontSize: isMobile ? t.medium : t.large,
-          marginLeft: isMobile ? 0 : t.small,
+          fontSize: isMobile ? t.m : t.l,
+          marginLeft: isMobile ? 0 : t.s,
         },
         headerShadowVisible: false,
         drawerPosition: 'right',
@@ -38,14 +38,14 @@ export function Shop() {
             style={{
               ...s.row,
               alignItems: 'center',
-              paddingVertical: t.small,
-              marginRight: isMobile ? t.large : t.xl,
+              paddingVertical: t.s,
+              marginRight: isMobile ? t.l : t.xl,
             }}
             onPress={() => {
               navigation.toggleDrawer();
             }}
           >
-            <Text style={{ marginRight: t.small, color: t.grey }}>£0.00</Text>
+            <Text style={{ marginRight: t.s, color: t.grey }}>£0.00</Text>
             <Icon name="bars" size="primary" />
           </Pressable>
         ),

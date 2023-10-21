@@ -38,7 +38,7 @@ export const Title: React.FC<TypographyProps> = ({ style, children, mono }) => {
         fontFamily: `Sohne${mono ? 'Mono' : ''}HalfFat`,
         fontSize: t.xxl,
         color: colors.text,
-        marginBottom: t.large,
+        marginBottom: t.l,
         ...(typeof style === 'object' && style !== null ? style : {}),
       }}
     >
@@ -57,9 +57,9 @@ export const Heading: React.FC<TypographyProps> = ({
     <RNText
       style={{
         fontFamily: `Sohne${mono ? 'Mono' : ''}Strong`,
-        fontSize: t.large,
+        fontSize: t.l,
         color: colors.text,
-        marginBottom: t.medium,
+        marginBottom: t.m,
         ...(typeof style === 'object' && style !== null ? style : {}),
       }}
     >
@@ -78,9 +78,9 @@ export const Subtitle: React.FC<TypographyProps> = ({
     <RNText
       style={{
         fontFamily: `Sohne${mono ? 'Mono' : ''}Book`,
-        fontSize: t.medium * 1.125,
+        fontSize: t.m * 1.125,
         color: colors.text,
-        marginBottom: t.medium,
+        marginBottom: t.m,
         ...(typeof style === 'object' && style !== null ? style : {}),
       }}
     >
@@ -96,7 +96,7 @@ export const Bold: React.FC<TypographyProps> = ({ style, children, mono }) => {
       style={{
         fontFamily: `Sohne${mono ? 'Mono' : ''}Strong`,
         color: colors.text,
-        fontSize: t.medium,
+        fontSize: t.m,
         ...(typeof style === 'object' && style !== null ? style : {}),
       }}
     >
@@ -112,8 +112,28 @@ export const Text: React.FC<TypographyProps> = ({ style, children, mono }) => {
       style={{
         fontFamily: `Sohne${mono ? 'Mono' : ''}Book`,
         color: colors.text,
-        fontSize: t.medium,
+        fontSize: t.m,
         ...(typeof style === 'object' && style !== null ? style : {}),
+      }}
+    >
+      {children}
+    </RNText>
+  );
+};
+
+export const SecondaryText: React.FC<TypographyProps> = ({
+  style,
+  children,
+  mono,
+}) => {
+  const { colors } = useTheme();
+  return (
+    <RNText
+      style={{
+        fontFamily: `Sohne${mono ? 'Mono' : ''}Book`,
+        color: colors.text,
+        ...(typeof style === 'object' && style !== null ? style : {}),
+        fontSize: t.ms,
       }}
     >
       {children}
@@ -127,7 +147,7 @@ export const Small: React.FC<TypographyProps> = ({ style, children, mono }) => {
     <RNText
       style={{
         fontFamily: `Sohne${mono ? 'Mono' : ''}Book`,
-        fontSize: t.small,
+        fontSize: t.s,
         color: colors.text,
         ...(typeof style === 'object' && style !== null ? style : {}),
       }}
@@ -143,7 +163,7 @@ export const SmallThin: React.FC<TypographyProps> = ({ style, children }) => {
     <RNText
       style={{
         fontFamily: 'SohneLight',
-        fontSize: t.small,
+        fontSize: t.s,
         color: colors.text,
         ...(typeof style === 'object' && style !== null ? style : {}),
       }}

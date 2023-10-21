@@ -4,27 +4,13 @@ import { t, s } from '../setup/styles';
 import { Text, Title } from '../design/typography';
 import { Divider } from '../design/primitives';
 
-export function Products() {
+export const Products = () => {
   const { colors } = useTheme();
+
   return (
-    <SafeAreaView style={{ padding: t.large }}>
+    <SafeAreaView style={{ padding: t.l }}>
       <View>
-        <Divider
-          style={{ marginRight: -t.large, marginTop: 0 }}
-          height={4}
-          color={t.tabBlue}
-        />
-        <Title
-          mono={true}
-          style={{
-            ...s.bigChip,
-            color: t.tabBlue,
-            backgroundColor: t.tabBlueFaded,
-            marginBottom: t.xs,
-          }}
-        >
-          Shop
-        </Title>
+        <Title>Shop</Title>
         <Text style={{ color: colors.text }}>Products Screen!</Text>
       </View>
       {/* <Button
@@ -38,4 +24,4 @@ export function Products() {
         /> */}
     </SafeAreaView>
   );
-}
+};

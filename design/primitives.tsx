@@ -23,9 +23,10 @@ import { isMobile } from '../setup/helpers';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
+import { fad } from '@fortawesome/pro-duotone-svg-icons';
+import { fal } from '@fortawesome/pro-light-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { fal } from '@fortawesome/pro-light-svg-icons';
 import { fat } from '@fortawesome/pro-thin-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -33,7 +34,7 @@ import Svg, { Path } from 'react-native-svg';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { TagProps } from '../setup/types';
 
-library.add(fab, far, fas, fal, fat);
+library.add(fab, fad, fal, far, fas, fat);
 
 export const ScrollPage = ({
   children,
@@ -43,7 +44,7 @@ export const ScrollPage = ({
   style?: any;
 }) => (
   <ScrollView
-    style={{ padding: t.large, ...style }}
+    style={{ padding: t.l, ...style }}
     showsVerticalScrollIndicator={false}
   >
     {children}
@@ -96,9 +97,9 @@ export const Button: React.FC<ButtonProps> = ({
             : 'transparent',
           borderColor: isPrimary ? t.primary : colors.border,
           borderWidth: isNaked ? 0 : 1,
-          borderRadius: isNaked ? 0 : t.small,
-          padding: isNaked ? 0 : t.small,
-          paddingHorizontal: isNaked ? 0 : t.large,
+          borderRadius: isNaked ? 0 : t.s,
+          padding: isNaked ? 0 : t.s,
+          paddingHorizontal: isNaked ? 0 : t.l,
           overflow: 'hidden',
           ...s.row,
           alignSelf: 'flex-start',
@@ -116,7 +117,7 @@ export const Button: React.FC<ButtonProps> = ({
                 : 'secondary'
             }
             color={iconColor ? iconColor : isPrimary ? t.primary : colors.text}
-            style={{ marginRight: text ? t.small : 0 }}
+            style={{ marginRight: text ? t.s : 0 }}
             type={iconType}
           />
         )}
@@ -128,14 +129,14 @@ export const Button: React.FC<ButtonProps> = ({
                 ...s.iconMedium,
                 fill: t.white,
                 position: 'absolute',
-                left: t.medium,
+                left: t.m,
                 top: t.xs * 2.5,
                 zIndex: 999,
                 opacity: loading ? 0 : 1,
                 marginRight:
-                  text == null || text === '' ? 0 : isNaked ? t.xs : t.small,
+                  text == null || text === '' ? 0 : isNaked ? t.xs : t.s,
                 color: isPrimary ? t.primary : t.grey,
-                fontSize: t.large,
+                fontSize: t.l,
                 ...contentStyle,
               }}
             />
@@ -145,7 +146,7 @@ export const Button: React.FC<ButtonProps> = ({
           style={{
             opacity: loading ? 0 : 1,
             color: isPrimary ? t.primary : colors.text,
-            fontSize: t.medium,
+            fontSize: t.m,
             ...(typeof contentStyle === 'object' && contentStyle !== null
               ? contentStyle
               : {}),
@@ -176,12 +177,8 @@ interface BackButtonProps {
 
 export const BackButton: React.FC<BackButtonProps> = ({ text, onPress }) => (
   <Pressable onPress={onPress}>
-    <Row style={{ padding: t.medium }}>
-      <Icon
-        name="chevron-left"
-        size="primary"
-        style={{ marginRight: t.medium }}
-      />
+    <Row style={{ padding: t.m }}>
+      <Icon name="chevron-left" size="primary" style={{ marginRight: t.m }} />
       <Text>{text}</Text>
     </Row>
   </Pressable>
@@ -266,7 +263,7 @@ export function Divider({
       style={{
         height: height || 1,
         backgroundColor: color || colors.border,
-        marginVertical: t.large,
+        marginVertical: t.l,
         ...(typeof style === 'object' && style !== null ? style : {}),
       }}
     ></View>
@@ -286,28 +283,28 @@ export const VideoDropdownMenu = () => {
         type="Naked"
         text="Save"
         icon="bookmark"
-        iconSize={t.medium}
+        iconSize={t.m}
         style={{ padding: t.xs }}
-        contentStyle={{ color: colors.text, fontSize: t.medium }}
+        contentStyle={{ color: colors.text, fontSize: t.m }}
         onPress={() => console.log('Save')}
       />
       <Button
         type="Naked"
         text="Share"
         icon={Platform.OS === 'ios' ? 'share' : 'share-nodes'}
-        iconSize={t.medium}
+        iconSize={t.m}
         style={{ padding: t.xs }}
-        contentStyle={{ color: colors.text, fontSize: t.medium }}
+        contentStyle={{ color: colors.text, fontSize: t.m }}
         onPress={() => console.log('Share')}
       />
-      <Divider style={{ marginVertical: t.xs, marginHorizontal: -t.medium }} />
+      <Divider style={{ marginVertical: t.xs, marginHorizontal: -t.m }} />
       <Button
         type="Naked"
         text="Not interested"
         icon="ban"
-        iconSize={t.medium}
+        iconSize={t.m}
         style={{ padding: t.xs }}
-        contentStyle={{ color: colors.text, fontSize: t.medium }}
+        contentStyle={{ color: colors.text, fontSize: t.m }}
         onPress={() => console.log('Not interested')}
       />
     </View>
@@ -348,7 +345,7 @@ export const InputField: React.FC<InputFieldProps> = ({
           type={iconType}
           style={{
             position: 'absolute',
-            left: t.medium,
+            left: t.m,
             top: t.xs * 2.5,
             zIndex: 999,
           }}
@@ -360,8 +357,8 @@ export const InputField: React.FC<InputFieldProps> = ({
           fontFamily: 'SohneBook',
           backgroundColor: colors.card,
           color: colors.text,
-          paddingRight: secureTextEntry ? t.medium * 3.5 : t.medium,
-          fontSize: t.medium,
+          paddingRight: secureTextEntry ? t.m * 3.5 : t.m,
+          fontSize: t.m,
         }}
         placeholder={placeholder}
         placeholderTextColor={t.grey}
@@ -383,12 +380,12 @@ export const InputField: React.FC<InputFieldProps> = ({
           }}
           style={{
             position: 'absolute',
-            marginLeft: t.medium,
+            marginLeft: t.m,
             top: t.xs * 2.5,
             zIndex: 999,
             color: t.grey,
-            fontSize: t.large,
-            right: t.medium,
+            fontSize: t.l,
+            right: t.m,
           }}
         />
       )}
@@ -405,7 +402,7 @@ export const ProfileIcon: React.FC<ProfileIconProps> = ({ navigation }) => (
     style={{
       ...s.row,
       alignItems: 'center',
-      marginRight: isMobile ? t.large : t.xl,
+      marginRight: isMobile ? t.l : t.xl,
     }}
     onPress={() => navigation.navigate('Profile')}
     hitSlop={{
@@ -420,8 +417,8 @@ export const ProfileIcon: React.FC<ProfileIconProps> = ({ navigation }) => (
         uri: 'https://cdn.shopify.com/s/files/1/0171/7947/6022/files/polish.jpg?v=1671745772',
       }}
       style={{
-        width: (isMobile ? t.large : t.xl) * 1.5,
-        height: (isMobile ? t.large : t.xl) * 1.5,
+        width: (isMobile ? t.l : t.xl) * 1.5,
+        height: (isMobile ? t.l : t.xl) * 1.5,
         borderRadius: 999,
       }}
     />
@@ -447,13 +444,13 @@ export const Icon: React.FC<IconProps> = ({
 }) => {
   const sizeMap =
     // human readable size
-    { primary: t.xl, secondary: t.large, small: t.small }[
+    { primary: t.xl, secondary: t.l, small: t.s }[
       size as 'primary' | 'secondary' | 'small'
     ] ||
     // or provided value
     size ||
     // else medium
-    t.medium;
+    t.m;
 
   if (name === 'brain-game') {
     return (
@@ -519,7 +516,7 @@ export const Tag: React.FC<TagProps> = ({ children, icon, position }) => {
   return (
     <Small style={{ ...s.tag, color: colors.text, gap: t.xs }} mono={true}>
       {children}
-      {icon && <Icon name={icon} color={t.grey} size={t.small} />}
+      {icon && <Icon name={icon} color={t.grey} size={t.s} />}
     </Small>
   );
 };

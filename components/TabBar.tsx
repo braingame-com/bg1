@@ -7,6 +7,7 @@ import {
   BottomTabBarProps,
   BottomTabNavigationOptions,
 } from '@react-navigation/bottom-tabs';
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 
 export const TabBar = ({
   state,
@@ -54,10 +55,8 @@ export const TabBar = ({
             ? options.title
             : route.name;
         const icon = options?.tabBarIcon?.({
-          color: isFocused
-            ? getTabColor(isFocused, label.toString(), false)
-            : t.white,
-          focused: isFocused ? true : false,
+          color: isMobile ? t.white : isFocused ? t.primary : t.white,
+          focused: isFocused,
           size: t.xl,
         });
         const onPress = () => {
@@ -91,10 +90,9 @@ export const TabBar = ({
               {
                 ...s.tabBarItem,
                 flex: 1,
-                backgroundColor:
-                  !isMobile && getTabColor(isFocused, label.toString()),
-                borderRadius: t.medium,
-                marginHorizontal: isMobile ? 0 : t.large,
+                backgroundColor: !isMobile && isFocused && t.primaryFaded,
+                borderRadius: t.m,
+                marginHorizontal: isMobile ? 0 : t.l,
                 marginTop:
                   label === 'Profile' && !isMobile
                     ? 'auto'
@@ -103,7 +101,7 @@ export const TabBar = ({
                       !isMobile
                     ? t.xxl
                     : 0,
-                marginBottom: label === 'Profile' && !isMobile ? t.large : 0,
+                marginBottom: label === 'Profile' && !isMobile ? t.l : 0,
               } as any
             }
             key={index}
@@ -125,7 +123,7 @@ export const TabBar = ({
 const BrainGameLogo = () => (
   <View
     style={{
-      height: t.medium * 4,
+      height: t.m * 4,
       alignItems: 'center',
       justifyContent: 'center',
       marginTop: t.xxl,

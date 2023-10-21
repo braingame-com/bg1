@@ -60,9 +60,10 @@ export const t = {
   xxxs: 2, // .125rem
   xxs: 4, // .25rem
   xs: 8, // .5rem
-  small: 12, // .75rem
-  medium: 16, // 1rem
-  large: 20, // 1.25rem
+  s: 12, // .75rem
+  ms: 16, // .875rem
+  m: 16, // 1rem
+  l: 20, // 1.25rem
   xl: 24, // 1.5rem
   xxl: 32, // 2rem
   xxxl: 40, // 2.5rem
@@ -92,18 +93,19 @@ export const s = StyleSheet.create({
     justifyContent: 'center',
   },
   centeredFlexContainer: {
-    padding: t.small,
+    padding: t.s,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   card: {
-    padding: t.large,
-    borderRadius: t.medium,
+    padding: t.l,
+    borderRadius: t.m,
+    margin: t.l / 2,
   },
   modalView: {
-    margin: t.large,
-    borderRadius: t.medium,
+    margin: t.l,
+    borderRadius: t.m,
     padding: t.xl,
     alignItems: 'center',
     justifyContent: 'center',
@@ -114,11 +116,11 @@ export const s = StyleSheet.create({
     position: isMobile ? 'relative' : 'absolute',
     height:
       platform === 'ios'
-        ? t.medium * 5
+        ? t.m * 5
         : platform === 'android' || platform === 'mobWeb'
-        ? t.medium * 4
+        ? t.m * 4
         : screenHeight,
-    width: isMobile ? '100%' : t.medium * 8,
+    width: isMobile ? '100%' : t.m * 8,
     borderTopWidth: isMobile ? 1 : 0,
     borderRightWidth: isMobile ? 0 : 1,
   },
@@ -127,22 +129,19 @@ export const s = StyleSheet.create({
     alignItems: 'center',
     justifyContent: platform === 'ios' ? 'flex-start' : 'center',
     flexDirection: isMobile ? 'column' : 'row',
-    padding: isMobile ? t.small : t.large,
-    maxHeight: t.medium * 4,
+    padding: isMobile ? t.s : t.l,
+    maxHeight: t.m * 4,
   },
   tabBarIconWrapper: {
     alignItems: 'center',
     width: t.xl,
     height: t.xl,
   },
-  doc_block: {
-    borderTopWidth: 1,
-  },
   btn_secondary: {
     overflow: 'hidden',
     borderWidth: 1,
-    borderRadius: t.small,
-    paddingHorizontal: t.medium,
+    borderRadius: t.s,
+    paddingHorizontal: t.m,
     paddingVertical: t.xs,
   },
   block_btn: {
@@ -164,27 +163,27 @@ export const s = StyleSheet.create({
     flexDirection: 'row',
   },
   toggle: {
-    margin: t.small,
+    margin: t.s,
   },
   checkbox: {
     margin: 0,
     borderWidth: 1,
     width: t.xl,
     height: t.xl,
-    padding: t.small,
+    padding: t.s,
   },
   account_input: {
-    height: t.medium * 3,
-    padding: t.medium,
-    paddingLeft: t.medium * 3.5,
-    borderRadius: t.medium,
+    height: t.m * 3,
+    padding: t.m,
+    paddingLeft: t.m * 3.5,
+    borderRadius: t.m,
     marginVertical: t.xs,
   },
   videoThumbnail: {
     width: 360, // From Youtube
     height: 202, // From Youtube
     maxWidth: '100%',
-    borderRadius: t.small,
+    borderRadius: t.s,
   },
   videoDurationWrapper: {
     position: 'absolute',
@@ -197,16 +196,16 @@ export const s = StyleSheet.create({
     borderRadius: t.xs / 2.5,
   },
   videoDurationText: {
-    fontSize: t.small,
+    fontSize: t.s,
     color: 'rgb(231, 233, 234)', // Hardcoded because it should ignore theme
   },
   dropdownMenu: {
     position: 'absolute',
-    bottom: t.large,
-    right: t.large,
+    bottom: t.l,
+    right: t.l,
     paddingVertical: t.xs,
-    paddingHorizontal: t.medium,
-    borderRadius: t.small,
+    paddingHorizontal: t.m,
+    borderRadius: t.s,
   },
   tag: {
     display: 'flex',
@@ -223,35 +222,35 @@ export const s = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: t.small,
+    paddingHorizontal: t.s,
     paddingVertical: t.xs,
-    borderRadius: t.small,
+    borderRadius: t.s,
     alignSelf: 'flex-start',
     overflow: 'hidden',
   },
   // Utilities
   iconSmall: {
-    width: t.large,
-    height: t.large,
+    width: t.l,
+    height: t.l,
   },
   iconLarge: {
     width: t.xl,
     height: t.xl,
   },
   res_gap: {
-    marginTop: isMobile ? t.small : 0,
-    marginLeft: isMobile ? 0 : t.small,
+    marginTop: isMobile ? t.s : 0,
+    marginLeft: isMobile ? 0 : t.s,
   },
   rounded: {
-    marginVertical: t.small,
-    padding: t.small,
-    borderRadius: t.medium,
+    marginVertical: t.s,
+    padding: t.s,
+    borderRadius: t.m,
     overflow: 'hidden',
   },
   pill: {
-    paddingHorizontal: isMobile ? t.xs : t.small,
+    paddingHorizontal: isMobile ? t.xs : t.s,
     paddingVertical: t.xs / 2,
-    borderRadius: t.small,
+    borderRadius: t.s,
     overflow: 'hidden',
   },
   info: {

@@ -53,12 +53,12 @@ interface AppProviderProps {
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const scroll = useRef<Animated.Value>(new Animated.Value(0)).current;
   const opacity = scroll.interpolate({
-    inputRange: [t.medium, t.xl],
+    inputRange: [t.m, t.xl],
     outputRange: [1, 0],
     extrapolate: 'clamp',
   }) as Animated.AnimatedInterpolation<number>;
   const oppositeOpacity = scroll.interpolate({
-    inputRange: [t.medium, t.xl],
+    inputRange: [t.m, t.xl],
     outputRange: [0, 1],
     extrapolate: 'clamp',
   }) as Animated.AnimatedInterpolation<number>;

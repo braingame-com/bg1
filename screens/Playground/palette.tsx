@@ -91,9 +91,9 @@ export const PaletteCard: React.FC<{
           width: '100%',
           flex: !isMobile ? undefined : 1,
           flexDirection: 'row',
-          gap: t.large,
+          gap: t.l,
           flexWrap: 'wrap',
-          paddingBottom: !isOpen ? 0 : t.large,
+          paddingBottom: !isOpen ? 0 : t.l,
         } as any
       }
     >
@@ -102,7 +102,9 @@ export const PaletteCard: React.FC<{
         style={{ flexBasis: '100%', justifyContent: 'space-between' }}
       >
         <Row style={{ flexBasis: '100%', justifyContent: 'space-between' }}>
-          <Heading style={{ marginBottom: 0 }}>{heading}</Heading>
+          <Heading style={{ marginBottom: 0 }} mono={true}>
+            {heading}
+          </Heading>
           <Button
             type="Naked"
             icon={isOpen ? 'chevron-up' : 'chevron-down'}
@@ -162,11 +164,11 @@ export const PaletteItem: React.FC<{
           alignItems: 'center',
           justifyContent: 'center',
           alignSelf: 'flex-start',
-          gap: t.small,
+          gap: t.s,
           borderRadius: t.xs,
           borderColor: colors.border,
           borderWidth: 1,
-          paddingHorizontal: t.small,
+          paddingHorizontal: t.s,
           paddingVertical: t.xs,
         }}
       >
@@ -187,8 +189,8 @@ export const PaletteSwatch: React.FC<{ value: any }> = ({ value }) => {
   return (
     <View
       style={{
-        width: t.large,
-        height: t.large,
+        width: t.l,
+        height: t.l,
         borderRadius: t.xxs,
         backgroundColor: value,
         borderColor: colors.border,

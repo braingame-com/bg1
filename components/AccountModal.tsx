@@ -105,7 +105,7 @@ export const AccountModal: React.FC<AccountModalProps> = ({
             backgroundColor: colors.background,
           }}
         >
-          <View style={{ maxWidth: t.medium * 30, margin: 'auto' }}>
+          <View style={{ maxWidth: t.m * 30, margin: 'auto' }}>
             <Row
               style={{
                 justifyContent: 'space-between',
@@ -132,7 +132,7 @@ export const AccountModal: React.FC<AccountModalProps> = ({
             <Heading style={{ marginTop: t.xl * 2 }}>
               Welcome{flow === 'Create account' ? ', friend.' : ' back!'}
             </Heading>
-            <Text style={{ marginTop: t.xs, marginBottom: t.large }}>
+            <Text style={{ marginTop: t.xs, marginBottom: t.l }}>
               Let's get you{' '}
               {flow === 'Create account' ? 'signed up!' : 'logged in.'}
             </Text>
@@ -166,7 +166,7 @@ export const AccountModal: React.FC<AccountModalProps> = ({
                 >
                   OR
                 </Small>
-                <Divider style={{ position: 'relative', top: -t.medium }} />
+                <Divider style={{ position: 'relative', top: -t.m }} />
               </View>
             )}
             <InputField
@@ -184,11 +184,11 @@ export const AccountModal: React.FC<AccountModalProps> = ({
               onChangeText={(text) => setPassword(text)}
             />
             {toast.shown && (
-              <Row style={{ marginTop: t.medium }}>
+              <Row style={{ marginTop: t.m }}>
                 <Button
                   type="Naked"
                   icon="exclamation-circle"
-                  contentStyle={{ fontSize: t.medium, color: t.negative }}
+                  contentStyle={{ fontSize: t.m, color: t.negative }}
                 />
                 <Text
                   style={{
@@ -203,28 +203,24 @@ export const AccountModal: React.FC<AccountModalProps> = ({
             <Button
               type="Primary"
               text={flow}
-              style={{ marginTop: t.large }}
+              style={{ marginTop: t.l }}
               onPress={handleAccountFormSubmit}
             />
             {flow === 'Log in' && (
               <Button
                 type="Naked"
                 text="Forgot password?"
-                style={{ marginTop: t.large }}
-                contentStyle={{ color: t.primary, fontSize: t.small }}
+                style={{ marginTop: t.l }}
+                contentStyle={{ color: t.primary, fontSize: t.s }}
               />
             )}
             <Small style={{ color: t.grey, marginTop: t.xl * 2 }}>
               By continuing, you agree to our{' '}
-              <Small
-                style={{ fontSize: t.small, color: t.primary, padding: 0 }}
-              >
+              <Small style={{ fontSize: t.s, color: t.primary, padding: 0 }}>
                 Terms of Service{' '}
               </Small>
               and acknowledge that you understand our{' '}
-              <Small
-                style={{ fontSize: t.small, color: t.primary, padding: 0 }}
-              >
+              <Small style={{ fontSize: t.s, color: t.primary, padding: 0 }}>
                 Privacy Policy
               </Small>
               .
