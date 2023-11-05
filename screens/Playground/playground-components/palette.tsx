@@ -1,10 +1,10 @@
 import { useTheme } from '@react-navigation/native';
 import { Pressable, View } from 'react-native';
-import { Heading, Small, Text } from '../../design/typography';
-import { isMobile } from '../../setup/helpers';
-import { s, t } from '../../setup/styles';
-import { Button, Divider, Icon, Row, Tag } from '../../design/primitives';
-import { PaletteInterface } from '../../setup/types';
+import { Heading, Small, Text } from '../../../design/typography';
+import { isMobile } from '../../../setup/helpers';
+import { s, t } from '../../../setup/styles';
+import { Button, Divider, Icon, Row, Tag } from '../../../design/primitives';
+import { PaletteInterface } from '../../../setup/types';
 import { useState } from 'react';
 
 export const palette: PaletteInterface = [

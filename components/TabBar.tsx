@@ -16,6 +16,8 @@ export const TabBar = ({
 }: BottomTabBarProps) => {
   const { colors } = useTheme();
 
+  console.log(state);
+
   return (
     <View
       style={{

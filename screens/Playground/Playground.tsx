@@ -28,7 +28,11 @@ import {
   SmallThin,
 } from '../../design/typography';
 import { isMobile } from '../../setup/helpers';
-import { PaletteCard, PaletteItem, palette } from './palette';
+import {
+  PaletteCard,
+  PaletteItem,
+  palette,
+} from './playground-components/palette';
 import { PaletteInterface } from '../../setup/types';
 import { useState } from 'react';
 

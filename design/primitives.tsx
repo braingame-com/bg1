@@ -32,7 +32,7 @@ import { fat } from '@fortawesome/pro-thin-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import Svg, { Path } from 'react-native-svg';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { TagProps } from '../setup/types';
+import { InputFieldProps, TagProps } from '../setup/types';
 
 library.add(fab, fad, fal, far, fas, fat);
 
@@ -315,16 +315,6 @@ export const ActivityIndicator = () => (
   <RNActivityIndicator size={isMobile ? 'small' : 'large'} />
 );
 
-interface InputFieldProps {
-  icon?: string;
-  iconType?: string;
-  placeholder?: string;
-  textContentType?: 'none' | 'URL' | 'addressCity' | 'username' | 'password';
-  secureTextEntry?: boolean;
-  value?: string;
-  onChangeText?: (text: string) => void;
-}
-
 export const InputField: React.FC<InputFieldProps> = ({
   icon,
   iconType,
@@ -333,32 +323,36 @@ export const InputField: React.FC<InputFieldProps> = ({
   secureTextEntry,
   value,
   onChangeText,
+  onSubmitEditing,
+  onKeyPress,
+  style,
 }) => {
   const { colors } = useTheme();
   const [secure, setSecure] = useState(secureTextEntry);
 
   return (
-    <View style={{ position: 'relative', justifyContent: 'center' }}>
-      {icon && (
-        <Icon
-          name={icon}
-          type={iconType}
-          style={{
-            position: 'absolute',
-            left: t.m,
-            top: t.xs * 2.5,
-            zIndex: 999,
-          }}
-        />
-      )}
+    <View
+      style={{
+        backgroundColor: colors.card,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: t.s,
+        paddingHorizontal: t.s,
+        borderRadius: t.s,
+        padding: t.s,
+      }}
+    >
+      {icon && <Icon name={icon} type={iconType} />}
       <TextInput
         style={{
           ...s.account_input,
           fontFamily: 'SohneBook',
-          backgroundColor: colors.card,
           color: colors.text,
           paddingRight: secureTextEntry ? t.m * 3.5 : t.m,
           fontSize: t.m,
+          ...style,
         }}
         placeholder={placeholder}
         placeholderTextColor={t.grey}
@@ -368,6 +362,8 @@ export const InputField: React.FC<InputFieldProps> = ({
         autoCorrect={false}
         value={value}
         onChangeText={onChangeText}
+        onSubmitEditing={onSubmitEditing}
+        onKeyPress={onKeyPress}
       />
       {secureTextEntry && (
         <Button

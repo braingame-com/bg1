@@ -1,10 +1,11 @@
 import { View, Pressable, SafeAreaView, ScrollView } from 'react-native';
 import { s, t } from '../setup/styles';
 import { ThemeSelector } from '../components/ThemeSelector';
-import { Heading, Small, Text, Title } from '../design/typography';
+import { Bold, Heading, Small, Text, Title } from '../design/typography';
 import { Icon, Button, Divider } from '../design/primitives';
 import { auth } from '../firebaseConfig';
 import { useTheme } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // import { onAuthStateChanged } from 'firebase/auth';
 
@@ -24,18 +25,44 @@ let userIsLoggedIn = false;
 
 let subscriber = false;
 
+const Stack = createNativeStackNavigator();
+
 export const Profile = ({ navigation }: any) => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShadowVisible: false,
+      }}
+    >
+      <Stack.Screen
+        name="Tasks Screen"
+        component={ProfileList}
+        options={{
+          headerTitle: () => <Bold>Profile</Bold>,
+          // headerLeft: () => (
+          //   <BackButton
+          //     text="Dashboard"
+          //     onPress={() => navigation.navigate('Dashboard')}
+          //   />
+          // ),
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const ProfileList: React.FC = () => {
   const { colors } = useTheme();
   const handleSignOut = () => {
     auth.signOut();
     userIsLoggedIn = false;
-    navigation.navigate('Account Flow');
+    // navigation.navigate('Account Flow');
   };
 
   return (
     <SafeAreaView style={{ padding: t.l }}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Title>Profile</Title>
+        {/* <Title>Profile</Title> */}
         {userIsLoggedIn && (
           <View>
             <Text>Signed in as: {auth.currentUser?.email}</Text>
@@ -77,24 +104,19 @@ const AccountSettings = () => {
         Account
       </Heading>
 
-      <SettingsLink>
+      {/* <SettingsLink>
         <Icon name="bell" size="secondary" />
         <Text style={{ marginLeft: t.s }}>Manage notifications</Text>
+      </SettingsLink> */}
+
+      <SettingsLink>
+        <Icon name="cog" size="secondary" />
+        <Text style={{ marginLeft: t.s }}>Account settings</Text>
       </SettingsLink>
 
       <SettingsLink>
-        <Icon name="user" size="secondary" />
-        <Text style={{ marginLeft: t.s }}>Change username or email</Text>
-      </SettingsLink>
-
-      <SettingsLink>
-        <Icon name="lock" size="secondary" />
-        <Text style={{ marginLeft: t.s }}>Change password</Text>
-      </SettingsLink>
-
-      <SettingsLink style={{ opacity: 0.5 }}>
-        <Icon name="trash" color={t.negative} size="secondary" />
-        <Text style={{ ...s.error_text, marginLeft: t.s }}>Delete account</Text>
+        <Icon name="sign-out" size="secondary" />
+        <Text style={{ marginLeft: t.s }}>Sign out</Text>
       </SettingsLink>
     </View>
   );
@@ -120,26 +142,27 @@ const Support = () => {
         Support
       </Heading>
 
-      <SettingsLink>
+      {/* <SettingsLink>
         <Icon name="question-circle" size="secondary" />
         <Text style={{ marginLeft: t.s }}>How do I use this app?</Text>
-      </SettingsLink>
+      </SettingsLink> */}
 
       <SettingsLink>
         <Icon name="message" size="secondary" />
         <Text style={{ marginLeft: t.s }}>Contact us</Text>
       </SettingsLink>
 
-      <SettingsLink>
+      {/* <SettingsLink>
         <Icon name="file" size="secondary" />
         <Text style={{ marginLeft: t.s }}>Documentation</Text>
-      </SettingsLink>
+      </SettingsLink> */}
     </View>
   );
 };
 
 const Links = () => {
   const { colors } = useTheme();
+
   return (
     <View
       style={{
@@ -163,10 +186,10 @@ const Links = () => {
         <Text style={{ marginLeft: t.s }}>Report a bug</Text>
       </SettingsLink>
 
-      <SettingsLink>
+      {/* <SettingsLink>
         <Icon name="gavel" size="secondary" />
         <Text style={{ marginLeft: t.s }}>Legal policies</Text>
-      </SettingsLink>
+      </SettingsLink> */}
 
       <SettingsLink>
         <Icon name="github-alt" size="secondary" type="fab" />

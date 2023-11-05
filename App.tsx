@@ -6,7 +6,7 @@ import {
   ScrollContext,
   // ScrollContextInterface,
 } from './components/AppProvider';
-import { Dashboard } from './screens/Dashboard';
+import { Dashboard } from './screens/Dashboard/Dashboard';
 // import { Search } from './screens/Search';
 import { Lessons } from './screens/Lessons';
 import { Videos } from './screens/Videos';
@@ -62,6 +62,7 @@ export default function App() {
           headerStyle: {
             backgroundColor: 'black',
           },
+          headerShown: false,
           headerTitleStyle: {
             fontSize: isMobile ? t.m : t.l,
             marginLeft: isMobile ? 0 : t.s,
@@ -76,9 +77,11 @@ export default function App() {
           options={({ navigation }) => ({
             tabBarIcon: ({ color, focused }) => (
               <Icon
-                name={focused ? 'grid-dashboard-solid' : 'grid-dashboard-light'}
+                // name={focused ? 'grid-dashboard-solid' : 'grid-dashboard-light'}
+                name="list"
                 color={color}
                 size="primary"
+                type={focused ? 'fas' : undefined}
               />
             ),
             headerRight: () => <ProfileIcon navigation={navigation} />,
@@ -96,7 +99,7 @@ export default function App() {
             headerShown: false,
           }}
         /> */}
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Lessons "
           component={Lessons}
           options={{
@@ -140,7 +143,7 @@ export default function App() {
             ),
             headerShown: false,
           }}
-        />
+        /> */}
         <Tab.Screen
           name="Profile"
           component={Profile}
