@@ -6,7 +6,7 @@ import {
   ScrollContext,
   // ScrollContextInterface,
 } from './components/AppProvider';
-import { Dashboard } from './screens/dashboard/Dashboard';
+import { Dashboard } from './screens/dashboardxyz/Dashboard';
 // import { Search } from './screens/Search';
 // import { Lessons } from './screens/Lessons';
 // import { Videos } from './screens/Videos';
