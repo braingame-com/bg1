@@ -6,12 +6,12 @@ import {
   ScrollContext,
   // ScrollContextInterface,
 } from './components/AppProvider';
-import { Dashboard } from './screens/Dashboard/Dashboard';
+import { Dashboard } from './screens/dashboard/Dashboard';
 // import { Search } from './screens/Search';
 // import { Lessons } from './screens/Lessons';
 // import { Videos } from './screens/Videos';
 // import { Shop } from './screens/Shop';
-import { Profile } from './screens/Profile';
+import { Profile } from './screens/profile/Profile';
 import { t } from './setup/styles';
 import { Icon, ProfileIcon } from './design/primitives';
 import { TabBar } from './components/TabBar';

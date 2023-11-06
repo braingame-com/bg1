@@ -1,9 +1,9 @@
 import { View, Pressable, SafeAreaView, ScrollView } from 'react-native';
-import { s, t } from '../setup/styles';
-import { ThemeSelector } from '../components/ThemeSelector';
-import { Bold, Heading, Small, Text } from '../design/typography';
-import { Icon, Button } from '../design/primitives';
-import { auth } from '../firebaseConfig';
+import { s, t } from '../../setup/styles';
+import { ThemeSelector } from '../../components/ThemeSelector';
+import { Bold, Heading, Small, Text } from '../../design/typography';
+import { Icon, Button } from '../../design/primitives';
+import { auth } from '../../firebaseConfig';
 import { useTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 

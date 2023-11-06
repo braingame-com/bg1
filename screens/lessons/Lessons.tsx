@@ -7,9 +7,9 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ScrollContext } from '../components/AppProvider';
-import { s, t } from '../setup/styles';
-import { GRAPHQL_URL, GRAPHQL_BODY } from '../setup/shopify-sapi';
+import { ScrollContext } from '../../components/AppProvider';
+import { s, t } from '../../setup/styles';
+import { GRAPHQL_URL, GRAPHQL_BODY } from '../../setup/shopify-sapi';
 import { useTheme } from '@react-navigation/native';
 import {
   Title,
@@ -17,16 +17,15 @@ import {
   Text,
   Small,
   SecondaryText,
-} from '../design/typography';
+} from '../../design/typography';
 import {
   Icon,
   Row,
   Button,
   BackButton,
   ActivityIndicator,
-  Divider,
-} from '../design/primitives';
-import { isMobile } from '../setup/helpers';
+} from '../../design/primitives';
+import { isMobile } from '../../setup/helpers';
 import RenderHtml, { defaultSystemFonts } from 'react-native-render-html';
 
 const Stack = createNativeStackNavigator();

@@ -7,7 +7,7 @@ import { Text } from '../../../../../design/typography';
 
 export const Task: React.FC<TaskProps> = ({
   removeTask,
-  checkTask,
+  // checkTask,
   text,
   index,
 }) => {

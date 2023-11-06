@@ -1,8 +1,8 @@
 import { View, SafeAreaView } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import { t, s } from '../setup/styles';
-import { Text, Title } from '../design/typography';
-import { Divider } from '../design/primitives';
+import { t, s } from '../../../setup/styles';
+import { Text, Title } from '../../../design/typography';
+import { Divider } from '../../../design/primitives';
 
 export const Products = () => {
   const { colors } = useTheme();

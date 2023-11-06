@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { AccountFlow } from '../AccountFlow';
+import { AccountFlow } from '../account/AccountFlow';
 import { Bold } from '../../design/typography';
 import { TasksScreen } from './dashboard-components/tasks/TasksScreen';
 import { t, s } from '../../setup/styles';

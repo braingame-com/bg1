@@ -3,7 +3,7 @@ import { TasksListProps } from '../../../../../setup/types';
 import { Column } from '../../../../../design/primitives';
 import { Heading } from '../../../../../design/typography';
 import { t, c } from '../../../../../setup/styles';
-import { Task } from './Tasks';
+import { Task } from './Task';
 
 export const TasksList: React.FC<TasksListProps> = ({ tasks, removeTask }) => {
   const renderItem = ({ item, index }: { item: any; index: any }) => (

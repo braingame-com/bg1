@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { isMobile } from '../setup/helpers';
-import { s, t } from '../setup/styles';
+import { isMobile } from '../../setup/helpers';
+import { s, t } from '../../setup/styles';
 import {
   View,
   FlatList,
@@ -18,10 +18,9 @@ import {
   ActivityIndicator,
   Row,
   VideoDropdownMenu,
-  Divider,
-} from '../design/primitives';
-import { Text, Small, Subtitle, Title } from '../design/typography';
-import { fetchVideos } from '../setup/youtube-api';
+} from '../../design/primitives';
+import { Text, Small, Subtitle, Title } from '../../design/typography';
+import { fetchVideos } from '../../setup/youtube-api';
 import YoutubePlayer, { getYoutubeMeta } from 'react-native-youtube-iframe';
 
 const Stack = createNativeStackNavigator();
@@ -68,7 +67,6 @@ export const Videos = ({ navigation }: any) => {
 };
 
 const VideosList = ({ navigation }: { navigation: any }) => {
-  const { colors } = useTheme();
   const [data, setData] = useState({ loaded: false, videos: [] });
   useEffect(() => {
     fetchVideos(setData);
@@ -160,12 +158,13 @@ const Video = ({ route }: any) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    (containerRef as any).current.measure(
-      (x: any, y: any, width: any, height: any) => {
-        console.log(width); // width of the container
-        console.log(height); // height of the container
-      }
-    );
+    (containerRef as any).current
+      .measure
+      // (x: any, y: any, width: any, height: any) => {
+      //   console.log(width); // width of the container
+      //   console.log(height); // height of the container
+      // }
+      ();
   }, []);
 
   return (

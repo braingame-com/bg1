@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { View, Image } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import { t } from '../setup/styles';
-import { Button, Row } from '../design/primitives';
-import { Title, Text } from '../design/typography';
-import { AccountModal } from '../components/AccountModal';
+import { t } from '../../setup/styles';
+import { Button, Row } from '../../design/primitives';
+import { Title, Text } from '../../design/typography';
+import { AccountModal } from '../../components/AccountModal';
 
 export const AccountFlow = ({ navigation }: any) => {
   const { colors } = useTheme();
@@ -14,7 +14,7 @@ export const AccountFlow = ({ navigation }: any) => {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Title>Start your journey</Title>
       <Image
-        source={require('../assets/illustrations/google-robot.png')}
+        source={require('../../assets/illustrations/google-robot.png')}
         style={{
           width: t.m ** 2,
           height: t.m ** 2,

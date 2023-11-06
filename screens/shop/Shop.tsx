@@ -1,12 +1,12 @@
 import { Pressable, View } from 'react-native';
-import { s, t } from '../setup/styles';
+import { s, t } from '../../setup/styles';
 import { useTheme } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Products } from './Products';
-import { Checkout } from './Checkout';
-import { Text } from '../design/typography';
-import { Icon } from '../design/primitives';
-import { isMobile } from '../setup/helpers';
+import { Products } from './shop-components/Products';
+import { Checkout } from './shop-components/Checkout';
+import { Text } from '../../design/typography';
+import { Icon } from '../../design/primitives';
+import { isMobile } from '../../setup/helpers';
 
 const Drawer = createDrawerNavigator();
 
