@@ -69,6 +69,10 @@ export const t = {
   xxxl: 40, // 2.5rem
 };
 
+export const c = {
+  ACTION_BAR_HEIGHT: platform === 'ios' ? t.m * 6 : t.m * 5,
+};
+
 // SUPER CLASSES //
 export const s = StyleSheet.create({
   // Containers

@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { Text } from '../../../design/typography';
+import { Text } from '../../../../design/typography';
 
 export const PlanningScreen = () => {
   return (

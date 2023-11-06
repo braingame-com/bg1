@@ -1,37 +1,16 @@
-import { useContext, useState } from 'react';
-import {
-  View,
-  ScrollView,
-  SafeAreaView,
-  Animated,
-  Pressable,
-  TextInput,
-} from 'react-native';
-import { useTheme } from '@react-navigation/native';
-import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { ScrollContext } from '../../components/AppProvider';
-import { s, t } from '../../setup/styles';
 import { AccountFlow } from '../AccountFlow';
-import {
-  Title,
-  Heading,
-  Text,
-  Small,
-  SecondaryText,
-  Bold,
-} from '../../design/typography';
-import { Icon, Dot, Row, BackButton, Divider } from '../../design/primitives';
-import { isMobile } from '../../setup/helpers';
-import { ChartRangeSelector } from '../../components/ChartRangeSelector';
-import { Playground } from '../Playground/Playground';
-import { TasksScreen } from './dashboard-components/TasksScreen';
+import { Bold } from '../../design/typography';
+import { TasksScreen } from './dashboard-components/tasks/TasksScreen';
+import { t, s } from '../../setup/styles';
+import { Button } from '../../design/primitives';
+import { useState } from 'react';
 // import { auth } from '../firebaseConfig';
 // import { onAuthStateChanged } from 'firebase/auth';
 
 let userIsLoggedIn = true;
-let currentUser: any;
+// let currentUser: any;
 
 // onAuthStateChanged(auth, (user) => {
 //   if (user) {
@@ -55,25 +34,29 @@ type DashboardProps = {
   navigation: NativeStackNavigationProp<any, 'Dashboard'>;
 };
 
-export const Dashboard: React.FC<DashboardProps> = ({ navigation }) => (
-  <Stack.Navigator
-    screenOptions={{
-      headerShadowVisible: false,
-    }}
-  >
-    {/* <Stack.Screen
+// export const Dashboard: React.FC<DashboardProps> = ({ navigation }) => (
+export const Dashboard: React.FC<DashboardProps> = () => {
+  const [remaining, setRemaining] = useState(0);
+
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShadowVisible: false,
+      }}
+    >
+      {/* <Stack.Screen
       name="Playground"
       component={Playground}
       options={{ headerShown: false }}
     /> */}
-    {!userIsLoggedIn && (
-      <Stack.Screen
-        name="Account Flow"
-        component={AccountFlow}
-        options={{ headerShown: false }}
-      />
-    )}
-    {/* <Stack.Screen
+      {!userIsLoggedIn && (
+        <Stack.Screen
+          name="Account Flow"
+          component={AccountFlow}
+          options={{ headerShown: false }}
+        />
+      )}
+      {/* <Stack.Screen
       name="Dashboard"
       component={DashboardList}
       options={{ headerShown: false }}
@@ -98,20 +81,56 @@ export const Dashboard: React.FC<DashboardProps> = ({ navigation }) => (
         ),
       }}
     /> */}
-    <Stack.Screen
-      name="Tasks Screen"
-      component={TasksScreen}
-      options={{
-        headerTitle: () => <Bold>Tasks</Bold>,
-        // headerLeft: () => (
-        //   <BackButton
-        //     text="Dashboard"
-        //     onPress={() => navigation.navigate('Dashboard')}
-        //   />
-        // ),
-      }}
-    />
-    {/* <Stack.Screen
+      <Stack.Screen
+        name="Tasks Screen"
+        options={{
+          headerTitle: () => (
+            <>
+              <Bold>Tasks</Bold>
+              <Bold
+                style={{
+                  ...s.pill,
+                  ...s.info,
+                  marginLeft: t.xs,
+                }}
+                mono={true}
+              >
+                {remaining}
+              </Bold>
+            </>
+          ),
+          // headerLeft: () => (
+          //   <BackButton
+          //     text="Dashboard"
+          //     onPress={() => navigation.navigate('Dashboard')}
+          //   />
+          // ),
+          headerRight: () => (
+            // <BackButton
+            //   text="Dashboard"
+            //   onPress={() => navigation.navigate('Dashboard')}
+            // />
+            <Button
+              type="Naked"
+              style={{}}
+              icon="rectangle-history"
+              iconSize={t.l}
+              iconStyle={{
+                opacity: 0.8,
+              }}
+            />
+          ),
+        }}
+      >
+        {(props) => (
+          <TasksScreen
+            {...props}
+            remaining={remaining}
+            setRemaining={setRemaining}
+          />
+        )}
+      </Stack.Screen>
+      {/* <Stack.Screen
       name="Mindset Screen"
       component={MindsetScreen}
       options={{
@@ -163,5 +182,6 @@ export const Dashboard: React.FC<DashboardProps> = ({ navigation }) => (
         ),
       }}
     /> */}
-  </Stack.Navigator>
-);
+    </Stack.Navigator>
+  );
+};

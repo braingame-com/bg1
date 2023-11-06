@@ -1,7 +1,6 @@
 export interface TagProps {
   children: any;
   icon?: string;
-  position?: string;
 }
 
 export interface ColorGroup {
@@ -12,15 +11,20 @@ export interface PaletteInterface {
   [key: string]: ColorGroup | any;
 }
 
-export interface NewTaskProps {
+export interface NewTaskInputProps {
   tasks: string[];
   setTasks: (newTasks: string[]) => void;
   setRemaining: (updateFunction: (prevRemaining: number) => number) => void;
 }
 
 export interface InputFieldProps {
-  icon?: string;
-  iconType?: string;
+  leftIcon?: string;
+  leftIconType?: string;
+  leftIconStyle?: any;
+  rightIcon?: string;
+  rightIconType?: string;
+  rightIconStyle?: any;
+  rightIconOnPress?: () => void;
   placeholder?: string;
   textContentType?: 'none' | 'URL' | 'addressCity' | 'username' | 'password';
   secureTextEntry?: boolean;
@@ -36,4 +40,16 @@ export interface TasksHeaderProps {
   setTasks: (prevTasks: string[]) => void;
   remaining: number;
   setRemaining: (prevRemaining: number) => void;
+}
+
+export interface TasksListProps {
+  tasks: string[];
+  removeTask: (index: number) => void;
+}
+
+export interface TaskProps {
+  removeTask: (index: number) => void;
+  checkTask?: () => void;
+  text: string;
+  index: number;
 }

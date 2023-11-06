@@ -6,17 +6,17 @@ import {
   ScrollView,
   View,
 } from 'react-native';
-import { s, t } from '../../../setup/styles';
+import { s, t } from '../../../../setup/styles';
 import {
   Heading,
   SecondaryText,
   Small,
   Text,
   Title,
-} from '../../../design/typography';
-import { Dot, Icon, Row } from '../../../design/primitives';
-import { ChartRangeSelector } from '../../../components/ChartRangeSelector';
-import { isMobile } from '../../../setup/helpers';
+} from '../../../../design/typography';
+import { Dot, Icon, Row } from '../../../../design/primitives';
+import { ChartRangeSelector } from '../../../../components/ChartRangeSelector';
+import { isMobile } from '../../../../setup/helpers';
 
 export const DashboardList = () => {
   // const { opacity, onScroll } = useContext(ScrollContext);

@@ -170,13 +170,13 @@ export const AccountModal: React.FC<AccountModalProps> = ({
               </View>
             )}
             <InputField
-              icon="envelope"
+              leftIcon="envelope"
               placeholder="Email"
               value={email}
               onChangeText={(text) => setEmail(text)}
             />
             <InputField
-              icon="unlock"
+              leftIcon="unlock"
               placeholder="Password"
               textContentType={'password'}
               secureTextEntry

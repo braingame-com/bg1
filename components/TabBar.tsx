@@ -1,13 +1,9 @@
 import { useTheme, Route } from '@react-navigation/native';
-import { View, Pressable, StyleSheet } from 'react-native';
+import { View, Pressable } from 'react-native';
 import { s, t } from '../setup/styles';
 import { Icon } from '../design/primitives';
-import { isMobile, platform } from '../setup/helpers';
-import {
-  BottomTabBarProps,
-  BottomTabNavigationOptions,
-} from '@react-navigation/bottom-tabs';
-import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+import { isMobile } from '../setup/helpers';
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 export const TabBar = ({
   state,
@@ -29,25 +25,6 @@ export const TabBar = ({
       {!isMobile && <BrainGameLogo />}
 
       {state.routes.map((route: Route<string>, index: number) => {
-        const getTabColor = (
-          isFocused: boolean,
-          label: string,
-          isFaded = true
-        ) => {
-          if (isFocused && typeof label === 'string') {
-            if (label.includes('Dashboard'))
-              return isFaded ? t.tabPurpleFaded : t.tabPurple;
-            if (label.includes('Lessons'))
-              return isFaded ? t.tabGreenFaded : t.tabGreen;
-            if (label.includes('Videos'))
-              return isFaded ? t.tabOrangeFaded : t.tabOrange;
-            if (label.includes('Shop'))
-              return isFaded ? t.tabBlueFaded : t.tabBlue;
-            if (label.includes('Profile'))
-              return isFaded ? t.tabYellowFaded : t.tabYellow;
-          }
-          return 'transparent';
-        };
         const isFocused = state.index === index;
         const { options } = descriptors[route.key];
         const label =

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   ScrollView,
   StyleProp,
@@ -31,7 +31,6 @@ import { fat } from '@fortawesome/pro-thin-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import Svg, { Path } from 'react-native-svg';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { InputFieldProps, TagProps } from '../setup/types';
 
 library.add(fab, fad, fal, far, fas, fat);
@@ -59,6 +58,7 @@ interface ButtonProps {
   iconSize?: string | number;
   iconColor?: string;
   iconType?: string;
+  iconStyle?: any;
   onPress?: () => void;
   contentStyle?: StyleProp<TextStyle>;
 }
@@ -71,6 +71,7 @@ export const Button: React.FC<ButtonProps> = ({
   iconSize,
   iconColor,
   iconType,
+  iconStyle,
   onPress,
   contentStyle,
 }) => {
@@ -79,7 +80,8 @@ export const Button: React.FC<ButtonProps> = ({
   const isSecondary = type === 'Secondary' ? true : false;
   const isNegative = type === 'Negative' ? true : false;
   const isNaked = type === 'Naked' ? true : false;
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
+  const loading = false;
 
   return (
     <Pressable
@@ -117,7 +119,7 @@ export const Button: React.FC<ButtonProps> = ({
                 : 'secondary'
             }
             color={iconColor ? iconColor : isPrimary ? t.primary : colors.text}
-            style={{ marginRight: text ? t.s : 0 }}
+            style={{ marginRight: text ? t.s : 0, ...iconStyle }}
             type={iconType}
           />
         )}
@@ -316,8 +318,13 @@ export const ActivityIndicator = () => (
 );
 
 export const InputField: React.FC<InputFieldProps> = ({
-  icon,
-  iconType,
+  leftIcon,
+  leftIconType,
+  leftIconStyle,
+  rightIcon,
+  rightIconType,
+  rightIconStyle,
+  rightIconOnPress,
   placeholder,
   textContentType,
   secureTextEntry,
@@ -329,63 +336,65 @@ export const InputField: React.FC<InputFieldProps> = ({
 }) => {
   const { colors } = useTheme();
   const [secure, setSecure] = useState(secureTextEntry);
+  const inputRef = useRef<TextInput>(null);
 
   return (
-    <View
-      style={{
-        backgroundColor: colors.card,
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: t.s,
-        paddingHorizontal: t.s,
-        borderRadius: t.s,
-        padding: t.s,
+    <Pressable
+      onPress={() => {
+        inputRef.current && inputRef.current.focus();
       }}
     >
-      {icon && <Icon name={icon} type={iconType} />}
-      <TextInput
+      <View
         style={{
-          ...s.account_input,
-          fontFamily: 'SohneBook',
-          color: colors.text,
-          paddingRight: secureTextEntry ? t.m * 3.5 : t.m,
-          fontSize: t.m,
-          ...style,
+          backgroundColor: colors.card,
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: t.s,
+          paddingHorizontal: t.s,
+          borderRadius: t.s,
+          padding: t.s,
         }}
-        placeholder={placeholder}
-        placeholderTextColor={t.grey}
-        textContentType={textContentType}
-        secureTextEntry={secure}
-        autoCapitalize="none"
-        autoCorrect={false}
-        value={value}
-        onChangeText={onChangeText}
-        onSubmitEditing={onSubmitEditing}
-        onKeyPress={onKeyPress}
-      />
-      {secureTextEntry && (
-        <Button
-          type="Naked"
-          icon={secure ? 'eye' : 'eye-slash'}
-          iconType={'fas'}
-          onPress={() => {
-            console.log(secure);
-            setSecure(!secure);
-          }}
+      >
+        {leftIcon && (
+          <Icon name={leftIcon} type={leftIconType} style={leftIconStyle} />
+        )}
+        <TextInput
           style={{
-            position: 'absolute',
-            marginLeft: t.m,
-            top: t.xs * 2.5,
-            zIndex: 999,
-            color: t.grey,
-            fontSize: t.l,
-            right: t.m,
+            ...s.account_input,
+            fontFamily: 'SohneBook',
+            color: colors.text,
+            paddingRight: secureTextEntry ? t.m * 3.5 : t.m,
+            fontSize: t.m,
+            ...style,
           }}
+          placeholder={placeholder}
+          placeholderTextColor={t.grey}
+          textContentType={textContentType}
+          secureTextEntry={secure}
+          autoCapitalize="none"
+          autoCorrect={false}
+          value={value}
+          onChangeText={onChangeText}
+          onSubmitEditing={onSubmitEditing}
+          onKeyPress={onKeyPress}
+          ref={inputRef}
         />
-      )}
-    </View>
+        {secureTextEntry ||
+          (rightIcon && (
+            <Button
+              type="Naked"
+              icon={rightIcon ? rightIcon : secure ? 'eye' : 'eye-slash'}
+              iconType={rightIconType}
+              iconStyle={rightIconStyle}
+              onPress={() => {
+                rightIconOnPress ? rightIconOnPress : setSecure(!secure);
+              }}
+            />
+          ))}
+      </View>
+    </Pressable>
   );
 };
 
@@ -506,7 +515,7 @@ export const Icon: React.FC<IconProps> = ({
   }
 };
 
-export const Tag: React.FC<TagProps> = ({ children, icon, position }) => {
+export const Tag: React.FC<TagProps> = ({ children, icon }) => {
   const { colors } = useTheme();
 
   return (
