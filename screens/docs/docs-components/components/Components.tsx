@@ -1,6 +1,6 @@
 import { t } from '../../../../setup/styles';
 import { Text } from '../../../../design/typography';
-import { Section } from '../section';
+import { Section } from '../Section';
 
 export const Components = () => {
   // const components: any = [

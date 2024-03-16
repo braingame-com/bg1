@@ -1,6 +1,7 @@
 import { Text as RNText, StyleProp, TextStyle } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { t } from '../setup/styles';
+import { isMobile } from '../setup/helpers';
 
 interface TypographyProps {
   text?: string;
@@ -36,7 +37,7 @@ export const Title: React.FC<TypographyProps> = ({ style, children, mono }) => {
     <RNText
       style={{
         fontFamily: `Sohne${mono ? 'Mono' : ''}HalfFat`,
-        fontSize: t.xxl,
+        fontSize: isMobile ? t.xl : t.xxl,
         color: colors.text,
         marginBottom: t.l,
         ...(typeof style === 'object' && style !== null ? style : {}),

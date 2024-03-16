@@ -1,6 +1,6 @@
 import { t } from '../../../../setup/styles';
 import { PaletteCard, PaletteItem } from '../Palette';
-import { Section } from '../section';
+import { Section } from '../Section';
 
 export const Helpers = () => {
   const helpers: any = {

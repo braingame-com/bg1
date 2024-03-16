@@ -12,7 +12,7 @@ import {
   SmallThin,
 } from '../../../../design/typography';
 import { PaletteCard, PaletteItem } from '../Palette';
-import { Section } from '../section';
+import { Section } from '../Section';
 
 export const Typography = () => {
   const baseVariants = [
