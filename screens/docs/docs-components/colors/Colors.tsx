@@ -1,8 +1,8 @@
 import { t } from '../../../../setup/styles';
 import { PaletteInterface } from '../../../../setup/types';
 import { Column } from '../../../../design/primitives';
-import { PaletteCard, PaletteItem } from '../Palette';
 import { Section } from '../section';
+import { PaletteCard, PaletteItem } from '../Palette';
 
 export const Colors = () => {
   const colors: PaletteInterface = [

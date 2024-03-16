@@ -1,4 +1,5 @@
 import { ScrollPage } from '../../../../design/primitives';
+import { t } from '../../../../setup/styles';
 import { DisplayTitle, Text } from '../../../../design/typography';
 import { Colors } from '../colors/Colors';
 import { Components } from '../components/Components';
