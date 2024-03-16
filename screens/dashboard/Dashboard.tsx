@@ -1,12 +1,15 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useState } from 'react';
+import { useTheme } from '@react-navigation/native';
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from '@react-navigation/native-stack';
 import { AccountFlow } from '../account/AccountFlow';
 import { Bold } from '../../design/typography';
 import { TasksScreen } from './dashboard-components/tasks/TasksScreen';
+import { Docs } from '../docs/Docs';
 import { t, s } from '../../setup/styles';
 import { Button } from '../../design/primitives';
-import { useState } from 'react';
-import { useTheme } from '@react-navigation/native';
 // import { auth } from '../firebaseConfig';
 // import { onAuthStateChanged } from 'firebase/auth';
 
@@ -49,11 +52,11 @@ export const Dashboard: React.FC<DashboardProps> = () => {
         },
       }}
     >
-      {/* <Stack.Screen
-      name="Playground"
-      component={Playground}
-      options={{ headerShown: false }}
-    /> */}
+      <Stack.Screen
+        name="Docs"
+        component={Docs}
+        options={{ headerShown: false }}
+      />
       {!userIsLoggedIn && (
         <Stack.Screen
           name="Account Flow"

@@ -116,7 +116,7 @@ export const s = StyleSheet.create({
   },
   // Components
   tabBar: {
-    display: 'none',
+    // display: 'none',
     flexDirection: isMobile ? 'row' : 'column',
     position: isMobile ? 'relative' : 'absolute',
     height:
