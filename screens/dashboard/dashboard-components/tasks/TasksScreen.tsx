@@ -4,9 +4,8 @@ import { TasksList } from './tasks-components/TasksList';
 import { NewTaskInput } from './tasks-components/NewTaskInput';
 
 export const TasksScreen: React.FC<{
-  remaining: any;
   setRemaining: any;
-}> = ({ remaining, setRemaining }) => {
+}> = ({ setRemaining }) => {
   const [tasks, setTasks] = useState<string[]>([
     'go mums',
     'kill phil',
@@ -36,7 +35,7 @@ export const TasksScreen: React.FC<{
 
   return (
     <TasksWrapper>
-      <TasksList tasks={tasks} removeTask={removeTask} remaining={remaining} />
+      <TasksList tasks={tasks} removeTask={removeTask} />
 
       <NewTaskInput
         tasks={tasks}

@@ -23,11 +23,12 @@ export const TasksList: React.FC<TasksListProps> = ({ tasks, removeTask }) => {
     <FlatList
       data={tasks}
       renderItem={renderItem}
-      keyExtractor={(_, index) => index.toString()}
       ListEmptyComponent={EmptyState}
       contentContainerStyle={{
         flexGrow: 1,
-        marginBottom: c.ACTION_BAR_HEIGHT,
+        gap: t.s,
+        paddingTop: t.s,
+        paddingBottom: c.ACTION_BAR_HEIGHT + t.s,
       }}
       showsVerticalScrollIndicator={false}
     />

@@ -230,6 +230,20 @@ export const s = StyleSheet.create({
     alignSelf: 'flex-start',
     overflow: 'hidden',
   },
+  newTaskInputBar: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    padding: t.xs,
+    marginHorizontal: -t.s,
+    borderTopRightRadius: t.s,
+    borderTopLeftRadius: t.s,
+  },
+  newTaskHandle: {
+    alignSelf: 'center',
+    height: t.xs,
+    opacity: 0.8,
+  },
   // Utilities
   iconSmall: {
     width: t.l,

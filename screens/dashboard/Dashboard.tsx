@@ -6,6 +6,7 @@ import { TasksScreen } from './dashboard-components/tasks/TasksScreen';
 import { t, s } from '../../setup/styles';
 import { Button } from '../../design/primitives';
 import { useState } from 'react';
+import { useTheme } from '@react-navigation/native';
 // import { auth } from '../firebaseConfig';
 // import { onAuthStateChanged } from 'firebase/auth';
 
@@ -36,12 +37,16 @@ type DashboardProps = {
 
 // export const Dashboard: React.FC<DashboardProps> = ({ navigation }) => (
 export const Dashboard: React.FC<DashboardProps> = () => {
+  const { colors } = useTheme();
   const [remaining, setRemaining] = useState(0);
 
   return (
     <Stack.Navigator
       screenOptions={{
         headerShadowVisible: false,
+        headerStyle: {
+          backgroundColor: colors.background,
+        },
       }}
     >
       {/* <Stack.Screen
@@ -115,20 +120,11 @@ export const Dashboard: React.FC<DashboardProps> = () => {
               style={{}}
               icon="rectangle-history"
               iconSize={t.l}
-              iconStyle={{
-                opacity: 0.8,
-              }}
             />
           ),
         }}
       >
-        {(props) => (
-          <TasksScreen
-            {...props}
-            remaining={remaining}
-            setRemaining={setRemaining}
-          />
-        )}
+        {(props) => <TasksScreen {...props} setRemaining={setRemaining} />}
       </Stack.Screen>
       {/* <Stack.Screen
       name="Mindset Screen"

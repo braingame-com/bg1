@@ -16,26 +16,26 @@ export const Task: React.FC<TaskProps> = ({
   return (
     <View
       style={{
-        borderBottomWidth: 0,
-        borderColor: colors.border,
-        paddingVertical: t.s,
-        paddingHorizontal: 0,
-        marginHorizontal: t.s,
+        backgroundColor: colors.card,
+        paddingHorizontal: t.s,
+        paddingVertical: t.l,
         overflow: 'hidden',
         flexDirection: 'row',
         alignItems: 'center',
         flex: 1,
+        borderRadius: t.l,
       }}
     >
       <Pressable
         style={{
-          width: 28,
-          height: 28,
-          borderColor: colors.border,
-          borderWidth: 1,
-          borderRadius: t.s,
+          width: 70,
+          height: 70,
+          backgroundColor: t.positiveFaded,
+          borderRadius: t.l,
           justifyContent: 'center',
           alignItems: 'center',
+          marginHorizontal: -t.s,
+          marginVertical: -t.l,
         }}
         // onPress={() => checkTask(index)}
       >
@@ -53,17 +53,20 @@ export const Task: React.FC<TaskProps> = ({
       </Text>
       <Pressable
         style={{
-          width: 30,
-          height: 30,
+          width: 70,
+          height: 70,
+          backgroundColor: t.negativeFaded,
+          borderRadius: t.l,
           justifyContent: 'center',
-          alignItems: 'flex-end',
+          alignItems: 'center',
           opacity: 0.5,
           position: 'relative',
-          marginVertical: t.s,
+          marginHorizontal: -t.s,
+          marginVertical: -t.l,
         }}
         onPress={() => removeTask(index)}
       >
-        <Icon name="times" />
+        <Icon name="times" color={t.negative} />
       </Pressable>
     </View>
   );

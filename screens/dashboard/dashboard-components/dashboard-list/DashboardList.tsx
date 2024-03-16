@@ -20,7 +20,6 @@ import { isMobile } from '../../../../setup/helpers';
 
 export const DashboardList = () => {
   // const { opacity, onScroll } = useContext(ScrollContext);
-  const { colors } = useTheme();
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

@@ -3,7 +3,7 @@ import { NewTaskInputProps } from '../../../../../setup/types';
 import { useEffect, useState } from 'react';
 import { Animated, Keyboard } from 'react-native';
 import { platform } from '../../../../../setup/helpers';
-import { t } from '../../../../../setup/styles';
+import { s, t } from '../../../../../setup/styles';
 import { Button, InputField } from '../../../../../design/primitives';
 
 export const NewTaskInput: React.FC<NewTaskInputProps> = ({
@@ -12,13 +12,8 @@ export const NewTaskInput: React.FC<NewTaskInputProps> = ({
   setRemaining,
 }) => {
   const { colors } = useTheme();
-  const onKeyPress = (e: any) => {
-    let key = e.nativeEvent.key;
-
-    if (key == 'Enter') addTask();
-
-    console.log('You pressed a key: ' + key);
-  };
+  const onKeyPress = ({ nativeEvent }: { nativeEvent: any }) =>
+    nativeEvent.key == 'Enter' && addTask();
   const addTask = () => {
     setTasks([...(tasks as any), task] as any);
     setTask('');
@@ -27,30 +22,53 @@ export const NewTaskInput: React.FC<NewTaskInputProps> = ({
   const [task, setTask] = useState('');
 
   const [height] = useState(
-    new Animated.Value((platform === 'ios' ? t.m * 6 : t.m * 5) + 100)
+    new Animated.Value((platform === 'ios' ? t.m * 6 : t.m * 5) + 1000)
   );
+  const [buttonHeight] = useState(new Animated.Value(0));
   const [contentHeight, setContentHeight] = useState(
     platform === 'ios' ? t.m * 6 : t.m * 5
   );
+  const buttonAnimatedStyle = {
+    height: buttonHeight,
+    opacity: buttonHeight.interpolate({
+      inputRange: [0, t.s],
+      outputRange: [0, 0.5],
+    }),
+  };
+  const animateHeight = (newHeight: number, buttonNewHeight: number) => {
+    Animated.timing(height, {
+      toValue: newHeight + 1000,
+      duration: 100,
+      useNativeDriver: false,
+    }).start();
+
+    Animated.timing(buttonHeight, {
+      toValue: buttonNewHeight,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  };
+
   const onContentLayout = (event: any) => {
     const { height } = event.nativeEvent.layout;
     setContentHeight(height);
   };
-  const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
+  const [_, setKeyboardIsOpen] = useState(false);
+  // const [actionBarOffset, setActionBarOffset] = useState(-1000);
 
   useEffect(() => {
     const keyboardWillShowListener = Keyboard.addListener(
       platform === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow',
       () => {
         setKeyboardIsOpen(true);
-        animateHeight(t.m * 4 + t.s);
+        animateHeight(t.m * 4 + t.s, t.s);
       }
     );
     const keyboardWillHideListener = Keyboard.addListener(
       platform === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide',
       () => {
         setKeyboardIsOpen(false);
-        animateHeight(platform === 'ios' ? t.m * 6 : t.m * 5);
+        animateHeight(platform === 'ios' ? t.m * 6 : t.m * 5, 0);
       }
     );
 
@@ -60,58 +78,39 @@ export const NewTaskInput: React.FC<NewTaskInputProps> = ({
     };
   }, [contentHeight]);
 
-  const animateHeight = (newHeight: number) => {
-    Animated.timing(height, {
-      toValue: newHeight + 100,
-      duration: 100,
-      useNativeDriver: false,
-    }).start();
-  };
-
   return (
     <Animated.View
       onLayout={onContentLayout}
       style={{
-        position: 'absolute',
-        bottom: -100,
-        left: 0,
-        right: 0,
+        ...s.newTaskInputBar,
         backgroundColor: colors.card,
+        borderTopColor: colors.border,
+        borderTopWidth: 1,
         height: height,
-        // height: keyboardIsOpen
-        //   ? 'auto'
-        //   : platform === 'ios'
-        //   ? t.m * 6
-        //   : t.m * 5,
-        padding: t.xs,
-        marginHorizontal: -t.s,
-        borderTopRightRadius: t.s,
-        borderTopLeftRadius: t.s,
+        // bottom: actionBarOffset,
+        bottom: -1000,
       }}
     >
-      <Button
-        type="Naked"
-        icon="horizontal-rule"
-        iconSize={t.xxxl}
-        style={{
-          alignSelf: 'center',
-          height: keyboardIsOpen ? t.s : 0,
-          backgroundColor: 'green',
-          opacity: 0.5,
-        }}
-        onPress={() => Keyboard.dismiss()}
-      />
+      <Animated.View style={[buttonAnimatedStyle]}>
+        <Button
+          type="Naked"
+          icon="horizontal-rule"
+          iconSize={t.xxxl}
+          style={s.newTaskHandle}
+          onPress={() => Keyboard.dismiss()}
+        />
+      </Animated.View>
 
       <InputField
         leftIcon="edit"
-        leftIconStyle={{
-          opacity: keyboardIsOpen ? 1 : 0.8,
-        }}
-        rightIcon="chevron-up"
-        rightIconStyle={{
-          opacity: keyboardIsOpen ? 1 : 0.8,
-        }}
-        rightIconOnPress={() => Keyboard.dismiss()}
+        // rightIcon="chevron-up"
+        // rightIconStyle={{
+        //   opacity: keyboardIsOpen ? 1 : 0,
+        // }}
+        // rightIconOnPress={() => {
+        //   console.log('clicking');
+        //   setActionBarOffset(0);
+        // }}
         placeholder="Add a new task"
         onSubmitEditing={() => addTask()}
         onChangeText={(text) => setTask(text)}
@@ -119,6 +118,7 @@ export const NewTaskInput: React.FC<NewTaskInputProps> = ({
           onKeyPress(e);
         }}
         value={task}
+        containerStyle={{ backgroundColor: 'transparent' }}
       />
     </Animated.View>
   );

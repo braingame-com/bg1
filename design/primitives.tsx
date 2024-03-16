@@ -332,6 +332,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   onChangeText,
   onSubmitEditing,
   onKeyPress,
+  containerStyle,
   style,
 }) => {
   const { colors } = useTheme();
@@ -355,6 +356,7 @@ export const InputField: React.FC<InputFieldProps> = ({
           paddingHorizontal: t.s,
           borderRadius: t.s,
           padding: t.s,
+          ...containerStyle,
         }}
       >
         {leftIcon && (
@@ -370,7 +372,7 @@ export const InputField: React.FC<InputFieldProps> = ({
             ...style,
           }}
           placeholder={placeholder}
-          placeholderTextColor={t.grey}
+          placeholderTextColor={colors.text}
           textContentType={textContentType}
           secureTextEntry={secure}
           autoCapitalize="none"

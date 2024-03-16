@@ -33,6 +33,7 @@ export interface InputFieldProps {
   onSubmitEditing?: () => void;
   onKeyPress?: (e: any) => void;
   style?: any;
+  containerStyle?: any;
 }
 
 export interface TasksHeaderProps {
