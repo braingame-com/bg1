@@ -5,24 +5,39 @@ import {
   Row,
   ScrollPage,
 } from '../../../../design/primitives';
-import { c, s, t } from '../../../../setup/styles';
-import { DisplayTitle, Text, Title } from '../../../../design/typography';
-import { Pressable } from 'react-native';
+import { s, t } from '../../../../setup/styles';
+import {
+  DisplayTitle,
+  Heading,
+  Text,
+  Title,
+} from '../../../../design/typography';
+import { Pressable, View } from 'react-native';
 import { useState } from 'react';
 import { useNavigation, useTheme } from '@react-navigation/native';
 import { isMobile } from '../../../../setup/helpers';
+import {
+  BulletIconLineProps,
+  CategoryCardProps,
+} from '../../../../setup/types';
 
 export const DocsList = () => (
   <ScrollPage>
-    <DisplayTitle style={{ marginBottom: t.s }}>BGUI Docs</DisplayTitle>
-    <Text style={{ marginBottom: t.m }}>
-      Brain Game User Interface (BGUI) is a design system and component library
-      built with a focus on minimal, flexible power and beauty.
-    </Text>
-    <Text style={{ marginBottom: t.xxxl }}>
-      It's written in pure React Native and is responsive to mobile, tablet and
-      web screen sizes.
-    </Text>
+    <DisplayTitle style={{ marginBottom: t.xl }}>BGUI Docs</DisplayTitle>
+
+    <Heading style={s.iconBullet}>
+      Brain Game User Interface (BGUI) is a superior design system / component
+      library.
+    </Heading>
+    <BulletIconLine icon="laptop-mobile">
+      Cross-platform, responsive, and powerful, written in pure React Native.
+    </BulletIconLine>
+    <BulletIconLine icon="moon">
+      Beautiful, minimal Dark / Light themes as standard.
+    </BulletIconLine>
+    <BulletIconLine icon="terminal" style={{ marginBottom: t.xxxl }}>
+      Open source, made by indie devs!
+    </BulletIconLine>
 
     <Column style={{ gap: t.l }}>
       <CategoryCard
@@ -41,7 +56,7 @@ export const DocsList = () => (
         title="Typography"
         icon="font"
         color={[t.tabOrange, t.tabOrangeFaded]}
-        description="Our fonts are beautiful and functional."
+        description="Our fonts are beautiful and functional. Learn how we do it."
       />
       <CategoryCard
         title="Components"
@@ -59,11 +74,25 @@ export const DocsList = () => (
   </ScrollPage>
 );
 
-type CategoryCardProps = {
-  title: string;
-  icon: string;
-  color: string[];
-  description: string;
+const BulletIconLine: React.FC<BulletIconLineProps> = ({
+  children,
+  icon,
+  type,
+  style,
+}) => {
+  const { colors } = useTheme();
+
+  return (
+    <Text style={{ ...s.iconBullet, ...style }}>
+      <Icon
+        name={icon}
+        type={type || 'fal'}
+        size={t.l}
+        style={{ marginRight: t.s, minHeight: t.l, minWidth: t.l }}
+      />
+      {children}
+    </Text>
+  );
 };
 
 const CategoryCard: React.FC<CategoryCardProps> = ({
@@ -101,7 +130,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
           paddingRight: isMobile ? t.l : t.xxl,
         }}
       >
-        <Row style={{ width: '100%', justifyContent: 'space-between' }}>
+        <Row style={{ width: '100%' }}>
           <Row>
             <Icon
               name={icon}
@@ -113,16 +142,34 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
           </Row>
           <Button
             type="Naked"
-            icon={'chevron-right'}
+            icon={'arrow-right'}
             iconSize={t.xxl}
             iconColor={color[0]}
             onPress={() => setIsOpen(!isOpen)}
             style={{
               opacity: hover ? 1 : 0,
+              marginLeft: t.s,
             }}
           />
         </Row>
         <Text style={{ width: '100%' }}>{description}</Text>
+        <View
+          style={{
+            position: 'absolute',
+            right: -t.m,
+            height: '125%',
+          }}
+        >
+          <Icon
+            name={icon}
+            color={color[1]}
+            style={{
+              height: '100%',
+              width: 'auto',
+              opacity: hover ? 1 : 0.5,
+            }}
+          />
+        </View>
       </Title>
     </Pressable>
   );

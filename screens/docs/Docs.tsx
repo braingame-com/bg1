@@ -24,24 +24,16 @@ export const Docs: React.FC<DocsProps> = () => {
       screenOptions={{
         headerShadowVisible: false,
         headerStyle: {
-          backgroundColor: colors.background,
+          backgroundColor: colors.card,
         },
       }}
     >
-      <Stack.Screen
-        name="Components"
-        component={Components}
-        options={{
-          headerStyle: {
-            backgroundColor: colors.card,
-          },
-        }}
-      />
       <Stack.Screen
         name="DocsList"
         component={DocsList}
         options={{ headerShown: false }}
       />
+      <Stack.Screen name="Components" component={Components} />
       <Stack.Screen name="Colors" component={Colors} />
       <Stack.Screen name="Tokens" component={Tokens} />
       <Stack.Screen name="Typography" component={Typography} />

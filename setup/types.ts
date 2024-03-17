@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface TagProps {
   children: any;
   icon?: string;
@@ -54,3 +56,17 @@ export interface TaskProps {
   text: string;
   index: number;
 }
+
+export type CategoryCardProps = {
+  title: string;
+  icon: string;
+  color: string[];
+  description: string;
+};
+
+export type BulletIconLineProps = {
+  children: ReactNode;
+  icon: string;
+  type?: string;
+  style?: object;
+};

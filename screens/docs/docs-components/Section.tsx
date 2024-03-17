@@ -38,7 +38,7 @@ export const Section = ({
           <Icon
             name={icon}
             size={t.xxl}
-            color={colors.text}
+            color={color[0]}
             style={{ marginRight: t.s }}
           />
           {title}
