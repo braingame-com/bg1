@@ -1,11 +1,11 @@
 import { t } from '../../../../setup/styles';
-import { PaletteInterface } from '../../../../setup/types';
-import { Column } from '../../../../design/primitives';
+import { ColorsInterface } from '../../../../setup/types';
+import { Column, ScrollPage } from '../../../../design/primitives';
 import { PaletteCard, PaletteItem } from '../Palette';
 import { Section } from '../Section';
 
 export const Colors = () => {
-  const colors: PaletteInterface = [
+  const colors: ColorsInterface = [
     {
       heading: 'Light',
       description: 'The default (light) theme of the app.',
@@ -73,34 +73,36 @@ export const Colors = () => {
   ];
 
   return (
-    <Section
-      title="Colors"
-      icon="palette"
-      color={[t.tabPurple, t.tabPurpleFaded]}
-    >
-      <Column
-        style={{
-          alignItems: 'flex-start',
-          gap: t.l,
-          marginBottom: t.l,
-        }}
+    <ScrollPage>
+      <Section
+        title="Colors"
+        icon="palette"
+        color={[t.tabPurple, t.tabPurpleFaded]}
       >
-        {colors.map((category: any) => (
-          <PaletteCard
-            heading={category.heading}
-            description={category.description}
-            key={category.heading}
-          >
-            {Object.keys(category.items).map((label) => (
-              <PaletteItem
-                label={label}
-                value={category.items[label]}
-                key={label}
-              />
-            ))}
-          </PaletteCard>
-        ))}
-      </Column>
-    </Section>
+        <Column
+          style={{
+            alignItems: 'flex-start',
+            gap: t.l,
+            marginBottom: t.l,
+          }}
+        >
+          {colors.map((category: any) => (
+            <PaletteCard
+              heading={category.heading}
+              description={category.description}
+              key={category.heading}
+            >
+              {Object.keys(category.items).map((label) => (
+                <PaletteItem
+                  label={label}
+                  value={category.items[label]}
+                  key={label}
+                />
+              ))}
+            </PaletteCard>
+          ))}
+        </Column>
+      </Section>
+    </ScrollPage>
   );
 };

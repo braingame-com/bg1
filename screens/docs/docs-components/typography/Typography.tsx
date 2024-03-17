@@ -1,5 +1,5 @@
 import { t } from '../../../../setup/styles';
-import { Column } from '../../../../design/primitives';
+import { Column, ScrollPage } from '../../../../design/primitives';
 import {
   DisplayTitle,
   Title,
@@ -40,42 +40,46 @@ export const Typography = () => {
   };
 
   return (
-    <Section
-      title="Typography"
-      icon="font"
-      color={[t.tabOrange, t.tabOrangeFaded]}
-    >
-      <Column
-        style={{
-          alignItems: 'flex-start',
-          gap: t.l,
-          marginBottom: t.l,
-        }}
+    <ScrollPage>
+      <Section
+        title="Typography"
+        icon="font"
+        color={[t.tabOrange, t.tabOrangeFaded]}
       >
-        {Object.keys(variants).map((category) => (
-          <PaletteCard
-            heading={category}
-            key={category}
-            description={
-              category === 'Display'
-                ? 'The general font used throughout the app and in print. Friendly, sans-serif, optimized for legibility and class.'
-                : 'Commonly used for small pieces of information like tags, but also as a nice design touch for certain titles etc.'
-            }
-          >
-            {variants[category as keyof typeof variants].map((variant: any) => {
-              const VariantComponent = variant.component;
+        <Column
+          style={{
+            alignItems: 'flex-start',
+            gap: t.l,
+            marginBottom: t.l,
+          }}
+        >
+          {Object.keys(variants).map((category) => (
+            <PaletteCard
+              heading={category}
+              key={category}
+              description={
+                category === 'Display'
+                  ? 'The general font used throughout the app and in print. Friendly, sans-serif, optimized for legibility and class.'
+                  : 'Commonly used for small pieces of information like tags, but also as a nice design touch for certain titles etc.'
+              }
+            >
+              {variants[category as keyof typeof variants].map(
+                (variant: any) => {
+                  const VariantComponent = variant.component;
 
-              return (
-                <PaletteItem label={variant.label} key={variant.label}>
-                  <VariantComponent mono={variant.mono}>
-                    {variant.text}
-                  </VariantComponent>
-                </PaletteItem>
-              );
-            })}
-          </PaletteCard>
-        ))}
-      </Column>
-    </Section>
+                  return (
+                    <PaletteItem label={variant.label} key={variant.label}>
+                      <VariantComponent mono={variant.mono}>
+                        {variant.text}
+                      </VariantComponent>
+                    </PaletteItem>
+                  );
+                }
+              )}
+            </PaletteCard>
+          ))}
+        </Column>
+      </Section>
+    </ScrollPage>
   );
 };

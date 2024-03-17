@@ -7,11 +7,11 @@ import {
   // ScrollContextInterface,
 } from './components/AppProvider';
 import { Dashboard } from './screens/dashboard/Dashboard';
-// import { Search } from './screens/Search';
-// import { Lessons } from './screens/Lessons';
-// import { Videos } from './screens/Videos';
-// import { Shop } from './screens/Shop';
-import { Profile } from './screens/profile/Profile';
+// import { Search } from './screens/search/Search';
+// import { Lessons } from './screens/lessons/Lessons';
+// import { Videos } from './screens/videos/Videos';
+// import { Shop } from './screens/shop/Shop';
+// import { Profile } from './screens/profile/Profile';
 import { t } from './setup/styles';
 import { Icon, ProfileIcon } from './design/primitives';
 import { TabBar } from './components/TabBar';
@@ -77,11 +77,17 @@ export default function App() {
           options={({ navigation }) => ({
             tabBarIcon: ({ color, focused }) => (
               <Icon
-                // name={focused ? 'grid-dashboard-solid' : 'grid-dashboard-light'}
-                name="list"
+                name="brain-game"
                 color={color}
                 size="primary"
                 type={focused ? 'fas' : undefined}
+                style={
+                  {
+                    outline: 'none !important',
+                    focus: 'none !important',
+                    tabIndex: '-1',
+                  } as any
+                }
               />
             ),
             headerRight: () => <ProfileIcon navigation={navigation} />,
@@ -98,8 +104,8 @@ export default function App() {
             ),
             headerShown: false,
           }}
-        /> */}
-        {/* <Tab.Screen
+        />
+        <Tab.Screen
           name="Lessons "
           component={Lessons}
           options={{
@@ -143,7 +149,7 @@ export default function App() {
             ),
             headerShown: false,
           }}
-        /> */}
+        />
         <Tab.Screen
           name="Profile"
           component={Profile}
@@ -157,7 +163,7 @@ export default function App() {
               />
             ),
           }}
-        />
+        /> */}
       </Tab.Navigator>
     </AppProvider>
   );

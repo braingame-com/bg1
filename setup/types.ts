@@ -7,7 +7,7 @@ export interface ColorGroup {
   [key: string]: string;
 }
 
-export interface PaletteInterface {
+export interface ColorsInterface {
   [key: string]: ColorGroup | any;
 }
 

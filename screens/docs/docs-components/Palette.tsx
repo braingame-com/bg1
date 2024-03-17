@@ -12,7 +12,7 @@ export const PaletteCard: React.FC<{
   children: any;
 }> = ({ heading, description, children }) => {
   const { colors } = useTheme();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <View
@@ -26,25 +26,26 @@ export const PaletteCard: React.FC<{
           gap: t.l,
           flexWrap: 'wrap',
           paddingBottom: !isOpen ? 0 : t.l,
+          margin: 0,
         } as any
       }
     >
-      <Pressable
+      {/* <Pressable
         onPress={() => setIsOpen(!isOpen)}
         style={{ flexBasis: '100%', justifyContent: 'space-between' }}
-      >
-        <Row style={{ flexBasis: '100%', justifyContent: 'space-between' }}>
-          <Heading style={{ marginBottom: 0 }} mono={true}>
-            {heading}
-          </Heading>
-          <Button
+      > */}
+      <Row style={{ flexBasis: '100%', justifyContent: 'space-between' }}>
+        <Heading style={{ marginBottom: 0 }} mono={true}>
+          {heading}
+        </Heading>
+        {/* <Button
             type="Naked"
             icon={isOpen ? 'chevron-up' : 'chevron-down'}
             iconSize="primary"
             onPress={() => setIsOpen(!isOpen)}
-          />
-        </Row>
-      </Pressable>
+          /> */}
+      </Row>
+      {/* </Pressable> */}
       {description && (
         <Text
           style={{
@@ -95,11 +96,11 @@ export const PaletteItem: React.FC<{
           justifyContent: 'center',
           alignSelf: 'flex-start',
           gap: t.s,
-          borderRadius: t.xs,
-          borderColor: colors.border,
-          borderWidth: 1,
-          paddingHorizontal: t.s,
-          paddingVertical: t.xs,
+          // borderRadius: t.xs,
+          // borderColor: colors.border,
+          // borderWidth: 1,
+          // paddingHorizontal: t.s,
+          // paddingVertical: t.xs,
         }}
       >
         {isColor(value) && <PaletteSwatch value={value} />}
@@ -119,8 +120,8 @@ export const PaletteSwatch: React.FC<{ value: any }> = ({ value }) => {
   return (
     <View
       style={{
-        width: t.l,
-        height: t.l,
+        width: t.xxl,
+        height: t.xxl,
         borderRadius: t.xxs,
         backgroundColor: value,
         borderColor: colors.border,

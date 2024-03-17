@@ -97,7 +97,11 @@ export const Button: React.FC<ButtonProps> = ({
             : isNegative
             ? t.negativeFaded
             : 'transparent',
-          borderColor: isPrimary ? t.primary : colors.border,
+          borderColor: isPrimary
+            ? t.primary
+            : isNegative
+            ? t.negative
+            : colors.border,
           borderWidth: isNaked ? 0 : 1,
           borderRadius: isNaked ? 0 : t.s,
           padding: isNaked ? 0 : t.s,
@@ -147,7 +151,11 @@ export const Button: React.FC<ButtonProps> = ({
         <Text
           style={{
             opacity: loading ? 0 : 1,
-            color: isPrimary ? t.primary : colors.text,
+            color: isPrimary
+              ? t.primary
+              : isNegative
+              ? t.negative
+              : colors.text,
             fontSize: t.m,
             ...(typeof contentStyle === 'object' && contentStyle !== null
               ? contentStyle
@@ -481,6 +489,7 @@ export const Icon: React.FC<IconProps> = ({
         width={sizeMap}
         height={sizeMap}
         style={{
+          pointerEvents: 'none',
           ...(typeof style === 'object' && style !== null ? style : {}),
         }}
       >

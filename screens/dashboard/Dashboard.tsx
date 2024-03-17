@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useTheme } from '@react-navigation/native';
+import { useNavigation, useTheme } from '@react-navigation/native';
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
@@ -9,7 +9,13 @@ import { Bold } from '../../design/typography';
 import { TasksScreen } from './dashboard-components/tasks/TasksScreen';
 import { Docs } from '../docs/Docs';
 import { t, s } from '../../setup/styles';
-import { Button } from '../../design/primitives';
+import { BackButton, Button } from '../../design/primitives';
+import { DashboardList } from './dashboard-components/dashboard-list/DashboardList';
+import { NumbersScreen } from './dashboard-components/numbers/NumbersScreen';
+import { MindsetScreen } from './dashboard-components/mindset/MindsetScreen';
+import { PlanningScreen } from './dashboard-components/planning/PlanningScreen';
+import { JournalScreen } from './dashboard-components/journal/JournalScreen';
+import { Profile } from '../profile/Profile';
 // import { auth } from '../firebaseConfig';
 // import { onAuthStateChanged } from 'firebase/auth';
 
@@ -40,6 +46,7 @@ type DashboardProps = {
 
 // export const Dashboard: React.FC<DashboardProps> = ({ navigation }) => (
 export const Dashboard: React.FC<DashboardProps> = () => {
+  const navigation: any = useNavigation();
   const { colors } = useTheme();
   const [remaining, setRemaining] = useState(0);
 
@@ -64,31 +71,31 @@ export const Dashboard: React.FC<DashboardProps> = () => {
           options={{ headerShown: false }}
         />
       )}
-      {/* <Stack.Screen
-      name="Dashboard"
-      component={DashboardList}
-      options={{ headerShown: false }}
-    />
-    {userIsLoggedIn && (
       <Stack.Screen
-        name="Account Flow"
-        component={AccountFlow}
+        name="Dashboard"
+        component={DashboardList}
         options={{ headerShown: false }}
       />
-    )}
-    <Stack.Screen
-      name="Numbers Screen"
-      component={NumbersScreen}
-      options={{
-        headerTitle: '',
-        headerLeft: () => (
-          <BackButton
-            text="Dashboard"
-            onPress={() => navigation.navigate('Dashboard')}
-          />
-        ),
-      }}
-    /> */}
+      {userIsLoggedIn && (
+        <Stack.Screen
+          name="Account Flow"
+          component={AccountFlow}
+          options={{ headerShown: false }}
+        />
+      )}
+      <Stack.Screen
+        name="Numbers Screen"
+        component={NumbersScreen}
+        options={{
+          headerTitle: '',
+          headerLeft: () => (
+            <BackButton
+              text="Dashboard"
+              onPress={() => navigation.navigate('Dashboard')}
+            />
+          ),
+        }}
+      />
       <Stack.Screen
         name="Tasks Screen"
         options={{
@@ -129,58 +136,58 @@ export const Dashboard: React.FC<DashboardProps> = () => {
       >
         {(props) => <TasksScreen {...props} setRemaining={setRemaining} />}
       </Stack.Screen>
-      {/* <Stack.Screen
-      name="Mindset Screen"
-      component={MindsetScreen}
-      options={{
-        headerTitle: '',
-        headerLeft: () => (
-          <BackButton
-            text="Dashboard"
-            onPress={() => navigation.navigate('Dashboard')}
-          />
-        ),
-      }}
-    />
-    <Stack.Screen
-      name="Planning Screen"
-      component={PlanningScreen}
-      options={{
-        headerTitle: '',
-        headerLeft: () => (
-          <BackButton
-            text="Dashboard"
-            onPress={() => navigation.navigate('Dashboard')}
-          />
-        ),
-      }}
-    />
-    <Stack.Screen
-      name="Journal Screen"
-      component={JournalScreen}
-      options={{
-        headerTitle: '',
-        headerLeft: () => (
-          <BackButton
-            text="Dashboard"
-            onPress={() => navigation.navigate('Dashboard')}
-          />
-        ),
-      }}
-    />
-    <Stack.Screen
-      name="Profile"
-      component={Profile}
-      options={{
-        headerTitle: '',
-        headerLeft: () => (
-          <BackButton
-            text="Dashboard"
-            onPress={() => navigation.navigate('Dashboard')}
-          />
-        ),
-      }}
-    /> */}
+      <Stack.Screen
+        name="Mindset Screen"
+        component={MindsetScreen}
+        options={{
+          headerTitle: '',
+          headerLeft: () => (
+            <BackButton
+              text="Dashboard"
+              onPress={() => navigation.navigate('Dashboard')}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Planning Screen"
+        component={PlanningScreen}
+        options={{
+          headerTitle: '',
+          headerLeft: () => (
+            <BackButton
+              text="Dashboard"
+              onPress={() => navigation.navigate('Dashboard')}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Journal Screen"
+        component={JournalScreen}
+        options={{
+          headerTitle: '',
+          headerLeft: () => (
+            <BackButton
+              text="Dashboard"
+              onPress={() => navigation.navigate('Dashboard')}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          headerTitle: '',
+          headerLeft: () => (
+            <BackButton
+              text="Dashboard"
+              onPress={() => navigation.navigate('Dashboard')}
+            />
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 };

@@ -1,3 +1,4 @@
+import { ScrollPage } from '../../../../design/primitives';
 import { t } from '../../../../setup/styles';
 import { PaletteCard, PaletteItem } from '../Palette';
 import { Section } from '../Section';
@@ -9,19 +10,21 @@ export const Helpers = () => {
   };
 
   return (
-    <Section
-      title="Helpers"
-      icon="screwdriver-wrench"
-      color={[t.tabYellow, t.tabYellowFaded]}
-    >
-      <PaletteCard
-        heading={'Helpers'}
-        description="Handy functions and variables to save you time."
+    <ScrollPage>
+      <Section
+        title="Helpers"
+        icon="screwdriver-wrench"
+        color={[t.tabYellow, t.tabYellowFaded]}
       >
-        {Object.keys(helpers).map((key) => (
-          <PaletteItem label={key} value={helpers[key]} key={key} />
-        ))}
-      </PaletteCard>
-    </Section>
+        <PaletteCard
+          heading={'Helpers'}
+          description="Handy functions and variables to save you time."
+        >
+          {Object.keys(helpers).map((key) => (
+            <PaletteItem label={key} value={helpers[key]} key={key} />
+          ))}
+        </PaletteCard>
+      </Section>
+    </ScrollPage>
   );
 };

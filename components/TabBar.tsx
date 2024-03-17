@@ -1,7 +1,6 @@
 import { useTheme, Route } from '@react-navigation/native';
 import { View, Pressable } from 'react-native';
 import { s, t } from '../setup/styles';
-import { Icon } from '../design/primitives';
 import { isMobile } from '../setup/helpers';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
@@ -22,7 +21,7 @@ export const TabBar = ({
         borderColor: colors.border,
       }}
     >
-      {!isMobile && <BrainGameLogo />}
+      {/* {!isMobile && <BrainGameLogo />} */}
 
       {state.routes.map((route: Route<string>, index: number) => {
         const isFocused = state.index === index;
@@ -34,7 +33,8 @@ export const TabBar = ({
             ? options.title
             : route.name;
         const icon = options?.tabBarIcon?.({
-          color: isMobile ? t.white : isFocused ? t.primary : t.white,
+          // color: isMobile ? t.white : isFocused ? t.primary : t.white,
+          color: t.white,
           focused: isFocused,
           size: t.xl,
         });
@@ -69,7 +69,7 @@ export const TabBar = ({
               {
                 ...s.tabBarItem,
                 flex: 1,
-                backgroundColor: !isMobile && isFocused && t.primaryFaded,
+                backgroundColor: !isMobile && isFocused && t.greyFaded,
                 borderRadius: t.m,
                 marginHorizontal: isMobile ? 0 : t.l,
                 marginTop:
@@ -78,20 +78,14 @@ export const TabBar = ({
                     : typeof label === 'string' &&
                       label.includes('Dashboard') &&
                       !isMobile
-                    ? t.xxl
+                    ? t.xl
                     : 0,
                 marginBottom: label === 'Profile' && !isMobile ? t.l : 0,
               } as any
             }
             key={index}
           >
-            <View
-              style={{
-                ...s.tabBarIconWrapper,
-              }}
-            >
-              {icon}
-            </View>
+            <View style={{ ...s.tabBarIconWrapper }}>{icon}</View>
           </Pressable>
         );
       })}
@@ -99,15 +93,15 @@ export const TabBar = ({
   );
 };
 
-const BrainGameLogo = () => (
-  <View
-    style={{
-      height: t.m * 4,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginTop: t.xxl,
-    }}
-  >
-    <Icon name="brain-game" size="primary" />
-  </View>
-);
+// const BrainGameLogo = () => (
+//   <View
+//     style={{
+//       height: t.m * 4,
+//       alignItems: 'center',
+//       justifyContent: 'center',
+//       marginTop: t.xxl,
+//     }}
+//   >
+//     <Icon name="brain-game" size="primary" />
+//   </View>
+// );

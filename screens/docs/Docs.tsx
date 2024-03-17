@@ -29,6 +29,15 @@ export const Docs: React.FC<DocsProps> = () => {
       }}
     >
       <Stack.Screen
+        name="Components"
+        component={Components}
+        options={{
+          headerStyle: {
+            backgroundColor: colors.card,
+          },
+        }}
+      />
+      <Stack.Screen
         name="DocsList"
         component={DocsList}
         options={{ headerShown: false }}
@@ -36,7 +45,15 @@ export const Docs: React.FC<DocsProps> = () => {
       <Stack.Screen name="Colors" component={Colors} />
       <Stack.Screen name="Tokens" component={Tokens} />
       <Stack.Screen name="Typography" component={Typography} />
-      <Stack.Screen name="Components" component={Components} />
+      {/* <Stack.Screen
+        name="Components"
+        component={Components}
+        options={{
+          headerStyle: {
+            backgroundColor: colors.card,
+          },
+        }}
+      /> */}
       <Stack.Screen name="Helpers" component={Helpers} />
     </Stack.Navigator>
   );
