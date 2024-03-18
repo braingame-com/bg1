@@ -22,7 +22,7 @@ export const Tokens = () => {
     <ScrollPage>
       <Section
         title="Tokens"
-        icon="pen-ruler"
+        icon="ruler-combined"
         color={[t.tabGreen, t.tabGreenFaded]}
       >
         <Column

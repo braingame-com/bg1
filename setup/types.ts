@@ -3,6 +3,8 @@ import { ReactNode } from 'react';
 export interface TagProps {
   children: any;
   icon?: string;
+  style?: object;
+  iconSize?: string | number;
 }
 
 export interface ColorGroup {

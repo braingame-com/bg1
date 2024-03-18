@@ -7,15 +7,17 @@ import { Button, Divider, Row, Tag } from '../../../design/primitives';
 import { useState } from 'react';
 
 export const PaletteCard: React.FC<{
+  children: any;
   heading: string;
   description?: string;
-  children: any;
-}> = ({ heading, description, children }) => {
+  code?: string;
+}> = ({ children, heading, description, code }) => {
   const { colors } = useTheme();
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <View
+    <Pressable
+      onPress={() => setIsOpen(!isOpen)}
       style={
         {
           ...s.card,
@@ -30,23 +32,21 @@ export const PaletteCard: React.FC<{
         } as any
       }
     >
-      {/* <Pressable
-        onPress={() => setIsOpen(!isOpen)}
-        style={{ flexBasis: '100%', justifyContent: 'space-between' }}
-      > */}
       <Row style={{ flexBasis: '100%', justifyContent: 'space-between' }}>
-        <Heading style={{ marginBottom: 0 }} mono={true}>
-          {heading}
-        </Heading>
-        {/* <Button
+        <Row style={{ flexBasis: '100%', justifyContent: 'space-between' }}>
+          <Heading style={{ marginBottom: 0 }} mono={true}>
+            {heading}
+          </Heading>
+          <Button
             type="Naked"
-            icon={isOpen ? 'chevron-up' : 'chevron-down'}
+            icon={isOpen ? 'minus' : 'plus'}
             iconSize="primary"
             onPress={() => setIsOpen(!isOpen)}
-          /> */}
+          />
+        </Row>
       </Row>
-      {/* </Pressable> */}
-      {description && (
+      {code && isOpen && <Tag icon="copy">{code}</Tag>}
+      {description && isOpen && (
         <Text
           style={{
             flexBasis: '100%',
@@ -67,7 +67,7 @@ export const PaletteCard: React.FC<{
         }
       />
       {isOpen && children}
-    </View>
+    </Pressable>
   );
 };
 

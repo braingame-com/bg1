@@ -57,8 +57,10 @@ interface ButtonProps {
   icon?: string;
   iconSize?: string | number;
   iconColor?: string;
+  iconAlign?: string;
   iconType?: string;
   iconStyle?: any;
+  loading?: boolean;
   onPress?: () => void;
   contentStyle?: StyleProp<TextStyle>;
 }
@@ -70,49 +72,64 @@ export const Button: React.FC<ButtonProps> = ({
   icon,
   iconSize,
   iconColor,
+  iconAlign,
   iconType,
   iconStyle,
+  loading: loadingProp,
   onPress,
   contentStyle,
 }) => {
   const { colors } = useTheme();
-  const isPrimary = type === 'Primary' ? true : false;
-  const isSecondary = type === 'Secondary' ? true : false;
-  const isNegative = type === 'Negative' ? true : false;
-  const isNaked = type === 'Naked' ? true : false;
-  // const [loading, setLoading] = useState(false);
-  const loading = false;
+  const isPrimary = type?.includes('Primary');
+  const isSecondary = type?.includes('Secondary');
+  const isNegative = type?.includes('Negative');
+  const isNaked = type?.includes('Naked');
+  const [loading, setLoading] = useState(loadingProp ?? false);
+  const [hover, setHover] = useState(false);
 
   return (
     <Pressable
       onPress={onPress}
       hitSlop={{ top: t.xs, bottom: t.xs, left: t.xs, right: t.xs }}
+      onHoverIn={() => setHover(true)}
+      onHoverOut={() => setHover(false)}
+      disabled={loading}
     >
       <View
         style={{
-          backgroundColor: isPrimary
-            ? t.primaryFaded
-            : isSecondary
-            ? colors.card
-            : isNegative
-            ? t.negativeFaded
-            : 'transparent',
-          borderColor: isPrimary
-            ? t.primary
-            : isNegative
-            ? t.negative
-            : colors.border,
-          borderWidth: isNaked ? 0 : 1,
-          borderRadius: isNaked ? 0 : t.s,
-          padding: isNaked ? 0 : t.s,
-          paddingHorizontal: isNaked ? 0 : t.l,
+          backgroundColor:
+            isPrimary && !isNaked
+              ? t.primary
+              : isNegative && !isNaked
+              ? t.negative
+              : isNaked
+              ? hover
+                ? isPrimary
+                  ? t.primaryFaded
+                  : isNegative
+                  ? t.negativeFaded
+                  : t.greyFaded
+                : 'transparent'
+              : colors.border,
+          // borderColor: isPrimary
+          //   ? t.primary
+          //   : isNegative
+          //   ? t.negative
+          //   : colors.border,
+          // borderWidth: isNaked ? 0 : 1,
+          // borderRadius: isNaked ? 0 : t.s,
+          borderRadius: t.s,
+          // padding: isNaked ? 0 : t.s,
+          // paddingHorizontal: isNaked ? 0 : t.l,
+          padding: t.m,
+          opacity: loading || hover ? 1 : 0.9,
           overflow: 'hidden',
           ...s.row,
           alignSelf: 'flex-start',
           ...(typeof style === 'object' && style !== null ? style : {}),
         }}
       >
-        {icon && (
+        {icon && iconAlign?.toLowerCase() !== 'right' && (
           <Icon
             name={icon}
             size={
@@ -122,8 +139,24 @@ export const Button: React.FC<ButtonProps> = ({
                 ? iconSize
                 : 'secondary'
             }
-            color={iconColor ? iconColor : isPrimary ? t.primary : colors.text}
-            style={{ marginRight: text ? t.s : 0, ...iconStyle }}
+            color={
+              iconColor
+                ? iconColor
+                : isPrimary
+                ? isNaked
+                  ? t.primary
+                  : colors.text
+                : isNegative
+                ? isNaked
+                  ? t.negative
+                  : colors.background
+                : colors.text
+            }
+            style={{
+              marginRight: text ? t.s : 0,
+              opacity: loading ? 0 : 1,
+              ...iconStyle,
+            }}
             type={iconType}
           />
         )}
@@ -152,9 +185,13 @@ export const Button: React.FC<ButtonProps> = ({
           style={{
             opacity: loading ? 0 : 1,
             color: isPrimary
-              ? t.primary
+              ? isNaked
+                ? t.primary
+                : t.white
               : isNegative
-              ? t.negative
+              ? isNaked
+                ? t.negative
+                : t.black
               : colors.text,
             fontSize: t.m,
             ...(typeof contentStyle === 'object' && contentStyle !== null
@@ -164,6 +201,37 @@ export const Button: React.FC<ButtonProps> = ({
         >
           {text}
         </Text>
+        {icon && iconAlign?.toLowerCase() === 'right' && (
+          <Icon
+            name={icon}
+            size={
+              iconSize === 'small'
+                ? undefined
+                : iconSize
+                ? iconSize
+                : 'secondary'
+            }
+            color={
+              iconColor
+                ? iconColor
+                : isPrimary
+                ? isNaked
+                  ? t.primary
+                  : colors.text
+                : isNegative
+                ? isNaked
+                  ? t.negative
+                  : colors.background
+                : colors.text
+            }
+            style={{
+              marginLeft: text ? t.s : 0,
+              opacity: loading ? 0 : 1,
+              ...iconStyle,
+            }}
+            type={iconType}
+          />
+        )}
         {loading && (
           <View
             style={{
@@ -172,7 +240,9 @@ export const Button: React.FC<ButtonProps> = ({
               right: 0,
             }}
           >
-            <RNActivityIndicator />
+            <RNActivityIndicator
+              color={isNegative ? colors.background : colors.text}
+            />
           </View>
         )}
       </View>
@@ -474,6 +544,8 @@ export const Icon: React.FC<IconProps> = ({
         fill={color || t.white}
         width={sizeMap}
         height={sizeMap}
+        minWidth={sizeMap}
+        minHeight={sizeMap}
         style={{
           ...(typeof style === 'object' && style !== null ? style : {}),
         }}
@@ -488,6 +560,8 @@ export const Icon: React.FC<IconProps> = ({
         fill={color || t.white}
         width={sizeMap}
         height={sizeMap}
+        minWidth={sizeMap}
+        minHeight={sizeMap}
         style={{
           pointerEvents: 'none',
           ...(typeof style === 'object' && style !== null ? style : {}),
@@ -503,6 +577,8 @@ export const Icon: React.FC<IconProps> = ({
         fill={color || t.white}
         width={sizeMap}
         height={sizeMap}
+        minWidth={sizeMap}
+        minHeight={sizeMap}
         style={{
           ...(typeof style === 'object' && style !== null ? style : {}),
         }}
@@ -518,6 +594,8 @@ export const Icon: React.FC<IconProps> = ({
           color={color || t.white}
           size={sizeMap as number}
           style={{
+            minWidth: sizeMap,
+            minHeight: sizeMap,
             ...(typeof style === 'object' && style !== null ? style : {}),
           }}
         />
@@ -526,13 +604,21 @@ export const Icon: React.FC<IconProps> = ({
   }
 };
 
-export const Tag: React.FC<TagProps> = ({ children, icon }) => {
+export const Tag: React.FC<TagProps> = ({
+  children,
+  icon,
+  style,
+  iconSize,
+}) => {
   const { colors } = useTheme();
 
   return (
-    <Small style={{ ...s.tag, color: colors.text, gap: t.xs }} mono={true}>
+    <Small
+      style={{ ...s.tag, color: colors.text, gap: t.s, ...style }}
+      mono={true}
+    >
       {children}
-      {icon && <Icon name={icon} color={t.grey} size={t.s} />}
+      {icon && <Icon name={icon} color={t.grey} size={iconSize || t.s} />}
     </Small>
   );
 };

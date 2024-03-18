@@ -28,12 +28,12 @@ export const Docs: React.FC<DocsProps> = () => {
         },
       }}
     >
+      <Stack.Screen name="Components" component={Components} />
       <Stack.Screen
         name="DocsList"
         component={DocsList}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Components" component={Components} />
       <Stack.Screen name="Colors" component={Colors} />
       <Stack.Screen name="Tokens" component={Tokens} />
       <Stack.Screen name="Typography" component={Typography} />

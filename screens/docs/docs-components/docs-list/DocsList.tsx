@@ -4,11 +4,13 @@ import {
   Icon,
   Row,
   ScrollPage,
+  Tag,
 } from '../../../../design/primitives';
 import { s, t } from '../../../../setup/styles';
 import {
   DisplayTitle,
   Heading,
+  Subtitle,
   Text,
   Title,
 } from '../../../../design/typography';
@@ -35,9 +37,39 @@ export const DocsList = () => (
     <BulletIconLine icon="moon">
       Beautiful, minimal Dark / Light themes as standard.
     </BulletIconLine>
-    <BulletIconLine icon="terminal" style={{ marginBottom: t.xxxl }}>
+    <BulletIconLine icon="terminal" style={{ marginBottom: t.xxl }}>
       Open source, made by indie devs!
     </BulletIconLine>
+
+    <Heading>Quick start...</Heading>
+    <Tag
+      icon="copy"
+      style={{
+        marginBottom: t.s,
+        fontSize: t.m,
+        paddingHorizontal: t.l,
+        paddingVertical: t.m,
+      }}
+      iconSize={t.m}
+    >
+      $ npm install bgui
+    </Tag>
+
+    <Subtitle>...then</Subtitle>
+    <Tag
+      icon="copy"
+      style={{
+        marginBottom: t.xxl,
+        fontSize: t.m,
+        paddingHorizontal: t.l,
+        paddingVertical: t.m,
+      }}
+      iconSize={t.m}
+    >
+      {
+        "import { colors, tokens, typography, components, helpers } from '@bgui';"
+      }
+    </Tag>
 
     <Column style={{ gap: t.l }}>
       <CategoryCard
@@ -48,7 +80,7 @@ export const DocsList = () => (
       />
       <CategoryCard
         title="Tokens"
-        icon="pen-ruler"
+        icon="ruler-combined"
         color={[t.tabGreen, t.tabGreenFaded]}
         description="Consistent styling is key, so we made it easy."
       />
@@ -80,15 +112,13 @@ const BulletIconLine: React.FC<BulletIconLineProps> = ({
   type,
   style,
 }) => {
-  const { colors } = useTheme();
-
   return (
     <Text style={{ ...s.iconBullet, ...style }}>
       <Icon
         name={icon}
         type={type || 'fal'}
-        size={t.l}
-        style={{ marginRight: t.s, minHeight: t.l, minWidth: t.l }}
+        size={t.xxl}
+        style={{ marginRight: t.m, minHeight: t.xxl, minWidth: t.xxl }}
       />
       {children}
     </Text>
@@ -111,8 +141,6 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
       onPress={() => navigation.navigate(title)}
       onHoverIn={() => setHover(true)}
       onHoverOut={() => setHover(false)}
-      onPressIn={() => setHover(true)}
-      onPressOut={() => setHover(false)}
     >
       <Title
         mono={true}
@@ -140,23 +168,18 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
             />
             {title}
           </Row>
-          <Button
-            type="Naked"
-            icon={'arrow-right'}
-            iconSize={t.xxl}
-            iconColor={color[0]}
-            onPress={() => setIsOpen(!isOpen)}
-            style={{
-              opacity: hover ? 1 : 0,
-              marginLeft: t.s,
-            }}
+          <Icon
+            name={'arrow-right'}
+            size={t.xxl}
+            color={color[0]}
+            style={{ opacity: hover ? 1 : 0, marginLeft: t.s }}
           />
         </Row>
         <Text style={{ width: '100%' }}>{description}</Text>
         <View
           style={{
             position: 'absolute',
-            right: -t.m,
+            right: -t.xxl,
             height: '125%',
           }}
         >
